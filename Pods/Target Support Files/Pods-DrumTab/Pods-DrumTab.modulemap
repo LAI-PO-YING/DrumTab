@@ -1,0 +1,6 @@
+framework module Pods_DrumTab {
+  umbrella header "Pods-DrumTab-umbrella.h"
+
+  export *
+  module * { export * }
+}
