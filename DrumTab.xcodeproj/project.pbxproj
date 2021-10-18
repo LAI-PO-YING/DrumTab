@@ -17,6 +17,8 @@
 		304CBE14271D3464006B4FE2 /* HomePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304CBE13271D3464006B4FE2 /* HomePageViewController.swift */; };
 		304CBE17271D34A6006B4FE2 /* CollectionPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304CBE16271D34A6006B4FE2 /* CollectionPageViewController.swift */; };
 		304CBE19271D34BD006B4FE2 /* ProfilePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304CBE18271D34BD006B4FE2 /* ProfilePageViewController.swift */; };
+		304CBE1D271D41E8006B4FE2 /* SelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304CBE1C271D41E8006B4FE2 /* SelectionView.swift */; };
+		304CBE1F271D4458006B4FE2 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304CBE1E271D4458006B4FE2 /* UIView+Extension.swift */; };
 		309D3649271D085D00C1D667 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309D3648271D085D00C1D667 /* AppDelegate.swift */; };
 		309D364B271D085D00C1D667 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309D364A271D085D00C1D667 /* SceneDelegate.swift */; };
 		309D3650271D085D00C1D667 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 309D364E271D085D00C1D667 /* Main.storyboard */; };
@@ -37,6 +39,8 @@
 		304CBE13271D3464006B4FE2 /* HomePageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageViewController.swift; sourceTree = "<group>"; };
 		304CBE16271D34A6006B4FE2 /* CollectionPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionPageViewController.swift; sourceTree = "<group>"; };
 		304CBE18271D34BD006B4FE2 /* ProfilePageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePageViewController.swift; sourceTree = "<group>"; };
+		304CBE1C271D41E8006B4FE2 /* SelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionView.swift; sourceTree = "<group>"; };
+		304CBE1E271D4458006B4FE2 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		309D3645271D085D00C1D667 /* DrumTab.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DrumTab.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		309D3648271D085D00C1D667 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		309D364A271D085D00C1D667 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -64,6 +68,7 @@
 			isa = PBXGroup;
 			children = (
 				304CBDFF271D1D22006B4FE2 /* UIStoryboard+Extension.swift */,
+				304CBE1E271D4458006B4FE2 /* UIView+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -91,6 +96,7 @@
 		304CBE08271D238C006B4FE2 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				304CBE20271D60F8006B4FE2 /* Base */,
 				309D3653271D085E00C1D667 /* LaunchScreen.storyboard */,
 				309D364E271D085D00C1D667 /* Main.storyboard */,
 				304CBE0D271D33F2006B4FE2 /* Home.storyboard */,
@@ -139,6 +145,14 @@
 				304CBE18271D34BD006B4FE2 /* ProfilePageViewController.swift */,
 			);
 			path = Profile;
+			sourceTree = "<group>";
+		};
+		304CBE20271D60F8006B4FE2 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				304CBE1C271D41E8006B4FE2 /* SelectionView.swift */,
+			);
+			path = Base;
 			sourceTree = "<group>";
 		};
 		309D363C271D085D00C1D667 = {
@@ -314,8 +328,10 @@
 				304CBE17271D34A6006B4FE2 /* CollectionPageViewController.swift in Sources */,
 				304CBE14271D3464006B4FE2 /* HomePageViewController.swift in Sources */,
 				309D3649271D085D00C1D667 /* AppDelegate.swift in Sources */,
+				304CBE1D271D41E8006B4FE2 /* SelectionView.swift in Sources */,
 				309D364B271D085D00C1D667 /* SceneDelegate.swift in Sources */,
 				304CBE03271D1F71006B4FE2 /* DTTabBarViewController.swift in Sources */,
+				304CBE1F271D4458006B4FE2 /* UIView+Extension.swift in Sources */,
 				304CBE19271D34BD006B4FE2 /* ProfilePageViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
