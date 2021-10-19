@@ -19,11 +19,21 @@
 		304CBE19271D34BD006B4FE2 /* ProfilePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304CBE18271D34BD006B4FE2 /* ProfilePageViewController.swift */; };
 		304CBE1D271D41E8006B4FE2 /* SelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304CBE1C271D41E8006B4FE2 /* SelectionView.swift */; };
 		304CBE1F271D4458006B4FE2 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304CBE1E271D4458006B4FE2 /* UIView+Extension.swift */; };
+		304CBE2B271D75B7006B4FE2 /* drumCloseHiHat.wav in Resources */ = {isa = PBXBuildFile; fileRef = 304CBE24271D75B7006B4FE2 /* drumCloseHiHat.wav */; };
+		304CBE2C271D75B7006B4FE2 /* drumSnare.wav in Resources */ = {isa = PBXBuildFile; fileRef = 304CBE25271D75B7006B4FE2 /* drumSnare.wav */; };
+		304CBE2D271D75B7006B4FE2 /* drumOpenHiHat.wav in Resources */ = {isa = PBXBuildFile; fileRef = 304CBE26271D75B7006B4FE2 /* drumOpenHiHat.wav */; };
+		304CBE2E271D75B7006B4FE2 /* drumTom1.wav in Resources */ = {isa = PBXBuildFile; fileRef = 304CBE27271D75B7006B4FE2 /* drumTom1.wav */; };
+		304CBE2F271D75B7006B4FE2 /* drumCrash.wav in Resources */ = {isa = PBXBuildFile; fileRef = 304CBE28271D75B7006B4FE2 /* drumCrash.wav */; };
+		304CBE30271D75B7006B4FE2 /* drumStool.wav in Resources */ = {isa = PBXBuildFile; fileRef = 304CBE29271D75B7006B4FE2 /* drumStool.wav */; };
+		304CBE31271D75B7006B4FE2 /* drumFloorTom.wav in Resources */ = {isa = PBXBuildFile; fileRef = 304CBE2A271D75B7006B4FE2 /* drumFloorTom.wav */; };
+		304CBE33271D781F006B4FE2 /* DrumKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304CBE32271D781F006B4FE2 /* DrumKit.swift */; };
 		309D3649271D085D00C1D667 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309D3648271D085D00C1D667 /* AppDelegate.swift */; };
 		309D364B271D085D00C1D667 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309D364A271D085D00C1D667 /* SceneDelegate.swift */; };
 		309D3650271D085D00C1D667 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 309D364E271D085D00C1D667 /* Main.storyboard */; };
 		309D3652271D085E00C1D667 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 309D3651271D085E00C1D667 /* Assets.xcassets */; };
 		309D3655271D085E00C1D667 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 309D3653271D085E00C1D667 /* LaunchScreen.storyboard */; };
+		30F5FBD7271E6DF100A61E4F /* RecordPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F5FBD6271E6DF100A61E4F /* RecordPageViewController.swift */; };
+		30F5FBD9271E6F0200A61E4F /* CreationPreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F5FBD8271E6F0200A61E4F /* CreationPreviewViewController.swift */; };
 		AA30CE104FB4B5C516CEC76B /* Pods_DrumTab.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A88508AC6E7A5D3605685AD /* Pods_DrumTab.framework */; };
 /* End PBXBuildFile section */
 
@@ -41,6 +51,14 @@
 		304CBE18271D34BD006B4FE2 /* ProfilePageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePageViewController.swift; sourceTree = "<group>"; };
 		304CBE1C271D41E8006B4FE2 /* SelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionView.swift; sourceTree = "<group>"; };
 		304CBE1E271D4458006B4FE2 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		304CBE24271D75B7006B4FE2 /* drumCloseHiHat.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = drumCloseHiHat.wav; sourceTree = "<group>"; };
+		304CBE25271D75B7006B4FE2 /* drumSnare.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = drumSnare.wav; sourceTree = "<group>"; };
+		304CBE26271D75B7006B4FE2 /* drumOpenHiHat.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = drumOpenHiHat.wav; sourceTree = "<group>"; };
+		304CBE27271D75B7006B4FE2 /* drumTom1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = drumTom1.wav; sourceTree = "<group>"; };
+		304CBE28271D75B7006B4FE2 /* drumCrash.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = drumCrash.wav; sourceTree = "<group>"; };
+		304CBE29271D75B7006B4FE2 /* drumStool.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = drumStool.wav; sourceTree = "<group>"; };
+		304CBE2A271D75B7006B4FE2 /* drumFloorTom.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = drumFloorTom.wav; sourceTree = "<group>"; };
+		304CBE32271D781F006B4FE2 /* DrumKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrumKit.swift; sourceTree = "<group>"; };
 		309D3645271D085D00C1D667 /* DrumTab.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DrumTab.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		309D3648271D085D00C1D667 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		309D364A271D085D00C1D667 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -48,6 +66,8 @@
 		309D3651271D085E00C1D667 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		309D3654271D085E00C1D667 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		309D3656271D085E00C1D667 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		30F5FBD6271E6DF100A61E4F /* RecordPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordPageViewController.swift; sourceTree = "<group>"; };
+		30F5FBD8271E6F0200A61E4F /* CreationPreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreationPreviewViewController.swift; sourceTree = "<group>"; };
 		C5375142590186CEC4D9057F /* Pods-DrumTab.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DrumTab.debug.xcconfig"; path = "Target Support Files/Pods-DrumTab/Pods-DrumTab.debug.xcconfig"; sourceTree = "<group>"; };
 		E5BD3A4BDFEF54FA62C23DC9 /* Pods-DrumTab.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DrumTab.release.xcconfig"; path = "Target Support Files/Pods-DrumTab/Pods-DrumTab.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -110,6 +130,7 @@
 		304CBE09271D24C9006B4FE2 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				304CBE23271D6F44006B4FE2 /* Sounds */,
 				309D3651271D085E00C1D667 /* Assets.xcassets */,
 			);
 			path = Resource;
@@ -119,6 +140,8 @@
 			isa = PBXGroup;
 			children = (
 				304CBE0A271D26D6006B4FE2 /* CreationPageViewController.swift */,
+				30F5FBD6271E6DF100A61E4F /* RecordPageViewController.swift */,
+				30F5FBD8271E6F0200A61E4F /* CreationPreviewViewController.swift */,
 			);
 			path = Creation;
 			sourceTree = "<group>";
@@ -155,6 +178,28 @@
 			path = Base;
 			sourceTree = "<group>";
 		};
+		304CBE23271D6F44006B4FE2 /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				304CBE24271D75B7006B4FE2 /* drumCloseHiHat.wav */,
+				304CBE2A271D75B7006B4FE2 /* drumFloorTom.wav */,
+				304CBE28271D75B7006B4FE2 /* drumCrash.wav */,
+				304CBE26271D75B7006B4FE2 /* drumOpenHiHat.wav */,
+				304CBE25271D75B7006B4FE2 /* drumSnare.wav */,
+				304CBE29271D75B7006B4FE2 /* drumStool.wav */,
+				304CBE27271D75B7006B4FE2 /* drumTom1.wav */,
+			);
+			path = Sounds;
+			sourceTree = "<group>";
+		};
+		304CBE34271D7823006B4FE2 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				304CBE32271D781F006B4FE2 /* DrumKit.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		309D363C271D085D00C1D667 = {
 			isa = PBXGroup;
 			children = (
@@ -178,6 +223,7 @@
 			children = (
 				304CBE01271D1D4A006B4FE2 /* Extension */,
 				304CBE09271D24C9006B4FE2 /* Resource */,
+				304CBE34271D7823006B4FE2 /* Model */,
 				304CBE08271D238C006B4FE2 /* View */,
 				304CBE04271D1F88006B4FE2 /* Controller */,
 				309D364A271D085D00C1D667 /* SceneDelegate.swift */,
@@ -266,10 +312,17 @@
 			files = (
 				304CBE10271D3411006B4FE2 /* Collection.storyboard in Resources */,
 				309D3655271D085E00C1D667 /* LaunchScreen.storyboard in Resources */,
+				304CBE2B271D75B7006B4FE2 /* drumCloseHiHat.wav in Resources */,
+				304CBE2D271D75B7006B4FE2 /* drumOpenHiHat.wav in Resources */,
 				304CBE0E271D33F2006B4FE2 /* Home.storyboard in Resources */,
+				304CBE30271D75B7006B4FE2 /* drumStool.wav in Resources */,
+				304CBE2F271D75B7006B4FE2 /* drumCrash.wav in Resources */,
+				304CBE2C271D75B7006B4FE2 /* drumSnare.wav in Resources */,
 				309D3652271D085E00C1D667 /* Assets.xcassets in Resources */,
 				309D3650271D085D00C1D667 /* Main.storyboard in Resources */,
+				304CBE2E271D75B7006B4FE2 /* drumTom1.wav in Resources */,
 				304CBE12271D3424006B4FE2 /* Profile.storyboard in Resources */,
+				304CBE31271D75B7006B4FE2 /* drumFloorTom.wav in Resources */,
 				304CBE07271D2344006B4FE2 /* Creation.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -323,6 +376,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				30F5FBD7271E6DF100A61E4F /* RecordPageViewController.swift in Sources */,
 				304CBE0B271D26D6006B4FE2 /* CreationPageViewController.swift in Sources */,
 				304CBE00271D1D22006B4FE2 /* UIStoryboard+Extension.swift in Sources */,
 				304CBE17271D34A6006B4FE2 /* CollectionPageViewController.swift in Sources */,
@@ -330,9 +384,11 @@
 				309D3649271D085D00C1D667 /* AppDelegate.swift in Sources */,
 				304CBE1D271D41E8006B4FE2 /* SelectionView.swift in Sources */,
 				309D364B271D085D00C1D667 /* SceneDelegate.swift in Sources */,
+				30F5FBD9271E6F0200A61E4F /* CreationPreviewViewController.swift in Sources */,
 				304CBE03271D1F71006B4FE2 /* DTTabBarViewController.swift in Sources */,
 				304CBE1F271D4458006B4FE2 /* UIView+Extension.swift in Sources */,
 				304CBE19271D34BD006B4FE2 /* ProfilePageViewController.swift in Sources */,
+				304CBE33271D781F006B4FE2 /* DrumKit.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

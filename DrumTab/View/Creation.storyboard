@@ -43,10 +43,10 @@
             </objects>
             <point key="canvasLocation" x="1047.8260869565217" y="138.61607142857142"/>
         </scene>
-        <!--View Controller-->
+        <!--Creation Page View Controller-->
         <scene sceneID="Dz8-Pi-qVZ">
             <objects>
-                <viewController id="JDJ-lL-Hfd" sceneMemberID="viewController">
+                <viewController id="JDJ-lL-Hfd" customClass="CreationPageViewController" customModule="DrumTab" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="qkI-tj-uhk">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -93,10 +93,10 @@
             </objects>
             <point key="canvasLocation" x="137.68115942028987" y="138.61607142857142"/>
         </scene>
-        <!--View Controller-->
+        <!--Record Page View Controller-->
         <scene sceneID="Lec-if-FQo">
             <objects>
-                <viewController id="DbM-bt-uel" sceneMemberID="viewController">
+                <viewController id="DbM-bt-uel" customClass="RecordPageViewController" customModule="DrumTab" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kuu-hY-0oE">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="660"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -115,49 +115,49 @@
                                     <constraint firstAttribute="height" constant="60" id="P6P-ca-Qrr"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MIm-Ud-Qx3" customClass="SelectionView" customModule="DrumTab" customModuleProvider="target">
+                            <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MIm-Ud-Qx3" customClass="SelectionView" customModule="DrumTab" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="169" width="414" height="60"/>
                                 <color key="backgroundColor" systemColor="systemBrownColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="pkm-Vr-mc2"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6bX-6Z-YUd" customClass="SelectionView" customModule="DrumTab" customModuleProvider="target">
+                            <view tag="2" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6bX-6Z-YUd" customClass="SelectionView" customModule="DrumTab" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="237" width="414" height="60"/>
                                 <color key="backgroundColor" systemColor="systemBrownColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="7a5-u3-ddO"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I4D-D9-OE4" customClass="SelectionView" customModule="DrumTab" customModuleProvider="target">
+                            <view tag="3" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I4D-D9-OE4" customClass="SelectionView" customModule="DrumTab" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="305" width="414" height="60"/>
                                 <color key="backgroundColor" systemColor="systemBrownColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="RPT-On-UqF"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e1i-pe-jHa" customClass="SelectionView" customModule="DrumTab" customModuleProvider="target">
+                            <view tag="4" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e1i-pe-jHa" customClass="SelectionView" customModule="DrumTab" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="373" width="414" height="60"/>
                                 <color key="backgroundColor" systemColor="systemBrownColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="aED-Fw-zkW"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FVc-2t-gXX" customClass="SelectionView" customModule="DrumTab" customModuleProvider="target">
+                            <view tag="5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FVc-2t-gXX" customClass="SelectionView" customModule="DrumTab" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="441" width="414" height="60"/>
                                 <color key="backgroundColor" systemColor="systemBrownColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="oRE-0k-t3t"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gV8-xI-Ywg" customClass="SelectionView" customModule="DrumTab" customModuleProvider="target">
+                            <view tag="6" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gV8-xI-Ywg" customClass="SelectionView" customModule="DrumTab" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="509" width="414" height="60"/>
                                 <color key="backgroundColor" systemColor="systemBrownColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="79w-w8-heo"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="35V-Lc-k9p" customClass="SelectionView" customModule="DrumTab" customModuleProvider="target">
+                            <view tag="7" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="35V-Lc-k9p" customClass="SelectionView" customModule="DrumTab" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="577" width="414" height="60"/>
                                 <color key="backgroundColor" systemColor="systemBrownColor"/>
                                 <constraints>
@@ -168,8 +168,12 @@
                                 <rect key="frame" x="181.5" y="22" width="51" height="31"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Play"/>
+                                <connections>
+                                    <action selector="playButtonPressed:" destination="DbM-bt-uel" eventType="touchUpInside" id="aN9-JB-oce"/>
+                                </connections>
                             </button>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="ZQq-fO-mmZ"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="MIm-Ud-Qx3" firstAttribute="top" secondItem="NsT-k4-pyy" secondAttribute="bottom" constant="8" id="1Te-HP-II5"/>
@@ -203,6 +207,16 @@
                             <constraint firstItem="35V-Lc-k9p" firstAttribute="top" secondItem="gV8-xI-Ywg" secondAttribute="bottom" constant="8" id="yug-jz-ZCD"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="crashSelectionView" destination="gV8-xI-Ywg" id="1cq-C0-OMA"/>
+                        <outlet property="floorTomSelectionView" destination="e1i-pe-jHa" id="hpX-Lk-cqe"/>
+                        <outlet property="hiHatSelectionView" destination="NsT-k4-pyy" id="6cP-lg-Ecd"/>
+                        <outlet property="rideSelectionView" destination="35V-Lc-k9p" id="8aP-bn-eFD"/>
+                        <outlet property="snareSelectionView" destination="MIm-Ud-Qx3" id="omS-ev-m5x"/>
+                        <outlet property="stoolSelectionView" destination="FVc-2t-gXX" id="ZDP-1Y-pi8"/>
+                        <outlet property="tom1SelectionView" destination="6bX-6Z-YUd" id="KhV-FJ-drD"/>
+                        <outlet property="tom2SelectionView" destination="I4D-D9-OE4" id="u3n-P5-Mgq"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dsd-pZ-akX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

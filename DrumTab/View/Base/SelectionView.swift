@@ -7,7 +7,40 @@
 
 import UIKit
 
+protocol SelectionViewDelegate: AnyObject {
+
+    func didSelected(selectionView: SelectionView, index: Int)
+
+}
+
+protocol SelectionViewDatasource: AnyObject {
+
+    func selectStatus(selectionView: SelectionView) -> [String]
+
+}
+
 class SelectionView: UIView {
+
+    weak var delegate: SelectionViewDelegate? {
+
+        didSet {
+
+            collectionView.delegate = self
+
+        }
+
+    }
+
+    weak var dataSource: SelectionViewDatasource? {
+
+        didSet {
+
+            collectionView.dataSource = self
+            collectionView.reloadData()
+
+        }
+
+    }
 
     lazy var collectionView: UICollectionView = {
 
@@ -79,10 +112,6 @@ class SelectionView: UIView {
 
         collectionView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
 
-        collectionView.delegate = self
-
-        collectionView.dataSource = self
-
         addSubview(imageView)
 
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -110,23 +139,40 @@ extension SelectionView: UICollectionViewDataSource, UICollectionViewDelegate, U
     ) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(
             describing: SelectionViewCell.self), for: indexPath)
+        guard let selectionViewCell = cell as? SelectionViewCell else { return cell }
+        if let selectStatus = dataSource?.selectStatus(selectionView: self) {
+            if selectStatus[indexPath.item] == "0" {
+                selectionViewCell.isSelected = false
+            } else {
+                self.collectionView.selectItem(at: indexPath, animated: false, scrollPosition: [])
+            }
+        }
 
-        return cell
+        return selectionViewCell
+    }
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        delegate?.didSelected(selectionView: self, index: indexPath.row)
+    }
+
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        delegate?.didSelected(selectionView: self, index: indexPath.row)
     }
 
     func collectionView(
         _ collectionView: UICollectionView,
         layout collectionViewLayout: UICollectionViewLayout,
-        sizeForItemAt indexPath: IndexPath) -> CGSize {
+        sizeForItemAt indexPath: IndexPath
+    ) -> CGSize {
 
         return CGSize(width: 50, height: 50)
     }
 
 }
 
-private class SelectionViewCell: UICollectionViewCell {
+class SelectionViewCell: UICollectionViewCell {
 
-    let colorView = UIView()
+    private let colorView = UIView()
 
     override var isSelected: Bool {
         didSet {
