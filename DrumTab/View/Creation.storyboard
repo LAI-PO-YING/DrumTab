@@ -172,9 +172,34 @@
                                     <action selector="playButtonPressed:" destination="DbM-bt-uel" eventType="touchUpInside" id="aN9-JB-oce"/>
                                 </connections>
                             </button>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="120" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="orx-x8-983">
+                                <rect key="frame" x="68" y="15" width="49" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                <connections>
+                                    <action selector="bpmChanged:" destination="DbM-bt-uel" eventType="editingChanged" id="rcH-Nv-r34"/>
+                                </connections>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="BPM" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PAV-F9-54t">
+                                <rect key="frame" x="77" y="49" width="30" height="17"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PpN-lX-9CR">
+                                <rect key="frame" x="305" y="22" width="82" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Submit"/>
+                                <connections>
+                                    <action selector="submitButtonPressed:" destination="DbM-bt-uel" eventType="touchUpInside" id="Syw-dP-3x7"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="ZQq-fO-mmZ"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="MIm-Ud-Qx3" firstAttribute="top" secondItem="NsT-k4-pyy" secondAttribute="bottom" constant="8" id="1Te-HP-II5"/>
                             <constraint firstAttribute="trailing" secondItem="Q8H-MH-op0" secondAttribute="trailing" id="1gz-Ve-Kl1"/>
@@ -208,6 +233,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="bpmTextField" destination="orx-x8-983" id="j1Z-3c-LSX"/>
                         <outlet property="crashSelectionView" destination="gV8-xI-Ywg" id="1cq-C0-OMA"/>
                         <outlet property="floorTomSelectionView" destination="e1i-pe-jHa" id="hpX-Lk-cqe"/>
                         <outlet property="hiHatSelectionView" destination="NsT-k4-pyy" id="6cP-lg-Ecd"/>

@@ -10,6 +10,7 @@ import UIKit
 class RecordPageViewController: UIViewController {
 
     let drumKit = DrumKit()
+    let firebaseFirestoreManager = FirebaseFirestoreManager.shared
 
     var timer: Timer?
     var timerIndex = 0
@@ -28,9 +29,9 @@ class RecordPageViewController: UIViewController {
     @IBOutlet weak var crashSelectionView: SelectionView!
     @IBOutlet weak var rideSelectionView: SelectionView!
 
+    @IBOutlet weak var bpmTextField: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
-        speed = 60.0 / Double(bpm) / Double(beatInASection)
         setupSelectionViewDelegate()
     }
 
@@ -75,15 +76,39 @@ class RecordPageViewController: UIViewController {
     @IBAction func playButtonPressed(_ sender: UIButton) {
 
         timerIndex += 1
+        speed = 60.0 / Double(bpm) / Double(beatInASection)
         if timerIndex == 1 {
             startTimer()
             timerIndex += 1
             sender.setTitle("Stop", for: .normal)
+            bpmTextField.isEnabled = false
         } else {
             stopTimer()
             timerIndex = 0
             sender.setTitle("Play", for: .normal)
+            bpmTextField.isEnabled = true
         }
+    }
+
+    @IBAction func bpmChanged(_ sender: Any) {
+        guard let bpmStr = bpmTextField.text,
+              let bpm = Int(bpmStr) else { return }
+        self.bpm = bpm
+    }
+    @IBAction func submitButtonPressed(_ sender: UIButton) {
+        firebaseFirestoreManager.createCollection(
+            timeSignature: ["4", "4"],
+            name: "Test",
+            bpm: bpm,
+            record: [
+                "hiHat": DrumKit.hiHat,
+                "snare": DrumKit.snare,
+                "tom1": DrumKit.tom1,
+                "tomF": DrumKit.tomF,
+                "stool": DrumKit.stool,
+                "crash": DrumKit.crash
+            ]
+        )
     }
 
     deinit {

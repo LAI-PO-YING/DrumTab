@@ -27,6 +27,8 @@
 		304CBE30271D75B7006B4FE2 /* drumStool.wav in Resources */ = {isa = PBXBuildFile; fileRef = 304CBE29271D75B7006B4FE2 /* drumStool.wav */; };
 		304CBE31271D75B7006B4FE2 /* drumFloorTom.wav in Resources */ = {isa = PBXBuildFile; fileRef = 304CBE2A271D75B7006B4FE2 /* drumFloorTom.wav */; };
 		304CBE33271D781F006B4FE2 /* DrumKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304CBE32271D781F006B4FE2 /* DrumKit.swift */; };
+		305B8B6C271FE4ED000E9E90 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 305B8B6B271FE4ED000E9E90 /* GoogleService-Info.plist */; };
+		305B8B6E271FE626000E9E90 /* FirebaseFirestoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305B8B6D271FE626000E9E90 /* FirebaseFirestoreManager.swift */; };
 		309D3649271D085D00C1D667 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309D3648271D085D00C1D667 /* AppDelegate.swift */; };
 		309D364B271D085D00C1D667 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309D364A271D085D00C1D667 /* SceneDelegate.swift */; };
 		309D3650271D085D00C1D667 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 309D364E271D085D00C1D667 /* Main.storyboard */; };
@@ -59,6 +61,8 @@
 		304CBE29271D75B7006B4FE2 /* drumStool.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = drumStool.wav; sourceTree = "<group>"; };
 		304CBE2A271D75B7006B4FE2 /* drumFloorTom.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = drumFloorTom.wav; sourceTree = "<group>"; };
 		304CBE32271D781F006B4FE2 /* DrumKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrumKit.swift; sourceTree = "<group>"; };
+		305B8B6B271FE4ED000E9E90 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		305B8B6D271FE626000E9E90 /* FirebaseFirestoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseFirestoreManager.swift; sourceTree = "<group>"; };
 		309D3645271D085D00C1D667 /* DrumTab.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DrumTab.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		309D3648271D085D00C1D667 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		309D364A271D085D00C1D667 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -196,6 +200,7 @@
 			isa = PBXGroup;
 			children = (
 				304CBE32271D781F006B4FE2 /* DrumKit.swift */,
+				305B8B6D271FE626000E9E90 /* FirebaseFirestoreManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -229,6 +234,7 @@
 				309D364A271D085D00C1D667 /* SceneDelegate.swift */,
 				309D3648271D085D00C1D667 /* AppDelegate.swift */,
 				309D3656271D085E00C1D667 /* Info.plist */,
+				305B8B6B271FE4ED000E9E90 /* GoogleService-Info.plist */,
 			);
 			path = DrumTab;
 			sourceTree = "<group>";
@@ -262,6 +268,7 @@
 				309D3642271D085D00C1D667 /* Frameworks */,
 				309D3643271D085D00C1D667 /* Resources */,
 				304CBDFE271D12E7006B4FE2 /* ShellScript */,
+				5145EBB865EA3116853B9DBC /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -312,6 +319,7 @@
 			files = (
 				304CBE10271D3411006B4FE2 /* Collection.storyboard in Resources */,
 				309D3655271D085E00C1D667 /* LaunchScreen.storyboard in Resources */,
+				305B8B6C271FE4ED000E9E90 /* GoogleService-Info.plist in Resources */,
 				304CBE2B271D75B7006B4FE2 /* drumCloseHiHat.wav in Resources */,
 				304CBE2D271D75B7006B4FE2 /* drumOpenHiHat.wav in Resources */,
 				304CBE0E271D33F2006B4FE2 /* Home.storyboard in Resources */,
@@ -369,6 +377,23 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		5145EBB865EA3116853B9DBC /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-DrumTab/Pods-DrumTab-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-DrumTab/Pods-DrumTab-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-DrumTab/Pods-DrumTab-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -388,6 +413,7 @@
 				304CBE03271D1F71006B4FE2 /* DTTabBarViewController.swift in Sources */,
 				304CBE1F271D4458006B4FE2 /* UIView+Extension.swift in Sources */,
 				304CBE19271D34BD006B4FE2 /* ProfilePageViewController.swift in Sources */,
+				305B8B6E271FE626000E9E90 /* FirebaseFirestoreManager.swift in Sources */,
 				304CBE33271D781F006B4FE2 /* DrumKit.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
