@@ -29,6 +29,8 @@
 		304CBE33271D781F006B4FE2 /* DrumKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304CBE32271D781F006B4FE2 /* DrumKit.swift */; };
 		305B8B6C271FE4ED000E9E90 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 305B8B6B271FE4ED000E9E90 /* GoogleService-Info.plist */; };
 		305B8B6E271FE626000E9E90 /* FirebaseFirestoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305B8B6D271FE626000E9E90 /* FirebaseFirestoreManager.swift */; };
+		305B8B70271FFFD2000E9E90 /* Creation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305B8B6F271FFFD2000E9E90 /* Creation.swift */; };
+		305B8B72272008B5000E9E90 /* CreationPageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305B8B71272008B5000E9E90 /* CreationPageTableViewCell.swift */; };
 		309D3649271D085D00C1D667 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309D3648271D085D00C1D667 /* AppDelegate.swift */; };
 		309D364B271D085D00C1D667 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309D364A271D085D00C1D667 /* SceneDelegate.swift */; };
 		309D3650271D085D00C1D667 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 309D364E271D085D00C1D667 /* Main.storyboard */; };
@@ -63,6 +65,8 @@
 		304CBE32271D781F006B4FE2 /* DrumKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrumKit.swift; sourceTree = "<group>"; };
 		305B8B6B271FE4ED000E9E90 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		305B8B6D271FE626000E9E90 /* FirebaseFirestoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseFirestoreManager.swift; sourceTree = "<group>"; };
+		305B8B6F271FFFD2000E9E90 /* Creation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Creation.swift; sourceTree = "<group>"; };
+		305B8B71272008B5000E9E90 /* CreationPageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreationPageTableViewCell.swift; sourceTree = "<group>"; };
 		309D3645271D085D00C1D667 /* DrumTab.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DrumTab.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		309D3648271D085D00C1D667 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		309D364A271D085D00C1D667 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -121,6 +125,7 @@
 			isa = PBXGroup;
 			children = (
 				304CBE20271D60F8006B4FE2 /* Base */,
+				305B8B73272008BE000E9E90 /* Creation */,
 				309D3653271D085E00C1D667 /* LaunchScreen.storyboard */,
 				309D364E271D085D00C1D667 /* Main.storyboard */,
 				304CBE0D271D33F2006B4FE2 /* Home.storyboard */,
@@ -201,8 +206,17 @@
 			children = (
 				304CBE32271D781F006B4FE2 /* DrumKit.swift */,
 				305B8B6D271FE626000E9E90 /* FirebaseFirestoreManager.swift */,
+				305B8B6F271FFFD2000E9E90 /* Creation.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		305B8B73272008BE000E9E90 /* Creation */ = {
+			isa = PBXGroup;
+			children = (
+				305B8B71272008B5000E9E90 /* CreationPageTableViewCell.swift */,
+			);
+			path = Creation;
 			sourceTree = "<group>";
 		};
 		309D363C271D085D00C1D667 = {
@@ -401,6 +415,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				305B8B70271FFFD2000E9E90 /* Creation.swift in Sources */,
 				30F5FBD7271E6DF100A61E4F /* RecordPageViewController.swift in Sources */,
 				304CBE0B271D26D6006B4FE2 /* CreationPageViewController.swift in Sources */,
 				304CBE00271D1D22006B4FE2 /* UIStoryboard+Extension.swift in Sources */,
@@ -415,6 +430,7 @@
 				304CBE19271D34BD006B4FE2 /* ProfilePageViewController.swift in Sources */,
 				305B8B6E271FE626000E9E90 /* FirebaseFirestoreManager.swift in Sources */,
 				304CBE33271D781F006B4FE2 /* DrumKit.swift in Sources */,
+				305B8B72272008B5000E9E90 /* CreationPageTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -71,6 +71,7 @@ class RecordPageViewController: UIViewController {
     func stopTimer() {
         timer?.invalidate()
         timer = nil
+        DrumKit.index = 0
     }
 
     @IBAction func playButtonPressed(_ sender: UIButton) {
@@ -97,7 +98,7 @@ class RecordPageViewController: UIViewController {
     }
     @IBAction func submitButtonPressed(_ sender: UIButton) {
         firebaseFirestoreManager.createCollection(
-            timeSignature: ["4", "4"],
+            timeSignature: [4, 4],
             name: "Test",
             bpm: bpm,
             record: [
@@ -118,6 +119,18 @@ class RecordPageViewController: UIViewController {
 }
 
 extension RecordPageViewController: SelectionViewDelegate {
+    func didScroll(offset: CGPoint) {
+        hiHatSelectionView.collectionView.contentOffset = offset
+        snareSelectionView.collectionView.contentOffset = offset
+        tom1SelectionView.collectionView.contentOffset = offset
+        tom2SelectionView.collectionView.contentOffset = offset
+        floorTomSelectionView.collectionView.contentOffset = offset
+        stoolSelectionView.collectionView.contentOffset = offset
+        crashSelectionView.collectionView.contentOffset = offset
+        rideSelectionView.collectionView.contentOffset = offset
+
+    }
+
     func didSelected(selectionView: SelectionView, index: Int) {
         switch selectionView {
         case hiHatSelectionView:

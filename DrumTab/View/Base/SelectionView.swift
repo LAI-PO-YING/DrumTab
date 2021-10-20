@@ -10,6 +10,7 @@ import UIKit
 protocol SelectionViewDelegate: AnyObject {
 
     func didSelected(selectionView: SelectionView, index: Int)
+    func didScroll(offset: CGPoint)
 
 }
 
@@ -149,6 +150,9 @@ extension SelectionView: UICollectionViewDataSource, UICollectionViewDelegate, U
         }
 
         return selectionViewCell
+    }
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        delegate?.didScroll(offset: collectionView.contentOffset)
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
