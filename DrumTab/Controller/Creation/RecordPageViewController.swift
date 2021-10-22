@@ -10,8 +10,10 @@ import UIKit
 class RecordPageViewController: UIViewController {
 
     let drumKit = DrumKit()
+    let firebaseFirestoreManager = FirebaseFirestoreManager.shared
 
-    var timer: Timer?
+    var playTimer: Timer?
+    var autoScrollTimer: Timer?
     var timerIndex = 0
     // 一小節的拍數×小節數÷速度＝演奏時間(分鐘)
     var beatInASection = 4
@@ -28,10 +30,11 @@ class RecordPageViewController: UIViewController {
     @IBOutlet weak var crashSelectionView: SelectionView!
     @IBOutlet weak var rideSelectionView: SelectionView!
 
+    @IBOutlet weak var bpmTextField: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
-        speed = 60.0 / Double(bpm) / Double(beatInASection)
         setupSelectionViewDelegate()
+        bpmTextField.text = "\(bpm)"
     }
 
     func setupSelectionViewDelegate() {
@@ -54,36 +57,115 @@ class RecordPageViewController: UIViewController {
     }
 
     func startTimer () {
-        guard timer == nil else { return }
+        guard playTimer == nil else { return }
+        guard autoScrollTimer == nil else { return }
 
-        timer = Timer.scheduledTimer(
+        playTimer = Timer.scheduledTimer(
             timeInterval: speed,
             target: drumKit,
             selector: #selector(drumKit.playDrumSound),
             userInfo: nil,
             repeats: true
         )
-        RunLoop.current.add(self.timer!, forMode: .common)
+        RunLoop.current.add(self.playTimer!, forMode: .common)
+        autoScrollTimer = Timer.scheduledTimer(
+            timeInterval: speed,
+            target: self,
+            selector: #selector(autoScroll),
+            userInfo: nil,
+            repeats: true
+        )
+        RunLoop.current.add(self.autoScrollTimer!, forMode: .common)
 
     }
 
     func stopTimer() {
-        timer?.invalidate()
-        timer = nil
+        playTimer?.invalidate()
+        playTimer = nil
+        autoScrollTimer?.invalidate()
+        autoScrollTimer = nil
+        DrumKit.index = 0
+    }
+
+    @objc func autoScroll() {
+        hiHatSelectionView.collectionView.scrollToItem(
+            at: [0, DrumKit.index],
+            at: .centeredHorizontally,
+            animated: false
+        )
+        snareSelectionView.collectionView.scrollToItem(
+            at: [0, DrumKit.index],
+            at: .centeredHorizontally,
+            animated: false
+        )
+        tom1SelectionView.collectionView.scrollToItem(
+            at: [0, DrumKit.index],
+            at: .centeredHorizontally,
+            animated: false
+        )
+        tom2SelectionView.collectionView.scrollToItem(
+            at: [0, DrumKit.index],
+            at: .centeredHorizontally,
+            animated: false
+        )
+        floorTomSelectionView.collectionView.scrollToItem(
+            at: [0, DrumKit.index],
+            at: .centeredHorizontally,
+            animated: false
+        )
+        stoolSelectionView.collectionView.scrollToItem(
+            at: [0, DrumKit.index],
+            at: .centeredHorizontally,
+            animated: false
+        )
+        crashSelectionView.collectionView.scrollToItem(
+            at: [0, DrumKit.index],
+            at: .centeredHorizontally,
+            animated: false
+        )
+        rideSelectionView.collectionView.scrollToItem(
+            at: [0, DrumKit.index],
+            at: .centeredHorizontally,
+            animated: false
+        )
     }
 
     @IBAction func playButtonPressed(_ sender: UIButton) {
 
         timerIndex += 1
+        speed = 60.0 / Double(bpm) / Double(beatInASection)
         if timerIndex == 1 {
             startTimer()
             timerIndex += 1
             sender.setTitle("Stop", for: .normal)
+            bpmTextField.isEnabled = false
         } else {
             stopTimer()
             timerIndex = 0
             sender.setTitle("Play", for: .normal)
+            bpmTextField.isEnabled = true
         }
+    }
+
+    @IBAction func bpmChanged(_ sender: Any) {
+        guard let bpmStr = bpmTextField.text,
+              let bpm = Int(bpmStr) else { return }
+        self.bpm = bpm
+    }
+    @IBAction func submitButtonPressed(_ sender: UIButton) {
+        firebaseFirestoreManager.createCollection(
+            timeSignature: [4, 4],
+            name: "FreeTemp",
+            bpm: bpm,
+            record: [
+                "hiHat": DrumKit.hiHat,
+                "snare": DrumKit.snare,
+                "tom1": DrumKit.tom1,
+                "tomF": DrumKit.tomF,
+                "bass": DrumKit.bass,
+                "crash": DrumKit.crash
+            ]
+        )
     }
 
     deinit {
@@ -93,6 +175,18 @@ class RecordPageViewController: UIViewController {
 }
 
 extension RecordPageViewController: SelectionViewDelegate {
+    func didScroll(offset: CGPoint) {
+        hiHatSelectionView.collectionView.contentOffset = offset
+        snareSelectionView.collectionView.contentOffset = offset
+        tom1SelectionView.collectionView.contentOffset = offset
+        tom2SelectionView.collectionView.contentOffset = offset
+        floorTomSelectionView.collectionView.contentOffset = offset
+        stoolSelectionView.collectionView.contentOffset = offset
+        crashSelectionView.collectionView.contentOffset = offset
+        rideSelectionView.collectionView.contentOffset = offset
+
+    }
+
     func didSelected(selectionView: SelectionView, index: Int) {
         switch selectionView {
         case hiHatSelectionView:
@@ -126,10 +220,10 @@ extension RecordPageViewController: SelectionViewDelegate {
                 DrumKit.tomF[index] = "0"
             }
         case stoolSelectionView:
-            if DrumKit.stool[index] == "0" {
-                DrumKit.stool[index] = "1"
+            if DrumKit.bass[index] == "0" {
+                DrumKit.bass[index] = "1"
             } else {
-                DrumKit.stool[index] = "0"
+                DrumKit.bass[index] = "0"
             }
         case crashSelectionView:
             if DrumKit.crash[index] == "0" {
@@ -165,7 +259,7 @@ extension RecordPageViewController: SelectionViewDatasource {
         case floorTomSelectionView:
             return DrumKit.tomF
         case stoolSelectionView:
-            return DrumKit.stool
+            return DrumKit.bass
         case crashSelectionView:
             return DrumKit.crash
 //        case rideSelectionView:

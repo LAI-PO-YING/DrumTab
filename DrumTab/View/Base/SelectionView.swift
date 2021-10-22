@@ -10,6 +10,7 @@ import UIKit
 protocol SelectionViewDelegate: AnyObject {
 
     func didSelected(selectionView: SelectionView, index: Int)
+    func didScroll(offset: CGPoint)
 
 }
 
@@ -150,6 +151,9 @@ extension SelectionView: UICollectionViewDataSource, UICollectionViewDelegate, U
 
         return selectionViewCell
     }
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        delegate?.didScroll(offset: collectionView.contentOffset)
+    }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         delegate?.didSelected(selectionView: self, index: indexPath.row)
@@ -176,7 +180,7 @@ class SelectionViewCell: UICollectionViewCell {
 
     override var isSelected: Bool {
         didSet {
-            colorView.backgroundColor = isSelected ? .yellow : .red
+            colorView.backgroundColor = isSelected ? .darkGray : .lightGray
         }
     }
 

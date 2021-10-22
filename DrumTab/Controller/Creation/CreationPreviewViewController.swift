@@ -9,9 +9,18 @@ import UIKit
 
 class CreationPreviewViewController: UIViewController {
 
+    var bpm: Int?
+    var beatInASection: Int?
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let dvc = segue.destination as? RecordPageViewController else {
+            fatalError("Destination is not RecordPageViewController")
+        }
+        dvc.bpm = self.bpm!
+        dvc.beatInASection = self.beatInASection!
     }
 }

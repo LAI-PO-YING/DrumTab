@@ -8,5 +8,8 @@ target 'DrumTab' do
   # Pods for DrumTab
 
 pod 'SwiftLint'
+pod "Firebase/Firestore"
+pod 'IQKeyboardManagerSwift'
+pod 'FirebaseFirestoreSwift'
 
 end
