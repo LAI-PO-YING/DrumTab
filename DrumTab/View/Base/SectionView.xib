@@ -8,7 +8,56 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SectionView" customModule="DrumTab" customModuleProvider="target"/>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SectionView" customModule="DrumTab" customModuleProvider="target">
+            <connections>
+                <outlet property="eighthNoteView" destination="d9Y-JN-Ju1" id="Cg0-g0-Obd"/>
+                <outlet property="eighthNoteViewTopConstraint" destination="eEI-x5-Bf8" id="btH-e9-BYu"/>
+                <outlet property="note1BAImageView" destination="elM-JM-uQA" id="t3R-7H-fja"/>
+                <outlet property="note1CRImageView" destination="hZG-Oy-NsA" id="J7a-i2-iyc"/>
+                <outlet property="note1HHImageView" destination="mIX-ZE-CY8" id="6yW-vw-gvh"/>
+                <outlet property="note1LineConstraint" destination="CpH-oY-4L0" id="QhH-kh-emX"/>
+                <outlet property="note1LineView" destination="bmB-OA-b1I" id="uIu-6Y-QdW"/>
+                <outlet property="note1RIImageView" destination="hpR-hC-YDv" id="che-yt-g6E"/>
+                <outlet property="note1SNImageView" destination="FVV-iL-aZT" id="oPb-ie-y5l"/>
+                <outlet property="note1T1ImageView" destination="aUP-Jy-Ebl" id="gbV-GJ-E0p"/>
+                <outlet property="note1T2ImageView" destination="g5O-Fq-tSK" id="sMY-FU-Jrf"/>
+                <outlet property="note1TFImageView" destination="oyD-Q4-IjG" id="j4m-Ue-mld"/>
+                <outlet property="note2BAImageView" destination="O9R-Cd-Kid" id="tOv-dn-tRA"/>
+                <outlet property="note2CRImageView" destination="rOR-oQ-6Mi" id="lTw-GN-rCW"/>
+                <outlet property="note2HHImageView" destination="hj8-QE-reD" id="XQx-Js-24N"/>
+                <outlet property="note2LineConstraint" destination="8t0-ig-4h2" id="6cD-Jd-kFf"/>
+                <outlet property="note2LineView" destination="pF5-9m-mfl" id="Ba4-dA-AAr"/>
+                <outlet property="note2RIImageView" destination="KYO-4m-krW" id="cGM-bK-E3q"/>
+                <outlet property="note2SNImageView" destination="pcT-eg-mja" id="uv4-No-MgX"/>
+                <outlet property="note2T1ImageView" destination="0iM-iX-erF" id="haN-HH-8W6"/>
+                <outlet property="note2T2ImageView" destination="Iyv-1R-arF" id="4yf-Df-PBg"/>
+                <outlet property="note2TFImageView" destination="FFN-24-IBO" id="c9J-WV-SyT"/>
+                <outlet property="note3BAImageView" destination="eNB-GZ-qPw" id="zmg-uy-fna"/>
+                <outlet property="note3CRImageView" destination="Cmw-sc-Dfm" id="2yB-8I-6wu"/>
+                <outlet property="note3HHImageView" destination="fxI-St-8xT" id="hjc-wd-IHe"/>
+                <outlet property="note3LineConstraint" destination="G4b-bq-Kic" id="794-ss-MdO"/>
+                <outlet property="note3LineView" destination="wNd-bW-P6g" id="Qhk-Ab-Atj"/>
+                <outlet property="note3RIImageView" destination="xc6-1y-f8F" id="rWr-Jt-ThU"/>
+                <outlet property="note3SNImageView" destination="VGF-FJ-KOS" id="XMB-RA-hGr"/>
+                <outlet property="note3T1ImageView" destination="49n-SZ-hHD" id="bIW-HF-mqP"/>
+                <outlet property="note3T2ImageView" destination="Wew-4K-1ny" id="tJF-CZ-Oi5"/>
+                <outlet property="note3TFImageView" destination="sZI-vR-Cx3" id="TBc-82-7gK"/>
+                <outlet property="note4BAImageView" destination="vEM-z5-Ga2" id="R5K-mK-Kws"/>
+                <outlet property="note4CRImageView" destination="Mer-QK-PLt" id="ajp-Ql-WeT"/>
+                <outlet property="note4HHImageView" destination="hQj-ze-2ai" id="JVD-c3-MxK"/>
+                <outlet property="note4LineConstraint" destination="JIA-nv-wZy" id="Erg-BC-Q8d"/>
+                <outlet property="note4LineView" destination="yeP-iD-9XU" id="8Vr-JG-GXO"/>
+                <outlet property="note4RIImageView" destination="Ox2-8b-wlb" id="wvA-8S-jpf"/>
+                <outlet property="note4SNImageView" destination="Mds-xf-eaL" id="lbD-bD-Q5s"/>
+                <outlet property="note4T1ImageView" destination="rXi-Ye-UUy" id="VWx-V0-TSA"/>
+                <outlet property="note4T2ImageView" destination="Tet-tT-KUI" id="HMU-Ls-sRF"/>
+                <outlet property="note4TFImageView" destination="i7Z-UV-651" id="Q9y-Dq-oOZ"/>
+                <outlet property="tabCrashLine1View" destination="ULN-dD-Z1X" id="sRn-XL-2ja"/>
+                <outlet property="tabCrashLine2View" destination="f6t-uI-VpI" id="ypW-hf-h0W"/>
+                <outlet property="tabCrashLine3View" destination="ewW-eZ-prF" id="A23-KP-Q36"/>
+                <outlet property="tabCrashLine4View" destination="lh2-98-Kjs" id="tKF-4r-ZMd"/>
+            </connections>
+        </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
             <rect key="frame" x="0.0" y="0.0" width="109" height="86"/>

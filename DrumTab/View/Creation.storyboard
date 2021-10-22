@@ -120,6 +120,11 @@
                                     <segue destination="DbM-bt-uel" kind="embed" id="OLe-70-CMH"/>
                                 </connections>
                             </containerView>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="j8N-DC-tMu" customClass="SectionView" customModule="DrumTab" customModuleProvider="target">
+                                <rect key="frame" x="24" y="98" width="102" height="92"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="iqR-rv-5ab"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
