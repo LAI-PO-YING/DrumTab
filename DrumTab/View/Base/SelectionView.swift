@@ -180,7 +180,7 @@ class SelectionViewCell: UICollectionViewCell {
 
     override var isSelected: Bool {
         didSet {
-            colorView.backgroundColor = isSelected ? .yellow : .red
+            colorView.backgroundColor = isSelected ? .darkGray : .lightGray
         }
     }
 

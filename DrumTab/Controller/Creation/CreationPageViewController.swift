@@ -49,7 +49,7 @@ class CreationPageViewController: UIViewController {
             DrumKit.snare = currentSelectedCreation.record["snare"]!
             DrumKit.tom1 = currentSelectedCreation.record["tom1"]!
             DrumKit.tomF = currentSelectedCreation.record["tomF"]!
-            DrumKit.stool = currentSelectedCreation.record["stool"]!
+            DrumKit.bass = currentSelectedCreation.record["bass"]!
             DrumKit.crash = currentSelectedCreation.record["crash"]!
             self.currentSelectedCellIndex = nil
         } else {

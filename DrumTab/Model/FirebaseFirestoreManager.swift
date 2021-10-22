@@ -41,7 +41,7 @@ class FirebaseFirestoreManager {
 
     func fetchArticles(completion: @escaping (Result<[Creation], Error>) -> Void) {
 
-        db.collection("creation").order(by: "createdTime", descending: true).getDocuments() { (querySnapshot, error) in
+        db.collection("creation").order(by: "createdTime", descending: true).getDocuments() { querySnapshot, error in
 
             if let error = error {
                 completion(.failure(error))
