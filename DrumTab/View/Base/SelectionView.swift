@@ -17,6 +17,7 @@ protocol SelectionViewDelegate: AnyObject {
 protocol SelectionViewDatasource: AnyObject {
 
     func selectStatus(selectionView: SelectionView) -> [String]
+    func setImage(selectionView: SelectionView) -> UIImage
 
 }
 
@@ -37,6 +38,7 @@ class SelectionView: UIView {
         didSet {
 
             collectionView.dataSource = self
+            imageView.image = dataSource?.setImage(selectionView: self)
             collectionView.reloadData()
 
         }

@@ -24,6 +24,7 @@ class CreationPreviewViewController: UIViewController {
         }
         dvc.bpm = self.bpm!
         dvc.beatInASection = self.beatInASection!
+        dvc.delegate = self
     }
 }
 
@@ -94,4 +95,10 @@ extension CreationPreviewViewController: UICollectionViewDelegate, UICollectionV
         return CGSize(width: view.bounds.width / 4, height: 86)
     }
 
+}
+
+extension CreationPreviewViewController: RecordPageViewControllerDelegate {
+    func didChangeSelectedStatus(index: Int) {
+        collectionView?.reloadItems(at: [[0, index/4]])
+    }
 }

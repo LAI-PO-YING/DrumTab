@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import ESPullToRefresh
 
 class CreationPageViewController: UIViewController {
 
@@ -25,6 +26,17 @@ class CreationPageViewController: UIViewController {
 
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.es.addPullToRefresh { [unowned self] in
+            firebaseFirestoreManager.fetchArticles { result in
+                switch result {
+                case .success(let creations):
+                    self.creations = creations
+                case .failure(let error):
+                    print(error)
+                }
+                self.tableView.es.stopPullToRefresh()
+            }
+        }
 
         firebaseFirestoreManager.fetchArticles { result in
             switch result {
