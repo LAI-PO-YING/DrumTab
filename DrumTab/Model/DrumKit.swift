@@ -15,24 +15,30 @@ class DrumKit {
         "drumTom1.wav",
         "drumFloorTom.wav",
         "drumCrash.wav",
-        "drumBass.wav"
+        "drumBass.wav",
+        "drumTom2.wav",
+        "drumRide.wav"
     ]
 
-    static var hiHat = ["1", "0", "1", "0", "1", "0", "1", "0", "1", "0", "1", "0", "0", "0", "0", "0"]
-    static var snare = ["0", "0", "0", "0", "1", "0", "0", "1", "0", "1", "0", "0", "1", "0", "0", "0"]
-    static var tom1 = ["0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "1", "0", "0"]
-    static var tomF = ["0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "1", "1"]
-    static var bass = ["1", "0", "0", "1", "0", "0", "0", "0", "0", "0", "1", "1", "0", "0", "0", "0"]
-    static var crash = ["1", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0"]
+    static var hiHat = ["0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0"]
+    static var snare = ["0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0"]
+    static var tom1 = ["0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0"]
+    static var tom2 = ["0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0"]
+    static var tomF = ["0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0"]
+    static var bass = ["0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0"]
+    static var crash = ["0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0"]
+    static var ride = ["0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0"]
 
     static var index = 0
     static func initSounds() {
         DrumKit.hiHat = ["0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0"]
         DrumKit.snare = ["0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0"]
         DrumKit.tom1 = ["0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0"]
+        DrumKit.tom2 = ["0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0"]
         DrumKit.tomF = ["0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0"]
         DrumKit.bass = ["0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0"]
         DrumKit.crash = ["0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0"]
+        DrumKit.ride = ["0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0"]
     }
 
     @objc func playDrumSound() {
@@ -66,6 +72,13 @@ class DrumKit {
                 withFilename: DrumKit.drumKitAudioFileNames[2]
             )
         }
+        if DrumKit.tom2[DrumKit.index] == "0" {
+
+        } else {
+            SystemSoundID.playSound(
+                withFilename: DrumKit.drumKitAudioFileNames[6]
+            )
+        }
         if DrumKit.tomF[DrumKit.index] == "0" {
 
         } else {
@@ -78,6 +91,13 @@ class DrumKit {
         } else {
             SystemSoundID.playSound(
                 withFilename: DrumKit.drumKitAudioFileNames[4]
+            )
+        }
+        if DrumKit.ride[DrumKit.index] == "0" {
+
+        } else {
+            SystemSoundID.playSound(
+                withFilename: DrumKit.drumKitAudioFileNames[7]
             )
         }
         DrumKit.index += 1

@@ -8,7 +8,62 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SectionView" customModule="DrumTab" customModuleProvider="target"/>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SectionView" customModule="DrumTab" customModuleProvider="target">
+            <connections>
+                <outlet property="eighthNoteView" destination="d9Y-JN-Ju1" id="Cg0-g0-Obd"/>
+                <outlet property="eighthNoteViewLeadingConstraint" destination="eEI-x5-Bf8" id="btH-e9-BYu"/>
+                <outlet property="eighthNoteViewTrailingContraint" destination="dg5-Xs-nch" id="iXd-PP-zrf"/>
+                <outlet property="leftSixteenthNoteView" destination="ZGm-db-R9t" id="YKP-cy-KQr"/>
+                <outlet property="leftSixteenthNoteViewWidthContraint" destination="zgE-CV-7ll" id="Mrs-Fl-aXp"/>
+                <outlet property="note1BAImageView" destination="elM-JM-uQA" id="t3R-7H-fja"/>
+                <outlet property="note1CRImageView" destination="hZG-Oy-NsA" id="J7a-i2-iyc"/>
+                <outlet property="note1HHImageView" destination="mIX-ZE-CY8" id="6yW-vw-gvh"/>
+                <outlet property="note1LineConstraint" destination="CpH-oY-4L0" id="QhH-kh-emX"/>
+                <outlet property="note1LineView" destination="bmB-OA-b1I" id="uIu-6Y-QdW"/>
+                <outlet property="note1RIImageView" destination="hpR-hC-YDv" id="che-yt-g6E"/>
+                <outlet property="note1SNImageView" destination="FVV-iL-aZT" id="oPb-ie-y5l"/>
+                <outlet property="note1T1ImageView" destination="g5O-Fq-tSK" id="sMY-FU-Jrf"/>
+                <outlet property="note1T2ImageView" destination="aUP-Jy-Ebl" id="gbV-GJ-E0p"/>
+                <outlet property="note1TFImageView" destination="oyD-Q4-IjG" id="j4m-Ue-mld"/>
+                <outlet property="note2BAImageView" destination="O9R-Cd-Kid" id="tOv-dn-tRA"/>
+                <outlet property="note2CRImageView" destination="rOR-oQ-6Mi" id="lTw-GN-rCW"/>
+                <outlet property="note2HHImageView" destination="hj8-QE-reD" id="XQx-Js-24N"/>
+                <outlet property="note2LineConstraint" destination="8t0-ig-4h2" id="6cD-Jd-kFf"/>
+                <outlet property="note2LineView" destination="pF5-9m-mfl" id="Ba4-dA-AAr"/>
+                <outlet property="note2RIImageView" destination="KYO-4m-krW" id="cGM-bK-E3q"/>
+                <outlet property="note2SNImageView" destination="pcT-eg-mja" id="uv4-No-MgX"/>
+                <outlet property="note2T1ImageView" destination="Iyv-1R-arF" id="4yf-Df-PBg"/>
+                <outlet property="note2T2ImageView" destination="0iM-iX-erF" id="haN-HH-8W6"/>
+                <outlet property="note2TFImageView" destination="FFN-24-IBO" id="c9J-WV-SyT"/>
+                <outlet property="note3BAImageView" destination="eNB-GZ-qPw" id="zmg-uy-fna"/>
+                <outlet property="note3CRImageView" destination="Cmw-sc-Dfm" id="2yB-8I-6wu"/>
+                <outlet property="note3HHImageView" destination="fxI-St-8xT" id="hjc-wd-IHe"/>
+                <outlet property="note3LineConstraint" destination="G4b-bq-Kic" id="794-ss-MdO"/>
+                <outlet property="note3LineView" destination="wNd-bW-P6g" id="Qhk-Ab-Atj"/>
+                <outlet property="note3RIImageView" destination="xc6-1y-f8F" id="rWr-Jt-ThU"/>
+                <outlet property="note3SNImageView" destination="VGF-FJ-KOS" id="XMB-RA-hGr"/>
+                <outlet property="note3T1ImageView" destination="Wew-4K-1ny" id="tJF-CZ-Oi5"/>
+                <outlet property="note3T2ImageView" destination="49n-SZ-hHD" id="bIW-HF-mqP"/>
+                <outlet property="note3TFImageView" destination="sZI-vR-Cx3" id="TBc-82-7gK"/>
+                <outlet property="note4BAImageView" destination="vEM-z5-Ga2" id="R5K-mK-Kws"/>
+                <outlet property="note4CRImageView" destination="Mer-QK-PLt" id="ajp-Ql-WeT"/>
+                <outlet property="note4HHImageView" destination="hQj-ze-2ai" id="JVD-c3-MxK"/>
+                <outlet property="note4LineConstraint" destination="JIA-nv-wZy" id="Erg-BC-Q8d"/>
+                <outlet property="note4LineView" destination="yeP-iD-9XU" id="8Vr-JG-GXO"/>
+                <outlet property="note4RIImageView" destination="Ox2-8b-wlb" id="wvA-8S-jpf"/>
+                <outlet property="note4SNImageView" destination="Mds-xf-eaL" id="lbD-bD-Q5s"/>
+                <outlet property="note4T1ImageView" destination="Tet-tT-KUI" id="HMU-Ls-sRF"/>
+                <outlet property="note4T2ImageView" destination="rXi-Ye-UUy" id="VWx-V0-TSA"/>
+                <outlet property="note4TFImageView" destination="i7Z-UV-651" id="Q9y-Dq-oOZ"/>
+                <outlet property="rightSixteenthNoteView" destination="7t0-1R-nuO" id="Qhs-x1-ZJL"/>
+                <outlet property="rightSixteenthNoteViewWidthConstraint" destination="bUJ-z7-kb4" id="hk9-eR-P6q"/>
+                <outlet property="tab3LineView" destination="dJH-Zt-C5g" id="Oyt-oy-tQb"/>
+                <outlet property="tabCrashLine1View" destination="ULN-dD-Z1X" id="sRn-XL-2ja"/>
+                <outlet property="tabCrashLine2View" destination="f6t-uI-VpI" id="ypW-hf-h0W"/>
+                <outlet property="tabCrashLine3View" destination="ewW-eZ-prF" id="A23-KP-Q36"/>
+                <outlet property="tabCrashLine4View" destination="lh2-98-Kjs" id="tKF-4r-ZMd"/>
+            </connections>
+        </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
             <rect key="frame" x="0.0" y="0.0" width="109" height="86"/>
@@ -340,11 +395,18 @@
                         <constraint firstAttribute="height" constant="3" id="HiA-sd-8u5"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZGm-db-R9t" userLabel="SixteenthNoteView">
-                    <rect key="frame" x="14" y="7" width="26.5" height="3"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZGm-db-R9t" userLabel="LeftSixteenthNoteView">
+                    <rect key="frame" x="14" y="7" width="14" height="3"/>
                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="3" id="GZG-L4-k9v"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7t0-1R-nuO" userLabel="RightSixteenthNoteView">
+                    <rect key="frame" x="82.5" y="7" width="13.5" height="3"/>
+                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="3" id="jLM-Ew-piB"/>
                     </constraints>
                 </view>
             </subviews>
@@ -373,7 +435,6 @@
                 <constraint firstItem="dJH-Zt-C5g" firstAttribute="top" secondItem="US4-GZ-4CN" secondAttribute="bottom" constant="10" id="9vi-Eb-TI0"/>
                 <constraint firstItem="elM-JM-uQA" firstAttribute="top" secondItem="U2j-eI-0rq" secondAttribute="bottom" id="BXf-E5-Atu"/>
                 <constraint firstItem="ZGm-db-R9t" firstAttribute="leading" secondItem="bmB-OA-b1I" secondAttribute="trailing" id="Bg4-PP-Szd"/>
-                <constraint firstItem="pF5-9m-mfl" firstAttribute="leading" secondItem="ZGm-db-R9t" secondAttribute="trailing" id="Bri-3T-caC"/>
                 <constraint firstItem="pF5-9m-mfl" firstAttribute="trailing" secondItem="pcT-eg-mja" secondAttribute="trailing" id="Btw-nf-5xP"/>
                 <constraint firstItem="ZGm-db-R9t" firstAttribute="top" secondItem="d9Y-JN-Ju1" secondAttribute="bottom" constant="1.5" id="CBp-pr-bYx"/>
                 <constraint firstItem="bmB-OA-b1I" firstAttribute="bottom" secondItem="ULN-dD-Z1X" secondAttribute="top" constant="-3" id="CpH-oY-4L0"/>
@@ -389,6 +450,7 @@
                 <constraint firstItem="yeP-iD-9XU" firstAttribute="bottom" secondItem="lh2-98-Kjs" secondAttribute="bottom" constant="-3" id="JIA-nv-wZy"/>
                 <constraint firstItem="vEM-z5-Ga2" firstAttribute="top" secondItem="U2j-eI-0rq" secondAttribute="bottom" id="JY4-CV-gwG"/>
                 <constraint firstItem="ewW-eZ-prF" firstAttribute="top" secondItem="wNd-bW-P6g" secondAttribute="top" constant="20" id="Jtq-aP-iJL"/>
+                <constraint firstItem="7t0-1R-nuO" firstAttribute="centerY" secondItem="ZGm-db-R9t" secondAttribute="centerY" id="LGz-D9-ijT"/>
                 <constraint firstItem="dJH-Zt-C5g" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" constant="13" id="NSb-wq-Ie2"/>
                 <constraint firstItem="lh2-98-Kjs" firstAttribute="top" secondItem="yeP-iD-9XU" secondAttribute="top" constant="20" id="NVo-38-Av6"/>
                 <constraint firstItem="uNL-Zl-737" firstAttribute="top" secondItem="ULN-dD-Z1X" secondAttribute="bottom" constant="10" id="O5v-7v-g4l"/>
@@ -410,6 +472,7 @@
                 <constraint firstItem="pF5-9m-mfl" firstAttribute="trailing" secondItem="0iM-iX-erF" secondAttribute="trailing" id="aXj-Bn-8cY"/>
                 <constraint firstItem="Cmw-sc-Dfm" firstAttribute="centerY" secondItem="ewW-eZ-prF" secondAttribute="centerY" id="bMq-zr-kqx"/>
                 <constraint firstItem="yeP-iD-9XU" firstAttribute="trailing" secondItem="Ox2-8b-wlb" secondAttribute="trailing" id="bRs-gz-d10"/>
+                <constraint firstItem="7t0-1R-nuO" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.125" id="bUJ-z7-kb4"/>
                 <constraint firstItem="yeP-iD-9XU" firstAttribute="trailing" secondItem="Mer-QK-PLt" secondAttribute="trailing" id="bYH-he-90O"/>
                 <constraint firstItem="yeP-iD-9XU" firstAttribute="trailing" secondItem="Tet-tT-KUI" secondAttribute="trailing" id="cHU-tC-PAO"/>
                 <constraint firstItem="Mer-QK-PLt" firstAttribute="centerY" secondItem="lh2-98-Kjs" secondAttribute="centerY" id="dda-xh-SOK"/>
@@ -435,6 +498,7 @@
                 <constraint firstItem="wNd-bW-P6g" firstAttribute="trailing" secondItem="VGF-FJ-KOS" secondAttribute="trailing" id="jys-T3-WTU"/>
                 <constraint firstItem="0iM-iX-erF" firstAttribute="centerY" secondItem="US4-GZ-4CN" secondAttribute="centerY" id="kbS-z7-HDA"/>
                 <constraint firstItem="Ox2-8b-wlb" firstAttribute="centerY" secondItem="uNL-Zl-737" secondAttribute="centerY" id="lAg-Ot-2hJ"/>
+                <constraint firstItem="yeP-iD-9XU" firstAttribute="trailing" secondItem="7t0-1R-nuO" secondAttribute="trailing" id="lat-K6-AG9"/>
                 <constraint firstItem="49n-SZ-hHD" firstAttribute="centerY" secondItem="US4-GZ-4CN" secondAttribute="centerY" id="lfc-vg-Q7v"/>
                 <constraint firstItem="U2j-eI-0rq" firstAttribute="top" secondItem="dJH-Zt-C5g" secondAttribute="bottom" constant="10" id="mFj-VY-iTB"/>
                 <constraint firstItem="bmB-OA-b1I" firstAttribute="trailing" secondItem="elM-JM-uQA" secondAttribute="trailing" id="mJa-83-Ydn"/>
@@ -456,9 +520,10 @@
                 <constraint firstItem="yeP-iD-9XU" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" multiplier="1.75" id="x14-xY-If9"/>
                 <constraint firstItem="i7Z-UV-651" firstAttribute="top" secondItem="dJH-Zt-C5g" secondAttribute="bottom" id="x4b-1W-cAd"/>
                 <constraint firstItem="hj8-QE-reD" firstAttribute="centerX" secondItem="rOR-oQ-6Mi" secondAttribute="centerX" id="z8i-Ow-d2O"/>
+                <constraint firstItem="ZGm-db-R9t" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.125" id="zgE-CV-7ll"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="365.94202898550725" y="117.1875"/>
+            <point key="canvasLocation" x="364.49275362318843" y="117.1875"/>
         </view>
     </objects>
     <resources>

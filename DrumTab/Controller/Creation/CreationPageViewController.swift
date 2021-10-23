@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import ESPullToRefresh
 
 class CreationPageViewController: UIViewController {
 
@@ -25,6 +26,17 @@ class CreationPageViewController: UIViewController {
 
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.es.addPullToRefresh { [unowned self] in
+            firebaseFirestoreManager.fetchArticles { result in
+                switch result {
+                case .success(let creations):
+                    self.creations = creations
+                case .failure(let error):
+                    print(error)
+                }
+                self.tableView.es.stopPullToRefresh()
+            }
+        }
 
         firebaseFirestoreManager.fetchArticles { result in
             switch result {
@@ -48,9 +60,11 @@ class CreationPageViewController: UIViewController {
             DrumKit.hiHat = currentSelectedCreation.record["hiHat"]!
             DrumKit.snare = currentSelectedCreation.record["snare"]!
             DrumKit.tom1 = currentSelectedCreation.record["tom1"]!
+            DrumKit.tom2 = currentSelectedCreation.record["tom2"]!
             DrumKit.tomF = currentSelectedCreation.record["tomF"]!
             DrumKit.bass = currentSelectedCreation.record["bass"]!
             DrumKit.crash = currentSelectedCreation.record["crash"]!
+            DrumKit.ride = currentSelectedCreation.record["ride"]!
             self.currentSelectedCellIndex = nil
         } else {
             dvc.bpm = 120
