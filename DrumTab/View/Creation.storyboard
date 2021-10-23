@@ -5,6 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -111,6 +112,27 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="oB2-gO-eoj">
+                                <rect key="frame" x="0.0" y="88" width="414" height="808"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="brL-ya-sgj">
+                                    <size key="itemSize" width="128" height="67"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PreviewCollectionViewCell" id="XnC-Lr-mNC" customClass="PreviewCollectionViewCell" customModule="DrumTab" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="128" height="67"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="IWQ-M4-Nku">
+                                            <rect key="frame" x="0.0" y="0.0" width="128" height="67"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </collectionViewCellContentView>
+                                        <size key="customSize" width="128" height="67"/>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hIj-Cj-poN">
                                 <rect key="frame" x="0.0" y="202" width="414" height="660"/>
                                 <constraints>
@@ -120,21 +142,23 @@
                                     <segue destination="DbM-bt-uel" kind="embed" id="OLe-70-CMH"/>
                                 </connections>
                             </containerView>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="j8N-DC-tMu" customClass="SectionView" customModule="DrumTab" customModuleProvider="target">
-                                <rect key="frame" x="24" y="98" width="102" height="92"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="iqR-rv-5ab"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="hIj-Cj-poN" firstAttribute="trailing" secondItem="iqR-rv-5ab" secondAttribute="trailing" id="68Z-am-uBz"/>
                             <constraint firstItem="hIj-Cj-poN" firstAttribute="leading" secondItem="iqR-rv-5ab" secondAttribute="leading" id="E6g-Z5-iBX"/>
+                            <constraint firstItem="iqR-rv-5ab" firstAttribute="trailing" secondItem="oB2-gO-eoj" secondAttribute="trailing" id="EbU-8Y-y2w"/>
                             <constraint firstItem="iqR-rv-5ab" firstAttribute="bottom" secondItem="hIj-Cj-poN" secondAttribute="bottom" id="Fwi-oS-6pH"/>
+                            <constraint firstItem="oB2-gO-eoj" firstAttribute="leading" secondItem="iqR-rv-5ab" secondAttribute="leading" id="JNb-an-y9Q"/>
+                            <constraint firstItem="oB2-gO-eoj" firstAttribute="top" secondItem="iqR-rv-5ab" secondAttribute="top" id="NYP-k9-Vo7"/>
+                            <constraint firstAttribute="bottom" secondItem="oB2-gO-eoj" secondAttribute="bottom" id="PT3-pA-xqF"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="x3G-J9-lOb"/>
+                    <connections>
+                        <outlet property="collectionView" destination="oB2-gO-eoj" id="cCr-Yq-U3j"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fBf-xQ-6yC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

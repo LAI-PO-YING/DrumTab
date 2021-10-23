@@ -9,6 +9,7 @@ import UIKit
 
 class SectionView: UIView {
 
+    @IBOutlet weak var tab3LineView: UIView!
     //MARK: note1Outlet
     @IBOutlet weak var note1LineView: UIView!
     @IBOutlet weak var note1LineConstraint: NSLayoutConstraint!
@@ -16,8 +17,8 @@ class SectionView: UIView {
     @IBOutlet weak var note1CRImageView: UIImageView!
     @IBOutlet weak var note1HHImageView: UIImageView!
     @IBOutlet weak var note1RIImageView: UIImageView!
-    @IBOutlet weak var note1T2ImageView: UIImageView!
     @IBOutlet weak var note1T1ImageView: UIImageView!
+    @IBOutlet weak var note1T2ImageView: UIImageView!
     @IBOutlet weak var note1SNImageView: UIImageView!
     @IBOutlet weak var note1TFImageView: UIImageView!
     @IBOutlet weak var note1BAImageView: UIImageView!
@@ -28,20 +29,20 @@ class SectionView: UIView {
     @IBOutlet weak var note2CRImageView: UIImageView!
     @IBOutlet weak var note2HHImageView: UIImageView!
     @IBOutlet weak var note2RIImageView: UIImageView!
-    @IBOutlet weak var note2T2ImageView: UIImageView!
     @IBOutlet weak var note2T1ImageView: UIImageView!
+    @IBOutlet weak var note2T2ImageView: UIImageView!
     @IBOutlet weak var note2SNImageView: UIImageView!
     @IBOutlet weak var note2TFImageView: UIImageView!
     @IBOutlet weak var note2BAImageView: UIImageView!
-    //MARK: note3Outlet
+    // MARK: note3Outlet
     @IBOutlet weak var note3LineView: UIView!
     @IBOutlet weak var note3LineConstraint: NSLayoutConstraint!
     @IBOutlet weak var tabCrashLine3View: UIView!
     @IBOutlet weak var note3CRImageView: UIImageView!
     @IBOutlet weak var note3HHImageView: UIImageView!
     @IBOutlet weak var note3RIImageView: UIImageView!
-    @IBOutlet weak var note3T2ImageView: UIImageView!
     @IBOutlet weak var note3T1ImageView: UIImageView!
+    @IBOutlet weak var note3T2ImageView: UIImageView!
     @IBOutlet weak var note3SNImageView: UIImageView!
     @IBOutlet weak var note3TFImageView: UIImageView!
     @IBOutlet weak var note3BAImageView: UIImageView!
@@ -52,58 +53,57 @@ class SectionView: UIView {
     @IBOutlet weak var note4CRImageView: UIImageView!
     @IBOutlet weak var note4HHImageView: UIImageView!
     @IBOutlet weak var note4RIImageView: UIImageView!
-    @IBOutlet weak var note4T2ImageView: UIImageView!
     @IBOutlet weak var note4T1ImageView: UIImageView!
+    @IBOutlet weak var note4T2ImageView: UIImageView!
     @IBOutlet weak var note4SNImageView: UIImageView!
     @IBOutlet weak var note4TFImageView: UIImageView!
     @IBOutlet weak var note4BAImageView: UIImageView!
 
-    @IBOutlet weak var eighthNoteViewTopConstraint: NSLayoutConstraint!
-    
+    @IBOutlet weak var eighthNoteViewLeadingConstraint: NSLayoutConstraint!
+    @IBOutlet weak var eighthNoteViewTrailingContraint: NSLayoutConstraint!
     @IBOutlet weak var eighthNoteView: UIView!
-    
-    let nibName = "SectionView"
-    
-    var hiHat = ["0", "1", "1", "1"]
-    var snare = ["0", "0", "1", "0"]
-    var tom1 = ["0", "0", "0", "0"]
-    var tom2 = ["0", "0", "0", "0"]
-    var tomF = ["1", "0", "0", "0"]
-    var bass = ["0", "0", "0", "0"]
-    var crash = ["0", "0", "0", "0"]
-    var ride = ["0", "0", "0", "0"]
+    @IBOutlet weak var rightSixteenthNoteViewWidthConstraint: NSLayoutConstraint!
+    @IBOutlet weak var rightSixteenthNoteView: UIView!
+    @IBOutlet weak var leftSixteenthNoteViewWidthContraint: NSLayoutConstraint!
+    @IBOutlet weak var leftSixteenthNoteView: UIView!
 
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        
-        commonInit()
-    }
-    override init(frame: CGRect) {
+    let nibName = "SectionView"
+
+    var hiHat: [String]
+    var snare: [String]
+    var tom1: [String]
+    var tom2: [String]
+    var tomF: [String]
+    var bass: [String]
+    var crash: [String]
+    var ride: [String]
+
+    init(frame: CGRect,
+         hiHat: [String],
+         snare: [String],
+         tom1: [String],
+         tom2: [String],
+         tomF: [String],
+         bass: [String],
+         crash: [String],
+         ride: [String]
+    ) {
+        self.hiHat = hiHat
+        self.snare = snare
+        self.tom1 = tom1
+        self.tom2 = tom2
+        self.tomF = tomF
+        self.bass = bass
+        self.crash = crash
+        self.ride = ride
         super.init(frame: frame)
         commonInit()
     }
     
-//    init(hiHat: [String],
-//         snare: [String],
-//         tom1: [String],
-//         tom2: [String],
-//         tomFloor: [String],
-//         bass: [String],
-//         crash: [String],
-//         ride: [String]
-//    ) {
-//
-//        self.hiHat = hiHat
-//        self.snare = snare
-//        self.tom1 = tom1
-//        self.tom2 = tom2
-//        self.tomFloor = tomFloor
-//        self.bass = bass
-//        self.crash = crash
-//        self.ride = ride
-//        super.init
-//    }
-    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
     func commonInit() {
         guard let view = loadViewFromNib() else { return }
         view.frame = self.bounds
@@ -111,10 +111,50 @@ class SectionView: UIView {
         note2Setup()
         note3Setup()
         note4Setup()
-        eighthNoteView.leadingAnchor.constraint(equalTo: note2LineView.trailingAnchor).isActive = true
+        eighthNoteViewSetup()
+        sixteenthNoteViewSetup()
         self.addSubview(view)
     }
-    
+
+    func eighthNoteViewSetup() {
+        if hiHat[0] == "1" || snare[0] == "1" || tom1[0] == "1" || tom2[0] == "1" || tomF[0] == "1" || bass[0] == "1" || crash[0] == "1" || ride[0] == "1",
+            hiHat[3] == "1" || snare[3] == "1" || tom1[3] == "1" || tom2[3] == "1" || tomF[3] == "1" || bass[3] == "1" || crash[3] == "1" || ride[3] == "1" {
+            eighthNoteViewTrailingContraint.isActive = false
+            eighthNoteView.trailingAnchor.constraint(equalTo: note4LineView.trailingAnchor).isActive = true
+        } else if hiHat[0] == "1" || snare[0] == "1" || tom1[0] == "1" || tom2[0] == "1" || tomF[0] == "1" || bass[0] == "1" || crash[0] == "1" || ride[0] == "1",
+                  hiHat[2] == "1" || snare[2] == "1" || tom1[2] == "1" || tom2[2] == "1" || tomF[2] == "1" || bass[2] == "1" || crash[2] == "1" || ride[2] == "1" {
+            eighthNoteViewTrailingContraint.isActive = false
+            eighthNoteView.trailingAnchor.constraint(equalTo: note3LineView.trailingAnchor).isActive = true
+        } else {
+            eighthNoteView.isHidden = true
+        }
+    }
+
+    func sixteenthNoteViewSetup() {
+        if hiHat[0] == "1" || snare[0] == "1" || tom1[0] == "1" || tom2[0] == "1" || tomF[0] == "1" || bass[0] == "1" || crash[0] == "1" || ride[0] == "1",
+           hiHat[1] == "1" || snare[1] == "1" || tom1[1] == "1" || tom2[1] == "1" || tomF[1] == "1" || bass[1] == "1" || crash[1] == "1" || ride[1] == "1",
+           hiHat[2] == "1" || snare[2] == "1" || tom1[2] == "1" || tom2[2] == "1" || tomF[2] == "1" || bass[2] == "1" || crash[2] == "1" || ride[2] == "1",
+           hiHat[3] == "1" || snare[3] == "1" || tom1[3] == "1" || tom2[3] == "1" || tomF[3] == "1" || bass[3] == "1" || crash[3] == "1" || ride[3] == "1" {
+            leftSixteenthNoteViewWidthContraint.isActive = false
+            rightSixteenthNoteViewWidthConstraint.isActive = false
+            leftSixteenthNoteView.widthAnchor.constraint(equalTo: tab3LineView.widthAnchor, multiplier: 0.375).isActive = true
+            rightSixteenthNoteView.widthAnchor.constraint(equalTo: tab3LineView.widthAnchor, multiplier: 0.375).isActive = true
+        } else if hiHat[0] == "1" || snare[0] == "1" || tom1[0] == "1" || tom2[0] == "1" || tomF[0] == "1" || bass[0] == "1" || crash[0] == "1" || ride[0] == "1",
+                  hiHat[1] == "1" || snare[1] == "1" || tom1[1] == "1" || tom2[1] == "1" || tomF[1] == "1" || bass[1] == "1" || crash[1] == "1" || ride[1] == "1",
+                  hiHat[3] == "1" || snare[3] == "1" || tom1[3] == "1" || tom2[3] == "1" || tomF[3] == "1" || bass[3] == "1" || crash[3] == "1" || ride[3] == "1" {
+            // default
+        } else if hiHat[0] == "1" || snare[0] == "1" || tom1[0] == "1" || tom2[0] == "1" || tomF[0] == "1" || bass[0] == "1" || crash[0] == "1" || ride[0] == "1",
+                  hiHat[2] == "1" || snare[2] == "1" || tom1[2] == "1" || tom2[2] == "1" || tomF[2] == "1" || bass[2] == "1" || crash[2] == "1" || ride[2] == "1",
+                  hiHat[3] == "1" || snare[3] == "1" || tom1[3] == "1" || tom2[3] == "1" || tomF[3] == "1" || bass[3] == "1" || crash[3] == "1" || ride[3] == "1" {
+            rightSixteenthNoteViewWidthConstraint.isActive = false
+            rightSixteenthNoteView.widthAnchor.constraint(equalTo: tab3LineView.widthAnchor, multiplier: 0.25).isActive = true
+            leftSixteenthNoteView.isHidden = true
+        } else {
+            leftSixteenthNoteView.isHidden = true
+            rightSixteenthNoteView.isHidden = true
+        }
+    }
+
     func note1Setup() {
         // MARK: -----Note1-----
         // note1LineConstraint
@@ -408,13 +448,8 @@ class SectionView: UIView {
         }
     }
 
-//    func creatEighthNoteView() {
-//        
-//    }
-
     func loadViewFromNib() -> UIView? {
         let nib = UINib(nibName: nibName, bundle: nil)
         return nib.instantiate(withOwner: self, options: nil).first as? UIView
     }
-    
 }

@@ -161,9 +161,11 @@ class RecordPageViewController: UIViewController {
                 "hiHat": DrumKit.hiHat,
                 "snare": DrumKit.snare,
                 "tom1": DrumKit.tom1,
+                "tom2": DrumKit.tom2,
                 "tomF": DrumKit.tomF,
                 "bass": DrumKit.bass,
-                "crash": DrumKit.crash
+                "crash": DrumKit.crash,
+                "ride": DrumKit.ride
             ]
         )
     }
@@ -207,12 +209,12 @@ extension RecordPageViewController: SelectionViewDelegate {
             } else {
                 DrumKit.tom1[index] = "0"
             }
-//        case tom2SelectionView:
-//            if DrumKit.tom2[index] == "0" {
-//                DrumKit.tom2[index] = "1"
-//            } else {
-//                DrumKit.tom2[index] = "0"
-//            }
+        case tom2SelectionView:
+            if DrumKit.tom2[index] == "0" {
+                DrumKit.tom2[index] = "1"
+            } else {
+                DrumKit.tom2[index] = "0"
+            }
         case floorTomSelectionView:
             if DrumKit.tomF[index] == "0" {
                 DrumKit.tomF[index] = "1"
@@ -231,12 +233,12 @@ extension RecordPageViewController: SelectionViewDelegate {
             } else {
                 DrumKit.crash[index] = "0"
             }
-//        case rideSelectionView:
-//            if DrumKit.ride[index] == "0" {
-//                DrumKit.ride[index] = "1"
-//            } else {
-//                DrumKit.ride[index] = "0"
-//            }
+        case rideSelectionView:
+            if DrumKit.ride[index] == "0" {
+                DrumKit.ride[index] = "1"
+            } else {
+                DrumKit.ride[index] = "0"
+            }
         default:
             break
         }
@@ -254,16 +256,16 @@ extension RecordPageViewController: SelectionViewDatasource {
             return DrumKit.snare
         case tom1SelectionView:
             return DrumKit.tom1
-//        case tom2SelectionView:
-//            return DrumKit.tom2
+        case tom2SelectionView:
+            return DrumKit.tom2
         case floorTomSelectionView:
             return DrumKit.tomF
         case stoolSelectionView:
             return DrumKit.bass
         case crashSelectionView:
             return DrumKit.crash
-//        case rideSelectionView:
-//            return DrumKit.ride
+        case rideSelectionView:
+            return DrumKit.ride
         default:
             return ["0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0"]
         }
