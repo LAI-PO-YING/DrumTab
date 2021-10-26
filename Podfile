@@ -12,5 +12,6 @@ pod "Firebase/Firestore"
 pod 'IQKeyboardManagerSwift'
 pod 'FirebaseFirestoreSwift'
 pod 'ESPullToRefresh'
+pod 'lottie-ios'
 
 end
