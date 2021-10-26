@@ -13,7 +13,7 @@ class FirebaseFirestoreManager {
 
     static let shared = FirebaseFirestoreManager()
 
-    lazy var db = Firestore.firestore()
+    private lazy var db = Firestore.firestore()
 
     func createCollection(
         timeSignature: [Int],
@@ -39,7 +39,7 @@ class FirebaseFirestoreManager {
 
     }
 
-    func fetchArticles(completion: @escaping (Result<[Creation], Error>) -> Void) {
+    func fetchCreations(completion: @escaping (Result<[Creation], Error>) -> Void) {
 
         db.collection("creation").order(by: "createdTime", descending: true).getDocuments() { querySnapshot, error in
 
@@ -67,4 +67,102 @@ class FirebaseFirestoreManager {
             }
         }
     }
+
+    func fetchPosts(completion: @escaping (Result<[Post], Error>) -> Void) {
+
+        db.collection("post").order(by: "postTime", descending: true).getDocuments() { querySnapshot, error in
+
+            if let error = error {
+                completion(.failure(error))
+            } else {
+
+                var posts = [Post]()
+
+                for document in querySnapshot!.documents {
+
+                    do {
+
+                        if let post = try document.data(as: Post.self, decoder: Firestore.Decoder()) {
+                            posts.append(post)
+                        }
+
+                    } catch {
+
+                        completion(.failure(error))
+
+                    }
+                }
+                completion(.success(posts))
+            }
+        }
+    }
+
+    func fetchSpecificCreation(
+        creationId: String,
+        completion: @escaping (Result<Creation, Error>) -> Void
+    ) {
+
+        db.collection("creation").whereField("id", isEqualTo: creationId).getDocuments { querySnapshot, error in
+
+            if let error = error {
+                completion(.failure(error))
+            } else {
+
+                var currentCreation: Creation?
+
+                for document in querySnapshot!.documents {
+
+                    do {
+
+                        if let creation = try document.data(as: Creation.self, decoder: Firestore.Decoder()) {
+                            currentCreation = creation
+                        }
+
+                    } catch {
+
+                        completion(.failure(error))
+
+                    }
+                }
+                completion(.success(currentCreation!))
+            }
+        }
+
+        
+    }
+
+    func fetchSpecificUser(
+        userId: String,
+        completion: @escaping (Result<User, Error>) -> Void
+    ) {
+
+        db.collection("user").whereField("userId", isEqualTo: userId).getDocuments { querySnapshot, error in
+
+            if let error = error {
+                completion(.failure(error))
+            } else {
+
+                var currentUser: User?
+
+                for document in querySnapshot!.documents {
+
+                    do {
+
+                        if let user = try document.data(as: User.self, decoder: Firestore.Decoder()) {
+                            currentUser = user
+                        }
+
+                    } catch {
+
+                        completion(.failure(error))
+
+                    }
+                }
+                completion(.success(currentUser!))
+            }
+        }
+
+        
+    }
+
 }

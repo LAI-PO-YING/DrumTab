@@ -27,7 +27,7 @@ class CreationPageViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.es.addPullToRefresh { [unowned self] in
-            firebaseFirestoreManager.fetchArticles { result in
+            firebaseFirestoreManager.fetchCreations { result in
                 switch result {
                 case .success(let creations):
                     self.creations = creations
@@ -38,7 +38,7 @@ class CreationPageViewController: UIViewController {
             }
         }
 
-        firebaseFirestoreManager.fetchArticles { result in
+        firebaseFirestoreManager.fetchCreations { result in
             switch result {
             case .success(let creations):
                 self.creations = creations
