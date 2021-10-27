@@ -128,7 +128,6 @@ class FirebaseFirestoreManager {
             }
         }
 
-        
     }
 
     func fetchSpecificUser(
@@ -161,8 +160,32 @@ class FirebaseFirestoreManager {
                 completion(.success(currentUser!))
             }
         }
-
-        
     }
 
+    func addLike(postId: String, userId: String) {
+        db.collection("post").whereField("postId", isEqualTo: postId).getDocuments { querySnapshot, error in
+            if let error = error {
+                print(error)
+            } else {
+                let myDocId = querySnapshot?.documents[0].documentID
+                let myDoc = self.db.collection("post").document("\(myDocId!)")
+                myDoc.updateData([
+                    "like": FieldValue.arrayUnion(["\(userId)"])
+                ])
+            }
+        }
+    }
+    func removeLike(postId: String, userId: String) {
+        db.collection("post").whereField("postId", isEqualTo: postId).getDocuments { querySnapshot, error in
+            if let error = error {
+                print(error)
+            } else {
+                let myDocId = querySnapshot?.documents[0].documentID
+                let myDoc = self.db.collection("post").document("\(myDocId!)")
+                myDoc.updateData([
+                    "like": FieldValue.arrayRemove(["\(userId)"])
+                ])
+            }
+        }
+    }
 }

@@ -18,6 +18,7 @@ class ProfilePageViewController: UIViewController {
         animationView.contentMode = .scaleAspectFill
         view.addSubview(animationView)
         animationView.loopMode = .loop
+        animationView.backgroundBehavior = .pauseAndRestore
         animationView.play()
     }
 

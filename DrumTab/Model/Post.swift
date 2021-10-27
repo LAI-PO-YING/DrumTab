@@ -14,6 +14,16 @@ struct Post: Codable {
     var postId: String
     var userId: String
     var content: String
-    var like: Int
+    var like: [String]
 
+    var user: User?
+}
+
+struct PostLocalUse {
+    var creationId: String
+    var postTime: TimeInterval
+    var postId: String
+    var user: User
+    var content: String
+    var like: [String]
 }
