@@ -13,6 +13,9 @@ class HomePageTableViewCell: UITableViewCell {
     @IBOutlet weak var contentLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var likeLabel: UILabel!
+    @IBOutlet weak var likeButton: UIButton!
+    
+    var likeButtonPressedClosure: (()->Void) = {}
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -32,13 +35,18 @@ class HomePageTableViewCell: UITableViewCell {
         contentLabel.text = content
         timeLabel.text = dateFormatter.string(from: date)
         likeLabel.text = "\(like)"
+        likeButton.setImage(UIImage(systemName: "heart"), for: .normal)
+        likeButton.setImage(UIImage(systemName: "heart.fill"), for: .selected)
 
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
+    }
 
-        // Configure the view for the selected state
+    @IBAction func likeButtonPressed(_ sender: UIButton) {
+        likeButtonPressedClosure()
+        sender.isSelected.toggle()
     }
 
 }
