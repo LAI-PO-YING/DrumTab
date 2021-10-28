@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import ESPullToRefresh
 
 class HomePageViewController: UIViewController {
 
@@ -20,6 +21,35 @@ class HomePageViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.es.addPullToRefresh {
+            self.firebase.fetchPosts { result in
+                switch result {
+                case .success(let posts):
+                    self.posts = []
+                    posts.forEach { post in
+                        self.firebase.fetchSpecificUser(userId: post.userId) { result in
+                            switch result {
+                            case .success(let user):
+                                let post = PostLocalUse(
+                                    creationId: post.creationId,
+                                    postTime: post.postTime,
+                                    postId: post.postId,
+                                    user: user,
+                                    content: post.content,
+                                    like: post.like
+                                )
+                                self.posts.append(post)
+                            case .failure(let error):
+                                print(error)
+                            }
+                        }
+                    }
+                case .failure(let error):
+                    print(error)
+                }
+            }
+            self.tableView.es.stopPullToRefresh()
+        }
         firebase.fetchPosts { result in
             switch result {
             case .success(let posts):
@@ -45,6 +75,7 @@ class HomePageViewController: UIViewController {
                 print(error)
             }
         }
+        
         tableView.delegate = self
         tableView.dataSource = self
     }

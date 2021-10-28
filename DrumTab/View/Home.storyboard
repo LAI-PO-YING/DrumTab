@@ -174,25 +174,25 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="geG-Ry-LfB">
-                                <rect key="frame" x="187.5" y="785.5" width="39" height="31"/>
+                                <rect key="frame" x="187.5" y="780.5" width="39" height="31"/>
                                 <color key="tintColor" red="0.2470588235" green="0.2274509804" blue="0.2274509804" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="play" catalog="system"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bcA-ch-aXf">
-                                <rect key="frame" x="40" y="785.5" width="50" height="31"/>
+                                <rect key="frame" x="40" y="780.5" width="50" height="31"/>
                                 <color key="tintColor" red="0.2470588235" green="0.2274509804" blue="0.2274509804" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="backward.fill" catalog="system"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pba-Gv-X2Y">
-                                <rect key="frame" x="324" y="785.5" width="50" height="31"/>
+                                <rect key="frame" x="324" y="780.5" width="50" height="31"/>
                                 <color key="tintColor" red="0.2470588235" green="0.2274509804" blue="0.2274509804" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="forward.fill" catalog="system"/>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mzP-kR-1ge">
-                                <rect key="frame" x="40" y="818.5" width="334" height="1"/>
+                                <rect key="frame" x="40" y="813.5" width="334" height="1"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="gWR-Zl-7Qp"/>
@@ -210,7 +210,7 @@
                                 <buttonConfiguration key="configuration" style="plain" image="paperplane" catalog="system"/>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="3fi-n3-01r">
-                                <rect key="frame" x="0.0" y="345" width="414" height="431.5"/>
+                                <rect key="frame" x="0.0" y="345" width="414" height="426.5"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="mUO-bf-nWA">
@@ -224,7 +224,7 @@
                                 </prototypes>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zeA-9f-Ac7">
-                                <rect key="frame" x="0.0" y="776.5" width="414" height="1"/>
+                                <rect key="frame" x="0.0" y="771.5" width="414" height="1"/>
                                 <color key="backgroundColor" red="0.2470588235" green="0.2274509804" blue="0.2274509804" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="2aR-pw-Z1S"/>
@@ -235,7 +235,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="3fi-n3-01r" firstAttribute="leading" secondItem="u95-dp-8Iw" secondAttribute="leading" id="3CN-TX-xid"/>
-                            <constraint firstItem="JZw-xd-vG3" firstAttribute="top" secondItem="mzP-kR-1ge" secondAttribute="bottom" constant="2" id="6aJ-0Z-26A"/>
+                            <constraint firstItem="JZw-xd-vG3" firstAttribute="top" secondItem="mzP-kR-1ge" secondAttribute="bottom" constant="7" id="6aJ-0Z-26A"/>
                             <constraint firstItem="ctG-hv-W0O" firstAttribute="trailing" secondItem="u95-dp-8Iw" secondAttribute="trailing" id="Cky-lQ-bPS"/>
                             <constraint firstItem="bcA-ch-aXf" firstAttribute="centerY" secondItem="geG-Ry-LfB" secondAttribute="centerY" id="DRE-Y3-lwZ"/>
                             <constraint firstItem="u95-dp-8Iw" firstAttribute="bottom" secondItem="c2Z-Dy-WTC" secondAttribute="bottom" constant="8" id="Hb9-Gv-Lbd"/>

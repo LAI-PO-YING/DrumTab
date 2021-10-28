@@ -11,6 +11,7 @@ class CreationPreviewViewController: UIViewController {
 
     var bpm: Int?
     var beatInASection: Int?
+    var creationId: String?
     @IBOutlet weak var collectionView: UICollectionView!
     
     override func viewDidLoad() {
@@ -31,6 +32,10 @@ class CreationPreviewViewController: UIViewController {
         }
         dvc.bpm = self.bpm!
         dvc.beatInASection = self.beatInASection!
+        if creationId != nil {
+            dvc.creationId = self.creationId!
+            creationId = nil
+        }
         dvc.delegate = self
     }
     @IBAction func backButtonPressed(_ sender: Any) {
@@ -40,7 +45,7 @@ class CreationPreviewViewController: UIViewController {
 
 extension CreationPreviewViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        4
+        DrumKit.hiHat.count / 4
     }
     
     func collectionView(
@@ -107,6 +112,10 @@ extension CreationPreviewViewController: UICollectionViewDelegate, UICollectionV
 }
 
 extension CreationPreviewViewController: RecordPageViewControllerDelegate {
+    func didPressedSubmitButton() {
+        collectionView.reloadData()
+    }
+    
     func didChangeSelectedStatus(index: Int) {
         collectionView?.reloadItems(at: [[0, index/4]])
     }

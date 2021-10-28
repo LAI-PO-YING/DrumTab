@@ -38,14 +38,14 @@ class CreationPageViewController: UIViewController {
             }
         }
 
-        firebaseFirestoreManager.fetchCreations { result in
-            switch result {
-            case .success(let creations):
-                self.creations = creations
-            case .failure(let error):
-                print(error)
-            }
-        }
+//        firebaseFirestoreManager.fetchCreations { result in
+//            switch result {
+//            case .success(let creations):
+//                self.creations = creations
+//            case .failure(let error):
+//                print(error)
+//            }
+//        }
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -57,6 +57,7 @@ class CreationPageViewController: UIViewController {
             let currentSelectedCreation = creations[currentSelectedCellIndex]
             dvc.bpm = currentSelectedCreation.bpm
             dvc.beatInASection = currentSelectedCreation.timeSignature[0]
+            dvc.creationId = currentSelectedCreation.id
             DrumKit.hiHat = currentSelectedCreation.record["hiHat"]!
             DrumKit.snare = currentSelectedCreation.record["snare"]!
             DrumKit.tom1 = currentSelectedCreation.record["tom1"]!
@@ -70,6 +71,17 @@ class CreationPageViewController: UIViewController {
             dvc.bpm = 120
             dvc.beatInASection = 4
             DrumKit.initSounds()
+        }
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        firebaseFirestoreManager.fetchCreations { result in
+            switch result {
+            case .success(let creations):
+                self.creations = creations
+            case .failure(let error):
+                print(error)
+            }
         }
     }
     @IBAction func addButtonPressed(_ sender: Any) {
