@@ -180,18 +180,27 @@
                                 <color key="tintColor" red="0.2470588235" green="0.2274509804" blue="0.2274509804" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="play" catalog="system"/>
+                                <connections>
+                                    <action selector="playButtonPressed:" destination="1NP-Xi-X6R" eventType="touchUpInside" id="l7C-FP-6N4"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bcA-ch-aXf">
                                 <rect key="frame" x="40" y="780.5" width="50" height="31"/>
                                 <color key="tintColor" red="0.2470588235" green="0.2274509804" blue="0.2274509804" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="backward.fill" catalog="system"/>
+                                <connections>
+                                    <action selector="rewindButtonPressed:" destination="1NP-Xi-X6R" eventType="touchUpInside" id="x5u-ft-JhN"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pba-Gv-X2Y">
                                 <rect key="frame" x="324" y="780.5" width="50" height="31"/>
                                 <color key="tintColor" red="0.2470588235" green="0.2274509804" blue="0.2274509804" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="forward.fill" catalog="system"/>
+                                <connections>
+                                    <action selector="forwardButtonPressed:" destination="1NP-Xi-X6R" eventType="touchUpInside" id="nV7-kO-lPj"/>
+                                </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mzP-kR-1ge">
                                 <rect key="frame" x="40" y="813.5" width="334" height="1"/>
@@ -299,7 +308,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6ms-v9-SJ6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2260.8695652173915" y="138.61607142857142"/>
+            <point key="canvasLocation" x="1945" y="139"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="wKX-nr-76d">
