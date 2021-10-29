@@ -18,7 +18,17 @@ class PreviewCollectionViewCell: UICollectionViewCell {
         crash: [String],
         ride: [String]
     ) {
-        let view = SectionView(frame: CGRect.zero, hiHat: hiHat, snare: snare, tom1: tom1, tom2: tom2, tomF: tomF, bass: bass, crash: crash, ride: ride)
+        let view = SectionView(
+            frame: CGRect.zero,
+            hiHat: hiHat,
+            snare: snare,
+            tom1: tom1,
+            tom2: tom2,
+            tomF: tomF,
+            bass: bass,
+            crash: crash,
+            ride: ride
+        )
         self.stickSubView(view)
     }
 }

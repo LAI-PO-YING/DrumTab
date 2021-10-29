@@ -6,11 +6,13 @@
 //
 
 import UIKit
+import ESPullToRefresh
 
 class HomePageViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     let firebase = FirebaseFirestoreManager.shared
+    var currentSelectedRow: Int?
     
     var posts: [PostLocalUse] = [] {
         didSet {
@@ -20,6 +22,35 @@ class HomePageViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.es.addPullToRefresh {
+            self.firebase.fetchPosts { result in
+                switch result {
+                case .success(let posts):
+                    self.posts = []
+                    posts.forEach { post in
+                        self.firebase.fetchSpecificUser(userId: post.userId) { result in
+                            switch result {
+                            case .success(let user):
+                                let post = PostLocalUse(
+                                    creationId: post.creationId,
+                                    postTime: post.postTime,
+                                    postId: post.postId,
+                                    user: user,
+                                    content: post.content,
+                                    like: post.like
+                                )
+                                self.posts.append(post)
+                            case .failure(let error):
+                                print(error)
+                            }
+                        }
+                    }
+                case .failure(let error):
+                    print(error)
+                }
+            }
+            self.tableView.es.stopPullToRefresh()
+        }
         firebase.fetchPosts { result in
             switch result {
             case .success(let posts):
@@ -45,10 +76,25 @@ class HomePageViewController: UIViewController {
                 print(error)
             }
         }
+        
         tableView.delegate = self
         tableView.dataSource = self
     }
 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let destinationVC = segue.destination as? PreviewPageViewController else {
+            fatalError("Destination is not PreviewPageViewController")
+        }
+        guard let currentSelectedRow = currentSelectedRow else {
+            return
+        }
+
+        destinationVC.creationId = posts[currentSelectedRow].creationId
+        self.currentSelectedRow = nil
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.setNavigationBarHidden(true, animated: true)
+    }
 }
 
 extension HomePageViewController: UITableViewDelegate, UITableViewDataSource {
@@ -82,6 +128,10 @@ extension HomePageViewController: UITableViewDelegate, UITableViewDataSource {
             }
         }
         return cell
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        currentSelectedRow = indexPath.row
+        performSegue(withIdentifier: "FromHomePage", sender: nil)
     }
 
 }

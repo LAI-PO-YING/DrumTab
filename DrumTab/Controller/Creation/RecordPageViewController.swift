@@ -9,6 +9,7 @@ import UIKit
 
 protocol RecordPageViewControllerDelegate: AnyObject {
     func didChangeSelectedStatus(index: Int)
+    func didPressedSubmitButton()
 }
 
 class RecordPageViewController: UIViewController {
@@ -21,8 +22,9 @@ class RecordPageViewController: UIViewController {
     var autoScrollTimer: Timer?
     var timerIndex = 0
     // 一小節的拍數×小節數÷速度＝演奏時間(分鐘)
+    var creationId: String?
     var beatInASection = 4
-    var numberOfSection = 40
+    var numberOfSection = 1
     var bpm = 120
     var speed: Double = 0
     
@@ -82,23 +84,34 @@ class RecordPageViewController: UIViewController {
             repeats: true
         )
         RunLoop.current.add(self.playTimer!, forMode: .common)
-        autoScrollTimer = Timer.scheduledTimer(
-            timeInterval: speed,
-            target: self,
-            selector: #selector(autoScroll),
-            userInfo: nil,
-            repeats: true
-        )
-        RunLoop.current.add(self.autoScrollTimer!, forMode: .common)
+//        autoScrollTimer = Timer.scheduledTimer(
+//            timeInterval: speed,
+//            target: self,
+//            selector: #selector(autoScroll),
+//            userInfo: nil,
+//            repeats: true
+//        )
+//        RunLoop.current.add(self.autoScrollTimer!, forMode: .common)
         
     }
     
     func stopTimer() {
         playTimer?.invalidate()
         playTimer = nil
-        autoScrollTimer?.invalidate()
-        autoScrollTimer = nil
+//        autoScrollTimer?.invalidate()
+//        autoScrollTimer = nil
         DrumKit.index = 0
+    }
+
+    func reloadSelectionView() {
+        hiHatSelectionView.collectionView.reloadData()
+        snareSelectionView.collectionView.reloadData()
+        tom1SelectionView.collectionView.reloadData()
+        tom2SelectionView.collectionView.reloadData()
+        floorTomSelectionView.collectionView.reloadData()
+        bassSelectionView.collectionView.reloadData()
+        crashSelectionView.collectionView.reloadData()
+        rideSelectionView.collectionView.reloadData()
     }
     
     @objc func autoScroll() {
@@ -166,20 +179,38 @@ class RecordPageViewController: UIViewController {
               let bpm = Int(bpmStr) else { return }
         self.bpm = bpm
     }
-    @IBAction func submitButtonPressed(_ sender: UIButton) {
+    @IBAction func submitButtonPressed(_ sender: Any) {
+        DrumKit.hiHat += DrumKit.hiHat[0...15]
+        DrumKit.snare += DrumKit.snare[0...15]
+        DrumKit.tom1 += DrumKit.tom1[0...15]
+        DrumKit.tom2 += DrumKit.tom2[0...15]
+        DrumKit.tomF += DrumKit.tomF[0...15]
+        DrumKit.bass += DrumKit.bass[0...15]
+        DrumKit.crash += DrumKit.crash[0...15]
+        DrumKit.ride += DrumKit.ride[0...15]
+        numberOfSection += 1
+        delegate?.didPressedSubmitButton()
+        reloadSelectionView()
+    }
+    @IBAction func publishButtonPressed(_ sender: Any) {
         let controller = UIAlertController(
-            title: "Ready to submit",
+            title: "Publish your creation",
             message: "Pleas enter your creation name.", preferredStyle: .alert
         )
         controller.addTextField { textField in
             textField.placeholder = "Creation name"
         }
+        controller.addTextField { textField in
+            textField.placeholder = "Content"
+        }
         let okAction = UIAlertAction(title: "OK", style: .default) { [unowned controller] _ in
-            if let name = controller.textFields?[0].text {
-                self.firebaseFirestoreManager.createCollection(
+            if let name = controller.textFields?[0].text,
+                let content = controller.textFields?[1].text {
+                self.firebaseFirestoreManager.addCreation(
                     timeSignature: [4, 4],
                     name: name,
                     bpm: self.bpm,
+                    published: true,
                     record: [
                         "hiHat": DrumKit.hiHat,
                         "snare": DrumKit.snare,
@@ -189,8 +220,55 @@ class RecordPageViewController: UIViewController {
                         "bass": DrumKit.bass,
                         "crash": DrumKit.crash,
                         "ride": DrumKit.ride
-                    ]
-                )
+                    ]) { id in
+                        if self.creationId != nil {
+                            self.firebaseFirestoreManager.deleteCreation(creationId: self.creationId!)
+                            self.creationId = nil
+                        }
+                        self.firebaseFirestoreManager.addPost(
+                            content: content,
+                            creationId: id
+                        )
+                        self.navigationController?.popViewController(animated: true)
+                    }
+            }
+        }
+        controller.addAction(okAction)
+        let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: nil)
+        controller.addAction(cancelAction)
+        present(controller, animated: true, completion: nil)
+    }
+    @IBAction func saveButtonPressed(_ sender: UIButton) {
+        let controller = UIAlertController(
+            title: "Save your draft",
+            message: "Pleas enter your creation name.", preferredStyle: .alert
+        )
+        controller.addTextField { textField in
+            textField.placeholder = "Creation name"
+        }
+        let okAction = UIAlertAction(title: "OK", style: .default) { [unowned controller] _ in
+            if let name = controller.textFields?[0].text {
+                self.firebaseFirestoreManager.addCreation(
+                    timeSignature: [4, 4],
+                    name: name,
+                    bpm: self.bpm,
+                    published: false,
+                    record: [
+                        "hiHat": DrumKit.hiHat,
+                        "snare": DrumKit.snare,
+                        "tom1": DrumKit.tom1,
+                        "tom2": DrumKit.tom2,
+                        "tomF": DrumKit.tomF,
+                        "bass": DrumKit.bass,
+                        "crash": DrumKit.crash,
+                        "ride": DrumKit.ride
+                    ]) { _ in
+                        if self.creationId != nil {
+                            self.firebaseFirestoreManager.deleteCreation(creationId: self.creationId!)
+                            self.creationId = nil
+                        }
+                        self.navigationController?.popViewController(animated: true)
+                    }
             }
         }
         controller.addAction(okAction)
@@ -219,59 +297,60 @@ extension RecordPageViewController: SelectionViewDelegate {
     }
     
     func didSelected(selectionView: SelectionView, index: Int) {
+        let currentIndex = 16 * (numberOfSection-1) + index
         switch selectionView {
         case hiHatSelectionView:
-            if DrumKit.hiHat[index] == "0" {
-                DrumKit.hiHat[index] = "1"
+            if DrumKit.hiHat[currentIndex] == "0" {
+                DrumKit.hiHat[currentIndex] = "1"
             } else {
-                DrumKit.hiHat[index] = "0"
+                DrumKit.hiHat[currentIndex] = "0"
             }
         case snareSelectionView:
-            if DrumKit.snare[index] == "0" {
-                DrumKit.snare[index] = "1"
+            if DrumKit.snare[currentIndex] == "0" {
+                DrumKit.snare[currentIndex] = "1"
             } else {
-                DrumKit.snare[index] = "0"
+                DrumKit.snare[currentIndex] = "0"
             }
         case tom1SelectionView:
-            if DrumKit.tom1[index] == "0" {
-                DrumKit.tom1[index] = "1"
+            if DrumKit.tom1[currentIndex] == "0" {
+                DrumKit.tom1[currentIndex] = "1"
             } else {
-                DrumKit.tom1[index] = "0"
+                DrumKit.tom1[currentIndex] = "0"
             }
         case tom2SelectionView:
-            if DrumKit.tom2[index] == "0" {
-                DrumKit.tom2[index] = "1"
+            if DrumKit.tom2[currentIndex] == "0" {
+                DrumKit.tom2[currentIndex] = "1"
             } else {
-                DrumKit.tom2[index] = "0"
+                DrumKit.tom2[currentIndex] = "0"
             }
         case floorTomSelectionView:
-            if DrumKit.tomF[index] == "0" {
-                DrumKit.tomF[index] = "1"
+            if DrumKit.tomF[currentIndex] == "0" {
+                DrumKit.tomF[currentIndex] = "1"
             } else {
-                DrumKit.tomF[index] = "0"
+                DrumKit.tomF[currentIndex] = "0"
             }
         case bassSelectionView:
-            if DrumKit.bass[index] == "0" {
-                DrumKit.bass[index] = "1"
+            if DrumKit.bass[currentIndex] == "0" {
+                DrumKit.bass[currentIndex] = "1"
             } else {
-                DrumKit.bass[index] = "0"
+                DrumKit.bass[currentIndex] = "0"
             }
         case crashSelectionView:
-            if DrumKit.crash[index] == "0" {
-                DrumKit.crash[index] = "1"
+            if DrumKit.crash[currentIndex] == "0" {
+                DrumKit.crash[currentIndex] = "1"
             } else {
-                DrumKit.crash[index] = "0"
+                DrumKit.crash[currentIndex] = "0"
             }
         case rideSelectionView:
-            if DrumKit.ride[index] == "0" {
-                DrumKit.ride[index] = "1"
+            if DrumKit.ride[currentIndex] == "0" {
+                DrumKit.ride[currentIndex] = "1"
             } else {
-                DrumKit.ride[index] = "0"
+                DrumKit.ride[currentIndex] = "0"
             }
         default:
             break
         }
-        delegate?.didChangeSelectedStatus(index: index)
+        delegate?.didChangeSelectedStatus(index: currentIndex)
     }
 }
 
@@ -301,24 +380,56 @@ extension RecordPageViewController: SelectionViewDatasource {
     }
     
     func selectStatus(selectionView: SelectionView) -> [String] {
-        
+        let startIndex = 16*(numberOfSection-1)
         switch selectionView {
         case hiHatSelectionView:
-            return DrumKit.hiHat
+            var hiHat: [String] = []
+            for index in startIndex..<startIndex+16 {
+                hiHat.append(DrumKit.hiHat[index])
+            }
+            return hiHat
         case snareSelectionView:
-            return DrumKit.snare
+            var snare: [String] = []
+            for index in startIndex..<startIndex+16 {
+                snare.append(DrumKit.snare[index])
+            }
+            return snare
         case tom1SelectionView:
-            return DrumKit.tom1
+            var tom1: [String] = []
+            for index in startIndex..<startIndex+16 {
+                tom1.append(DrumKit.tom1[index])
+            }
+            return tom1
         case tom2SelectionView:
-            return DrumKit.tom2
+            var tom2: [String] = []
+            for index in startIndex..<startIndex+16 {
+                tom2.append(DrumKit.tom2[index])
+            }
+            return tom2
         case floorTomSelectionView:
-            return DrumKit.tomF
+            var tomF: [String] = []
+            for index in startIndex..<startIndex+16 {
+                tomF.append(DrumKit.tomF[index])
+            }
+            return tomF
         case bassSelectionView:
-            return DrumKit.bass
+            var bass: [String] = []
+            for index in startIndex..<startIndex+16 {
+                bass.append(DrumKit.bass[index])
+            }
+            return bass
         case crashSelectionView:
-            return DrumKit.crash
+            var crash: [String] = []
+            for index in startIndex..<startIndex+16 {
+                crash.append(DrumKit.crash[index])
+            }
+            return crash
         case rideSelectionView:
-            return DrumKit.ride
+            var ride: [String] = []
+            for index in startIndex..<startIndex+16 {
+                ride.append(DrumKit.ride[index])
+            }
+            return ride
         default:
             return ["0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0"]
         }

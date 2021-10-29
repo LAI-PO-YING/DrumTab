@@ -14,34 +14,62 @@ class FirebaseFirestoreManager {
     static let shared = FirebaseFirestoreManager()
 
     private lazy var db = Firestore.firestore()
+    private let userId = "HKL3bzZ7aJOAEa5Fo0xO"
 
-    func createCollection(
+    func addCreation(
         timeSignature: [Int],
         name: String,
         bpm: Int,
-        record: [String: [String]]
+        published: Bool,
+        record: [String: [String]],
+        completion: @escaping (String) -> Void
     ) {
 
-        let articles = db.collection("creation")
+        let creation = db.collection("creation")
 
-        let document = articles.document()
+        let document = creation.document()
 
         let data: [String: Any] = [
+            "userId": userId,
             "id": document.documentID,
             "timeSignature": timeSignature,
             "bpm": bpm,
             "createdTime": NSDate().timeIntervalSince1970,
             "name": name,
+            "published": published,
             "record": record
         ]
 
         document.setData(data)
+        completion(document.documentID)
 
+    }
+
+    func addPost(
+        content: String,
+        creationId: String
+    ) {
+        let post = db.collection("post")
+
+        let document = post.document()
+
+        let like = [String]()
+
+        let data: [String: Any] = [
+            "userId": userId,
+            "postId": document.documentID,
+            "postTime": NSDate().timeIntervalSince1970,
+            "content": content,
+            "creationId": creationId,
+            "like": like
+        ]
+
+        document.setData(data)
     }
 
     func fetchCreations(completion: @escaping (Result<[Creation], Error>) -> Void) {
 
-        db.collection("creation").order(by: "createdTime", descending: true).getDocuments() { querySnapshot, error in
+        db.collection("creation").whereField("userId", isEqualTo: userId).whereField("published", isEqualTo: false).getDocuments() { querySnapshot, error in
 
             if let error = error {
                 completion(.failure(error))
@@ -63,6 +91,7 @@ class FirebaseFirestoreManager {
 
                     }
                 }
+                creations.sort { $0.createdTime > $1.createdTime }
                 completion(.success(creations))
             }
         }
@@ -187,5 +216,8 @@ class FirebaseFirestoreManager {
                 ])
             }
         }
+    }
+    func deleteCreation(creationId: String) {
+        db.collection("creation").document(creationId).delete()
     }
 }
