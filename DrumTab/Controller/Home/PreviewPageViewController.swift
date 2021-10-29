@@ -17,6 +17,12 @@ class PreviewPageViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var tableView: UITableView!
 
+    let drumKit = DrumKit()
+    var playTimer: Timer?
+    var autoScrollTimer: Timer?
+    var timerIndex = 0
+    var speed: Double = 0
+
     var creationId: String?
     var creation: Creation? {
         didSet {
@@ -25,6 +31,39 @@ class PreviewPageViewController: UIViewController {
     }
     let firebase = FirebaseFirestoreManager.shared
 
+    func startTimer () {
+        guard playTimer == nil else { return }
+        guard autoScrollTimer == nil else { return }
+        
+        playTimer = Timer.scheduledTimer(
+            timeInterval: speed,
+            target: drumKit,
+            selector: #selector(drumKit.playDrumSound),
+            userInfo: nil,
+            repeats: true
+        )
+        RunLoop.current.add(self.playTimer!, forMode: .common)
+        autoScrollTimer = Timer.scheduledTimer(
+            timeInterval: speed*4,
+            target: self,
+            selector: #selector(autoScroll),
+            userInfo: nil,
+            repeats: true
+        )
+        RunLoop.current.add(self.playTimer!, forMode: .common)
+    }
+    
+    func stopTimer() {
+        playTimer?.invalidate()
+        playTimer = nil
+        autoScrollTimer?.invalidate()
+        autoScrollTimer = nil
+        DrumKit.index = 0
+    }
+
+    @objc func autoScroll() {
+        collectionView.scrollToItem(at: [0, DrumKit.index/4], at: .top, animated: true)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         addInToCollectionButton.setTitle("", for: .normal)
@@ -61,8 +100,38 @@ class PreviewPageViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         self.tabBarController?.tabBar.isHidden = false
     }
+    deinit {
+        stopTimer()
+    }
     @IBAction func backButtoPressed(_ sender: Any) {
         navigationController?.popViewController(animated: true)
+    }
+    @IBAction func playButtonPressed(_ sender: UIButton) {
+        timerIndex += 1
+        speed = 60.0 / Double(creation!.bpm) / Double(creation!.timeSignature[0])
+        if timerIndex == 1 {
+            startTimer()
+            timerIndex += 1
+            sender.setImage(UIImage(systemName: "pause"), for: .normal)
+        } else {
+            stopTimer()
+            timerIndex = 0
+            sender.setImage(UIImage(systemName: "play"), for: .normal)
+        }
+    }
+    @IBAction func forwardButtonPressed(_ sender: Any) {
+        if DrumKit.index+16 >= DrumKit.hiHat.count-1 {
+            DrumKit.index = DrumKit.hiHat.count-1
+        } else {
+            DrumKit.index += 16
+        }
+    }
+    @IBAction func rewindButtonPressed(_ sender: Any) {
+        if DrumKit.index-16 <= 0 {
+            DrumKit.index = 0
+        } else {
+            DrumKit.index -= 16
+        }
     }
     
 }
