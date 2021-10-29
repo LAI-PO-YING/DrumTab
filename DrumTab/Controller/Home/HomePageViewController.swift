@@ -12,6 +12,7 @@ class HomePageViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     let firebase = FirebaseFirestoreManager.shared
+    var currentSelectedRow: Int?
     
     var posts: [PostLocalUse] = [] {
         didSet {
@@ -80,6 +81,20 @@ class HomePageViewController: UIViewController {
         tableView.dataSource = self
     }
 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let destinationVC = segue.destination as? PreviewPageViewController else {
+            fatalError("Destination is not PreviewPageViewController")
+        }
+        guard let currentSelectedRow = currentSelectedRow else {
+            return
+        }
+
+        destinationVC.creationId = posts[currentSelectedRow].creationId
+        self.currentSelectedRow = nil
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.setNavigationBarHidden(true, animated: true)
+    }
 }
 
 extension HomePageViewController: UITableViewDelegate, UITableViewDataSource {
@@ -113,6 +128,10 @@ extension HomePageViewController: UITableViewDelegate, UITableViewDataSource {
             }
         }
         return cell
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        currentSelectedRow = indexPath.row
+        performSegue(withIdentifier: "FromHomePage", sender: nil)
     }
 
 }
