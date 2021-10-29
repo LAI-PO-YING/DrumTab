@@ -220,4 +220,54 @@ class FirebaseFirestoreManager {
     func deleteCreation(creationId: String) {
         db.collection("creation").document(creationId).delete()
     }
+    func uploadComment(
+        creationId: String,
+        userId: String,
+        comment: String
+    ) {
+        let date = Date(timeIntervalSince1970: NSDate().timeIntervalSince1970)
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy/MM/dd HH:mm"
+        db.collection("creation").whereField("id", isEqualTo: creationId).getDocuments { querySnapshot, error in
+            if let error = error {
+                print(error)
+            } else {
+                let myDocId = querySnapshot?.documents[0].documentID
+                let myDoc = self.db.collection("creation").document("\(myDocId!)")
+                myDoc.updateData([
+                    "comment": FieldValue.arrayUnion([[
+                        "userId": userId,
+                        "comment": comment,
+                        "time": dateFormatter.string(from: date)
+                    ]])
+                ])
+            }
+        }
+    }
+    func addCollection(userId: String, creationId: String) {
+        db.collection("user").whereField("userId", isEqualTo: userId).getDocuments { querySnapshot, error in
+            if let error = error {
+                print(error)
+            } else {
+                let myDocId = querySnapshot?.documents[0].documentID
+                let myDoc = self.db.collection("user").document("\(myDocId!)")
+                myDoc.updateData([
+                    "userCollection": FieldValue.arrayUnion(["\(creationId)"])
+                ])
+            }
+        }
+    }
+    func removeCollection(userId: String, creationId: String) {
+        db.collection("user").whereField("userId", isEqualTo: userId).getDocuments { querySnapshot, error in
+            if let error = error {
+                print(error)
+            } else {
+                let myDocId = querySnapshot?.documents[0].documentID
+                let myDoc = self.db.collection("user").document("\(myDocId!)")
+                myDoc.updateData([
+                    "userCollection": FieldValue.arrayRemove(["\(creationId)"])
+                ])
+            }
+        }
+    }
 }
