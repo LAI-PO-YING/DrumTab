@@ -18,5 +18,6 @@ struct Creation: Codable {
     var published: Bool
     var userId: String
     var comment: [[String: String]]
+    var numberOfSection: Int
 
 }

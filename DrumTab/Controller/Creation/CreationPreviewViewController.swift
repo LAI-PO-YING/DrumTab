@@ -12,6 +12,7 @@ class CreationPreviewViewController: UIViewController {
     var bpm: Int?
     var beatInASection: Int?
     var creationId: String?
+    var numberOfSection: Int?
     @IBOutlet weak var collectionView: UICollectionView!
     
     override func viewDidLoad() {
@@ -32,6 +33,7 @@ class CreationPreviewViewController: UIViewController {
         }
         dvc.bpm = self.bpm!
         dvc.beatInASection = self.beatInASection!
+        dvc.numberOfSection = self.numberOfSection ?? 1
         if creationId != nil {
             dvc.creationId = self.creationId!
             creationId = nil

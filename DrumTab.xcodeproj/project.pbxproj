@@ -47,6 +47,7 @@
 		309D3655271D085E00C1D667 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 309D3653271D085E00C1D667 /* LaunchScreen.storyboard */; };
 		30AB5FF8272AA6E00032E670 /* PreviewPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30AB5FF7272AA6E00032E670 /* PreviewPageViewController.swift */; };
 		30BB2D5F272BCEF000862277 /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BB2D5E272BCEF000862277 /* CommentTableViewCell.swift */; };
+		30D6E0D3272D024A00AF6378 /* CollectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D6E0D2272D024A00AF6378 /* CollectionTableViewCell.swift */; };
 		30F5FBD7271E6DF100A61E4F /* RecordPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F5FBD6271E6DF100A61E4F /* RecordPageViewController.swift */; };
 		30F5FBD9271E6F0200A61E4F /* CreationPreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F5FBD8271E6F0200A61E4F /* CreationPreviewViewController.swift */; };
 		AA30CE104FB4B5C516CEC76B /* Pods_DrumTab.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A88508AC6E7A5D3605685AD /* Pods_DrumTab.framework */; };
@@ -96,6 +97,7 @@
 		309D3656271D085E00C1D667 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		30AB5FF7272AA6E00032E670 /* PreviewPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewPageViewController.swift; sourceTree = "<group>"; };
 		30BB2D5E272BCEF000862277 /* CommentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
+		30D6E0D2272D024A00AF6378 /* CollectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionTableViewCell.swift; sourceTree = "<group>"; };
 		30F5FBD6271E6DF100A61E4F /* RecordPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordPageViewController.swift; sourceTree = "<group>"; };
 		30F5FBD8271E6F0200A61E4F /* CreationPreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreationPreviewViewController.swift; sourceTree = "<group>"; };
 		C5375142590186CEC4D9057F /* Pods-DrumTab.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DrumTab.debug.xcconfig"; path = "Target Support Files/Pods-DrumTab/Pods-DrumTab.debug.xcconfig"; sourceTree = "<group>"; };
@@ -158,6 +160,7 @@
 				304CBE20271D60F8006B4FE2 /* Base */,
 				305B8B73272008BE000E9E90 /* Creation */,
 				3049DD842726BB2000B3CB19 /* Home */,
+				30D6E0D1272CFD0100AF6378 /* Collection */,
 				309D3653271D085E00C1D667 /* LaunchScreen.storyboard */,
 				309D364E271D085D00C1D667 /* Main.storyboard */,
 				304CBE0D271D33F2006B4FE2 /* Home.storyboard */,
@@ -292,6 +295,14 @@
 				305B8B6B271FE4ED000E9E90 /* GoogleService-Info.plist */,
 			);
 			path = DrumTab;
+			sourceTree = "<group>";
+		};
+		30D6E0D1272CFD0100AF6378 /* Collection */ = {
+			isa = PBXGroup;
+			children = (
+				30D6E0D2272D024A00AF6378 /* CollectionTableViewCell.swift */,
+			);
+			path = Collection;
 			sourceTree = "<group>";
 		};
 		614DD0A173F609FACDACFC57 /* Frameworks */ = {
@@ -467,6 +478,7 @@
 				304CBE0B271D26D6006B4FE2 /* CreationPageViewController.swift in Sources */,
 				30AB5FF8272AA6E00032E670 /* PreviewPageViewController.swift in Sources */,
 				308173152723E8910002C86D /* PreviewCollectionViewCell.swift in Sources */,
+				30D6E0D3272D024A00AF6378 /* CollectionTableViewCell.swift in Sources */,
 				304CBE00271D1D22006B4FE2 /* UIStoryboard+Extension.swift in Sources */,
 				304CBE17271D34A6006B4FE2 /* CollectionPageViewController.swift in Sources */,
 				304CBE14271D3464006B4FE2 /* HomePageViewController.swift in Sources */,

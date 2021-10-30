@@ -211,6 +211,7 @@ class RecordPageViewController: UIViewController {
                     name: name,
                     bpm: self.bpm,
                     published: true,
+                    numberOfSection: DrumKit.hiHat.count / 16,
                     record: [
                         "hiHat": DrumKit.hiHat,
                         "snare": DrumKit.snare,
@@ -253,6 +254,7 @@ class RecordPageViewController: UIViewController {
                     name: name,
                     bpm: self.bpm,
                     published: false,
+                    numberOfSection: DrumKit.hiHat.count / 16,
                     record: [
                         "hiHat": DrumKit.hiHat,
                         "snare": DrumKit.snare,
