@@ -7,8 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3015C3E12727A752002DD366 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3015C3E02727A752002DD366 /* Post.swift */; };
+		3015C3E32727B30E002DD366 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3015C3E22727B30E002DD366 /* User.swift */; };
 		3038F2242721748B00772D2C /* SectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3038F2232721748B00772D2C /* SectionView.xib */; };
 		3038F226272174B300772D2C /* SectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3038F225272174B300772D2C /* SectionView.swift */; };
+		3049DD812726B29300B3CB19 /* loadingAnimation.json in Resources */ = {isa = PBXBuildFile; fileRef = 3049DD802726B29300B3CB19 /* loadingAnimation.json */; };
+		3049DD832726BB1400B3CB19 /* HomePageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3049DD822726BB1400B3CB19 /* HomePageTableViewCell.swift */; };
 		304CBE00271D1D22006B4FE2 /* UIStoryboard+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304CBDFF271D1D22006B4FE2 /* UIStoryboard+Extension.swift */; };
 		304CBE03271D1F71006B4FE2 /* DTTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304CBE02271D1F71006B4FE2 /* DTTabBarViewController.swift */; };
 		304CBE07271D2344006B4FE2 /* Creation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 304CBE06271D2344006B4FE2 /* Creation.storyboard */; };
@@ -41,6 +45,8 @@
 		309D3650271D085D00C1D667 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 309D364E271D085D00C1D667 /* Main.storyboard */; };
 		309D3652271D085E00C1D667 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 309D3651271D085E00C1D667 /* Assets.xcassets */; };
 		309D3655271D085E00C1D667 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 309D3653271D085E00C1D667 /* LaunchScreen.storyboard */; };
+		30AB5FF8272AA6E00032E670 /* PreviewPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30AB5FF7272AA6E00032E670 /* PreviewPageViewController.swift */; };
+		30BB2D5F272BCEF000862277 /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BB2D5E272BCEF000862277 /* CommentTableViewCell.swift */; };
 		30F5FBD7271E6DF100A61E4F /* RecordPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F5FBD6271E6DF100A61E4F /* RecordPageViewController.swift */; };
 		30F5FBD9271E6F0200A61E4F /* CreationPreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F5FBD8271E6F0200A61E4F /* CreationPreviewViewController.swift */; };
 		AA30CE104FB4B5C516CEC76B /* Pods_DrumTab.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A88508AC6E7A5D3605685AD /* Pods_DrumTab.framework */; };
@@ -48,8 +54,12 @@
 
 /* Begin PBXFileReference section */
 		2A88508AC6E7A5D3605685AD /* Pods_DrumTab.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DrumTab.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3015C3E02727A752002DD366 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		3015C3E22727B30E002DD366 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		3038F2232721748B00772D2C /* SectionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SectionView.xib; sourceTree = "<group>"; };
 		3038F225272174B300772D2C /* SectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionView.swift; sourceTree = "<group>"; };
+		3049DD802726B29300B3CB19 /* loadingAnimation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loadingAnimation.json; sourceTree = "<group>"; };
+		3049DD822726BB1400B3CB19 /* HomePageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageTableViewCell.swift; sourceTree = "<group>"; };
 		304CBDFF271D1D22006B4FE2 /* UIStoryboard+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStoryboard+Extension.swift"; sourceTree = "<group>"; };
 		304CBE02271D1F71006B4FE2 /* DTTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTTabBarViewController.swift; sourceTree = "<group>"; };
 		304CBE06271D2344006B4FE2 /* Creation.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Creation.storyboard; sourceTree = "<group>"; };
@@ -84,6 +94,8 @@
 		309D3651271D085E00C1D667 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		309D3654271D085E00C1D667 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		309D3656271D085E00C1D667 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		30AB5FF7272AA6E00032E670 /* PreviewPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewPageViewController.swift; sourceTree = "<group>"; };
+		30BB2D5E272BCEF000862277 /* CommentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
 		30F5FBD6271E6DF100A61E4F /* RecordPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordPageViewController.swift; sourceTree = "<group>"; };
 		30F5FBD8271E6F0200A61E4F /* CreationPreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreationPreviewViewController.swift; sourceTree = "<group>"; };
 		C5375142590186CEC4D9057F /* Pods-DrumTab.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DrumTab.debug.xcconfig"; path = "Target Support Files/Pods-DrumTab/Pods-DrumTab.debug.xcconfig"; sourceTree = "<group>"; };
@@ -102,6 +114,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3049DD842726BB2000B3CB19 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				3049DD822726BB1400B3CB19 /* HomePageTableViewCell.swift */,
+				30BB2D5E272BCEF000862277 /* CommentTableViewCell.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
 		304CBE01271D1D4A006B4FE2 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
@@ -136,6 +157,7 @@
 			children = (
 				304CBE20271D60F8006B4FE2 /* Base */,
 				305B8B73272008BE000E9E90 /* Creation */,
+				3049DD842726BB2000B3CB19 /* Home */,
 				309D3653271D085E00C1D667 /* LaunchScreen.storyboard */,
 				309D364E271D085D00C1D667 /* Main.storyboard */,
 				304CBE0D271D33F2006B4FE2 /* Home.storyboard */,
@@ -150,6 +172,7 @@
 			isa = PBXGroup;
 			children = (
 				304CBE23271D6F44006B4FE2 /* Sounds */,
+				3049DD802726B29300B3CB19 /* loadingAnimation.json */,
 				309D3651271D085E00C1D667 /* Assets.xcassets */,
 			);
 			path = Resource;
@@ -169,6 +192,7 @@
 			isa = PBXGroup;
 			children = (
 				304CBE13271D3464006B4FE2 /* HomePageViewController.swift */,
+				30AB5FF7272AA6E00032E670 /* PreviewPageViewController.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -221,6 +245,8 @@
 				304CBE32271D781F006B4FE2 /* DrumKit.swift */,
 				305B8B6D271FE626000E9E90 /* FirebaseFirestoreManager.swift */,
 				305B8B6F271FFFD2000E9E90 /* Creation.swift */,
+				3015C3E02727A752002DD366 /* Post.swift */,
+				3015C3E22727B30E002DD366 /* User.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -360,6 +386,7 @@
 				309D3652271D085E00C1D667 /* Assets.xcassets in Resources */,
 				309D3650271D085D00C1D667 /* Main.storyboard in Resources */,
 				308173132723E0F20002C86D /* drumRide.wav in Resources */,
+				3049DD812726B29300B3CB19 /* loadingAnimation.json in Resources */,
 				304CBE2E271D75B7006B4FE2 /* drumTom1.wav in Resources */,
 				304CBE12271D3424006B4FE2 /* Profile.storyboard in Resources */,
 				304CBE31271D75B7006B4FE2 /* drumFloorTom.wav in Resources */,
@@ -433,9 +460,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3049DD832726BB1400B3CB19 /* HomePageTableViewCell.swift in Sources */,
 				305B8B70271FFFD2000E9E90 /* Creation.swift in Sources */,
 				30F5FBD7271E6DF100A61E4F /* RecordPageViewController.swift in Sources */,
+				30BB2D5F272BCEF000862277 /* CommentTableViewCell.swift in Sources */,
 				304CBE0B271D26D6006B4FE2 /* CreationPageViewController.swift in Sources */,
+				30AB5FF8272AA6E00032E670 /* PreviewPageViewController.swift in Sources */,
 				308173152723E8910002C86D /* PreviewCollectionViewCell.swift in Sources */,
 				304CBE00271D1D22006B4FE2 /* UIStoryboard+Extension.swift in Sources */,
 				304CBE17271D34A6006B4FE2 /* CollectionPageViewController.swift in Sources */,
@@ -451,6 +481,8 @@
 				305B8B6E271FE626000E9E90 /* FirebaseFirestoreManager.swift in Sources */,
 				304CBE33271D781F006B4FE2 /* DrumKit.swift in Sources */,
 				305B8B72272008B5000E9E90 /* CreationPageTableViewCell.swift in Sources */,
+				3015C3E12727A752002DD366 /* Post.swift in Sources */,
+				3015C3E32727B30E002DD366 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -527,7 +559,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -582,7 +614,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

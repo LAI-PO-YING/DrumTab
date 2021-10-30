@@ -11,6 +11,7 @@ class CreationPreviewViewController: UIViewController {
 
     var bpm: Int?
     var beatInASection: Int?
+    var creationId: String?
     @IBOutlet weak var collectionView: UICollectionView!
     
     override func viewDidLoad() {
@@ -18,19 +19,33 @@ class CreationPreviewViewController: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.setNavigationBarHidden(true, animated: true)
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        navigationController?.setNavigationBarHidden(false, animated: true)
+    }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let dvc = segue.destination as? RecordPageViewController else {
             fatalError("Destination is not RecordPageViewController")
         }
         dvc.bpm = self.bpm!
         dvc.beatInASection = self.beatInASection!
+        if creationId != nil {
+            dvc.creationId = self.creationId!
+            creationId = nil
+        }
         dvc.delegate = self
+    }
+    @IBAction func backButtonPressed(_ sender: Any) {
+        navigationController?.popViewController(animated: true)
     }
 }
 
 extension CreationPreviewViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        4
+        DrumKit.hiHat.count / 4
     }
     
     func collectionView(
@@ -73,7 +88,6 @@ extension CreationPreviewViewController: UICollectionViewDelegate, UICollectionV
             for index in 4*indexPath.row ... 4*indexPath.row+3 {
                 currentSectionRide.append(DrumKit.ride[index])
             }
-            
 
             cell.addSectionView(
                 hiHat: currentSectionHiHat,
@@ -92,12 +106,16 @@ extension CreationPreviewViewController: UICollectionViewDelegate, UICollectionV
         layout collectionViewLayout: UICollectionViewLayout,
         sizeForItemAt indexPath: IndexPath
     ) -> CGSize {
-        return CGSize(width: view.bounds.width / 4, height: 86)
+        return CGSize(width: view.bounds.width / 4 - 0.01, height: 86)
     }
 
 }
 
 extension CreationPreviewViewController: RecordPageViewControllerDelegate {
+    func didPressedSubmitButton() {
+        collectionView.reloadData()
+    }
+    
     func didChangeSelectedStatus(index: Int) {
         collectionView?.reloadItems(at: [[0, index/4]])
     }

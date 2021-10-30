@@ -15,5 +15,8 @@ struct Creation: Codable {
     var name: String
     var record: [String: [String]]
     var timeSignature: [Int]
+    var published: Bool
+    var userId: String
+    var comment: [[String: String]]
 
 }
