@@ -58,6 +58,7 @@ class CreationPageViewController: UIViewController {
             dvc.bpm = currentSelectedCreation.bpm
             dvc.beatInASection = currentSelectedCreation.timeSignature[0]
             dvc.creationId = currentSelectedCreation.id
+            dvc.numberOfSection = currentSelectedCreation.numberOfSection
             DrumKit.hiHat = currentSelectedCreation.record["hiHat"]!
             DrumKit.snare = currentSelectedCreation.record["snare"]!
             DrumKit.tom1 = currentSelectedCreation.record["tom1"]!
