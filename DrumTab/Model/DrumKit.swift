@@ -20,14 +20,14 @@ class DrumKit {
         "drumRide.wav"
     ]
 
-    static var hiHat = ["0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0"]
-    static var snare = ["0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0"]
-    static var tom1 = ["0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0"]
-    static var tom2 = ["0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0"]
-    static var tomF = ["0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0"]
-    static var bass = ["0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0"]
-    static var crash = ["0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0"]
-    static var ride = ["0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0"]
+    static var hiHat: [String] = []
+    static var snare: [String] = []
+    static var tom1: [String] = []
+    static var tom2: [String] = []
+    static var tomF: [String] = []
+    static var bass: [String] = []
+    static var crash: [String] = []
+    static var ride: [String] = []
 
     static var index = 0
     static func initSounds() {
@@ -101,7 +101,7 @@ class DrumKit {
             )
         }
         DrumKit.index += 1
-        if DrumKit.index == 16 {
+        if DrumKit.index == DrumKit.hiHat.count {
             DrumKit.index = 0
         }
     }

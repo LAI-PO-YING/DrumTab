@@ -27,7 +27,7 @@ class CreationPageViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.es.addPullToRefresh { [unowned self] in
-            firebaseFirestoreManager.fetchArticles { result in
+            firebaseFirestoreManager.fetchCreations { result in
                 switch result {
                 case .success(let creations):
                     self.creations = creations
@@ -38,14 +38,14 @@ class CreationPageViewController: UIViewController {
             }
         }
 
-        firebaseFirestoreManager.fetchArticles { result in
-            switch result {
-            case .success(let creations):
-                self.creations = creations
-            case .failure(let error):
-                print(error)
-            }
-        }
+//        firebaseFirestoreManager.fetchCreations { result in
+//            switch result {
+//            case .success(let creations):
+//                self.creations = creations
+//            case .failure(let error):
+//                print(error)
+//            }
+//        }
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -57,6 +57,8 @@ class CreationPageViewController: UIViewController {
             let currentSelectedCreation = creations[currentSelectedCellIndex]
             dvc.bpm = currentSelectedCreation.bpm
             dvc.beatInASection = currentSelectedCreation.timeSignature[0]
+            dvc.creationId = currentSelectedCreation.id
+            dvc.numberOfSection = currentSelectedCreation.numberOfSection
             DrumKit.hiHat = currentSelectedCreation.record["hiHat"]!
             DrumKit.snare = currentSelectedCreation.record["snare"]!
             DrumKit.tom1 = currentSelectedCreation.record["tom1"]!
@@ -69,7 +71,19 @@ class CreationPageViewController: UIViewController {
         } else {
             dvc.bpm = 120
             dvc.beatInASection = 4
+            dvc.numberOfSection = 1
             DrumKit.initSounds()
+        }
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        firebaseFirestoreManager.fetchCreations { result in
+            switch result {
+            case .success(let creations):
+                self.creations = creations
+            case .failure(let error):
+                print(error)
+            }
         }
     }
     @IBAction func addButtonPressed(_ sender: Any) {
