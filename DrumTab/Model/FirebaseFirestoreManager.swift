@@ -21,6 +21,7 @@ class FirebaseFirestoreManager {
         name: String,
         bpm: Int,
         published: Bool,
+        numberOfSection: Int,
         record: [String: [String]],
         completion: @escaping (String) -> Void
     ) {
@@ -28,6 +29,8 @@ class FirebaseFirestoreManager {
         let creation = db.collection("creation")
 
         let document = creation.document()
+        
+        let comment: [[String: String]] = []
 
         let data: [String: Any] = [
             "userId": userId,
@@ -37,7 +40,9 @@ class FirebaseFirestoreManager {
             "createdTime": NSDate().timeIntervalSince1970,
             "name": name,
             "published": published,
-            "record": record
+            "record": record,
+            "comment": comment,
+            "numberOfSection": numberOfSection
         ]
 
         document.setData(data)
@@ -267,6 +272,16 @@ class FirebaseFirestoreManager {
                 myDoc.updateData([
                     "userCollection": FieldValue.arrayRemove(["\(creationId)"])
                 ])
+            }
+        }
+    }
+    func fetchCollections(completion: @escaping ([String]) -> Void) {
+        fetchSpecificUser(userId: userId) { resullt in
+            switch resullt {
+            case .success(let user):
+                completion(user.userCollection)
+            case .failure(let error):
+                print(error)
             }
         }
     }
