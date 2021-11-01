@@ -139,7 +139,7 @@
         <!--Preview Page View Controller-->
         <scene sceneID="B0P-J4-mcj">
             <objects>
-                <viewController id="1NP-Xi-X6R" customClass="PreviewPageViewController" customModule="DrumTab" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PreviewPageViewController" id="1NP-Xi-X6R" customClass="PreviewPageViewController" customModule="DrumTab" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zeb-Jd-fIe">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
