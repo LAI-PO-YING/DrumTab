@@ -170,9 +170,11 @@ class PreviewPageViewController: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         self.tabBarController?.tabBar.isHidden = true
+        navigationController?.setNavigationBarHidden(true, animated: true)
     }
     override func viewWillDisappear(_ animated: Bool) {
         self.tabBarController?.tabBar.isHidden = false
+        navigationController?.setNavigationBarHidden(false, animated: true)
     }
     deinit {
         stopTimer()
