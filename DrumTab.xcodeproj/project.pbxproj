@@ -46,6 +46,10 @@
 		309D3652271D085E00C1D667 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 309D3651271D085E00C1D667 /* Assets.xcassets */; };
 		309D3655271D085E00C1D667 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 309D3653271D085E00C1D667 /* LaunchScreen.storyboard */; };
 		30AB5FF8272AA6E00032E670 /* PreviewPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30AB5FF7272AA6E00032E670 /* PreviewPageViewController.swift */; };
+		30ABCD902730CEA200126875 /* RankingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 30ABCD8F2730CEA200126875 /* RankingView.xib */; };
+		30ABCD922730CECB00126875 /* RankingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30ABCD912730CECB00126875 /* RankingView.swift */; };
+		30ABCD942730E75400126875 /* PersonalInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 30ABCD932730E75400126875 /* PersonalInfoView.xib */; };
+		30ABCD962730E77000126875 /* PersonalInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30ABCD952730E77000126875 /* PersonalInfoView.swift */; };
 		30BB2D5F272BCEF000862277 /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BB2D5E272BCEF000862277 /* CommentTableViewCell.swift */; };
 		30D6E0D3272D024A00AF6378 /* CollectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D6E0D2272D024A00AF6378 /* CollectionTableViewCell.swift */; };
 		30F5FBD7271E6DF100A61E4F /* RecordPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F5FBD6271E6DF100A61E4F /* RecordPageViewController.swift */; };
@@ -96,6 +100,10 @@
 		309D3654271D085E00C1D667 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		309D3656271D085E00C1D667 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		30AB5FF7272AA6E00032E670 /* PreviewPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewPageViewController.swift; sourceTree = "<group>"; };
+		30ABCD8F2730CEA200126875 /* RankingView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RankingView.xib; sourceTree = "<group>"; };
+		30ABCD912730CECB00126875 /* RankingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingView.swift; sourceTree = "<group>"; };
+		30ABCD932730E75400126875 /* PersonalInfoView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PersonalInfoView.xib; sourceTree = "<group>"; };
+		30ABCD952730E77000126875 /* PersonalInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInfoView.swift; sourceTree = "<group>"; };
 		30BB2D5E272BCEF000862277 /* CommentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
 		30D6E0D2272D024A00AF6378 /* CollectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionTableViewCell.swift; sourceTree = "<group>"; };
 		30F5FBD6271E6DF100A61E4F /* RecordPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordPageViewController.swift; sourceTree = "<group>"; };
@@ -222,6 +230,10 @@
 				304CBE1C271D41E8006B4FE2 /* SelectionView.swift */,
 				3038F2232721748B00772D2C /* SectionView.xib */,
 				3038F225272174B300772D2C /* SectionView.swift */,
+				30ABCD8F2730CEA200126875 /* RankingView.xib */,
+				30ABCD912730CECB00126875 /* RankingView.swift */,
+				30ABCD932730E75400126875 /* PersonalInfoView.xib */,
+				30ABCD952730E77000126875 /* PersonalInfoView.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -396,6 +408,8 @@
 				304CBE2C271D75B7006B4FE2 /* drumSnare.wav in Resources */,
 				309D3652271D085E00C1D667 /* Assets.xcassets in Resources */,
 				309D3650271D085D00C1D667 /* Main.storyboard in Resources */,
+				30ABCD942730E75400126875 /* PersonalInfoView.xib in Resources */,
+				30ABCD902730CEA200126875 /* RankingView.xib in Resources */,
 				308173132723E0F20002C86D /* drumRide.wav in Resources */,
 				3049DD812726B29300B3CB19 /* loadingAnimation.json in Resources */,
 				304CBE2E271D75B7006B4FE2 /* drumTom1.wav in Resources */,
@@ -481,8 +495,10 @@
 				30D6E0D3272D024A00AF6378 /* CollectionTableViewCell.swift in Sources */,
 				304CBE00271D1D22006B4FE2 /* UIStoryboard+Extension.swift in Sources */,
 				304CBE17271D34A6006B4FE2 /* CollectionPageViewController.swift in Sources */,
+				30ABCD962730E77000126875 /* PersonalInfoView.swift in Sources */,
 				304CBE14271D3464006B4FE2 /* HomePageViewController.swift in Sources */,
 				309D3649271D085D00C1D667 /* AppDelegate.swift in Sources */,
+				30ABCD922730CECB00126875 /* RankingView.swift in Sources */,
 				304CBE1D271D41E8006B4FE2 /* SelectionView.swift in Sources */,
 				309D364B271D085D00C1D667 /* SceneDelegate.swift in Sources */,
 				30F5FBD9271E6F0200A61E4F /* CreationPreviewViewController.swift in Sources */,
