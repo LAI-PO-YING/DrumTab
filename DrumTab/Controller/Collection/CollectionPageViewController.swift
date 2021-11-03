@@ -98,7 +98,7 @@ extension CollectionPageViewController: UITableViewDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             firebase.removeCollection(
-                userId: "HKL3bzZ7aJOAEa5Fo0xO",
+                userId: LocalUserData.userId,
                 creationId: collections[indexPath.row].creation.id
             )
             collections.remove(at: indexPath.row)

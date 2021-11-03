@@ -14,7 +14,6 @@ class FirebaseFirestoreManager {
     static let shared = FirebaseFirestoreManager()
 
     private lazy var db = Firestore.firestore()
-    private let userId = "HKL3bzZ7aJOAEa5Fo0xO"
 
     func addCreation(
         timeSignature: [Int],
@@ -33,7 +32,7 @@ class FirebaseFirestoreManager {
         let comment: [[String: String]] = []
 
         let data: [String: Any] = [
-            "userId": userId,
+            "userId": LocalUserData.userId,
             "id": document.documentID,
             "timeSignature": timeSignature,
             "bpm": bpm,
@@ -61,7 +60,7 @@ class FirebaseFirestoreManager {
         let like = [String]()
 
         let data: [String: Any] = [
-            "userId": userId,
+            "userId": LocalUserData.userId,
             "postId": document.documentID,
             "postTime": NSDate().timeIntervalSince1970,
             "content": content,
@@ -74,7 +73,7 @@ class FirebaseFirestoreManager {
 
     func fetchCreations(completion: @escaping (Result<[Creation], Error>) -> Void) {
 
-        db.collection("creation").whereField("userId", isEqualTo: userId).whereField("published", isEqualTo: false).getDocuments() { querySnapshot, error in
+        db.collection("creation").whereField("userId", isEqualTo: LocalUserData.userId).whereField("published", isEqualTo: false).getDocuments() { querySnapshot, error in
 
             if let error = error {
                 completion(.failure(error))
@@ -206,6 +205,26 @@ class FirebaseFirestoreManager {
                 myDoc.updateData([
                     "like": FieldValue.arrayUnion(["\(userId)"])
                 ])
+
+                for document in querySnapshot!.documents {
+
+                    do {
+                        if let post = try document.data(as: Post.self, decoder: Firestore.Decoder()) {
+                            self.db.collection("user").whereField("userId", isEqualTo: post.userId).getDocuments { querySnapshot, error in
+                                let myDocId = querySnapshot?.documents[0].documentID
+                                let myDoc = self.db.collection("user").document("\(myDocId!)")
+                                myDoc.updateData([
+                                    "likesCount": FieldValue.increment(Int64(1)),
+                                ])
+                            }
+                        }
+
+                    } catch {
+
+                        print(error)
+
+                    }
+                }
             }
         }
     }
@@ -219,6 +238,26 @@ class FirebaseFirestoreManager {
                 myDoc.updateData([
                     "like": FieldValue.arrayRemove(["\(userId)"])
                 ])
+            }
+
+            for document in querySnapshot!.documents {
+
+                do {
+                    if let post = try document.data(as: Post.self, decoder: Firestore.Decoder()) {
+                        self.db.collection("user").whereField("userId", isEqualTo: post.userId).getDocuments { querySnapshot, error in
+                            let myDocId = querySnapshot?.documents[0].documentID
+                            let myDoc = self.db.collection("user").document("\(myDocId!)")
+                            myDoc.updateData([
+                                "likesCount": FieldValue.increment(Int64(-1)),
+                            ])
+                        }
+                    }
+
+                } catch {
+
+                    print(error)
+
+                }
             }
         }
     }
@@ -276,12 +315,182 @@ class FirebaseFirestoreManager {
         }
     }
     func fetchCollections(completion: @escaping ([String]) -> Void) {
-        fetchSpecificUser(userId: userId) { resullt in
+        fetchSpecificUser(userId: LocalUserData.userId) { resullt in
             switch resullt {
             case .success(let user):
                 completion(user.userCollection)
             case .failure(let error):
                 print(error)
+            }
+        }
+    }
+    func createUser(
+        uid: String,
+        userName: String, userEmail: String,
+        completion: @escaping () -> Void
+    ) {
+
+        let collection = db.collection("user")
+
+        let document = collection.document()
+        
+        let followBy = [String]()
+
+        let userCollection = [String]()
+
+        let userFollow = [String]()
+
+        let userPhoto = ""
+
+        let data: [String: Any] = [
+            "followBy": followBy,
+            "userCollection": userCollection,
+            "userEmail": userEmail,
+            "createdTime": NSDate().timeIntervalSince1970,
+            "userFollow": userFollow,
+            "userId": uid,
+            "userName": userName,
+            "userPhoto": userPhoto,
+            "likesCount": 0
+        ]
+
+        document.setData(data)
+        completion()
+    }
+    func checkUserSignInBefore(uid: String, completion: @escaping (Result<User?, Error>) -> Void) {
+        db.collection("user").whereField("userId", isEqualTo: uid).getDocuments { querySnapshot, error in
+
+            if let error = error {
+                completion(.failure(error))
+            } else {
+
+                var currentUser: User?
+
+                for document in querySnapshot!.documents {
+
+                    do {
+
+                        if let user = try document.data(as: User.self, decoder: Firestore.Decoder()) {
+                            currentUser = user
+                        }
+
+                    } catch {
+
+                        completion(.failure(error))
+
+                    }
+                }
+                completion(.success(currentUser))
+            }
+        }
+    }
+    func getPersonalCreation(
+        completion: @escaping (Result<[Creation], Error>) -> Void
+    ) {
+        db.collection("creation").whereField("userId", isEqualTo: LocalUserData.userId).whereField("published", isEqualTo: true).getDocuments { querySnapshot, error in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+
+                var personalCreation = [Creation]()
+
+                for document in querySnapshot!.documents {
+
+                    do {
+
+                        if let creation = try document.data(as: Creation.self, decoder: Firestore.Decoder()) {
+                            personalCreation.append(creation)
+                        }
+
+                    } catch {
+
+                        completion(.failure(error))
+
+                    }
+                }
+                personalCreation.sort { $0.createdTime > $1.createdTime }
+                completion(.success(personalCreation))
+            }
+        }
+    }
+    func getPersonalLikeValue(completion: @escaping (Int) -> Void) {
+        db.collection("user").whereField("userId", isEqualTo: LocalUserData.userId).getDocuments { querySnapshot, error in
+            if let error = error {
+                print(error)
+            } else {
+
+                var likes = 0
+
+                for document in querySnapshot!.documents {
+
+                    do {
+
+                        if let user = try document.data(as: User.self, decoder: Firestore.Decoder()) {
+                            likes = user.likesCount
+                        }
+
+                    } catch {
+
+                        print(error)
+
+                    }
+                }
+                completion(likes)
+            }
+        }
+    }
+    func getRank(completion: @escaping (Int) -> Void) {
+        db.collection("user").order(by: "likesCount", descending: true).getDocuments { querySnapshot, error in
+            if let error = error {
+                print(error)
+            } else {
+
+                var usersID = [String]()
+
+                for document in querySnapshot!.documents {
+
+                    do {
+
+                        if let user = try document.data(as: User.self, decoder: Firestore.Decoder()) {
+                            usersID.append(user.userId)
+                        }
+
+                    } catch {
+
+                        print(error)
+
+                    }
+                }
+                if let index = usersID.firstIndex(of: LocalUserData.userId) {
+                    let rank = index + 1
+                    completion(rank)
+                }
+            }
+        }
+    }
+    func getFollowers(completion: @escaping (Int) -> Void) {
+        db.collection("user").whereField("userId", isEqualTo: LocalUserData.userId).getDocuments { querySnapshot, error in
+            if let error = error {
+                print(error)
+            } else {
+
+                var followers = 0
+
+                for document in querySnapshot!.documents {
+
+                    do {
+
+                        if let user = try document.data(as: User.self, decoder: Firestore.Decoder()) {
+                            followers = user.followBy.count
+                        }
+
+                    } catch {
+
+                        print(error)
+
+                    }
+                }
+                completion(followers)
             }
         }
     }

@@ -7,10 +7,13 @@
 
 import UIKit
 import Lottie
+import FirebaseAuth
 
 class ProfilePageViewController: UIViewController {
 
     @IBOutlet weak var nameLabel: UILabel!
+
+    let firebase = FirebaseFirestoreManager.shared
     
     var firstPrizeView = RankingView(
         frame: CGRect.zero,
@@ -153,6 +156,23 @@ class ProfilePageViewController: UIViewController {
         thirdPrizeView.userPhoto = UIImage(systemName: "book.fill")!
 
         containerView.backgroundColor = .black
+        firebase.getPersonalCreation { result in
+            switch result {
+            case .success(let creations):
+                print("creation: \(creations.count)")
+            case .failure(let error):
+                print(error)
+            }
+        }
+        firebase.getPersonalLikeValue { numberOfLikes in
+            print("numberOfLikes: \(numberOfLikes)")
+        }
+        firebase.getRank { rank in
+            print("rank: \(rank)")
+        }
+        firebase.getFollowers { numberOfFollowers in
+            print("numberOfFollowers: \(numberOfFollowers)")
+        }
     }
     
     @IBAction func imageViewTap(_ sender: Any) {
@@ -160,4 +180,16 @@ class ProfilePageViewController: UIViewController {
         firstPrizeView.userName = "Ivan"
     }
     
+    @IBAction func logoutButtonPressed(_ sender: Any) {
+        do {
+            try Auth.auth().signOut()
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let authNavController = storyboard.instantiateViewController(identifier: "AuthViewController")
+            
+            (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(authNavController)
+            print("logoutButtonPressed")
+        } catch {
+            print("Fail")
+        }
+    }
 }

@@ -52,6 +52,8 @@
 		30ABCD962730E77000126875 /* PersonalInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30ABCD952730E77000126875 /* PersonalInfoView.swift */; };
 		30BB2D5F272BCEF000862277 /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BB2D5E272BCEF000862277 /* CommentTableViewCell.swift */; };
 		30D6E0D3272D024A00AF6378 /* CollectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D6E0D2272D024A00AF6378 /* CollectionTableViewCell.swift */; };
+		30EEF05E273106C500D545E0 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30EEF05D273106C500D545E0 /* AuthViewController.swift */; };
+		30EEF06127312AA100D545E0 /* LocalUserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30EEF06027312AA100D545E0 /* LocalUserData.swift */; };
 		30F5FBD7271E6DF100A61E4F /* RecordPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F5FBD6271E6DF100A61E4F /* RecordPageViewController.swift */; };
 		30F5FBD9271E6F0200A61E4F /* CreationPreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F5FBD8271E6F0200A61E4F /* CreationPreviewViewController.swift */; };
 		AA30CE104FB4B5C516CEC76B /* Pods_DrumTab.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A88508AC6E7A5D3605685AD /* Pods_DrumTab.framework */; };
@@ -106,6 +108,9 @@
 		30ABCD952730E77000126875 /* PersonalInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInfoView.swift; sourceTree = "<group>"; };
 		30BB2D5E272BCEF000862277 /* CommentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
 		30D6E0D2272D024A00AF6378 /* CollectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionTableViewCell.swift; sourceTree = "<group>"; };
+		30EEF05C2731062900D545E0 /* DrumTab.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DrumTab.entitlements; sourceTree = "<group>"; };
+		30EEF05D273106C500D545E0 /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
+		30EEF06027312AA100D545E0 /* LocalUserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalUserData.swift; sourceTree = "<group>"; };
 		30F5FBD6271E6DF100A61E4F /* RecordPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordPageViewController.swift; sourceTree = "<group>"; };
 		30F5FBD8271E6F0200A61E4F /* CreationPreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreationPreviewViewController.swift; sourceTree = "<group>"; };
 		C5375142590186CEC4D9057F /* Pods-DrumTab.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DrumTab.debug.xcconfig"; path = "Target Support Files/Pods-DrumTab/Pods-DrumTab.debug.xcconfig"; sourceTree = "<group>"; };
@@ -146,6 +151,7 @@
 			isa = PBXGroup;
 			children = (
 				304CBE05271D1F9F006B4FE2 /* Base */,
+				30EEF05F273106CA00D545E0 /* Auth */,
 				304CBE15271D346A006B4FE2 /* Home */,
 				304CBE0C271D26DE006B4FE2 /* Creation */,
 				304CBE1A271D34C5006B4FE2 /* Collection */,
@@ -262,6 +268,7 @@
 				305B8B6F271FFFD2000E9E90 /* Creation.swift */,
 				3015C3E02727A752002DD366 /* Post.swift */,
 				3015C3E22727B30E002DD366 /* User.swift */,
+				30EEF06027312AA100D545E0 /* LocalUserData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -296,6 +303,7 @@
 		309D3647271D085D00C1D667 /* DrumTab */ = {
 			isa = PBXGroup;
 			children = (
+				30EEF05C2731062900D545E0 /* DrumTab.entitlements */,
 				304CBE01271D1D4A006B4FE2 /* Extension */,
 				304CBE09271D24C9006B4FE2 /* Resource */,
 				304CBE34271D7823006B4FE2 /* Model */,
@@ -315,6 +323,14 @@
 				30D6E0D2272D024A00AF6378 /* CollectionTableViewCell.swift */,
 			);
 			path = Collection;
+			sourceTree = "<group>";
+		};
+		30EEF05F273106CA00D545E0 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				30EEF05D273106C500D545E0 /* AuthViewController.swift */,
+			);
+			path = Auth;
 			sourceTree = "<group>";
 		};
 		614DD0A173F609FACDACFC57 /* Frameworks */ = {
@@ -487,11 +503,13 @@
 			files = (
 				3049DD832726BB1400B3CB19 /* HomePageTableViewCell.swift in Sources */,
 				305B8B70271FFFD2000E9E90 /* Creation.swift in Sources */,
+				30EEF06127312AA100D545E0 /* LocalUserData.swift in Sources */,
 				30F5FBD7271E6DF100A61E4F /* RecordPageViewController.swift in Sources */,
 				30BB2D5F272BCEF000862277 /* CommentTableViewCell.swift in Sources */,
 				304CBE0B271D26D6006B4FE2 /* CreationPageViewController.swift in Sources */,
 				30AB5FF8272AA6E00032E670 /* PreviewPageViewController.swift in Sources */,
 				308173152723E8910002C86D /* PreviewCollectionViewCell.swift in Sources */,
+				30EEF05E273106C500D545E0 /* AuthViewController.swift in Sources */,
 				30D6E0D3272D024A00AF6378 /* CollectionTableViewCell.swift in Sources */,
 				304CBE00271D1D22006B4FE2 /* UIStoryboard+Extension.swift in Sources */,
 				304CBE17271D34A6006B4FE2 /* CollectionPageViewController.swift in Sources */,
@@ -658,6 +676,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = DrumTab/DrumTab.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = UXUPKH75MD;
@@ -687,6 +706,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = DrumTab/DrumTab.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = UXUPKH75MD;
