@@ -86,7 +86,7 @@ class PreviewPageViewController: UIViewController {
         playButton.setTitle("", for: .normal)
         forwardButton.setTitle("", for: .normal)
         sendButton.setTitle("", for: .normal)
-        firebase.fetchSpecificUser(userId: "HKL3bzZ7aJOAEa5Fo0xO") { result in
+        firebase.fetchSpecificUser(userId: LocalUserData.userId) { result in
             switch result {
             case .success(let user):
                 self.user = user
@@ -220,7 +220,7 @@ class PreviewPageViewController: UIViewController {
         }
         firebase.uploadComment(
             creationId: creationId!,
-            userId: "HKL3bzZ7aJOAEa5Fo0xO",
+            userId: LocalUserData.userId,
             comment: userComment
         )
         commentTextField.text = nil

@@ -16,6 +16,8 @@ class HomePageViewController: UIViewController {
     
     var posts: [PostLocalUse] = [] {
         didSet {
+            let result = posts.sorted { $0.postTime > $1.postTime }
+            posts = result
             tableView.reloadData()
         }
     }
@@ -106,7 +108,7 @@ extension HomePageViewController: UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(
             withIdentifier: "\(HomePageTableViewCell.self)",
             for: indexPath) as? HomePageTableViewCell else { return UITableViewCell() }
-        if posts[indexPath.row].like.contains("JSDKSDFewrdwSDF") {
+        if posts[indexPath.row].like.contains(LocalUserData.userId) {
             cell.likeButton.isSelected = true
         } else {
             cell.likeButton.isSelected = false
@@ -118,13 +120,13 @@ extension HomePageViewController: UITableViewDelegate, UITableViewDataSource {
             like: posts[indexPath.row].like.count
         )
         cell.likeButtonPressedClosure = { [unowned self] in
-            if posts[indexPath.row].like.contains("JSDKSDFewrdwSDF") {
-                let updateLikes = posts[indexPath.row].like.filter {$0 != "JSDKSDFewrdwSDF"}
+            if posts[indexPath.row].like.contains(LocalUserData.userId) {
+                let updateLikes = posts[indexPath.row].like.filter {$0 != LocalUserData.userId}
                 posts[indexPath.row].like = updateLikes
-                firebase.removeLike(postId: posts[indexPath.row].postId, userId: "JSDKSDFewrdwSDF")
+                firebase.removeLike(postId: posts[indexPath.row].postId, userId: LocalUserData.userId)
             } else {
-                posts[indexPath.row].like.append("JSDKSDFewrdwSDF")
-                firebase.addLike(postId: posts[indexPath.row].postId, userId: "JSDKSDFewrdwSDF")
+                posts[indexPath.row].like.append(LocalUserData.userId)
+                firebase.addLike(postId: posts[indexPath.row].postId, userId: LocalUserData.userId)
             }
         }
         return cell

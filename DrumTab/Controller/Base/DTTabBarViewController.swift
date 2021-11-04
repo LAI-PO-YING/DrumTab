@@ -87,6 +87,8 @@ class DTTabBarViewController: UITabBarController, UITabBarControllerDelegate {
 
         viewControllers = tabs.map({ $0.controller() })
 
+        navigationController?.setNavigationBarHidden(true, animated: true)
+
         delegate = self
 
     }
