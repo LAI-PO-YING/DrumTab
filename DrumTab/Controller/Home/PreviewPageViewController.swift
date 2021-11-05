@@ -43,6 +43,9 @@ class PreviewPageViewController: UIViewController {
     }
     private var comments: [CreationComment] = [] {
         didSet {
+            comments.sort {
+                Int($0.time)! < Int($1.time)!
+            }
             tableView.reloadData()
         }
     }

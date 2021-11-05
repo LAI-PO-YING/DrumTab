@@ -22,9 +22,14 @@ class CommentTableViewCell: UITableViewCell {
         comment: String,
         floor: Int
     ) {
+        // transform time
+        let date = Date(timeIntervalSince1970: TimeInterval(time)!)
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy/MM/dd HH:mm"
+        
         userImageView.image = image
         userNameLabel.text = name
-        timeLabel.text = time
+        timeLabel.text = dateFormatter.string(from: date)
         commentLabel.text = comment
         floorLabel.text = "\(floor)F"
         backgroundCardView.layer.cornerRadius = 5
