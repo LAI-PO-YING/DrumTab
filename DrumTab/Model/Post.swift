@@ -26,4 +26,5 @@ struct PostLocalUse {
     var user: User
     var content: String
     var like: [String]
+    var creation: Creation
 }

@@ -301,7 +301,7 @@ extension PreviewPageViewController: UICollectionViewDelegate, UICollectionViewD
         layout collectionViewLayout: UICollectionViewLayout,
         sizeForItemAt indexPath: IndexPath
     ) -> CGSize {
-        return CGSize(width: view.bounds.width / 4 - 0.01, height: 86)
+        return CGSize(width: view.bounds.width / 4 - 0.01, height: 106)
     }
 
 }

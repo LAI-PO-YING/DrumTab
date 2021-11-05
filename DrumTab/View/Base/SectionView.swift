@@ -113,7 +113,9 @@ class SectionView: UIView {
         note4Setup()
         eighthNoteViewSetup()
         sixteenthNoteViewSetup()
+        view.backgroundColor = UIColor(red: 200/255, green: 202/255, blue: 216/255, alpha: 1)
         self.addSubview(view)
+        
     }
 
     func eighthNoteViewSetup() {

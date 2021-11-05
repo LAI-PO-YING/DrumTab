@@ -14,6 +14,7 @@ class CommentTableViewCell: UITableViewCell {
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var commentLabel: UILabel!
     @IBOutlet weak var floorLabel: UILabel!
+    @IBOutlet weak var backgroundCardView: UIView!
     func setupCommentCell(
         image: UIImage,
         name: String,
@@ -26,6 +27,7 @@ class CommentTableViewCell: UITableViewCell {
         timeLabel.text = time
         commentLabel.text = comment
         floorLabel.text = "\(floor)F"
+        backgroundCardView.layer.cornerRadius = 5
     }
     override func awakeFromNib() {
         super.awakeFromNib()

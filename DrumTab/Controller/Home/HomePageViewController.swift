@@ -33,15 +33,23 @@ class HomePageViewController: UIViewController {
                         self.firebase.fetchSpecificUser(userId: post.userId) { result in
                             switch result {
                             case .success(let user):
-                                let post = PostLocalUse(
-                                    creationId: post.creationId,
-                                    postTime: post.postTime,
-                                    postId: post.postId,
-                                    user: user,
-                                    content: post.content,
-                                    like: post.like
-                                )
-                                self.posts.append(post)
+                                self.firebase.fetchSpecificCreation(creationId: post.creationId) { result in
+                                    switch result {
+                                    case .success(let creation):
+                                        let post = PostLocalUse(
+                                            creationId: post.creationId,
+                                            postTime: post.postTime,
+                                            postId: post.postId,
+                                            user: user,
+                                            content: post.content,
+                                            like: post.like,
+                                            creation: creation
+                                        )
+                                        self.posts.append(post)
+                                    case .failure(let error):
+                                        print(error)
+                                    }
+                                }
                             case .failure(let error):
                                 print(error)
                             }
@@ -60,15 +68,23 @@ class HomePageViewController: UIViewController {
                     self.firebase.fetchSpecificUser(userId: post.userId) { result in
                         switch result {
                         case .success(let user):
-                            let post = PostLocalUse(
-                                creationId: post.creationId,
-                                postTime: post.postTime,
-                                postId: post.postId,
-                                user: user,
-                                content: post.content,
-                                like: post.like
-                            )
-                            self.posts.append(post)
+                            self.firebase.fetchSpecificCreation(creationId: post.creationId) { result in
+                                switch result {
+                                case .success(let creation):
+                                    let post = PostLocalUse(
+                                        creationId: post.creationId,
+                                        postTime: post.postTime,
+                                        postId: post.postId,
+                                        user: user,
+                                        content: post.content,
+                                        like: post.like,
+                                        creation: creation
+                                    )
+                                    self.posts.append(post)
+                                case .failure(let error):
+                                    print(error)
+                                }
+                            }
                         case .failure(let error):
                             print(error)
                         }
@@ -109,29 +125,33 @@ extension HomePageViewController: UITableViewDelegate, UITableViewDataSource {
             withIdentifier: "\(HomePageTableViewCell.self)",
             for: indexPath) as? HomePageTableViewCell else { return UITableViewCell() }
         if posts[indexPath.row].like.contains(LocalUserData.userId) {
-            cell.likeButton.isSelected = true
+            cell.likeButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
         } else {
-            cell.likeButton.isSelected = false
+            cell.likeButton.setImage(UIImage(systemName: "heart"), for: .normal)
         }
         cell.setupCell(
-            name: posts[indexPath.row].user.userName,
+            userName: posts[indexPath.row].user.userName,
+            creationName: posts[indexPath.row].creation.name,
             time: posts[indexPath.row].postTime,
             content: posts[indexPath.row].content,
             like: posts[indexPath.row].like.count
         )
         cell.likeButtonPressedClosure = { [unowned self] in
             if posts[indexPath.row].like.contains(LocalUserData.userId) {
+                cell.likeButton.setImage(UIImage(systemName: "heart"), for: .normal)
                 let updateLikes = posts[indexPath.row].like.filter {$0 != LocalUserData.userId}
                 posts[indexPath.row].like = updateLikes
                 firebase.removeLike(postId: posts[indexPath.row].postId, userId: LocalUserData.userId)
             } else {
                 posts[indexPath.row].like.append(LocalUserData.userId)
+                cell.likeButton.setImage(UIImage(systemName: "heart"), for: .normal)
                 firebase.addLike(postId: posts[indexPath.row].postId, userId: LocalUserData.userId)
             }
         }
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: false)
         currentSelectedRow = indexPath.row
         performSegue(withIdentifier: "FromHomePage", sender: nil)
     }
