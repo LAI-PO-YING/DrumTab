@@ -16,7 +16,7 @@ class HomePageTableViewCell: UITableViewCell {
     @IBOutlet weak var likeLabel: UILabel!
     @IBOutlet weak var likeButton: UIButton!
     @IBOutlet weak var backgroundCardView: UIView!
-
+    @IBOutlet weak var userPhotoImageView: UIImageView!
     var likeButtonPressedClosure: (()->Void) = {}
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -25,6 +25,7 @@ class HomePageTableViewCell: UITableViewCell {
     func setupCell(
         userName: String,
         creationName: String,
+        image: UIImage,
         time: TimeInterval,
         content: String,
         like: Int
@@ -34,6 +35,8 @@ class HomePageTableViewCell: UITableViewCell {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy/MM/dd HH:mm"
         // setup cell
+        userPhotoImageView.image = image
+        userPhotoImageView.layer.cornerRadius = 15
         nameLabel.text = userName
         creationNameLabel.text = "作品名稱：\(creationName)"
         contentLabel.text = content

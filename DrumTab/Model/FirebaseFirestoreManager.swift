@@ -8,12 +8,14 @@
 import Foundation
 import Firebase
 import FirebaseFirestoreSwift
+import FirebaseStorage
 
 class FirebaseFirestoreManager {
 
     static let shared = FirebaseFirestoreManager()
 
     private lazy var db = Firestore.firestore()
+    private lazy var storage = Storage.storage().reference()
 
     func addCreation(
         timeSignature: [Int],
@@ -351,6 +353,7 @@ class FirebaseFirestoreManager {
             "userId": uid,
             "userName": userName,
             "userPhoto": userPhoto,
+            "userPhotoId": "", 
             "likesCount": 0
         ]
 
@@ -491,6 +494,60 @@ class FirebaseFirestoreManager {
                     }
                 }
                 completion(followers)
+            }
+        }
+    }
+    
+    func uploadPhoto(image: UIImage) {
+        let uniqueStr = NSUUID().uuidString
+        guard let imageData = image.jpegData(compressionQuality: 0.25) else { return }
+        storage.child("images/\(uniqueStr)").putData(imageData, metadata: nil) { _, error in
+            guard error == nil else {
+                print("Upload fail. Check image data.")
+                return
+            }
+            self.storage.child("images/\(uniqueStr)").downloadURL { url, error in
+                guard let url = url, error == nil else {
+                    print("Fail to fetch photo url")
+                    return
+                }
+                let urlStr = url.absoluteString
+                self.db.collection("user").whereField("userId", isEqualTo: LocalUserData.userId).getDocuments { querySnapshot, error in
+                    if let error = error {
+                        print(error)
+                    } else {
+                        let documentID = querySnapshot?.documents[0].documentID
+                        let userDocument = self.db.collection("user").document(documentID!)
+                        do {
+
+                            if let user = try querySnapshot?.documents[0].data(as: User.self, decoder: Firestore.Decoder()) {
+                                if user.userPhotoId == "" {
+                                    userDocument.updateData([
+                                        "userPhoto": urlStr,
+                                        "userPhotoId": uniqueStr
+                                    ])
+                                    print("Update successfully.")
+                                } else {
+                                    self.storage.child("images/\(user.userPhotoId)").delete { error in
+                                        if let error = error {
+                                            print(error)
+                                          } else {
+                                              userDocument.updateData([
+                                                  "userPhoto": urlStr,
+                                                  "userPhotoId": uniqueStr
+                                              ])
+                                              print("Update successfully.")
+                                          }
+                                    }
+                                }
+                            }
+                        } catch {
+
+                            print(error)
+
+                        }
+                    }
+                }
             }
         }
     }

@@ -17,5 +17,6 @@ struct User: Codable {
     var userFollow: [String]
     var followBy: [String]
     var likesCount: Int
+    var userPhotoId: String
 
 }

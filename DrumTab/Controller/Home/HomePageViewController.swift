@@ -129,9 +129,18 @@ extension HomePageViewController: UITableViewDelegate, UITableViewDataSource {
         } else {
             cell.likeButton.setImage(UIImage(systemName: "heart"), for: .normal)
         }
+        let urlStr = posts[indexPath.row].user.userPhoto
+        var image = UIImage(systemName: "heart")
+        if let url = URL(string: urlStr),
+           let data = try? Data(contentsOf: url) {
+            
+            image = UIImage(data: data)
+            
+        }
         cell.setupCell(
             userName: posts[indexPath.row].user.userName,
             creationName: posts[indexPath.row].creation.name,
+            image: image ?? UIImage(systemName: "heart")!,
             time: posts[indexPath.row].postTime,
             content: posts[indexPath.row].content,
             like: posts[indexPath.row].like.count

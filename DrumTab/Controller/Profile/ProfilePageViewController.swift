@@ -12,8 +12,10 @@ import FirebaseAuth
 class ProfilePageViewController: UIViewController {
 
     @IBOutlet weak var nameLabel: UILabel!
-
+    @IBOutlet weak var personalPhotoImageView: UIImageView!
+    
     let firebase = FirebaseFirestoreManager.shared
+    let imagePicker = UIImagePickerController()
     
     var firstPrizeView = RankingView(
         frame: CGRect.zero,
@@ -176,8 +178,29 @@ class ProfilePageViewController: UIViewController {
     }
     
     @IBAction func imageViewTap(_ sender: Any) {
-        print("YOOO")
-        firstPrizeView.userName = "Ivan"
+        let imagePickerController = UIImagePickerController()
+        let alert = UIAlertController(title: "Choose the photo from", message: nil, preferredStyle: .actionSheet)
+        let showLibraryAction = UIAlertAction(title: "Album", style: .default) { _ in
+            imagePickerController.sourceType = .photoLibrary
+            imagePickerController.delegate = self
+            self.present(imagePickerController, animated: true)
+        }
+        let showCameraAction = UIAlertAction(title: "Camera", style: .default) { _ in
+            imagePickerController.sourceType = .camera
+            imagePickerController.delegate = self
+            self.present(imagePickerController, animated: true)
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .default)
+        let actions: [UIAlertAction] = [
+            showLibraryAction,
+            showCameraAction,
+            cancelAction
+        ]
+        for action in actions {
+            alert.addAction(action)
+        }
+        
+        present(alert, animated: true, completion: nil)
     }
     
     @IBAction func logoutButtonPressed(_ sender: Any) {
@@ -191,5 +214,16 @@ class ProfilePageViewController: UIViewController {
         } catch {
             print("Fail")
         }
+    }
+}
+extension ProfilePageViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerController(
+        _ picker: UIImagePickerController,
+        didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]
+    ) {
+        guard let image = info[.originalImage] as? UIImage else { return }
+        personalPhotoImageView.image = image
+        firebase.uploadPhoto(image: image)
+        dismiss(animated: true, completion: nil)
     }
 }

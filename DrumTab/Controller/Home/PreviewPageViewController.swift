@@ -192,11 +192,11 @@ class PreviewPageViewController: UIViewController {
         if timerIndex == 1 {
             startTimer()
             timerIndex += 1
-            sender.setImage(UIImage(systemName: "pause"), for: .normal)
+            sender.setImage(UIImage(systemName: "pause.fill"), for: .normal)
         } else {
             stopTimer()
             timerIndex = 0
-            sender.setImage(UIImage(systemName: "play"), for: .normal)
+            sender.setImage(UIImage(systemName: "play.fill"), for: .normal)
         }
     }
     @IBAction func forwardButtonPressed(_ sender: Any) {

@@ -14,4 +14,5 @@ pod 'FirebaseFirestoreSwift'
 pod 'ESPullToRefresh'
 pod 'lottie-ios'
 pod 'Firebase/Auth'
+pod 'Firebase/Storage'
 end
