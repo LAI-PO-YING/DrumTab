@@ -40,7 +40,7 @@
                         <constraint firstItem="hDW-Qi-DL4" firstAttribute="centerY" secondItem="dVV-Te-A97" secondAttribute="centerY" id="Srf-Ch-SYA"/>
                     </constraints>
                 </view>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gXG-jm-SOv">
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gXG-jm-SOv">
                     <rect key="frame" x="58" y="13.5" width="40" height="40"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="8Ex-cR-IGP"/>

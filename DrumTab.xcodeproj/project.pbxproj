@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		300121342735339D004C4CBD /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300121332735339D004C4CBD /* UIImage+Extension.swift */; };
 		3015C3E12727A752002DD366 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3015C3E02727A752002DD366 /* Post.swift */; };
 		3015C3E32727B30E002DD366 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3015C3E22727B30E002DD366 /* User.swift */; };
 		3038F2242721748B00772D2C /* SectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3038F2232721748B00772D2C /* SectionView.xib */; };
@@ -50,6 +51,8 @@
 		30ABCD922730CECB00126875 /* RankingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30ABCD912730CECB00126875 /* RankingView.swift */; };
 		30ABCD942730E75400126875 /* PersonalInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 30ABCD932730E75400126875 /* PersonalInfoView.xib */; };
 		30ABCD962730E77000126875 /* PersonalInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30ABCD952730E77000126875 /* PersonalInfoView.swift */; };
+		30B15A112733AD8600E11D2A /* intro.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 30B15A102733AD8300E11D2A /* intro.mp4 */; };
+		30B15A132733EBED00E11D2A /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B15A122733EBED00E11D2A /* UIButton+Extension.swift */; };
 		30BB2D5F272BCEF000862277 /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BB2D5E272BCEF000862277 /* CommentTableViewCell.swift */; };
 		30D6E0D3272D024A00AF6378 /* CollectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D6E0D2272D024A00AF6378 /* CollectionTableViewCell.swift */; };
 		30EEF05E273106C500D545E0 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30EEF05D273106C500D545E0 /* AuthViewController.swift */; };
@@ -61,6 +64,7 @@
 
 /* Begin PBXFileReference section */
 		2A88508AC6E7A5D3605685AD /* Pods_DrumTab.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DrumTab.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		300121332735339D004C4CBD /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
 		3015C3E02727A752002DD366 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		3015C3E22727B30E002DD366 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		3038F2232721748B00772D2C /* SectionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SectionView.xib; sourceTree = "<group>"; };
@@ -106,6 +110,8 @@
 		30ABCD912730CECB00126875 /* RankingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingView.swift; sourceTree = "<group>"; };
 		30ABCD932730E75400126875 /* PersonalInfoView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PersonalInfoView.xib; sourceTree = "<group>"; };
 		30ABCD952730E77000126875 /* PersonalInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInfoView.swift; sourceTree = "<group>"; };
+		30B15A102733AD8300E11D2A /* intro.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = intro.mp4; sourceTree = "<group>"; };
+		30B15A122733EBED00E11D2A /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
 		30BB2D5E272BCEF000862277 /* CommentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
 		30D6E0D2272D024A00AF6378 /* CollectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionTableViewCell.swift; sourceTree = "<group>"; };
 		30EEF05C2731062900D545E0 /* DrumTab.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DrumTab.entitlements; sourceTree = "<group>"; };
@@ -143,6 +149,8 @@
 			children = (
 				304CBDFF271D1D22006B4FE2 /* UIStoryboard+Extension.swift */,
 				304CBE1E271D4458006B4FE2 /* UIView+Extension.swift */,
+				30B15A122733EBED00E11D2A /* UIButton+Extension.swift */,
+				300121332735339D004C4CBD /* UIImage+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -191,6 +199,7 @@
 				304CBE23271D6F44006B4FE2 /* Sounds */,
 				3049DD802726B29300B3CB19 /* loadingAnimation.json */,
 				309D3651271D085E00C1D667 /* Assets.xcassets */,
+				30B15A102733AD8300E11D2A /* intro.mp4 */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -423,6 +432,7 @@
 				304CBE2F271D75B7006B4FE2 /* drumCrash.wav in Resources */,
 				304CBE2C271D75B7006B4FE2 /* drumSnare.wav in Resources */,
 				309D3652271D085E00C1D667 /* Assets.xcassets in Resources */,
+				30B15A112733AD8600E11D2A /* intro.mp4 in Resources */,
 				309D3650271D085D00C1D667 /* Main.storyboard in Resources */,
 				30ABCD942730E75400126875 /* PersonalInfoView.xib in Resources */,
 				30ABCD902730CEA200126875 /* RankingView.xib in Resources */,
@@ -511,6 +521,7 @@
 				308173152723E8910002C86D /* PreviewCollectionViewCell.swift in Sources */,
 				30EEF05E273106C500D545E0 /* AuthViewController.swift in Sources */,
 				30D6E0D3272D024A00AF6378 /* CollectionTableViewCell.swift in Sources */,
+				30B15A132733EBED00E11D2A /* UIButton+Extension.swift in Sources */,
 				304CBE00271D1D22006B4FE2 /* UIStoryboard+Extension.swift in Sources */,
 				304CBE17271D34A6006B4FE2 /* CollectionPageViewController.swift in Sources */,
 				30ABCD962730E77000126875 /* PersonalInfoView.swift in Sources */,
@@ -527,6 +538,7 @@
 				305B8B6E271FE626000E9E90 /* FirebaseFirestoreManager.swift in Sources */,
 				304CBE33271D781F006B4FE2 /* DrumKit.swift in Sources */,
 				305B8B72272008B5000E9E90 /* CreationPageTableViewCell.swift in Sources */,
+				300121342735339D004C4CBD /* UIImage+Extension.swift in Sources */,
 				3015C3E12727A752002DD366 /* Post.swift in Sources */,
 				3015C3E32727B30E002DD366 /* User.swift in Sources */,
 			);
@@ -682,11 +694,15 @@
 				DEVELOPMENT_TEAM = UXUPKH75MD;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DrumTab/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Please allow DongZ DaZ to use your camera";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Please allow DongZ DaZ to access your photo library.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -712,11 +728,15 @@
 				DEVELOPMENT_TEAM = UXUPKH75MD;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DrumTab/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Please allow DongZ DaZ to use your camera";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Please allow DongZ DaZ to access your photo library.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

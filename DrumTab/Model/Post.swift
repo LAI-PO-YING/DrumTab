@@ -23,7 +23,8 @@ struct PostLocalUse {
     var creationId: String
     var postTime: TimeInterval
     var postId: String
-    var user: User
+    var user: UserLocalUse
     var content: String
     var like: [String]
+    var creation: Creation
 }
