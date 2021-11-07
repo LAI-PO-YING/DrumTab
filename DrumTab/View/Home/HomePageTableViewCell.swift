@@ -11,17 +11,21 @@ class HomePageTableViewCell: UITableViewCell {
 
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var contentLabel: UILabel!
+    @IBOutlet weak var creationNameLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var likeLabel: UILabel!
     @IBOutlet weak var likeButton: UIButton!
-    
+    @IBOutlet weak var backgroundCardView: UIView!
+    @IBOutlet weak var userPhotoImageView: UIImageView!
     var likeButtonPressedClosure: (()->Void) = {}
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        backgroundCardView.layer.cornerRadius = 5
     }
     func setupCell(
-        name: String,
+        userName: String,
+        creationName: String,
+        image: UIImage,
         time: TimeInterval,
         content: String,
         like: Int
@@ -31,12 +35,15 @@ class HomePageTableViewCell: UITableViewCell {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy/MM/dd HH:mm"
         // setup cell
-        nameLabel.text = name
+        userPhotoImageView.image = image
+        userPhotoImageView.layer.cornerRadius = 15
+        nameLabel.text = userName
+        creationNameLabel.text = "作品名稱：\(creationName)"
         contentLabel.text = content
         timeLabel.text = dateFormatter.string(from: date)
         likeLabel.text = "\(like)"
-        likeButton.setImage(UIImage(systemName: "heart"), for: .normal)
-        likeButton.setImage(UIImage(systemName: "heart.fill"), for: .selected)
+//        likeButton.setImage(UIImage(systemName: "heart"), for: .normal)
+//        likeButton.setImage(UIImage(systemName: "heart.fill"), for: .selected)
 
     }
 
@@ -46,7 +53,6 @@ class HomePageTableViewCell: UITableViewCell {
 
     @IBAction func likeButtonPressed(_ sender: UIButton) {
         likeButtonPressedClosure()
-        sender.isSelected.toggle()
     }
 
 }

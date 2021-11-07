@@ -9,13 +9,16 @@ import UIKit
 import AuthenticationServices
 import FirebaseAuth
 import CryptoKit
+import AVKit
 
 class AuthViewController: UIViewController {
     
+    @IBOutlet weak var videoView: UIView!
     @IBOutlet weak var signInWithAppleButtonView: UIView!
     
     let firebase = FirebaseFirestoreManager.shared
     fileprivate var currentNonce: String?
+    let videoPlayerLooped = VideoPlayerLooped()
     
     @objc func pressSignInWithAppleButton() {
         let authorizationAppleIDRequest: ASAuthorizationAppleIDRequest = ASAuthorizationAppleIDProvider().createRequest()
@@ -31,17 +34,31 @@ class AuthViewController: UIViewController {
         
         controller.performRequests()
     }
+//    func playVideo() {
+//        guard let path = Bundle.main.path(forResource: "intro", ofType: ".mp4") else { return }
+//        let player = AVPlayer(url: URL(fileURLWithPath: path))
+//        let playerLayer = AVPlayerLayer(player: player)
+//        playerLayer.frame = self.view.bounds
+//        playerLayer.videoGravity = .resizeAspectFill
+//        self.videoView.layer.addSublayer(playerLayer)
+//    }
+
+    override func viewDidLayoutSubviews() {
+        videoPlayerLooped.playVideo(fileName: "intro", inView: videoView)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let authorizationAppleIDButton: ASAuthorizationAppleIDButton = ASAuthorizationAppleIDButton()
+
+        let authorizationAppleIDButton: ASAuthorizationAppleIDButton = ASAuthorizationAppleIDButton(type: .default, style: .white)
         authorizationAppleIDButton.addTarget(
             self,
             action: #selector(pressSignInWithAppleButton),
             for: UIControl.Event.touchUpInside
         )
         authorizationAppleIDButton.frame = self.signInWithAppleButtonView.bounds
+        authorizationAppleIDButton.cornerRadius = 10
         self.signInWithAppleButtonView.addSubview(authorizationAppleIDButton)
+        signInWithAppleButtonView.backgroundColor = .clear
     }
     private func randomNonceString(length: Int = 32) -> String {
         precondition(length > 0)
@@ -203,4 +220,37 @@ extension AuthViewController: ASAuthorizationControllerPresentationContextProvid
         return self.view.window!
     }
     
+}
+
+class VideoPlayerLooped {
+
+    public var videoPlayer:AVQueuePlayer?
+    public var videoPlayerLayer:AVPlayerLayer?
+    var playerLooper: NSObject?
+    var queuePlayer: AVQueuePlayer?
+
+    func playVideo(fileName:String, inView:UIView){
+
+        if let path = Bundle.main.path(forResource: fileName, ofType: "mp4") {
+
+            let url = URL(fileURLWithPath: path)
+            let playerItem = AVPlayerItem(url: url as URL)
+
+            videoPlayer = AVQueuePlayer(items: [playerItem])
+            playerLooper = AVPlayerLooper(player: videoPlayer!, templateItem: playerItem)
+
+            videoPlayerLayer = AVPlayerLayer(player: videoPlayer)
+            videoPlayerLayer!.frame = inView.bounds
+            videoPlayerLayer!.videoGravity = AVLayerVideoGravity.resizeAspectFill
+
+            inView.layer.addSublayer(videoPlayerLayer!)
+
+            videoPlayer?.play()
+        }
+    }
+
+    func remove() {
+        videoPlayerLayer?.removeFromSuperlayer()
+
+    }
 }

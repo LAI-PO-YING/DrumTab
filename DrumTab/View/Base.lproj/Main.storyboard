@@ -17,25 +17,53 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view alpha="0.90000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="csS-Px-ohk">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kvQ-9D-pN8">
-                                <rect key="frame" x="57" y="445" width="300" height="60"/>
+                                <rect key="frame" x="57" y="778" width="300" height="44"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="JOy-Tr-IXV"/>
+                                    <constraint firstAttribute="height" constant="44" id="JOy-Tr-IXV"/>
                                     <constraint firstAttribute="width" constant="300" id="bBg-4u-Faq"/>
                                 </constraints>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DongZ  DaZ" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JMK-cl-v91">
+                                <rect key="frame" x="0.0" y="332.5" width="414" height="85"/>
+                                <fontDescription key="fontDescription" name="Zapfino" family="Zapfino" pointSize="25"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Record your BEATs easily" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PsH-Lr-FNa">
+                                <rect key="frame" x="0.0" y="425.5" width="414" height="17"/>
+                                <fontDescription key="fontDescription" name="Palatino-Roman" family="Palatino" pointSize="15"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="l6K-We-5Wp"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="kvQ-9D-pN8" firstAttribute="centerY" secondItem="l6K-We-5Wp" secondAttribute="centerY" id="L8d-hy-4V7"/>
+                            <constraint firstItem="l6K-We-5Wp" firstAttribute="trailing" secondItem="csS-Px-ohk" secondAttribute="trailing" id="4by-RC-s0v"/>
+                            <constraint firstItem="csS-Px-ohk" firstAttribute="leading" secondItem="l6K-We-5Wp" secondAttribute="leading" id="6iI-m1-CzA"/>
+                            <constraint firstItem="JMK-cl-v91" firstAttribute="centerY" secondItem="l6K-We-5Wp" secondAttribute="centerY" constant="-100" id="9Qf-dw-o6D"/>
+                            <constraint firstItem="l6K-We-5Wp" firstAttribute="trailing" secondItem="JMK-cl-v91" secondAttribute="trailing" id="FIu-VA-iTi"/>
+                            <constraint firstAttribute="bottom" secondItem="csS-Px-ohk" secondAttribute="bottom" id="Hou-zQ-JOM"/>
+                            <constraint firstItem="JMK-cl-v91" firstAttribute="leading" secondItem="l6K-We-5Wp" secondAttribute="leading" id="Kib-4a-mtX"/>
+                            <constraint firstItem="JMK-cl-v91" firstAttribute="centerX" secondItem="l6K-We-5Wp" secondAttribute="centerX" id="P77-py-gqt"/>
                             <constraint firstItem="kvQ-9D-pN8" firstAttribute="centerX" secondItem="l6K-We-5Wp" secondAttribute="centerX" id="PXc-8T-Sge"/>
+                            <constraint firstItem="csS-Px-ohk" firstAttribute="top" secondItem="WrX-tJ-SKN" secondAttribute="top" id="SsL-tu-v1l"/>
+                            <constraint firstItem="l6K-We-5Wp" firstAttribute="bottom" secondItem="kvQ-9D-pN8" secondAttribute="bottom" constant="40" id="Vw9-5T-UgP"/>
+                            <constraint firstItem="PsH-Lr-FNa" firstAttribute="leading" secondItem="l6K-We-5Wp" secondAttribute="leading" id="njE-lw-IMr"/>
+                            <constraint firstItem="PsH-Lr-FNa" firstAttribute="trailing" secondItem="l6K-We-5Wp" secondAttribute="trailing" id="sNF-Zc-jl8"/>
+                            <constraint firstItem="PsH-Lr-FNa" firstAttribute="top" secondItem="JMK-cl-v91" secondAttribute="bottom" constant="8" id="w4T-Se-z0s"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="hiI-Cz-Ab9"/>
                     <connections>
                         <outlet property="signInWithAppleButtonView" destination="kvQ-9D-pN8" id="dUh-Jd-GEI"/>
+                        <outlet property="videoView" destination="csS-Px-ohk" id="4SS-Bk-0ek"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0Eg-Me-mx4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -52,6 +80,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="barTintColor" red="0.7843137255" green="0.79215686269999996" blue="0.84705882349999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="selectedImageTintColor" red="0.85490196078431369" green="0.6470588235294118" blue="0.12549019607843137" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBar>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b1e-M5-teQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

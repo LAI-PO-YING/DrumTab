@@ -17,8 +17,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Image" translatesAutoresizingMaskIntoConstraints="NO" id="mG5-eD-Qdd">
-                                <rect key="frame" x="157" y="74" width="100" height="100"/>
+                            <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="mG5-eD-Qdd">
+                                <rect key="frame" x="157" y="74.5" width="100" height="99"/>
+                                <color key="tintColor" red="0.1333333333" green="0.14901960780000001" blue="0.16078431369999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="Eod-fa-Wim"/>
@@ -28,8 +29,8 @@
                                     <outletCollection property="gestureRecognizers" destination="wor-Pc-cLM" appends="YES" id="z9g-D1-UFV"/>
                                 </connections>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vav-eB-WeW">
-                                <rect key="frame" x="185.5" y="182" width="43" height="24"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vav-eB-WeW">
+                                <rect key="frame" x="168.5" y="182" width="77" height="24"/>
                                 <fontDescription key="fontDescription" name="PingFangTC-Regular" family="PingFang TC" pointSize="17"/>
                                 <color key="textColor" red="0.2470588235" green="0.2274509804" blue="0.2274509804" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -39,9 +40,11 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fyx-nt-gMF">
-                                <rect key="frame" x="321" y="44" width="73" height="31"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fyx-nt-gMF">
+                                <rect key="frame" x="294" y="44" width="100" height="31"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="544-bc-4op"/>
+                                </constraints>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Log out"/>
                                 <connections>
@@ -56,10 +59,13 @@
                             <constraint firstItem="Vav-eB-WeW" firstAttribute="centerX" secondItem="mG5-eD-Qdd" secondAttribute="centerX" id="HJz-sG-yZw"/>
                             <constraint firstItem="mG5-eD-Qdd" firstAttribute="centerX" secondItem="vDu-zF-Fre" secondAttribute="centerX" id="QEQ-aX-EXp"/>
                             <constraint firstItem="mG5-eD-Qdd" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="30" id="YFw-zl-ljN"/>
+                            <constraint firstItem="fyx-nt-gMF" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="reH-HS-ozX"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="fyx-nt-gMF" secondAttribute="trailing" constant="20" id="x8M-Zw-fRJ"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="nameLabel" destination="Vav-eB-WeW" id="oGf-Mo-ADW"/>
+                        <outlet property="personalPhotoImageView" destination="mG5-eD-Qdd" id="V1I-U8-aOl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -73,7 +79,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Image" width="214" height="172"/>
+        <image name="person.circle.fill" catalog="system" width="128" height="121"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

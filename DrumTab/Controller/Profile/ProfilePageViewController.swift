@@ -12,49 +12,51 @@ import FirebaseAuth
 class ProfilePageViewController: UIViewController {
 
     @IBOutlet weak var nameLabel: UILabel!
-
+    @IBOutlet weak var personalPhotoImageView: UIImageView!
+    
     let firebase = FirebaseFirestoreManager.shared
+    let imagePicker = UIImagePickerController()
     
     var firstPrizeView = RankingView(
         frame: CGRect.zero,
         prize: 1,
-        userName: "1st Name",
-        userPhoto: UIImage(systemName: "tropicalstorm")!,
-        likes: 500
+        userName: "Loading...",
+        userPhoto: UIImage(systemName: "person.circle.fill")!,
+        likes: 0
     )
     var secondPrizeView = RankingView(
         frame: CGRect.zero,
         prize: 2,
-        userName: "2nd Name",
-        userPhoto: UIImage(systemName: "tropicalstorm")!,
-        likes: 250
+        userName: "Loading...",
+        userPhoto: UIImage(systemName: "person.circle.fill")!,
+        likes: 0
     )
     var thirdPrizeView = RankingView(
         frame: CGRect.zero,
         prize: 3,
-        userName: "3rd Name",
-        userPhoto: UIImage(systemName: "tropicalstorm")!,
-        likes: 100
+        userName: "Loading...",
+        userPhoto: UIImage(systemName: "person.circle.fill")!,
+        likes: 0
     )
     var creationInfoView = PersonalInfoView(
         frame: CGRect.zero,
         itemName: "Creations",
-        value: 35
+        value: 0
     )
     var likesInfoView = PersonalInfoView(
         frame: CGRect.zero,
         itemName: "Likes",
-        value: 4770
+        value: 0
     )
     var rankInfoView = PersonalInfoView(
         frame: CGRect.zero,
         itemName: "Rank",
-        value: 17
+        value: 0
     )
     var followerInfoView = PersonalInfoView(
         frame: CGRect.zero,
         itemName: "Followers",
-        value: 481
+        value: 0
     )
     var containerView = UIView(frame: CGRect.zero)
 
@@ -123,6 +125,116 @@ class ProfilePageViewController: UIViewController {
         third.heightAnchor.constraint(equalToConstant: 40).isActive = true
 
     }
+    func importRankingViewData(users: [User]) {
+        if users.count == 0 {
+            self.firstPrizeView.userName = "No First Prize"
+            self.firstPrizeView.likes = 0
+
+            self.secondPrizeView.userName = "No Second Prize"
+            self.secondPrizeView.likes = 0
+
+            self.thirdPrizeView.userName = "No Third Prize"
+            self.thirdPrizeView.likes = 0
+        } else if users.count == 1 {
+            
+            if users[0].userPhoto == "" {
+                self.firstPrizeView.userPhoto = UIImage(systemName: "person.circle.fill")!
+                self.firstPrizeView.userName = users[0].userName
+                self.firstPrizeView.likes = users[0].likesCount
+            } else {
+                let urlStr = users[0].userPhoto
+                if let url = URL(string: urlStr),
+                   let data = try? Data(contentsOf: url) {
+                    
+                    self.firstPrizeView.userPhoto = UIImage(data: data)!
+                    self.firstPrizeView.userName = users[0].userName
+                    self.firstPrizeView.likes = users[0].likesCount
+                }
+            }
+            self.secondPrizeView.userPhoto = UIImage(systemName: "person.circle.fill")!
+            self.secondPrizeView.userName = "No Second Prize"
+            self.secondPrizeView.likes = 0
+
+            self.thirdPrizeView.userPhoto = UIImage(systemName: "person.circle.fill")!
+            self.thirdPrizeView.userName = "No Third Prize"
+            self.thirdPrizeView.likes = 0
+        } else if users.count == 2 {
+            if users[0].userPhoto == "" {
+                self.firstPrizeView.userPhoto = UIImage(systemName: "person.circle.fill")!
+                self.firstPrizeView.userName = users[0].userName
+                self.firstPrizeView.likes = users[0].likesCount
+            } else {
+                let urlStr = users[0].userPhoto
+                if let url = URL(string: urlStr),
+                   let data = try? Data(contentsOf: url) {
+                    
+                    self.firstPrizeView.userPhoto = UIImage(data: data)!
+                    self.firstPrizeView.userName = users[0].userName
+                    self.firstPrizeView.likes = users[0].likesCount
+                }
+            }
+            if users[1].userPhoto == "" {
+                self.secondPrizeView.userPhoto = UIImage(systemName: "person.circle.fill")!
+                self.secondPrizeView.userName = users[1].userName
+                self.secondPrizeView.likes = users[1].likesCount
+            } else {
+                let urlStr = users[1].userPhoto
+                if let url = URL(string: urlStr),
+                   let data = try? Data(contentsOf: url) {
+                    
+                    self.secondPrizeView.userPhoto = UIImage(data: data)!
+                    self.secondPrizeView.userName = users[1].userName
+                    self.secondPrizeView.likes = users[1].likesCount
+                }
+            }
+            self.thirdPrizeView.userPhoto = UIImage(systemName: "person.circle.fill")!
+            self.thirdPrizeView.userName = "No Third Prize"
+            self.thirdPrizeView.likes = 0
+        } else {
+            if users[0].userPhoto == "" {
+                self.firstPrizeView.userPhoto = UIImage(systemName: "person.circle.fill")!
+                self.firstPrizeView.userName = users[0].userName
+                self.firstPrizeView.likes = users[0].likesCount
+            } else {
+                let urlStr = users[0].userPhoto
+                if let url = URL(string: urlStr),
+                   let data = try? Data(contentsOf: url) {
+                    
+                    self.firstPrizeView.userPhoto = UIImage(data: data)!
+                    self.firstPrizeView.userName = users[0].userName
+                    self.firstPrizeView.likes = users[0].likesCount
+                }
+            }
+            if users[1].userPhoto == "" {
+                self.secondPrizeView.userPhoto = UIImage(systemName: "person.circle.fill")!
+                self.secondPrizeView.userName = users[1].userName
+                self.secondPrizeView.likes = users[1].likesCount
+            } else {
+                let urlStr = users[1].userPhoto
+                if let url = URL(string: urlStr),
+                   let data = try? Data(contentsOf: url) {
+                    
+                    self.secondPrizeView.userPhoto = UIImage(data: data)!
+                    self.secondPrizeView.userName = users[1].userName
+                    self.secondPrizeView.likes = users[1].likesCount
+                }
+            }
+            if users[2].userPhoto == "" {
+                self.thirdPrizeView.userPhoto = UIImage(systemName: "person.circle.fill")!
+                self.thirdPrizeView.userName = users[2].userName
+                self.thirdPrizeView.likes = users[2].likesCount
+            } else {
+                let urlStr = users[2].userPhoto
+                if let url = URL(string: urlStr),
+                   let data = try? Data(contentsOf: url) {
+                    
+                    self.thirdPrizeView.userPhoto = UIImage(data: data)!
+                    self.thirdPrizeView.userName = users[2].userName
+                    self.thirdPrizeView.likes = users[2].likesCount
+                }
+            }
+        }
+    }
     override func viewDidLayoutSubviews() {
         setupRankingView(
             first: firstPrizeView,
@@ -130,6 +242,33 @@ class ProfilePageViewController: UIViewController {
             third: thirdPrizeView
         )
         setupPersonalInfoView()
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        firebase.getRankInfo { users in
+            self.importRankingViewData(users: users)
+            
+        }
+        firebase.getPersonalCreation { result in
+            switch result {
+            case .success(let creations):
+                print("creation: \(creations.count)")
+                self.creationInfoView.value = creations.count
+            case .failure(let error):
+                print(error)
+            }
+        }
+        firebase.getPersonalLikeValue { numberOfLikes in
+            print("numberOfLikes: \(numberOfLikes)")
+            self.likesInfoView.value = numberOfLikes
+        }
+        firebase.getPersonalRank { rank in
+            print("rank: \(rank)")
+            self.rankInfoView.value = rank
+        }
+        firebase.getFollowers { numberOfFollowers in
+            print("numberOfFollowers: \(numberOfFollowers)")
+            self.followerInfoView.value = numberOfFollowers
+        }
     }
 
     override func viewDidLoad() {
@@ -142,42 +281,52 @@ class ProfilePageViewController: UIViewController {
 //        animationView.loopMode = .loop
 //        animationView.backgroundBehavior = .pauseAndRestore
 //        animationView.play()
-
-        firstPrizeView.userName = "Ivan"
-        firstPrizeView.likes = 6893
-        firstPrizeView.userPhoto = UIImage(systemName: "book.fill")!
-
-        secondPrizeView.userName = "Willy"
-        secondPrizeView.likes = 5504
-        secondPrizeView.userPhoto = UIImage(systemName: "book.fill")!
-
-        thirdPrizeView.userName = "Dean"
-        thirdPrizeView.likes = 4989
-        thirdPrizeView.userPhoto = UIImage(systemName: "book.fill")!
-
-        containerView.backgroundColor = .black
-        firebase.getPersonalCreation { result in
+        firebase.fetchSpecificUser(userId: LocalUserData.userId) { result in
             switch result {
-            case .success(let creations):
-                print("creation: \(creations.count)")
+            case .success(let user):
+                if user.userPhoto == "" {
+                } else {
+                    let urlStr = user.userPhoto
+                    if let url = URL(string: urlStr),
+                       let data = try? Data(contentsOf: url) {
+                        self.personalPhotoImageView.image = UIImage(data: data)!
+
+                    }
+                }
+                self.nameLabel.text = user.userName
+                self.personalPhotoImageView.layer.cornerRadius = 50
             case .failure(let error):
                 print(error)
             }
         }
-        firebase.getPersonalLikeValue { numberOfLikes in
-            print("numberOfLikes: \(numberOfLikes)")
-        }
-        firebase.getRank { rank in
-            print("rank: \(rank)")
-        }
-        firebase.getFollowers { numberOfFollowers in
-            print("numberOfFollowers: \(numberOfFollowers)")
-        }
+        containerView.backgroundColor = .black
+        
     }
     
     @IBAction func imageViewTap(_ sender: Any) {
-        print("YOOO")
-        firstPrizeView.userName = "Ivan"
+        let imagePickerController = UIImagePickerController()
+        let alert = UIAlertController(title: "Choose the photo from", message: nil, preferredStyle: .actionSheet)
+        let showLibraryAction = UIAlertAction(title: "Album", style: .default) { _ in
+            imagePickerController.sourceType = .photoLibrary
+            imagePickerController.delegate = self
+            self.present(imagePickerController, animated: true)
+        }
+        let showCameraAction = UIAlertAction(title: "Camera", style: .default) { _ in
+            imagePickerController.sourceType = .camera
+            imagePickerController.delegate = self
+            self.present(imagePickerController, animated: true)
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .default)
+        let actions: [UIAlertAction] = [
+            showLibraryAction,
+            showCameraAction,
+            cancelAction
+        ]
+        for action in actions {
+            alert.addAction(action)
+        }
+        
+        present(alert, animated: true, completion: nil)
     }
     
     @IBAction func logoutButtonPressed(_ sender: Any) {
@@ -191,5 +340,16 @@ class ProfilePageViewController: UIViewController {
         } catch {
             print("Fail")
         }
+    }
+}
+extension ProfilePageViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerController(
+        _ picker: UIImagePickerController,
+        didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]
+    ) {
+        guard let image = info[.originalImage] as? UIImage else { return }
+        personalPhotoImageView.image = image
+        firebase.uploadPhoto(image: image)
+        dismiss(animated: true, completion: nil)
     }
 }
