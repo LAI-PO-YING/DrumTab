@@ -21,7 +21,7 @@ class PreviewPageViewController: UIViewController {
     @IBOutlet weak var addInCollectionButton: UIButton!
     private struct CreationComment {
         var userName: String
-        var userPhoto: String
+        var userPhoto: UIImage
         var time: String
         var comment: String
     }
@@ -43,6 +43,9 @@ class PreviewPageViewController: UIViewController {
     }
     private var comments: [CreationComment] = [] {
         didSet {
+            comments.sort {
+                Int($0.time)! < Int($1.time)!
+            }
             tableView.reloadData()
         }
     }
@@ -86,7 +89,7 @@ class PreviewPageViewController: UIViewController {
         playButton.setTitle("", for: .normal)
         forwardButton.setTitle("", for: .normal)
         sendButton.setTitle("", for: .normal)
-        firebase.fetchSpecificUser(userId: "HKL3bzZ7aJOAEa5Fo0xO") { result in
+        firebase.fetchSpecificUser(userId: LocalUserData.userId) { result in
             switch result {
             case .success(let user):
                 self.user = user
@@ -118,13 +121,17 @@ class PreviewPageViewController: UIViewController {
                         self.firebase.fetchSpecificUser(userId: comment["userId"]!) { result in
                             switch result {
                             case .success(let user):
-                                let creationComment = CreationComment(
-                                    userName: user.userName,
-                                    userPhoto: user.userPhoto,
-                                    time: comment["time"]!,
-                                    comment: comment["comment"]!
-                                )
-                                self.comments.append(creationComment)
+                                let urlStr = user.userPhoto
+                                if let url = URL(string: urlStr),
+                                   let data = try? Data(contentsOf: url) {
+                                    let creationComment = CreationComment(
+                                        userName: user.userName,
+                                        userPhoto: UIImage(data: data) ?? UIImage(systemName: "person.circle.fill")!,
+                                        time: comment["time"]!,
+                                        comment: comment["comment"]!
+                                    )
+                                    self.comments.append(creationComment)
+                                }
                             case .failure(let error):
                                 print(error)
                             }
@@ -148,13 +155,17 @@ class PreviewPageViewController: UIViewController {
                             self.firebase.fetchSpecificUser(userId: comment["userId"]!) { result in
                                 switch result {
                                 case .success(let user):
-                                    let creationComment = CreationComment(
-                                        userName: user.userName,
-                                        userPhoto: user.userPhoto,
-                                        time: comment["time"]!,
-                                        comment: comment["comment"]!
-                                    )
-                                    self.comments.append(creationComment)
+                                    let urlStr = user.userPhoto
+                                    if let url = URL(string: urlStr),
+                                       let data = try? Data(contentsOf: url) {
+                                        let creationComment = CreationComment(
+                                            userName: user.userName,
+                                            userPhoto: UIImage(data: data) ?? UIImage(systemName: "person.circle.fill")!,
+                                            time: comment["time"]!,
+                                            comment: comment["comment"]!
+                                        )
+                                        self.comments.append(creationComment)
+                                    }
                                 case .failure(let error):
                                     print(error)
                                 }
@@ -170,9 +181,11 @@ class PreviewPageViewController: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         self.tabBarController?.tabBar.isHidden = true
+        navigationController?.setNavigationBarHidden(true, animated: true)
     }
     override func viewWillDisappear(_ animated: Bool) {
         self.tabBarController?.tabBar.isHidden = false
+        navigationController?.setNavigationBarHidden(false, animated: true)
     }
     deinit {
         stopTimer()
@@ -187,11 +200,11 @@ class PreviewPageViewController: UIViewController {
         if timerIndex == 1 {
             startTimer()
             timerIndex += 1
-            sender.setImage(UIImage(systemName: "pause"), for: .normal)
+            sender.setImage(UIImage(systemName: "pause.fill"), for: .normal)
         } else {
             stopTimer()
             timerIndex = 0
-            sender.setImage(UIImage(systemName: "play"), for: .normal)
+            sender.setImage(UIImage(systemName: "play.fill"), for: .normal)
         }
     }
     @IBAction func forwardButtonPressed(_ sender: Any) {
@@ -218,7 +231,7 @@ class PreviewPageViewController: UIViewController {
         }
         firebase.uploadComment(
             creationId: creationId!,
-            userId: "HKL3bzZ7aJOAEa5Fo0xO",
+            userId: LocalUserData.userId,
             comment: userComment
         )
         commentTextField.text = nil
@@ -299,7 +312,7 @@ extension PreviewPageViewController: UICollectionViewDelegate, UICollectionViewD
         layout collectionViewLayout: UICollectionViewLayout,
         sizeForItemAt indexPath: IndexPath
     ) -> CGSize {
-        return CGSize(width: view.bounds.width / 4 - 0.01, height: 86)
+        return CGSize(width: view.bounds.width / 4 - 0.01, height: 106)
     }
 
 }
@@ -315,7 +328,7 @@ extension PreviewPageViewController: UITableViewDelegate, UITableViewDataSource 
             for: indexPath
         ) as? CommentTableViewCell else { return UITableViewCell() }
         cell.setupCommentCell(
-            image: UIImage(systemName: "tropicalstorm")!,
+            image: comments[indexPath.row].userPhoto,
             name: comments[indexPath.row].userName,
             time: comments[indexPath.row].time,
             comment: comments[indexPath.row].comment,

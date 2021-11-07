@@ -79,11 +79,26 @@ extension CollectionPageViewController: UITableViewDelegate, UITableViewDataSour
         )
         return cell
     }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+
+        let selectedCreationId = filteredCollections[indexPath.row].creation.id
+
+        let previewPageVC = UIStoryboard.home.instantiateViewController(withIdentifier:
+            String(describing: PreviewPageViewController.self)
+        )
+
+        guard let previewPageVC = previewPageVC as? PreviewPageViewController else { return }
+
+        previewPageVC.creationId = selectedCreationId
+
+        show(previewPageVC, sender: nil)
+    }
 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             firebase.removeCollection(
-                userId: "HKL3bzZ7aJOAEa5Fo0xO",
+                userId: LocalUserData.userId,
                 creationId: collections[indexPath.row].creation.id
             )
             collections.remove(at: indexPath.row)

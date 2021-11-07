@@ -16,6 +16,8 @@ class HomePageViewController: UIViewController {
     
     var posts: [PostLocalUse] = [] {
         didSet {
+            let result = posts.sorted { $0.postTime > $1.postTime }
+            posts = result
             tableView.reloadData()
         }
     }
@@ -31,15 +33,42 @@ class HomePageViewController: UIViewController {
                         self.firebase.fetchSpecificUser(userId: post.userId) { result in
                             switch result {
                             case .success(let user):
-                                let post = PostLocalUse(
-                                    creationId: post.creationId,
-                                    postTime: post.postTime,
-                                    postId: post.postId,
-                                    user: user,
-                                    content: post.content,
-                                    like: post.like
-                                )
-                                self.posts.append(post)
+                                self.firebase.fetchSpecificCreation(creationId: post.creationId) { result in
+                                    switch result {
+                                    case .success(let creation):
+                                        let urlStr = user.userPhoto
+                                        var image = UIImage(systemName: "person.circle.fill")
+                                        if let url = URL(string: urlStr),
+                                           let data = try? Data(contentsOf: url) {
+                                            
+                                            image = UIImage(data: data)
+                                            
+                                        }
+                                        let userLocalUse = UserLocalUse(
+                                            userId: user.userId,
+                                            userName: user.userName,
+                                            userEmail: user.userEmail,
+                                            userPhoto: image ?? UIImage(systemName: "person.circle.fill")!,
+                                            userCollection: user.userCollection,
+                                            userFollow: user.userFollow,
+                                            followBy: user.followBy,
+                                            likesCount: user.likesCount,
+                                            userPhotoId: user.userPhotoId
+                                        )
+                                        let post = PostLocalUse(
+                                            creationId: post.creationId,
+                                            postTime: post.postTime,
+                                            postId: post.postId,
+                                            user: userLocalUse,
+                                            content: post.content,
+                                            like: post.like,
+                                            creation: creation
+                                        )
+                                        self.posts.append(post)
+                                    case .failure(let error):
+                                        print(error)
+                                    }
+                                }
                             case .failure(let error):
                                 print(error)
                             }
@@ -58,15 +87,42 @@ class HomePageViewController: UIViewController {
                     self.firebase.fetchSpecificUser(userId: post.userId) { result in
                         switch result {
                         case .success(let user):
-                            let post = PostLocalUse(
-                                creationId: post.creationId,
-                                postTime: post.postTime,
-                                postId: post.postId,
-                                user: user,
-                                content: post.content,
-                                like: post.like
-                            )
-                            self.posts.append(post)
+                            self.firebase.fetchSpecificCreation(creationId: post.creationId) { result in
+                                switch result {
+                                case .success(let creation):
+                                    let urlStr = user.userPhoto
+                                    var image = UIImage(systemName: "person.circle.fill")
+                                    if let url = URL(string: urlStr),
+                                       let data = try? Data(contentsOf: url) {
+                                        
+                                        image = UIImage(data: data)
+                                        
+                                    }
+                                    let userLocalUse = UserLocalUse(
+                                        userId: user.userId,
+                                        userName: user.userName,
+                                        userEmail: user.userEmail,
+                                        userPhoto: image ?? UIImage(systemName: "person.circle.fill")!,
+                                        userCollection: user.userCollection,
+                                        userFollow: user.userFollow,
+                                        followBy: user.followBy,
+                                        likesCount: user.likesCount,
+                                        userPhotoId: user.userPhotoId
+                                    )
+                                    let post = PostLocalUse(
+                                        creationId: post.creationId,
+                                        postTime: post.postTime,
+                                        postId: post.postId,
+                                        user: userLocalUse,
+                                        content: post.content,
+                                        like: post.like,
+                                        creation: creation
+                                    )
+                                    self.posts.append(post)
+                                case .failure(let error):
+                                    print(error)
+                                }
+                            }
                         case .failure(let error):
                             print(error)
                         }
@@ -106,30 +162,43 @@ extension HomePageViewController: UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(
             withIdentifier: "\(HomePageTableViewCell.self)",
             for: indexPath) as? HomePageTableViewCell else { return UITableViewCell() }
-        if posts[indexPath.row].like.contains("JSDKSDFewrdwSDF") {
-            cell.likeButton.isSelected = true
+        if posts[indexPath.row].like.contains(LocalUserData.userId) {
+            cell.likeButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
         } else {
-            cell.likeButton.isSelected = false
+            cell.likeButton.setImage(UIImage(systemName: "heart"), for: .normal)
         }
+//        let urlStr = posts[indexPath.row].user.userPhoto
+//        var image = UIImage(systemName: "heart")
+//        if let url = URL(string: urlStr),
+//           let data = try? Data(contentsOf: url) {
+//
+//            image = UIImage(data: data)
+//
+//        }
         cell.setupCell(
-            name: posts[indexPath.row].user.userName,
+            userName: posts[indexPath.row].user.userName,
+            creationName: posts[indexPath.row].creation.name,
+            image: posts[indexPath.row].user.userPhoto,
             time: posts[indexPath.row].postTime,
             content: posts[indexPath.row].content,
             like: posts[indexPath.row].like.count
         )
         cell.likeButtonPressedClosure = { [unowned self] in
-            if posts[indexPath.row].like.contains("JSDKSDFewrdwSDF") {
-                let updateLikes = posts[indexPath.row].like.filter {$0 != "JSDKSDFewrdwSDF"}
+            if posts[indexPath.row].like.contains(LocalUserData.userId) {
+                cell.likeButton.setImage(UIImage(systemName: "heart"), for: .normal)
+                let updateLikes = posts[indexPath.row].like.filter {$0 != LocalUserData.userId}
                 posts[indexPath.row].like = updateLikes
-                firebase.removeLike(postId: posts[indexPath.row].postId, userId: "JSDKSDFewrdwSDF")
+                firebase.removeLike(postId: posts[indexPath.row].postId, userId: LocalUserData.userId)
             } else {
-                posts[indexPath.row].like.append("JSDKSDFewrdwSDF")
-                firebase.addLike(postId: posts[indexPath.row].postId, userId: "JSDKSDFewrdwSDF")
+                posts[indexPath.row].like.append(LocalUserData.userId)
+                cell.likeButton.setImage(UIImage(systemName: "heart"), for: .normal)
+                firebase.addLike(postId: posts[indexPath.row].postId, userId: LocalUserData.userId)
             }
         }
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: false)
         currentSelectedRow = indexPath.row
         performSegue(withIdentifier: "FromHomePage", sender: nil)
     }
