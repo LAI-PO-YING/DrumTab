@@ -21,7 +21,7 @@ class PreviewPageViewController: UIViewController {
     @IBOutlet weak var addInCollectionButton: UIButton!
     private struct CreationComment {
         var userName: String
-        var userPhoto: String
+        var userPhoto: UIImage
         var time: String
         var comment: String
     }
@@ -121,13 +121,17 @@ class PreviewPageViewController: UIViewController {
                         self.firebase.fetchSpecificUser(userId: comment["userId"]!) { result in
                             switch result {
                             case .success(let user):
-                                let creationComment = CreationComment(
-                                    userName: user.userName,
-                                    userPhoto: user.userPhoto,
-                                    time: comment["time"]!,
-                                    comment: comment["comment"]!
-                                )
-                                self.comments.append(creationComment)
+                                let urlStr = user.userPhoto
+                                if let url = URL(string: urlStr),
+                                   let data = try? Data(contentsOf: url) {
+                                    let creationComment = CreationComment(
+                                        userName: user.userName,
+                                        userPhoto: UIImage(data: data) ?? UIImage(systemName: "person.circle.fill")!,
+                                        time: comment["time"]!,
+                                        comment: comment["comment"]!
+                                    )
+                                    self.comments.append(creationComment)
+                                }
                             case .failure(let error):
                                 print(error)
                             }
@@ -151,13 +155,17 @@ class PreviewPageViewController: UIViewController {
                             self.firebase.fetchSpecificUser(userId: comment["userId"]!) { result in
                                 switch result {
                                 case .success(let user):
-                                    let creationComment = CreationComment(
-                                        userName: user.userName,
-                                        userPhoto: user.userPhoto,
-                                        time: comment["time"]!,
-                                        comment: comment["comment"]!
-                                    )
-                                    self.comments.append(creationComment)
+                                    let urlStr = user.userPhoto
+                                    if let url = URL(string: urlStr),
+                                       let data = try? Data(contentsOf: url) {
+                                        let creationComment = CreationComment(
+                                            userName: user.userName,
+                                            userPhoto: UIImage(data: data) ?? UIImage(systemName: "person.circle.fill")!,
+                                            time: comment["time"]!,
+                                            comment: comment["comment"]!
+                                        )
+                                        self.comments.append(creationComment)
+                                    }
                                 case .failure(let error):
                                     print(error)
                                 }
@@ -320,7 +328,7 @@ extension PreviewPageViewController: UITableViewDelegate, UITableViewDataSource 
             for: indexPath
         ) as? CommentTableViewCell else { return UITableViewCell() }
         cell.setupCommentCell(
-            image: UIImage(systemName: "tropicalstorm")!,
+            image: comments[indexPath.row].userPhoto,
             name: comments[indexPath.row].userName,
             time: comments[indexPath.row].time,
             comment: comments[indexPath.row].comment,

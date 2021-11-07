@@ -28,6 +28,7 @@ class CommentTableViewCell: UITableViewCell {
         dateFormatter.dateFormat = "yyyy/MM/dd HH:mm"
         
         userImageView.image = image
+        userImageView.layer.cornerRadius = 15
         userNameLabel.text = name
         timeLabel.text = dateFormatter.string(from: date)
         commentLabel.text = comment

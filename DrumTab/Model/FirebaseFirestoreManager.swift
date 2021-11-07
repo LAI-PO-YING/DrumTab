@@ -387,6 +387,33 @@ class FirebaseFirestoreManager {
             }
         }
     }
+    func getRankInfo(completion: @escaping ([User]) -> Void) {
+        db.collection("user").order(by: "likesCount", descending: true).getDocuments { querySnapshot, error in
+            if let error = error {
+                print(error)
+            } else {
+
+                var users = [User]()
+
+                for document in querySnapshot!.documents {
+
+                    do {
+
+                        if let user = try document.data(as: User.self, decoder: Firestore.Decoder()) {
+                            users.append(user)
+                        }
+
+                    } catch {
+
+                        print(error)
+
+                    }
+                }
+                
+                completion(users)
+            }
+        }
+    }
     func getPersonalCreation(
         completion: @escaping (Result<[Creation], Error>) -> Void
     ) {
@@ -442,7 +469,7 @@ class FirebaseFirestoreManager {
             }
         }
     }
-    func getRank(completion: @escaping (Int) -> Void) {
+    func getPersonalRank(completion: @escaping (Int) -> Void) {
         db.collection("user").order(by: "likesCount", descending: true).getDocuments { querySnapshot, error in
             if let error = error {
                 print(error)
@@ -500,7 +527,7 @@ class FirebaseFirestoreManager {
     
     func uploadPhoto(image: UIImage) {
         let uniqueStr = NSUUID().uuidString
-        guard let imageData = image.jpegData(compressionQuality: 0.25) else { return }
+        guard let imageData = image.jpegData(compressionQuality: 0.01) else { return }
         storage.child("images/\(uniqueStr)").putData(imageData, metadata: nil) { _, error in
             guard error == nil else {
                 print("Upload fail. Check image data.")

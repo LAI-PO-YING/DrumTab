@@ -36,11 +36,30 @@ class HomePageViewController: UIViewController {
                                 self.firebase.fetchSpecificCreation(creationId: post.creationId) { result in
                                     switch result {
                                     case .success(let creation):
+                                        let urlStr = user.userPhoto
+                                        var image = UIImage(systemName: "person.circle.fill")
+                                        if let url = URL(string: urlStr),
+                                           let data = try? Data(contentsOf: url) {
+                                            
+                                            image = UIImage(data: data)
+                                            
+                                        }
+                                        let userLocalUse = UserLocalUse(
+                                            userId: user.userId,
+                                            userName: user.userName,
+                                            userEmail: user.userEmail,
+                                            userPhoto: image ?? UIImage(systemName: "person.circle.fill")!,
+                                            userCollection: user.userCollection,
+                                            userFollow: user.userFollow,
+                                            followBy: user.followBy,
+                                            likesCount: user.likesCount,
+                                            userPhotoId: user.userPhotoId
+                                        )
                                         let post = PostLocalUse(
                                             creationId: post.creationId,
                                             postTime: post.postTime,
                                             postId: post.postId,
-                                            user: user,
+                                            user: userLocalUse,
                                             content: post.content,
                                             like: post.like,
                                             creation: creation
@@ -71,11 +90,30 @@ class HomePageViewController: UIViewController {
                             self.firebase.fetchSpecificCreation(creationId: post.creationId) { result in
                                 switch result {
                                 case .success(let creation):
+                                    let urlStr = user.userPhoto
+                                    var image = UIImage(systemName: "person.circle.fill")
+                                    if let url = URL(string: urlStr),
+                                       let data = try? Data(contentsOf: url) {
+                                        
+                                        image = UIImage(data: data)
+                                        
+                                    }
+                                    let userLocalUse = UserLocalUse(
+                                        userId: user.userId,
+                                        userName: user.userName,
+                                        userEmail: user.userEmail,
+                                        userPhoto: image ?? UIImage(systemName: "person.circle.fill")!,
+                                        userCollection: user.userCollection,
+                                        userFollow: user.userFollow,
+                                        followBy: user.followBy,
+                                        likesCount: user.likesCount,
+                                        userPhotoId: user.userPhotoId
+                                    )
                                     let post = PostLocalUse(
                                         creationId: post.creationId,
                                         postTime: post.postTime,
                                         postId: post.postId,
-                                        user: user,
+                                        user: userLocalUse,
                                         content: post.content,
                                         like: post.like,
                                         creation: creation
@@ -129,18 +167,18 @@ extension HomePageViewController: UITableViewDelegate, UITableViewDataSource {
         } else {
             cell.likeButton.setImage(UIImage(systemName: "heart"), for: .normal)
         }
-        let urlStr = posts[indexPath.row].user.userPhoto
-        var image = UIImage(systemName: "heart")
-        if let url = URL(string: urlStr),
-           let data = try? Data(contentsOf: url) {
-            
-            image = UIImage(data: data)
-            
-        }
+//        let urlStr = posts[indexPath.row].user.userPhoto
+//        var image = UIImage(systemName: "heart")
+//        if let url = URL(string: urlStr),
+//           let data = try? Data(contentsOf: url) {
+//
+//            image = UIImage(data: data)
+//
+//        }
         cell.setupCell(
             userName: posts[indexPath.row].user.userName,
             creationName: posts[indexPath.row].creation.name,
-            image: image ?? UIImage(systemName: "heart")!,
+            image: posts[indexPath.row].user.userPhoto,
             time: posts[indexPath.row].postTime,
             content: posts[indexPath.row].content,
             like: posts[indexPath.row].like.count

@@ -55,6 +55,7 @@ class RankingView: UIView {
             break
         }
         userPhotoImageView.image = userPhoto
+        userPhotoImageView.layer.cornerRadius = 20
         userNameLabel.text = userName
         likesLabel.text = "\(likes) Likes"
         self.addSubview(view)
