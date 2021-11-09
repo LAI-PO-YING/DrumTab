@@ -9,7 +9,7 @@ import UIKit
 
 protocol SelectionViewDelegate: AnyObject {
 
-    func didSelected(selectionView: SelectionView, index: Int)
+    func didSelected(selectionView: SelectionView, indexPath: IndexPath)
     func didScroll(offset: CGPoint)
 
 }
@@ -67,6 +67,12 @@ class SelectionView: UIView {
         collectionView.register(
             SelectionViewCell.self,
             forCellWithReuseIdentifier: String(describing: SelectionViewCell.self)
+        )
+
+        collectionView.register(
+            HeaderCollectionReusableView.self,
+            forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+            withReuseIdentifier: HeaderCollectionReusableView.identifier
         )
 
         collectionView.backgroundColor = UIColor(named: "D2")
@@ -133,8 +139,11 @@ class SelectionView: UIView {
 }
 
 extension SelectionView: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        4
+    }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        16
+        4
     }
 
     func collectionView(
@@ -145,7 +154,7 @@ extension SelectionView: UICollectionViewDataSource, UICollectionViewDelegate, U
             describing: SelectionViewCell.self), for: indexPath)
         guard let selectionViewCell = cell as? SelectionViewCell else { return cell }
         if let selectStatus = dataSource?.selectStatus(selectionView: self) {
-            if selectStatus[indexPath.item] == "0" {
+            if selectStatus[4*indexPath.section + indexPath.item] == "0" {
                 selectionViewCell.isSelected = false
             } else {
                 self.collectionView.selectItem(at: indexPath, animated: false, scrollPosition: [])
@@ -159,11 +168,11 @@ extension SelectionView: UICollectionViewDataSource, UICollectionViewDelegate, U
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        delegate?.didSelected(selectionView: self, index: indexPath.row)
+        delegate?.didSelected(selectionView: self, indexPath: indexPath)
     }
 
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-        delegate?.didSelected(selectionView: self, index: indexPath.row)
+        delegate?.didSelected(selectionView: self, indexPath: indexPath)
     }
 
     func collectionView(
@@ -175,6 +184,23 @@ extension SelectionView: UICollectionViewDataSource, UICollectionViewDelegate, U
         return CGSize(width: 50, height: 50)
     }
 
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        return collectionView.dequeueReusableSupplementaryView(
+            ofKind: kind,
+            withReuseIdentifier: HeaderCollectionReusableView.identifier,
+            for: indexPath
+        )
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        if section == 0 {
+            return CGSize.zero
+        } else {
+            return CGSize(
+                width: 20, height: self.frame.size.height
+            )
+        }
+    }
 }
 
 class SelectionViewCell: UICollectionViewCell {

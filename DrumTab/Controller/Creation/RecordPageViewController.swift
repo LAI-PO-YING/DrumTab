@@ -214,8 +214,8 @@ extension RecordPageViewController: SelectionViewDelegate {
         
     }
     
-    func didSelected(selectionView: SelectionView, index: Int) {
-        let currentIndex = 16 * (numberOfSection-1) + index
+    func didSelected(selectionView: SelectionView, indexPath: IndexPath) {
+        let currentIndex = 16 * (numberOfSection-1) + indexPath.section*4 + indexPath.item
         switch selectionView {
         case hiHatSelectionView:
             if DrumKit.hiHat[currentIndex] == "0" {
