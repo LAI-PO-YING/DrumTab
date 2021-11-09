@@ -69,7 +69,7 @@ class SelectionView: UIView {
             forCellWithReuseIdentifier: String(describing: SelectionViewCell.self)
         )
 
-        collectionView.backgroundColor = UIColor.white
+        collectionView.backgroundColor = UIColor(named: "D2")
 
         collectionView.showsHorizontalScrollIndicator = false
 
@@ -83,6 +83,7 @@ class SelectionView: UIView {
         let imageView = UIImageView(image: UIImage(systemName: "pencil.circle.fill")) // remember to change pic
 
         imageView.contentMode = .scaleAspectFill
+        imageView.backgroundColor = UIColor.clear
 
         return imageView
     }()
@@ -101,7 +102,7 @@ class SelectionView: UIView {
 
     private func initView() {
 
-        self.backgroundColor = .white
+        self.backgroundColor = UIColor(named: "D2")
 
         addSubview(collectionView)
 
@@ -182,7 +183,7 @@ class SelectionViewCell: UICollectionViewCell {
 
     override var isSelected: Bool {
         didSet {
-            colorView.backgroundColor = isSelected ? .darkGray : .lightGray
+            colorView.backgroundColor = isSelected ? UIColor(named: "T1") : UIColor(named: "D3")
         }
     }
 
@@ -201,7 +202,5 @@ class SelectionViewCell: UICollectionViewCell {
     private func initView() {
 
         stickSubView(colorView)
-
-        colorView.backgroundColor = .black
     }
 }

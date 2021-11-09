@@ -10,6 +10,7 @@ import UIKit
 protocol RecordPageViewControllerDelegate: AnyObject {
     func didChangeSelectedStatus(index: Int)
     func didPressedSubmitButton()
+    func didChangedBPM(bpm: Int)
 }
 
 class RecordPageViewController: UIViewController {
@@ -40,6 +41,8 @@ class RecordPageViewController: UIViewController {
     @IBOutlet weak var bpmTextField: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
+        let notificationName = Notification.Name("dataChanged")
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadSelectionView), name: notificationName, object: nil)
         setupSelectionViewDelegate()
         bpmTextField.text = "\(bpm)"
     }
@@ -50,6 +53,7 @@ class RecordPageViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         stopTimer()
+        NotificationCenter.default.removeObserver(self)
         self.tabBarController?.tabBar.isHidden = false
     }
     
@@ -103,7 +107,7 @@ class RecordPageViewController: UIViewController {
         DrumKit.index = 0
     }
 
-    func reloadSelectionView() {
+    @objc func reloadSelectionView() {
         hiHatSelectionView.collectionView.reloadData()
         snareSelectionView.collectionView.reloadData()
         tom1SelectionView.collectionView.reloadData()
@@ -112,6 +116,7 @@ class RecordPageViewController: UIViewController {
         bassSelectionView.collectionView.reloadData()
         crashSelectionView.collectionView.reloadData()
         rideSelectionView.collectionView.reloadData()
+        numberOfSection += 1
     }
     
     @objc func autoScroll() {
@@ -164,12 +169,12 @@ class RecordPageViewController: UIViewController {
         if timerIndex == 1 {
             startTimer()
             timerIndex += 1
-            sender.setTitle("Stop", for: .normal)
+            sender.setImage(UIImage(systemName: "pause.fill"), for: .normal)
             bpmTextField.isEnabled = false
         } else {
             stopTimer()
             timerIndex = 0
-            sender.setTitle("Play", for: .normal)
+            sender.setImage(UIImage(systemName: "play.fill"), for: .normal)
             bpmTextField.isEnabled = true
         }
     }
@@ -178,105 +183,16 @@ class RecordPageViewController: UIViewController {
         guard let bpmStr = bpmTextField.text,
               let bpm = Int(bpmStr) else { return }
         self.bpm = bpm
+        delegate?.didChangedBPM(bpm: bpm)
     }
     @IBAction func submitButtonPressed(_ sender: Any) {
-        DrumKit.hiHat += DrumKit.hiHat[0...15]
-        DrumKit.snare += DrumKit.snare[0...15]
-        DrumKit.tom1 += DrumKit.tom1[0...15]
-        DrumKit.tom2 += DrumKit.tom2[0...15]
-        DrumKit.tomF += DrumKit.tomF[0...15]
-        DrumKit.bass += DrumKit.bass[0...15]
-        DrumKit.crash += DrumKit.crash[0...15]
-        DrumKit.ride += DrumKit.ride[0...15]
-        numberOfSection += 1
-        delegate?.didPressedSubmitButton()
-        reloadSelectionView()
+
     }
     @IBAction func publishButtonPressed(_ sender: Any) {
-        let controller = UIAlertController(
-            title: "Publish your creation",
-            message: "Pleas enter your creation name.", preferredStyle: .alert
-        )
-        controller.addTextField { textField in
-            textField.placeholder = "Creation name"
-        }
-        controller.addTextField { textField in
-            textField.placeholder = "Content"
-        }
-        let okAction = UIAlertAction(title: "OK", style: .default) { [unowned controller] _ in
-            if let name = controller.textFields?[0].text,
-                let content = controller.textFields?[1].text {
-                self.firebaseFirestoreManager.addCreation(
-                    timeSignature: [4, 4],
-                    name: name,
-                    bpm: self.bpm,
-                    published: true,
-                    numberOfSection: DrumKit.hiHat.count / 16,
-                    record: [
-                        "hiHat": DrumKit.hiHat,
-                        "snare": DrumKit.snare,
-                        "tom1": DrumKit.tom1,
-                        "tom2": DrumKit.tom2,
-                        "tomF": DrumKit.tomF,
-                        "bass": DrumKit.bass,
-                        "crash": DrumKit.crash,
-                        "ride": DrumKit.ride
-                    ]) { id in
-                        if self.creationId != nil {
-                            self.firebaseFirestoreManager.deleteCreation(creationId: self.creationId!)
-                            self.creationId = nil
-                        }
-                        self.firebaseFirestoreManager.addPost(
-                            content: content,
-                            creationId: id
-                        )
-                        self.navigationController?.popViewController(animated: true)
-                    }
-            }
-        }
-        controller.addAction(okAction)
-        let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: nil)
-        controller.addAction(cancelAction)
-        present(controller, animated: true, completion: nil)
+        
     }
     @IBAction func saveButtonPressed(_ sender: UIButton) {
-        let controller = UIAlertController(
-            title: "Save your draft",
-            message: "Pleas enter your creation name.", preferredStyle: .alert
-        )
-        controller.addTextField { textField in
-            textField.placeholder = "Creation name"
-        }
-        let okAction = UIAlertAction(title: "OK", style: .default) { [unowned controller] _ in
-            if let name = controller.textFields?[0].text {
-                self.firebaseFirestoreManager.addCreation(
-                    timeSignature: [4, 4],
-                    name: name,
-                    bpm: self.bpm,
-                    published: false,
-                    numberOfSection: DrumKit.hiHat.count / 16,
-                    record: [
-                        "hiHat": DrumKit.hiHat,
-                        "snare": DrumKit.snare,
-                        "tom1": DrumKit.tom1,
-                        "tom2": DrumKit.tom2,
-                        "tomF": DrumKit.tomF,
-                        "bass": DrumKit.bass,
-                        "crash": DrumKit.crash,
-                        "ride": DrumKit.ride
-                    ]) { _ in
-                        if self.creationId != nil {
-                            self.firebaseFirestoreManager.deleteCreation(creationId: self.creationId!)
-                            self.creationId = nil
-                        }
-                        self.navigationController?.popViewController(animated: true)
-                    }
-            }
-        }
-        controller.addAction(okAction)
-        let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: nil)
-        controller.addAction(cancelAction)
-        present(controller, animated: true, completion: nil)
+        
     }
     
     deinit {
@@ -365,11 +281,11 @@ extension RecordPageViewController: SelectionViewDatasource {
         case snareSelectionView:
             return UIImage(named: "snare")!
         case tom1SelectionView:
-            return UIImage(named: "tom")!
+            return UIImage(named: "tom1")!
         case tom2SelectionView:
-            return UIImage(named: "tom")!
+            return UIImage(named: "tom2")!
         case floorTomSelectionView:
-            return UIImage(named: "tomFloor")!
+            return UIImage(named: "tomFl")!
         case bassSelectionView:
             return UIImage(named: "bass")!
         case crashSelectionView:
