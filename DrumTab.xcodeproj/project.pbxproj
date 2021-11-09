@@ -10,6 +10,7 @@
 		300121342735339D004C4CBD /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300121332735339D004C4CBD /* UIImage+Extension.swift */; };
 		3015C3E12727A752002DD366 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3015C3E02727A752002DD366 /* Post.swift */; };
 		3015C3E32727B30E002DD366 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3015C3E22727B30E002DD366 /* User.swift */; };
+		30306ADF273A51E200BCECF8 /* HeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30306ADE273A51E200BCECF8 /* HeaderCollectionReusableView.swift */; };
 		3038F2242721748B00772D2C /* SectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3038F2232721748B00772D2C /* SectionView.xib */; };
 		3038F226272174B300772D2C /* SectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3038F225272174B300772D2C /* SectionView.swift */; };
 		3049DD812726B29300B3CB19 /* loadingAnimation.json in Resources */ = {isa = PBXBuildFile; fileRef = 3049DD802726B29300B3CB19 /* loadingAnimation.json */; };
@@ -67,6 +68,7 @@
 		300121332735339D004C4CBD /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
 		3015C3E02727A752002DD366 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		3015C3E22727B30E002DD366 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		30306ADE273A51E200BCECF8 /* HeaderCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderCollectionReusableView.swift; sourceTree = "<group>"; };
 		3038F2232721748B00772D2C /* SectionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SectionView.xib; sourceTree = "<group>"; };
 		3038F225272174B300772D2C /* SectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionView.swift; sourceTree = "<group>"; };
 		3049DD802726B29300B3CB19 /* loadingAnimation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loadingAnimation.json; sourceTree = "<group>"; };
@@ -243,6 +245,7 @@
 			isa = PBXGroup;
 			children = (
 				304CBE1C271D41E8006B4FE2 /* SelectionView.swift */,
+				30306ADE273A51E200BCECF8 /* HeaderCollectionReusableView.swift */,
 				3038F2232721748B00772D2C /* SectionView.xib */,
 				3038F225272174B300772D2C /* SectionView.swift */,
 				30ABCD8F2730CEA200126875 /* RankingView.xib */,
@@ -524,6 +527,7 @@
 				30B15A132733EBED00E11D2A /* UIButton+Extension.swift in Sources */,
 				304CBE00271D1D22006B4FE2 /* UIStoryboard+Extension.swift in Sources */,
 				304CBE17271D34A6006B4FE2 /* CollectionPageViewController.swift in Sources */,
+				30306ADF273A51E200BCECF8 /* HeaderCollectionReusableView.swift in Sources */,
 				30ABCD962730E77000126875 /* PersonalInfoView.swift in Sources */,
 				304CBE14271D3464006B4FE2 /* HomePageViewController.swift in Sources */,
 				309D3649271D085D00C1D667 /* AppDelegate.swift in Sources */,

@@ -13,12 +13,22 @@ class CreationPreviewViewController: UIViewController {
     var beatInASection: Int?
     var creationId: String?
     var numberOfSection: Int?
+    let firebaseFirestoreManager = FirebaseFirestoreManager.shared
     @IBOutlet weak var collectionView: UICollectionView!
     
+    @IBOutlet weak var addButton: UIButton!
+    @IBOutlet weak var saveButton: UIButton!
+    @IBOutlet weak var publishButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.delegate = self
         collectionView.dataSource = self
+        publishButton.backgroundColor = UIColor(named: "G1")
+        publishButton.layer.cornerRadius = 5
+        saveButton.backgroundColor = UIColor(named: "D1")
+        saveButton.layer.cornerRadius = 5
+        addButton.backgroundColor = UIColor(named: "R1")
+        addButton.layer.cornerRadius = 5
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -36,13 +46,116 @@ class CreationPreviewViewController: UIViewController {
         dvc.numberOfSection = self.numberOfSection ?? 1
         if creationId != nil {
             dvc.creationId = self.creationId!
-            creationId = nil
+        } else {
+            dvc.creationId = nil
         }
         dvc.delegate = self
     }
     @IBAction func backButtonPressed(_ sender: Any) {
         navigationController?.popViewController(animated: true)
     }
+    @IBAction func addButtonPressed(_ sender: Any) {
+        let lastIndex = DrumKit.hiHat.count - 1
+        let firstIndext = DrumKit.hiHat.count - 16
+        DrumKit.hiHat += DrumKit.hiHat[firstIndext...lastIndex]
+        DrumKit.snare += DrumKit.snare[firstIndext...lastIndex]
+        DrumKit.tom1 += DrumKit.tom1[firstIndext...lastIndex]
+        DrumKit.tom2 += DrumKit.tom2[firstIndext...lastIndex]
+        DrumKit.tomF += DrumKit.tomF[firstIndext...lastIndex]
+        DrumKit.bass += DrumKit.bass[firstIndext...lastIndex]
+        DrumKit.crash += DrumKit.crash[firstIndext...lastIndex]
+        DrumKit.ride += DrumKit.ride[firstIndext...lastIndex]
+        numberOfSection! += 1
+        collectionView.reloadData()
+        NotificationCenter.default.post(name: NSNotification.Name("dataChanged"), object: nil)
+    }
+    @IBAction func saveButtonPressed(_ sender: Any) {
+        let controller = UIAlertController(
+            title: "Save your draft",
+            message: "Pleas enter your creation name.", preferredStyle: .alert
+        )
+        controller.addTextField { textField in
+            textField.placeholder = "Creation name"
+        }
+        let okAction = UIAlertAction(title: "OK", style: .default) { [unowned controller] _ in
+            if let name = controller.textFields?[0].text {
+                self.firebaseFirestoreManager.addCreation(
+                    timeSignature: [4, 4],
+                    name: name,
+                    bpm: self.bpm!,
+                    published: false,
+                    numberOfSection: DrumKit.hiHat.count / 16,
+                    record: [
+                        "hiHat": DrumKit.hiHat,
+                        "snare": DrumKit.snare,
+                        "tom1": DrumKit.tom1,
+                        "tom2": DrumKit.tom2,
+                        "tomF": DrumKit.tomF,
+                        "bass": DrumKit.bass,
+                        "crash": DrumKit.crash,
+                        "ride": DrumKit.ride
+                    ]) { _ in
+                        if self.creationId != nil {
+                            self.firebaseFirestoreManager.deleteCreation(creationId: self.creationId!)
+                            self.creationId = nil
+                        }
+                        self.navigationController?.popViewController(animated: true)
+                    }
+            }
+        }
+        controller.addAction(okAction)
+        let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: nil)
+        controller.addAction(cancelAction)
+        present(controller, animated: true, completion: nil)
+    }
+    @IBAction func publishButtonPressed(_ sender: Any) {
+        let controller = UIAlertController(
+            title: "Publish your creation",
+            message: "Pleas enter your creation name.", preferredStyle: .alert
+        )
+        controller.addTextField { textField in
+            textField.placeholder = "Creation name"
+        }
+        controller.addTextField { textField in
+            textField.placeholder = "Content"
+        }
+        let okAction = UIAlertAction(title: "OK", style: .default) { [unowned controller] _ in
+            if let name = controller.textFields?[0].text,
+                let content = controller.textFields?[1].text {
+                self.firebaseFirestoreManager.addCreation(
+                    timeSignature: [4, 4],
+                    name: name,
+                    bpm: self.bpm!,
+                    published: true,
+                    numberOfSection: DrumKit.hiHat.count / 16,
+                    record: [
+                        "hiHat": DrumKit.hiHat,
+                        "snare": DrumKit.snare,
+                        "tom1": DrumKit.tom1,
+                        "tom2": DrumKit.tom2,
+                        "tomF": DrumKit.tomF,
+                        "bass": DrumKit.bass,
+                        "crash": DrumKit.crash,
+                        "ride": DrumKit.ride
+                    ]) { id in
+                        if self.creationId != nil {
+                            self.firebaseFirestoreManager.deleteCreation(creationId: self.creationId!)
+                            self.creationId = nil
+                        }
+                        self.firebaseFirestoreManager.addPost(
+                            content: content,
+                            creationId: id
+                        )
+                        self.navigationController?.popViewController(animated: true)
+                    }
+            }
+        }
+        controller.addAction(okAction)
+        let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: nil)
+        controller.addAction(cancelAction)
+        present(controller, animated: true, completion: nil)
+    }
+    
 }
 
 extension CreationPreviewViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
@@ -114,6 +227,10 @@ extension CreationPreviewViewController: UICollectionViewDelegate, UICollectionV
 }
 
 extension CreationPreviewViewController: RecordPageViewControllerDelegate {
+    func didChangedBPM(bpm: Int) {
+        self.bpm = bpm
+    }
+    
     func didPressedSubmitButton() {
         collectionView.reloadData()
     }

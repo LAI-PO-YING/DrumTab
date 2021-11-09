@@ -13,7 +13,8 @@ class CreationPageTableViewCell: UITableViewCell {
     @IBOutlet weak var createdTimeLabel: UILabel!
     @IBOutlet weak var bpmLabel: UILabel!
     @IBOutlet weak var timeSignatureLabel: UILabel!
-
+    @IBOutlet weak var backgroundCardView: UIView!
+    
     func setupCell(
         title: String,
         time: TimeInterval,
@@ -25,6 +26,7 @@ class CreationPageTableViewCell: UITableViewCell {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy/MM/dd HH:mm"
         // setup cell
+        backgroundCardView.layer.cornerRadius = 5
         titleLabel.text = title
         bpmLabel.text = "BPM: \(bpm)"
         timeSignatureLabel.text = "\(timeSignature[0])/\(timeSignature[1])拍"
