@@ -28,3 +28,7 @@ struct PostLocalUse {
     var like: [String]
     var creation: Creation
 }
+
+class PostCache {
+    static var postCache: [String: PostLocalUse] = [:]
+}
