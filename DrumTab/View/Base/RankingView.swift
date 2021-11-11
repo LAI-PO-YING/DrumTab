@@ -44,16 +44,17 @@ class RankingView: UIView {
         switch prize {
         case 1:
             prizeBackGroundView.backgroundColor = UIColor(red: 246/255, green: 179/255, blue: 64/255, alpha: 1)
-            prizeLabel.text = "1st"
+            prizeLabel.text = "1"
         case 2:
             prizeBackGroundView.backgroundColor = UIColor(red: 215/255, green: 215/255, blue: 216/255, alpha: 1)
-            prizeLabel.text = "2nd"
+            prizeLabel.text = "2"
         case 3:
             prizeBackGroundView.backgroundColor = UIColor(red: 194/255, green: 115/255, blue: 84/255, alpha: 1)
-            prizeLabel.text = "3rd"
+            prizeLabel.text = "3"
         default:
             break
         }
+        prizeBackGroundView.layer.cornerRadius = 10
         userPhotoImageView.image = userPhoto
         userPhotoImageView.layer.cornerRadius = 20
         userNameLabel.text = userName

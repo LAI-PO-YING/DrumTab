@@ -9,6 +9,7 @@ import UIKit
 import ESPullToRefresh
 
 class PreviewPageViewController: UIViewController {
+    @IBOutlet weak var creationNameLabel: UILabel!
     @IBOutlet weak var addInToCollectionButton: UIButton!
     @IBOutlet weak var rewindButton: UIButton!
     @IBOutlet weak var playButton: UIButton!
@@ -116,6 +117,7 @@ class PreviewPageViewController: UIViewController {
                     DrumKit.bass = creation.record["bass"]!
                     DrumKit.crash = creation.record["crash"]!
                     DrumKit.ride = creation.record["ride"]!
+                    self.creationNameLabel.text = "Creation name: " + creation.name
                     self.creation = creation
                     for comment in creation.comment {
                         self.firebase.fetchSpecificUser(userId: comment["userId"]!) { result in

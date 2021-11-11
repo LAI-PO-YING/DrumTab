@@ -60,6 +60,7 @@
 		30EEF06127312AA100D545E0 /* LocalUserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30EEF06027312AA100D545E0 /* LocalUserData.swift */; };
 		30F5FBD7271E6DF100A61E4F /* RecordPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F5FBD6271E6DF100A61E4F /* RecordPageViewController.swift */; };
 		30F5FBD9271E6F0200A61E4F /* CreationPreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F5FBD8271E6F0200A61E4F /* CreationPreviewViewController.swift */; };
+		30FD4C0D273CCAC700FFD35A /* PersonalInfoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30FD4C0C273CCAC700FFD35A /* PersonalInfoCollectionViewCell.swift */; };
 		AA30CE104FB4B5C516CEC76B /* Pods_DrumTab.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A88508AC6E7A5D3605685AD /* Pods_DrumTab.framework */; };
 /* End PBXBuildFile section */
 
@@ -121,6 +122,7 @@
 		30EEF06027312AA100D545E0 /* LocalUserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalUserData.swift; sourceTree = "<group>"; };
 		30F5FBD6271E6DF100A61E4F /* RecordPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordPageViewController.swift; sourceTree = "<group>"; };
 		30F5FBD8271E6F0200A61E4F /* CreationPreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreationPreviewViewController.swift; sourceTree = "<group>"; };
+		30FD4C0C273CCAC700FFD35A /* PersonalInfoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInfoCollectionViewCell.swift; sourceTree = "<group>"; };
 		C5375142590186CEC4D9057F /* Pods-DrumTab.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DrumTab.debug.xcconfig"; path = "Target Support Files/Pods-DrumTab/Pods-DrumTab.debug.xcconfig"; sourceTree = "<group>"; };
 		E5BD3A4BDFEF54FA62C23DC9 /* Pods-DrumTab.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DrumTab.release.xcconfig"; path = "Target Support Files/Pods-DrumTab/Pods-DrumTab.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -185,6 +187,7 @@
 				305B8B73272008BE000E9E90 /* Creation */,
 				3049DD842726BB2000B3CB19 /* Home */,
 				30D6E0D1272CFD0100AF6378 /* Collection */,
+				30FD4C0E273CCACF00FFD35A /* Profile */,
 				309D3653271D085E00C1D667 /* LaunchScreen.storyboard */,
 				309D364E271D085D00C1D667 /* Main.storyboard */,
 				304CBE0D271D33F2006B4FE2 /* Home.storyboard */,
@@ -343,6 +346,14 @@
 				30EEF05D273106C500D545E0 /* AuthViewController.swift */,
 			);
 			path = Auth;
+			sourceTree = "<group>";
+		};
+		30FD4C0E273CCACF00FFD35A /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				30FD4C0C273CCAC700FFD35A /* PersonalInfoCollectionViewCell.swift */,
+			);
+			path = Profile;
 			sourceTree = "<group>";
 		};
 		614DD0A173F609FACDACFC57 /* Frameworks */ = {
@@ -536,6 +547,7 @@
 				309D364B271D085D00C1D667 /* SceneDelegate.swift in Sources */,
 				30F5FBD9271E6F0200A61E4F /* CreationPreviewViewController.swift in Sources */,
 				304CBE03271D1F71006B4FE2 /* DTTabBarViewController.swift in Sources */,
+				30FD4C0D273CCAC700FFD35A /* PersonalInfoCollectionViewCell.swift in Sources */,
 				3038F226272174B300772D2C /* SectionView.swift in Sources */,
 				304CBE1F271D4458006B4FE2 /* UIView+Extension.swift in Sources */,
 				304CBE19271D34BD006B4FE2 /* ProfilePageViewController.swift in Sources */,

@@ -46,30 +46,30 @@ private enum Tab {
 
         case .home:
             return UITabBarItem(
-                title: nil,
-                image: UIImage(systemName: "pencil.circle"), // remember to change icon
-                selectedImage: UIImage(systemName: "pencil.circle.fill") // remember to change icon
+                title: "Social",
+                image: UIImage(named: "social"), // remember to change icon
+                selectedImage: UIImage(named: "social.fill") // remember to change icon
             )
 
         case .creation:
             return UITabBarItem(
-                title: nil,
-                image: UIImage(systemName: "pencil.circle"), // remember to change icon
-                selectedImage: UIImage(systemName: "pencil.circle.fill") // remember to change icon
+                title: "Creation",
+                image: UIImage(named: "creation"), // remember to change icon
+                selectedImage: UIImage(named: "creation_fill") // remember to change icon
             )
 
         case .collection:
             return UITabBarItem(
-                title: nil,
-                image: UIImage(systemName: "pencil.circle"), // remember to change icon
-                selectedImage: UIImage(systemName: "pencil.circle.fill") // remember to change icon
+                title: "Collection",
+                image: UIImage(named: "collection"), // remember to change icon
+                selectedImage: UIImage(named: "collection_fill") // remember to change icon
             )
 
         case .profile:
             return UITabBarItem(
-                title: nil,
-                image: UIImage(systemName: "pencil.circle"), // remember to change icon
-                selectedImage: UIImage(systemName: "pencil.circle.fill") // remember to change icon
+                title: "Profile",
+                image: UIImage(named: "profile"), // remember to change icon
+                selectedImage: UIImage(named: "profile.fill") // remember to change icon
             )
 
         }
