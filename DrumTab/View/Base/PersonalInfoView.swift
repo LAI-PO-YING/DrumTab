@@ -34,7 +34,7 @@ class PersonalInfoView: UIView {
         guard let view = loadViewFromNib() else { return }
         view.frame = self.bounds
         containerView.layer.cornerRadius = 5
-        containerView.layer.borderColor = UIColor.black.cgColor
+        containerView.layer.borderColor = UIColor(named: "D3")?.cgColor
         containerView.layer.borderWidth = 1
         itemNameLabel.text = itemName
         valueLabel.text = "\(value)"

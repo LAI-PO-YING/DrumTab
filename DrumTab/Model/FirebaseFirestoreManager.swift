@@ -354,7 +354,8 @@ class FirebaseFirestoreManager {
             "userName": userName,
             "userPhoto": userPhoto,
             "userPhotoId": "", 
-            "likesCount": 0
+            "likesCount": 0,
+            "aboutMe": "About me..."
         ]
 
         document.setData(data)
@@ -410,7 +411,7 @@ class FirebaseFirestoreManager {
                     }
                 }
                 
-                completion(users)
+                completion(Array(users[0..<3]))
             }
         }
     }
@@ -575,6 +576,32 @@ class FirebaseFirestoreManager {
                         }
                     }
                 }
+            }
+        }
+    }
+    func updateUserName(name: String) {
+        self.db.collection("user").whereField("userId", isEqualTo: LocalUserData.userId).getDocuments{ querySnapshot, error in
+            if let error = error {
+                print(error)
+            } else {
+                let documentID = querySnapshot?.documents[0].documentID
+                let userDocument = self.db.collection("user").document(documentID!)
+                userDocument.updateData([
+                    "userName": name
+                ])
+            }
+        }
+    }
+    func updateUserAboutMe(aboutMe: String) {
+        self.db.collection("user").whereField("userId", isEqualTo: LocalUserData.userId).getDocuments{ querySnapshot, error in
+            if let error = error {
+                print(error)
+            } else {
+                let documentID = querySnapshot?.documents[0].documentID
+                let userDocument = self.db.collection("user").document(documentID!)
+                userDocument.updateData([
+                    "aboutMe": aboutMe
+                ])
             }
         }
     }

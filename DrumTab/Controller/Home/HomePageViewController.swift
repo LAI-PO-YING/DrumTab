@@ -42,7 +42,9 @@ class HomePageViewController: UIViewController {
                 userFollow: user.userFollow,
                 followBy: user.followBy,
                 likesCount: user.likesCount,
-                userPhotoId: user.userPhotoId
+                userPhotoId: user.userPhotoId,
+                createdTime: user.createdTime,
+                aboutMe: user.aboutMe
             )
             let post = PostLocalUse(
                 creationId: post.creationId,
@@ -64,7 +66,9 @@ class HomePageViewController: UIViewController {
                 userFollow: user.userFollow,
                 followBy: user.followBy,
                 likesCount: user.likesCount,
-                userPhotoId: user.userPhotoId
+                userPhotoId: user.userPhotoId,
+                createdTime: user.createdTime,
+                aboutMe: user.aboutMe
             )
             let post = PostLocalUse(
                 creationId: post.creationId,

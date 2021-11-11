@@ -10,238 +10,117 @@ import Lottie
 import FirebaseAuth
 
 class ProfilePageViewController: UIViewController {
-
+    
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var personalPhotoImageView: UIImageView!
+    @IBOutlet weak var rankContainerView: UIView!
+
+    @IBOutlet weak var firstPrizeView: UIView!
+    @IBOutlet weak var firstPrizeImageView: UIImageView!
+    @IBOutlet weak var firstPrizeNameLabel: UILabel!
+    @IBOutlet weak var firstPrizeSinceLabel: UILabel!
+    @IBOutlet weak var firstPrizeLikeLabel: UILabel!
+    
+    @IBOutlet weak var secondPrizeView: UIView!
+    @IBOutlet weak var secondPrizeImageView: UIImageView!
+    @IBOutlet weak var secondPrizeNameLabel: UILabel!
+    @IBOutlet weak var secondPrizeSinceLabel: UILabel!
+    @IBOutlet weak var secondPrizeLikeLabel: UILabel!
+
+    @IBOutlet weak var thirdPrizeView: UIView!
+    @IBOutlet weak var thirdPrizeImageView: UIImageView!
+    @IBOutlet weak var thirdPrizeNameLabel: UILabel!
+    @IBOutlet weak var thirdPrizeSinceLabel: UILabel!
+    @IBOutlet weak var thirdPrizeLikeLabel: UILabel!
+    
+    
+    @IBOutlet weak var aboutMeLabel: UILabel!
     
     let firebase = FirebaseFirestoreManager.shared
     let imagePicker = UIImagePickerController()
-    
-    var firstPrizeView = RankingView(
-        frame: CGRect.zero,
-        prize: 1,
-        userName: "Loading...",
-        userPhoto: UIImage(systemName: "person.circle.fill")!,
-        likes: 0
-    )
-    var secondPrizeView = RankingView(
-        frame: CGRect.zero,
-        prize: 2,
-        userName: "Loading...",
-        userPhoto: UIImage(systemName: "person.circle.fill")!,
-        likes: 0
-    )
-    var thirdPrizeView = RankingView(
-        frame: CGRect.zero,
-        prize: 3,
-        userName: "Loading...",
-        userPhoto: UIImage(systemName: "person.circle.fill")!,
-        likes: 0
-    )
-    var creationInfoView = PersonalInfoView(
-        frame: CGRect.zero,
-        itemName: "Creations",
-        value: 0
-    )
-    var likesInfoView = PersonalInfoView(
-        frame: CGRect.zero,
-        itemName: "Likes",
-        value: 0
-    )
-    var rankInfoView = PersonalInfoView(
-        frame: CGRect.zero,
-        itemName: "Rank",
-        value: 0
-    )
-    var followerInfoView = PersonalInfoView(
-        frame: CGRect.zero,
-        itemName: "Followers",
-        value: 0
-    )
-    var containerView = UIView(frame: CGRect.zero)
 
-    func setupPersonalInfoView() {
-        view.addSubview(containerView)
-        containerView.translatesAutoresizingMaskIntoConstraints = false
-        containerView.topAnchor.constraint(equalTo: thirdPrizeView.bottomAnchor, constant: 10).isActive = true
-        containerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true
-        containerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
-        containerView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -110).isActive = true
+    @IBOutlet weak var creationView: UIView!
+    @IBOutlet weak var followerView: UIView!
+    @IBOutlet weak var likesView: UIView!
 
-        containerView.addSubview(creationInfoView)
-        creationInfoView.translatesAutoresizingMaskIntoConstraints = false
-        creationInfoView.topAnchor.constraint(equalTo: containerView.topAnchor).isActive = true
-        creationInfoView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor).isActive = true
-        creationInfoView.widthAnchor.constraint(equalTo: containerView.widthAnchor, multiplier: 0.5).isActive = true
-        creationInfoView.heightAnchor.constraint(equalTo: containerView.heightAnchor, multiplier: 0.5).isActive = true
+    @IBOutlet weak var creationValueLabel: UILabel!
+    @IBOutlet weak var followerValueLabel: UILabel!
+    @IBOutlet weak var likeValueLabel: UILabel!
 
-        containerView.addSubview(rankInfoView)
-        rankInfoView.translatesAutoresizingMaskIntoConstraints = false
-        rankInfoView.topAnchor.constraint(equalTo: creationInfoView.bottomAnchor).isActive = true
-        rankInfoView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor).isActive = true
-        rankInfoView.widthAnchor.constraint(equalTo: containerView.widthAnchor, multiplier: 0.5).isActive = true
-        rankInfoView.heightAnchor.constraint(equalTo: containerView.heightAnchor, multiplier: 0.5).isActive = true
-
-        containerView.addSubview(likesInfoView)
-        likesInfoView.translatesAutoresizingMaskIntoConstraints = false
-        likesInfoView.topAnchor.constraint(equalTo: containerView.topAnchor).isActive = true
-        likesInfoView.leadingAnchor.constraint(equalTo: creationInfoView.trailingAnchor).isActive = true
-        likesInfoView.widthAnchor.constraint(equalTo: containerView.widthAnchor, multiplier: 0.5).isActive = true
-        likesInfoView.heightAnchor.constraint(equalTo: containerView.heightAnchor, multiplier: 0.5).isActive = true
-
-        containerView.addSubview(followerInfoView)
-        followerInfoView.translatesAutoresizingMaskIntoConstraints = false
-        followerInfoView.topAnchor.constraint(equalTo: likesInfoView.bottomAnchor).isActive = true
-        followerInfoView.leadingAnchor.constraint(equalTo: rankInfoView.trailingAnchor).isActive = true
-        followerInfoView.widthAnchor.constraint(equalTo: containerView.widthAnchor, multiplier: 0.5).isActive = true
-        followerInfoView.heightAnchor.constraint(equalTo: containerView.heightAnchor, multiplier: 0.5).isActive = true
-
-    }
-    
-    func setupRankingView(
-        first: UIView,
-        second: UIView,
-        third: UIView
-    ) {
-        view.addSubview(first)
-        first.translatesAutoresizingMaskIntoConstraints = false
-        first.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 10).isActive = true
-        first.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true
-        first.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
-        first.heightAnchor.constraint(equalToConstant: 40).isActive = true
-
-        view.addSubview(second)
-        second.translatesAutoresizingMaskIntoConstraints = false
-        second.topAnchor.constraint(equalTo: first.bottomAnchor, constant: 10).isActive = true
-        second.leadingAnchor.constraint(equalTo: first.leadingAnchor).isActive = true
-        second.trailingAnchor.constraint(equalTo: first.trailingAnchor).isActive = true
-        second.heightAnchor.constraint(equalToConstant: 40).isActive = true
-
-        view.addSubview(third)
-        third.translatesAutoresizingMaskIntoConstraints = false
-        third.topAnchor.constraint(equalTo: second.bottomAnchor, constant: 10).isActive = true
-        third.leadingAnchor.constraint(equalTo: first.leadingAnchor).isActive = true
-        third.trailingAnchor.constraint(equalTo: first.trailingAnchor).isActive = true
-        third.heightAnchor.constraint(equalToConstant: 40).isActive = true
-
-    }
     func importRankingViewData(users: [User]) {
-        if users.count == 0 {
-            self.firstPrizeView.userName = "No First Prize"
-            self.firstPrizeView.likes = 0
-
-            self.secondPrizeView.userName = "No Second Prize"
-            self.secondPrizeView.likes = 0
-
-            self.thirdPrizeView.userName = "No Third Prize"
-            self.thirdPrizeView.likes = 0
-        } else if users.count == 1 {
-            
-            if users[0].userPhoto == "" {
-                self.firstPrizeView.userPhoto = UIImage(systemName: "person.circle.fill")!
-                self.firstPrizeView.userName = users[0].userName
-                self.firstPrizeView.likes = users[0].likesCount
-            } else {
-                let urlStr = users[0].userPhoto
-                if let url = URL(string: urlStr),
-                   let data = try? Data(contentsOf: url) {
-                    
-                    self.firstPrizeView.userPhoto = UIImage(data: data)!
-                    self.firstPrizeView.userName = users[0].userName
-                    self.firstPrizeView.likes = users[0].likesCount
-                }
-            }
-            self.secondPrizeView.userPhoto = UIImage(systemName: "person.circle.fill")!
-            self.secondPrizeView.userName = "No Second Prize"
-            self.secondPrizeView.likes = 0
-
-            self.thirdPrizeView.userPhoto = UIImage(systemName: "person.circle.fill")!
-            self.thirdPrizeView.userName = "No Third Prize"
-            self.thirdPrizeView.likes = 0
-        } else if users.count == 2 {
-            if users[0].userPhoto == "" {
-                self.firstPrizeView.userPhoto = UIImage(systemName: "person.circle.fill")!
-                self.firstPrizeView.userName = users[0].userName
-                self.firstPrizeView.likes = users[0].likesCount
-            } else {
-                let urlStr = users[0].userPhoto
-                if let url = URL(string: urlStr),
-                   let data = try? Data(contentsOf: url) {
-                    
-                    self.firstPrizeView.userPhoto = UIImage(data: data)!
-                    self.firstPrizeView.userName = users[0].userName
-                    self.firstPrizeView.likes = users[0].likesCount
-                }
-            }
-            if users[1].userPhoto == "" {
-                self.secondPrizeView.userPhoto = UIImage(systemName: "person.circle.fill")!
-                self.secondPrizeView.userName = users[1].userName
-                self.secondPrizeView.likes = users[1].likesCount
-            } else {
-                let urlStr = users[1].userPhoto
-                if let url = URL(string: urlStr),
-                   let data = try? Data(contentsOf: url) {
-                    
-                    self.secondPrizeView.userPhoto = UIImage(data: data)!
-                    self.secondPrizeView.userName = users[1].userName
-                    self.secondPrizeView.likes = users[1].likesCount
-                }
-            }
-            self.thirdPrizeView.userPhoto = UIImage(systemName: "person.circle.fill")!
-            self.thirdPrizeView.userName = "No Third Prize"
-            self.thirdPrizeView.likes = 0
+        func transformDate(time: TimeInterval) ->String {
+            let date = Date(timeIntervalSince1970: time)
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy/MM/dd"
+            let returnStr = "Since \(dateFormatter.string(from: date))"
+            return returnStr
+        }
+        if users[0].userPhoto == "" {
+            self.firstPrizeImageView.image = UIImage(systemName: "person.circle.fill")!
+            self.firstPrizeNameLabel.text = "1. " + users[0].userName
+            self.firstPrizeLikeLabel.text = "\(users[0].likesCount)"
+            self.firstPrizeSinceLabel.text = transformDate(time: users[0].createdTime)
         } else {
-            if users[0].userPhoto == "" {
-                self.firstPrizeView.userPhoto = UIImage(systemName: "person.circle.fill")!
-                self.firstPrizeView.userName = users[0].userName
-                self.firstPrizeView.likes = users[0].likesCount
-            } else {
+            if UserPhotoCache.userPhotoCache["\(users[0].userPhoto)"] == nil {
                 let urlStr = users[0].userPhoto
                 if let url = URL(string: urlStr),
                    let data = try? Data(contentsOf: url) {
-                    
-                    self.firstPrizeView.userPhoto = UIImage(data: data)!
-                    self.firstPrizeView.userName = users[0].userName
-                    self.firstPrizeView.likes = users[0].likesCount
+                    self.firstPrizeImageView.image = UIImage(data: data)!
+                    UserPhotoCache.userPhotoCache["\(users[0].userPhoto)"] = UIImage(data: data)!
                 }
-            }
-            if users[1].userPhoto == "" {
-                self.secondPrizeView.userPhoto = UIImage(systemName: "person.circle.fill")!
-                self.secondPrizeView.userName = users[1].userName
-                self.secondPrizeView.likes = users[1].likesCount
             } else {
+                self.firstPrizeImageView.image = UserPhotoCache.userPhotoCache["\(users[0].userPhoto)"]!
+            }
+            self.firstPrizeNameLabel.text = "1. " + users[0].userName
+            self.firstPrizeLikeLabel.text = "\(users[0].likesCount)"
+            self.firstPrizeSinceLabel.text = transformDate(time: users[0].createdTime)
+        }
+        if users[1].userPhoto == "" {
+            self.secondPrizeImageView.image = UIImage(systemName: "person.circle.fill")!
+            self.secondPrizeNameLabel.text = "2. " + users[1].userName
+            self.secondPrizeLikeLabel.text = "\(users[1].likesCount)"
+            self.secondPrizeSinceLabel.text = transformDate(time: users[1].createdTime)
+        } else {
+            if UserPhotoCache.userPhotoCache["\(users[1].userPhoto)"] == nil {
                 let urlStr = users[1].userPhoto
                 if let url = URL(string: urlStr),
                    let data = try? Data(contentsOf: url) {
-                    
-                    self.secondPrizeView.userPhoto = UIImage(data: data)!
-                    self.secondPrizeView.userName = users[1].userName
-                    self.secondPrizeView.likes = users[1].likesCount
+                    self.secondPrizeImageView.image = UIImage(data: data)!
+                    UserPhotoCache.userPhotoCache["\(users[1].userPhoto)"] = UIImage(data: data)!
                 }
-            }
-            if users[2].userPhoto == "" {
-                self.thirdPrizeView.userPhoto = UIImage(systemName: "person.circle.fill")!
-                self.thirdPrizeView.userName = users[2].userName
-                self.thirdPrizeView.likes = users[2].likesCount
             } else {
+                self.secondPrizeImageView.image = UserPhotoCache.userPhotoCache["\(users[1].userPhoto)"]!
+            }
+            self.secondPrizeNameLabel.text = "2. " + users[1].userName
+            self.secondPrizeLikeLabel.text = "\(users[1].likesCount)"
+            self.secondPrizeSinceLabel.text = transformDate(time: users[1].createdTime)
+        }
+        if users[2].userPhoto == "" {
+            self.thirdPrizeImageView.image = UIImage(systemName: "person.circle.fill")!
+            self.thirdPrizeNameLabel.text = "3. " + users[2].userName
+            self.thirdPrizeLikeLabel.text = "\(users[2].likesCount)"
+            self.thirdPrizeSinceLabel.text = transformDate(time: users[2].createdTime)
+        } else {
+            if UserPhotoCache.userPhotoCache["\(users[2].userPhoto)"] == nil {
                 let urlStr = users[2].userPhoto
                 if let url = URL(string: urlStr),
                    let data = try? Data(contentsOf: url) {
-                    
-                    self.thirdPrizeView.userPhoto = UIImage(data: data)!
-                    self.thirdPrizeView.userName = users[2].userName
-                    self.thirdPrizeView.likes = users[2].likesCount
+                    self.thirdPrizeImageView.image = UIImage(data: data)!
+                    UserPhotoCache.userPhotoCache["\(users[2].userPhoto)"] = UIImage(data: data)!
                 }
+            } else {
+                self.thirdPrizeImageView.image = UserPhotoCache.userPhotoCache["\(users[2].userPhoto)"]!
             }
+            self.thirdPrizeNameLabel.text = "3. " + users[2].userName
+            self.thirdPrizeLikeLabel.text = "\(users[2].likesCount)"
+            self.thirdPrizeSinceLabel.text = transformDate(time: users[2].createdTime)
         }
     }
+    
     override func viewDidLayoutSubviews() {
-        setupRankingView(
-            first: firstPrizeView,
-            second: secondPrizeView,
-            third: thirdPrizeView
-        )
-        setupPersonalInfoView()
+        firstPrizeImageView.layer.cornerRadius = firstPrizeImageView.frame.height / 2
+        secondPrizeImageView.layer.cornerRadius = secondPrizeImageView.frame.height / 2
+        thirdPrizeImageView.layer.cornerRadius = thirdPrizeImageView.frame.height / 2
     }
     override func viewWillAppear(_ animated: Bool) {
         firebase.getRankInfo { users in
@@ -252,35 +131,31 @@ class ProfilePageViewController: UIViewController {
             switch result {
             case .success(let creations):
                 print("creation: \(creations.count)")
-                self.creationInfoView.value = creations.count
+                self.creationValueLabel.text = "\(creations.count)"
             case .failure(let error):
                 print(error)
             }
         }
         firebase.getPersonalLikeValue { numberOfLikes in
             print("numberOfLikes: \(numberOfLikes)")
-            self.likesInfoView.value = numberOfLikes
-        }
-        firebase.getPersonalRank { rank in
-            print("rank: \(rank)")
-            self.rankInfoView.value = rank
+            self.likeValueLabel.text = "\(numberOfLikes)"
         }
         firebase.getFollowers { numberOfFollowers in
             print("numberOfFollowers: \(numberOfFollowers)")
-            self.followerInfoView.value = numberOfFollowers
+            self.followerValueLabel.text = "\(numberOfFollowers)"
         }
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-//        let animationView = AnimationView(name: "loadingAnimation")
-//        animationView.frame = CGRect(x: 0, y: 0, width: 400, height: 400)
-//        animationView.center = self.view.center
-//        animationView.contentMode = .scaleAspectFill
-//        view.addSubview(animationView)
-//        animationView.loopMode = .loop
-//        animationView.backgroundBehavior = .pauseAndRestore
-//        animationView.play()
+        //        let animationView = AnimationView(name: "loadingAnimation")
+        //        animationView.frame = CGRect(x: 0, y: 0, width: 400, height: 400)
+        //        animationView.center = self.view.center
+        //        animationView.contentMode = .scaleAspectFill
+        //        view.addSubview(animationView)
+        //        animationView.loopMode = .loop
+        //        animationView.backgroundBehavior = .pauseAndRestore
+        //        animationView.play()
         firebase.fetchSpecificUser(userId: LocalUserData.userId) { result in
             switch result {
             case .success(let user):
@@ -290,16 +165,25 @@ class ProfilePageViewController: UIViewController {
                     if let url = URL(string: urlStr),
                        let data = try? Data(contentsOf: url) {
                         self.personalPhotoImageView.image = UIImage(data: data)!
-
+                        
                     }
                 }
                 self.nameLabel.text = user.userName
-                self.personalPhotoImageView.layer.cornerRadius = 50
+                self.aboutMeLabel.text = user.aboutMe
             case .failure(let error):
                 print(error)
             }
         }
-        containerView.backgroundColor = .black
+        self.personalPhotoImageView.layer.cornerRadius = 50
+        creationView.layer.borderColor = UIColor(named: "D2")?.cgColor
+        creationView.layer.borderWidth = 1
+        followerView.layer.borderColor = UIColor(named: "D2")?.cgColor
+        followerView.layer.borderWidth = 1
+        likesView.layer.borderColor = UIColor(named: "D2")?.cgColor
+        likesView.layer.borderWidth = 1
+
+//        self.personalPhotoImageView.layer.borderColor = UIColor(named: "D2")?.cgColor
+//        self.personalPhotoImageView.layer.borderWidth = 5
         
     }
     
@@ -328,7 +212,46 @@ class ProfilePageViewController: UIViewController {
         
         present(alert, animated: true, completion: nil)
     }
+    @IBAction func nameLabelPressed(_ sender: Any) {
+        let controller = UIAlertController(
+            title: "Update user name",
+            message: "Pleas enter your name.", preferredStyle: .alert
+        )
+        controller.addTextField { textField in
+            textField.placeholder = "User name"
+        }
+        let okAction = UIAlertAction(title: "OK", style: .default) { [unowned controller] _ in
+            if let name = controller.textFields?[0].text {
+                self.firebase.updateUserName(name: name)
+                self.nameLabel.text = name
+            }
+        }
+        controller.addAction(okAction)
+        let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: nil)
+        controller.addAction(cancelAction)
+        present(controller, animated: true, completion: nil)
+        
+    }
     
+    @IBAction func aboutMeLabelPressed(_ sender: Any) {
+        let controller = UIAlertController(
+            title: "Update about me",
+            message: "Pleas enter your introduction.", preferredStyle: .alert
+        )
+        controller.addTextField { textField in
+            textField.placeholder = "About me"
+        }
+        let okAction = UIAlertAction(title: "OK", style: .default) { [unowned controller] _ in
+            if let aboutMe = controller.textFields?[0].text {
+                self.firebase.updateUserAboutMe(aboutMe: aboutMe)
+                self.aboutMeLabel.text = aboutMe
+            }
+        }
+        controller.addAction(okAction)
+        let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: nil)
+        controller.addAction(cancelAction)
+        present(controller, animated: true, completion: nil)
+    }
     @IBAction func logoutButtonPressed(_ sender: Any) {
         do {
             try Auth.auth().signOut()
