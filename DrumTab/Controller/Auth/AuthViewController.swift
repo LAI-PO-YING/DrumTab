@@ -45,6 +45,7 @@ class AuthViewController: UIViewController {
 
     override func viewDidLayoutSubviews() {
         videoPlayerLooped.playVideo(fileName: "intro", inView: videoView)
+        navigationController?.setNavigationBarHidden(true, animated: true)
     }
     override func viewDidLoad() {
         super.viewDidLoad()

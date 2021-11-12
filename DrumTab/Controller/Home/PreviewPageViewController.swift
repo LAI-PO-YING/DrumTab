@@ -9,6 +9,7 @@ import UIKit
 import ESPullToRefresh
 
 class PreviewPageViewController: UIViewController {
+    @IBOutlet weak var creationNameLabel: UILabel!
     @IBOutlet weak var addInToCollectionButton: UIButton!
     @IBOutlet weak var rewindButton: UIButton!
     @IBOutlet weak var playButton: UIButton!
@@ -116,22 +117,35 @@ class PreviewPageViewController: UIViewController {
                     DrumKit.bass = creation.record["bass"]!
                     DrumKit.crash = creation.record["crash"]!
                     DrumKit.ride = creation.record["ride"]!
+                    self.creationNameLabel.text = creation.name
                     self.creation = creation
                     for comment in creation.comment {
                         self.firebase.fetchSpecificUser(userId: comment["userId"]!) { result in
                             switch result {
                             case .success(let user):
-                                let urlStr = user.userPhoto
-                                if let url = URL(string: urlStr),
-                                   let data = try? Data(contentsOf: url) {
+                                if UserPhotoCache.userPhotoCache["\(user.userPhoto)"] == nil {
+                                    let urlStr = user.userPhoto
+                                    if let url = URL(string: urlStr),
+                                       let data = try? Data(contentsOf: url) {
+                                        UserPhotoCache.userPhotoCache["\(user.userPhoto)"] = UIImage(data: data)
+                                        let creationComment = CreationComment(
+                                            userName: user.userName,
+                                            userPhoto: UIImage(data: data) ?? UIImage(systemName: "person.circle.fill")!,
+                                            time: comment["time"]!,
+                                            comment: comment["comment"]!
+                                        )
+                                        self.comments.append(creationComment)
+                                    }
+                                } else {
                                     let creationComment = CreationComment(
                                         userName: user.userName,
-                                        userPhoto: UIImage(data: data) ?? UIImage(systemName: "person.circle.fill")!,
+                                        userPhoto: UserPhotoCache.userPhotoCache["\(user.userPhoto)"]!,
                                         time: comment["time"]!,
                                         comment: comment["comment"]!
                                     )
                                     self.comments.append(creationComment)
                                 }
+                                
                             case .failure(let error):
                                 print(error)
                             }
@@ -155,12 +169,23 @@ class PreviewPageViewController: UIViewController {
                             self.firebase.fetchSpecificUser(userId: comment["userId"]!) { result in
                                 switch result {
                                 case .success(let user):
-                                    let urlStr = user.userPhoto
-                                    if let url = URL(string: urlStr),
-                                       let data = try? Data(contentsOf: url) {
+                                    if UserPhotoCache.userPhotoCache["\(user.userPhoto)"] == nil {
+                                        let urlStr = user.userPhoto
+                                        if let url = URL(string: urlStr),
+                                           let data = try? Data(contentsOf: url) {
+                                            UserPhotoCache.userPhotoCache["\(user.userPhoto)"] = UIImage(data: data)
+                                            let creationComment = CreationComment(
+                                                userName: user.userName,
+                                                userPhoto: UIImage(data: data) ?? UIImage(systemName: "person.circle.fill")!,
+                                                time: comment["time"]!,
+                                                comment: comment["comment"]!
+                                            )
+                                            self.comments.append(creationComment)
+                                        }
+                                    } else {
                                         let creationComment = CreationComment(
                                             userName: user.userName,
-                                            userPhoto: UIImage(data: data) ?? UIImage(systemName: "person.circle.fill")!,
+                                            userPhoto: UserPhotoCache.userPhotoCache["\(user.userPhoto)"]!,
                                             time: comment["time"]!,
                                             comment: comment["comment"]!
                                         )

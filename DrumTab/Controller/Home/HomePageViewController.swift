@@ -22,6 +22,67 @@ class HomePageViewController: UIViewController {
         }
     }
     
+    func checkCache(user: User, post: Post, creation: Creation) {
+        if UserPhotoCache.userPhotoCache["\(user.userPhoto)"] == nil {
+            let urlStr = user.userPhoto
+            var image = UIImage(systemName: "person.circle.fill")
+            if let url = URL(string: urlStr),
+               let data = try? Data(contentsOf: url) {
+                
+                image = UIImage(data: data)
+                UserPhotoCache.userPhotoCache["\(user.userPhoto)"] = image
+                
+            }
+            let userLocalUse = UserLocalUse(
+                userId: user.userId,
+                userName: user.userName,
+                userEmail: user.userEmail,
+                userPhoto: image ?? UIImage(systemName: "person.circle.fill")!,
+                userCollection: user.userCollection,
+                userFollow: user.userFollow,
+                followBy: user.followBy,
+                likesCount: user.likesCount,
+                userPhotoId: user.userPhotoId,
+                createdTime: user.createdTime,
+                aboutMe: user.aboutMe
+            )
+            let post = PostLocalUse(
+                creationId: post.creationId,
+                postTime: post.postTime,
+                postId: post.postId,
+                user: userLocalUse,
+                content: post.content,
+                like: post.like,
+                creation: creation
+            )
+            self.posts.append(post)
+        } else {
+            let userLocalUse = UserLocalUse(
+                userId: user.userId,
+                userName: user.userName,
+                userEmail: user.userEmail,
+                userPhoto: UserPhotoCache.userPhotoCache["\(user.userPhoto)"]!,
+                userCollection: user.userCollection,
+                userFollow: user.userFollow,
+                followBy: user.followBy,
+                likesCount: user.likesCount,
+                userPhotoId: user.userPhotoId,
+                createdTime: user.createdTime,
+                aboutMe: user.aboutMe
+            )
+            let post = PostLocalUse(
+                creationId: post.creationId,
+                postTime: post.postTime,
+                postId: post.postId,
+                user: userLocalUse,
+                content: post.content,
+                like: post.like,
+                creation: creation
+            )
+            self.posts.append(post)
+        }
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.es.addPullToRefresh {
@@ -36,35 +97,7 @@ class HomePageViewController: UIViewController {
                                 self.firebase.fetchSpecificCreation(creationId: post.creationId) { result in
                                     switch result {
                                     case .success(let creation):
-                                        let urlStr = user.userPhoto
-                                        var image = UIImage(systemName: "person.circle.fill")
-                                        if let url = URL(string: urlStr),
-                                           let data = try? Data(contentsOf: url) {
-                                            
-                                            image = UIImage(data: data)
-                                            
-                                        }
-                                        let userLocalUse = UserLocalUse(
-                                            userId: user.userId,
-                                            userName: user.userName,
-                                            userEmail: user.userEmail,
-                                            userPhoto: image ?? UIImage(systemName: "person.circle.fill")!,
-                                            userCollection: user.userCollection,
-                                            userFollow: user.userFollow,
-                                            followBy: user.followBy,
-                                            likesCount: user.likesCount,
-                                            userPhotoId: user.userPhotoId
-                                        )
-                                        let post = PostLocalUse(
-                                            creationId: post.creationId,
-                                            postTime: post.postTime,
-                                            postId: post.postId,
-                                            user: userLocalUse,
-                                            content: post.content,
-                                            like: post.like,
-                                            creation: creation
-                                        )
-                                        self.posts.append(post)
+                                        self.checkCache(user: user, post: post, creation: creation)
                                     case .failure(let error):
                                         print(error)
                                     }
@@ -90,35 +123,7 @@ class HomePageViewController: UIViewController {
                             self.firebase.fetchSpecificCreation(creationId: post.creationId) { result in
                                 switch result {
                                 case .success(let creation):
-                                    let urlStr = user.userPhoto
-                                    var image = UIImage(systemName: "person.circle.fill")
-                                    if let url = URL(string: urlStr),
-                                       let data = try? Data(contentsOf: url) {
-                                        
-                                        image = UIImage(data: data)
-                                        
-                                    }
-                                    let userLocalUse = UserLocalUse(
-                                        userId: user.userId,
-                                        userName: user.userName,
-                                        userEmail: user.userEmail,
-                                        userPhoto: image ?? UIImage(systemName: "person.circle.fill")!,
-                                        userCollection: user.userCollection,
-                                        userFollow: user.userFollow,
-                                        followBy: user.followBy,
-                                        likesCount: user.likesCount,
-                                        userPhotoId: user.userPhotoId
-                                    )
-                                    let post = PostLocalUse(
-                                        creationId: post.creationId,
-                                        postTime: post.postTime,
-                                        postId: post.postId,
-                                        user: userLocalUse,
-                                        content: post.content,
-                                        like: post.like,
-                                        creation: creation
-                                    )
-                                    self.posts.append(post)
+                                    self.checkCache(user: user, post: post, creation: creation)
                                 case .failure(let error):
                                     print(error)
                                 }

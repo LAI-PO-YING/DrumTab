@@ -19,6 +19,8 @@ struct User: Codable {
     var followBy: [String]
     var likesCount: Int
     var userPhotoId: String
+    var createdTime: TimeInterval
+    var aboutMe: String
 
 }
 
@@ -33,5 +35,11 @@ struct UserLocalUse {
     var followBy: [String]
     var likesCount: Int
     var userPhotoId: String
+    var createdTime: TimeInterval
+    var aboutMe: String
 
+}
+
+class UserPhotoCache {
+    static var userPhotoCache: [String : UIImage] = [ : ]
 }

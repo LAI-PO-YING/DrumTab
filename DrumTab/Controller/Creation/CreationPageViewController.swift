@@ -72,6 +72,7 @@ class CreationPageViewController: UIViewController {
             dvc.bpm = 120
             dvc.beatInASection = 4
             dvc.numberOfSection = 1
+            dvc.creationId = nil
             DrumKit.initSounds()
         }
     }
