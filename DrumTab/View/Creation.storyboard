@@ -20,7 +20,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mTC-xU-ELh">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="862"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <color key="backgroundColor" name="D2"/>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="M6j-qX-hQB">
@@ -104,7 +104,7 @@
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="mTC-xU-ELh" secondAttribute="trailing" id="PlY-RG-PoM"/>
                             <constraint firstItem="mTC-xU-ELh" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="Yrk-FT-5nU"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="M6j-qX-hQB" secondAttribute="bottom" id="rHC-z6-1Ik"/>
-                            <constraint firstItem="mTC-xU-ELh" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="wGt-s3-y2a"/>
+                            <constraint firstItem="mTC-xU-ELh" firstAttribute="top" secondItem="M6j-qX-hQB" secondAttribute="top" id="wGt-s3-y2a"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Record your beats" id="BEf-zk-eDW">
@@ -438,10 +438,10 @@
             <color red="0.19607843137254902" green="0.22352941176470589" blue="0.25490196078431371" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="D2">
-            <color red="0.32499998807907104" green="0.3880000114440918" blue="0.44699999690055847" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.32156862745098042" green="0.3843137254901961" blue="0.44313725490196076" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="D3">
-            <color red="0.7839999794960022" green="0.79199999570846558" blue="0.84700000286102295" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.78431372549019607" green="0.792156862745098" blue="0.84705882352941175" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="G1">
             <color red="0.85500001907348633" green="0.6470000147819519" blue="0.125" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
