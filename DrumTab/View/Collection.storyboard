@@ -4,8 +4,8 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -17,9 +17,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cbx-kz-YBP">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="862"/>
+                                <color key="backgroundColor" name="D2"/>
+                            </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="O4i-eC-odo">
                                 <rect key="frame" x="0.0" y="88" width="414" height="774"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" name="D2"/>
+                                <inset key="separatorInset" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CollectionTableViewCell" rowHeight="98" id="6Is-oz-eh4" customClass="CollectionTableViewCell" customModule="DrumTab" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="44.5" width="414" height="98"/>
@@ -28,46 +33,57 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="98"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Vp-4W-I1J">
+                                                    <rect key="frame" x="5" y="5" width="404" height="88"/>
+                                                    <color key="backgroundColor" name="D3"/>
+                                                </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Creation name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aL4-zt-TqU">
-                                                    <rect key="frame" x="20" y="10" width="116.5" height="24"/>
-                                                    <fontDescription key="fontDescription" name="PingFangTC-Regular" family="PingFang TC" pointSize="17"/>
-                                                    <color key="textColor" red="0.2470588235" green="0.2274509804" blue="0.2274509804" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <rect key="frame" x="20" y="15" width="134" height="22.5"/>
+                                                    <fontDescription key="fontDescription" name="Palatino-Bold" family="Palatino" pointSize="20"/>
+                                                    <color key="textColor" name="T2"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Created by:" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="15b-wH-QdC">
-                                                    <rect key="frame" x="20" y="34" width="70" height="54"/>
+                                                    <rect key="frame" x="20" y="42.5" width="70" height="40.5"/>
                                                     <fontDescription key="fontDescription" name="PingFangTC-Regular" family="PingFang TC" pointSize="13"/>
-                                                    <color key="textColor" red="0.2470588235" green="0.2274509804" blue="0.2274509804" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="textColor" name="T1"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="RZ3-6f-D1V">
-                                                    <rect key="frame" x="98" y="52" width="18.5" height="18.5"/>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="RZ3-6f-D1V">
+                                                    <rect key="frame" x="98" y="53.5" width="18.5" height="18.5"/>
+                                                    <color key="tintColor" name="D2"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="18.5" id="9WM-eV-8BF"/>
                                                         <constraint firstAttribute="width" constant="18.5" id="s7g-54-ihk"/>
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mot-gK-4Bh">
-                                                    <rect key="frame" x="121.5" y="52" width="35" height="18.5"/>
+                                                    <rect key="frame" x="121.5" y="53.5" width="35" height="18.5"/>
                                                     <fontDescription key="fontDescription" name="PingFangTC-Regular" family="PingFang TC" pointSize="13"/>
-                                                    <color key="textColor" red="0.2470588235" green="0.2274509804" blue="0.2274509804" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="textColor" name="T1"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="15b-wH-QdC" firstAttribute="top" secondItem="aL4-zt-TqU" secondAttribute="bottom" id="6dW-MT-FJQ"/>
+                                                <constraint firstItem="15b-wH-QdC" firstAttribute="top" secondItem="aL4-zt-TqU" secondAttribute="bottom" constant="5" id="6dW-MT-FJQ"/>
                                                 <constraint firstItem="RZ3-6f-D1V" firstAttribute="centerY" secondItem="15b-wH-QdC" secondAttribute="centerY" id="AY0-hP-GdT"/>
+                                                <constraint firstAttribute="bottom" secondItem="8Vp-4W-I1J" secondAttribute="bottom" constant="5" id="GdJ-D5-ZVk"/>
                                                 <constraint firstItem="aL4-zt-TqU" firstAttribute="leading" secondItem="txP-PC-ypQ" secondAttribute="leading" constant="20" id="KEf-4i-BJL"/>
                                                 <constraint firstItem="Mot-gK-4Bh" firstAttribute="leading" secondItem="RZ3-6f-D1V" secondAttribute="trailing" constant="5" id="QBl-Tr-gYv"/>
-                                                <constraint firstItem="aL4-zt-TqU" firstAttribute="top" secondItem="txP-PC-ypQ" secondAttribute="top" constant="10" id="Txh-wp-YnO"/>
+                                                <constraint firstItem="8Vp-4W-I1J" firstAttribute="top" secondItem="txP-PC-ypQ" secondAttribute="top" constant="5" id="R0P-lb-ZKo"/>
+                                                <constraint firstItem="aL4-zt-TqU" firstAttribute="top" secondItem="txP-PC-ypQ" secondAttribute="top" constant="15" id="Txh-wp-YnO"/>
+                                                <constraint firstAttribute="trailing" secondItem="8Vp-4W-I1J" secondAttribute="trailing" constant="5" id="VNk-wM-s7R"/>
                                                 <constraint firstItem="Mot-gK-4Bh" firstAttribute="centerY" secondItem="15b-wH-QdC" secondAttribute="centerY" id="ZY9-QU-9pQ"/>
                                                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="aL4-zt-TqU" secondAttribute="trailing" constant="20" id="e2Z-P3-hab"/>
                                                 <constraint firstItem="15b-wH-QdC" firstAttribute="leading" secondItem="aL4-zt-TqU" secondAttribute="leading" id="hYA-gy-W6n"/>
-                                                <constraint firstAttribute="bottom" secondItem="15b-wH-QdC" secondAttribute="bottom" constant="10" id="lMY-6g-7wL"/>
+                                                <constraint firstAttribute="bottom" secondItem="15b-wH-QdC" secondAttribute="bottom" constant="15" id="lMY-6g-7wL"/>
+                                                <constraint firstItem="8Vp-4W-I1J" firstAttribute="leading" secondItem="txP-PC-ypQ" secondAttribute="leading" constant="5" id="sSZ-Bs-goE"/>
                                                 <constraint firstItem="RZ3-6f-D1V" firstAttribute="leading" secondItem="15b-wH-QdC" secondAttribute="trailing" constant="8" id="zbB-u9-P0V"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" name="D2"/>
                                         <connections>
+                                            <outlet property="backgroundCardView" destination="8Vp-4W-I1J" id="M7g-9m-oVr"/>
                                             <outlet property="creationNameLabel" destination="aL4-zt-TqU" id="d6O-n3-d8N"/>
                                             <outlet property="userImageView" destination="RZ3-6f-D1V" id="spM-no-KHl"/>
                                             <outlet property="userNameLabel" destination="Mot-gK-4Bh" id="qrD-o8-dth"/>
@@ -77,12 +93,16 @@
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" name="D1"/>
                         <constraints>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="cbx-kz-YBP" secondAttribute="bottom" id="09c-vf-Ypb"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="O4i-eC-odo" secondAttribute="bottom" id="5XK-Fu-Jqz"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="cbx-kz-YBP" secondAttribute="trailing" id="NIX-R7-YXH"/>
                             <constraint firstItem="O4i-eC-odo" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="SV7-bf-6UN"/>
+                            <constraint firstItem="cbx-kz-YBP" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="VqE-Ph-ubn"/>
                             <constraint firstItem="O4i-eC-odo" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="Xou-9x-rXs"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="O4i-eC-odo" secondAttribute="trailing" id="hXg-3G-SPl"/>
+                            <constraint firstItem="cbx-kz-YBP" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="klf-tg-4x5"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="2DA-iD-8Ys">
@@ -116,8 +136,20 @@
         </scene>
     </scenes>
     <resources>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
+        <namedColor name="D1">
+            <color red="0.19607843137254902" green="0.22352941176470589" blue="0.25490196078431371" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="D2">
+            <color red="0.32499998807907104" green="0.3880000114440918" blue="0.44699999690055847" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="D3">
+            <color red="0.78431372549019607" green="0.792156862745098" blue="0.84705882352941175" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="T1">
+            <color red="0.13300000131130219" green="0.14900000393390656" blue="0.16099999845027924" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="T2">
+            <color red="0.3529999852180481" green="0.47499999403953552" blue="0.58799999952316284" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>

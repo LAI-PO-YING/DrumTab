@@ -10,6 +10,7 @@ import AuthenticationServices
 import FirebaseAuth
 import CryptoKit
 import AVKit
+import SafariServices
 
 class AuthViewController: UIViewController {
     
@@ -45,6 +46,7 @@ class AuthViewController: UIViewController {
 
     override func viewDidLayoutSubviews() {
         videoPlayerLooped.playVideo(fileName: "intro", inView: videoView)
+        navigationController?.setNavigationBarHidden(true, animated: true)
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -117,6 +119,12 @@ class AuthViewController: UIViewController {
       authorizationController.presentationContextProvider = self
       authorizationController.performRequests()
     }
+    @IBAction func privacyPolicyButtonPressed(_ sender: Any) {
+        guard let url = URL(string: "https://www.privacypolicies.com/live/897a9283-8d29-46f8-a47b-5a5031f98f46") else { return }
+        let svc = SFSafariViewController(url: url)
+        self.present(svc, animated: true, completion: nil)
+    }
+    
 }
 
 extension AuthViewController: ASAuthorizationControllerDelegate {

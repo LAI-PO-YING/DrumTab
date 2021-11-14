@@ -13,6 +13,7 @@ class CollectionPageViewController: UIViewController {
     private struct CollectionLocalUse {
         var creation: Creation
         var creater: User
+        var createrPhoto: UIImage
     }
     private var collections: [CollectionLocalUse] = [] {
         didSet {
@@ -30,6 +31,8 @@ class CollectionPageViewController: UIViewController {
         super.viewDidLoad()
         let searchController = UISearchController()
         searchController.searchResultsUpdater = self
+        searchController.searchBar.tintColor = UIColor(named: "D3")
+        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).defaultTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor(named: "D3")]
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false
 
@@ -46,8 +49,28 @@ class CollectionPageViewController: UIViewController {
                         self.firebase.fetchSpecificUser(userId: creation.userId) { result in
                             switch result {
                             case .success(let user):
-                                let collection = CollectionLocalUse(creation: creation, creater: user)
-                                self.collections.append(collection)
+                                if UserPhotoCache.userPhotoCache["\(user.userPhoto)"] == nil {
+                                    let urlStr = user.userPhoto
+                                    if let url = URL(string: urlStr),
+                                       let data = try? Data(contentsOf: url) {
+                                        let collection = CollectionLocalUse(
+                                            creation: creation,
+                                            creater: user,
+                                            createrPhoto: UIImage(data: data) ?? UIImage(systemName: "person.circle.fill")!
+                                        )
+                                        self.collections.append(collection)
+                                    } else {
+                                        let collection = CollectionLocalUse(creation: creation, creater: user, createrPhoto: UIImage(systemName: "person.circle.fill")!)
+                                        self.collections.append(collection)
+                                    }
+                                } else {
+                                    let collection = CollectionLocalUse(
+                                        creation: creation,
+                                        creater: user,
+                                        createrPhoto: UserPhotoCache.userPhotoCache["\(user.userPhoto)"] ?? UIImage(systemName: "person.circle.fill")!
+                                    )
+                                    self.collections.append(collection)
+                                }
                             case .failure(let error):
                                 print(error)
                             }
@@ -74,13 +97,13 @@ extension CollectionPageViewController: UITableViewDelegate, UITableViewDataSour
         let collection = filteredCollections[indexPath.row]
         cell.setupCell(
             creationName: collection.creation.name,
-            userImage: UIImage(systemName: "tropicalstorm")!,
+            userImage: collection.createrPhoto,
             userName: collection.creater.userName
         )
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
+        tableView.deselectRow(at: indexPath, animated: false)
 
         let selectedCreationId = filteredCollections[indexPath.row].creation.id
 

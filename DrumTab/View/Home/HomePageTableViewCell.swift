@@ -18,6 +18,7 @@ class HomePageTableViewCell: UITableViewCell {
     @IBOutlet weak var backgroundCardView: UIView!
     @IBOutlet weak var userPhotoImageView: UIImageView!
     var likeButtonPressedClosure: (()->Void) = {}
+    var photoPressedClosure: (()->Void) = {}
     override func awakeFromNib() {
         super.awakeFromNib()
         backgroundCardView.layer.cornerRadius = 5
@@ -54,5 +55,8 @@ class HomePageTableViewCell: UITableViewCell {
     @IBAction func likeButtonPressed(_ sender: UIButton) {
         likeButtonPressedClosure()
     }
-
+    @IBAction func photoPressed(_ sender: Any) {
+        photoPressedClosure()
+    }
+    
 }
