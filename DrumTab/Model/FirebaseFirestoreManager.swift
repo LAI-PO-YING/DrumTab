@@ -131,7 +131,34 @@ class FirebaseFirestoreManager {
             }
         }
     }
+    func fetchSpecificUserPosts(userId: String, completion: @escaping (Result<[Post], Error>) -> Void) {
 
+        db.collection("post").whereField("userId", isEqualTo: userId) .getDocuments() { querySnapshot, error in
+
+            if let error = error {
+                completion(.failure(error))
+            } else {
+
+                var posts = [Post]()
+
+                for document in querySnapshot!.documents {
+
+                    do {
+
+                        if let post = try document.data(as: Post.self, decoder: Firestore.Decoder()) {
+                            posts.append(post)
+                        }
+
+                    } catch {
+
+                        completion(.failure(error))
+
+                    }
+                }
+                completion(.success(posts))
+            }
+        }
+    }
     func fetchSpecificCreation(
         creationId: String,
         completion: @escaping (Result<Creation, Error>) -> Void
@@ -355,7 +382,9 @@ class FirebaseFirestoreManager {
             "userPhoto": userPhoto,
             "userPhotoId": "", 
             "likesCount": 0,
-            "aboutMe": "About me..."
+            "aboutMe": "About me...",
+            "blockList": [String](),
+            "blockBy": [String]()
         ]
 
         document.setData(data)
@@ -416,9 +445,10 @@ class FirebaseFirestoreManager {
         }
     }
     func getPersonalCreation(
+        userId: String,
         completion: @escaping (Result<[Creation], Error>) -> Void
     ) {
-        db.collection("creation").whereField("userId", isEqualTo: LocalUserData.userId).whereField("published", isEqualTo: true).getDocuments { querySnapshot, error in
+        db.collection("creation").whereField("userId", isEqualTo: userId).whereField("published", isEqualTo: true).getDocuments { querySnapshot, error in
             if let error = error {
                 completion(.failure(error))
             } else {
@@ -444,8 +474,8 @@ class FirebaseFirestoreManager {
             }
         }
     }
-    func getPersonalLikeValue(completion: @escaping (Int) -> Void) {
-        db.collection("user").whereField("userId", isEqualTo: LocalUserData.userId).getDocuments { querySnapshot, error in
+    func getPersonalLikeValue(userId: String, completion: @escaping (Int) -> Void) {
+        db.collection("user").whereField("userId", isEqualTo: userId).getDocuments { querySnapshot, error in
             if let error = error {
                 print(error)
             } else {
@@ -499,8 +529,8 @@ class FirebaseFirestoreManager {
             }
         }
     }
-    func getFollowers(completion: @escaping (Int) -> Void) {
-        db.collection("user").whereField("userId", isEqualTo: LocalUserData.userId).getDocuments { querySnapshot, error in
+    func getFollowers(userId: String, completion: @escaping (Int) -> Void) {
+        db.collection("user").whereField("userId", isEqualTo: userId).getDocuments { querySnapshot, error in
             if let error = error {
                 print(error)
             } else {
@@ -601,6 +631,102 @@ class FirebaseFirestoreManager {
                 let userDocument = self.db.collection("user").document(documentID!)
                 userDocument.updateData([
                     "aboutMe": aboutMe
+                ])
+            }
+        }
+    }
+    func addFollower(userId: String) {
+        db.collection("user").whereField("userId", isEqualTo: LocalUserData.userId).getDocuments { querySnapshot, error in
+            if let error = error {
+                print(error)
+            } else {
+                let myDocId = querySnapshot?.documents[0].documentID
+                let myDoc = self.db.collection("user").document("\(myDocId!)")
+                myDoc.updateData([
+                    "userFollow": FieldValue.arrayUnion(["\(userId)"])
+                ])
+            }
+        }
+        db.collection("user").whereField("userId", isEqualTo: userId).getDocuments { querySnapshot, error in
+            if let error = error {
+                print(error)
+            } else {
+                let myDocId = querySnapshot?.documents[0].documentID
+                let myDoc = self.db.collection("user").document("\(myDocId!)")
+                myDoc.updateData([
+                    "followBy": FieldValue.arrayUnion(["\(LocalUserData.userId)"])
+                ])
+            }
+        }
+    }
+    func removeFollower(userId: String) {
+        db.collection("user").whereField("userId", isEqualTo: LocalUserData.userId).getDocuments { querySnapshot, error in
+            if let error = error {
+                print(error)
+            } else {
+                let myDocId = querySnapshot?.documents[0].documentID
+                let myDoc = self.db.collection("user").document("\(myDocId!)")
+                myDoc.updateData([
+                    "userFollow": FieldValue.arrayRemove(["\(userId)"])
+                ])
+            }
+        }
+        db.collection("user").whereField("userId", isEqualTo: userId).getDocuments { querySnapshot, error in
+            if let error = error {
+                print(error)
+            } else {
+                let myDocId = querySnapshot?.documents[0].documentID
+                let myDoc = self.db.collection("user").document("\(myDocId!)")
+                myDoc.updateData([
+                    "followBy": FieldValue.arrayRemove(["\(LocalUserData.userId)"])
+                ])
+            }
+        }
+    }
+    func blockUser(userId: String) {
+        db.collection("user").whereField("userId", isEqualTo: LocalUserData.userId).getDocuments { querySnapshot, error in
+            if let error = error {
+                print(error)
+            } else {
+                let myDocId = querySnapshot?.documents[0].documentID
+                let myDoc = self.db.collection("user").document("\(myDocId!)")
+                myDoc.updateData([
+                    "blockList": FieldValue.arrayUnion(["\(userId)"])
+                ])
+            }
+        }
+        db.collection("user").whereField("userId", isEqualTo: userId).getDocuments { querySnapshot, error in
+            if let error = error {
+                print(error)
+            } else {
+                let myDocId = querySnapshot?.documents[0].documentID
+                let myDoc = self.db.collection("user").document("\(myDocId!)")
+                myDoc.updateData([
+                    "blockBy": FieldValue.arrayUnion(["\(LocalUserData.userId)"])
+                ])
+            }
+        }
+    }
+    func unblockUser(userId: String) {
+        db.collection("user").whereField("userId", isEqualTo: LocalUserData.userId).getDocuments { querySnapshot, error in
+            if let error = error {
+                print(error)
+            } else {
+                let myDocId = querySnapshot?.documents[0].documentID
+                let myDoc = self.db.collection("user").document("\(myDocId!)")
+                myDoc.updateData([
+                    "blockList": FieldValue.arrayRemove(["\(userId)"])
+                ])
+            }
+        }
+        db.collection("user").whereField("userId", isEqualTo: userId).getDocuments { querySnapshot, error in
+            if let error = error {
+                print(error)
+            } else {
+                let myDocId = querySnapshot?.documents[0].documentID
+                let myDoc = self.db.collection("user").document("\(myDocId!)")
+                myDoc.updateData([
+                    "blockBy": FieldValue.arrayRemove(["\(LocalUserData.userId)"])
                 ])
             }
         }

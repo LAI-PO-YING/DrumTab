@@ -62,6 +62,7 @@
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tropicalstorm" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="H0Y-0c-Ilt">
                                                     <rect key="frame" x="20" y="15" width="30" height="29.5"/>
                                                     <color key="tintColor" name="D2"/>
+                                                    <gestureRecognizers/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="30" id="LSo-b4-1jq"/>
                                                         <constraint firstAttribute="height" constant="30" id="czS-rg-ETZ"/>
@@ -107,15 +108,30 @@
                                                     </attributedString>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k56-C7-wLx">
+                                                    <rect key="frame" x="20" y="15" width="30" height="30"/>
+                                                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                    <state key="normal">
+                                                        <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="photoPressed:" destination="Lg5-1t-vv8" eventType="touchUpInside" id="MI3-PZ-qc7"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstItem="HQo-rA-51R" firstAttribute="centerY" secondItem="H0Y-0c-Ilt" secondAttribute="centerY" id="474-l7-BvP"/>
+                                                <constraint firstItem="k56-C7-wLx" firstAttribute="bottom" secondItem="H0Y-0c-Ilt" secondAttribute="bottom" id="8fe-cH-5as"/>
+                                                <constraint firstItem="k56-C7-wLx" firstAttribute="top" secondItem="H0Y-0c-Ilt" secondAttribute="top" id="BLs-AG-YQ6"/>
                                                 <constraint firstAttribute="trailing" secondItem="Ecu-XV-2Yx" secondAttribute="trailing" constant="20" id="DE8-KI-0cs"/>
                                                 <constraint firstItem="H0Y-0c-Ilt" firstAttribute="top" secondItem="40q-bd-blX" secondAttribute="top" constant="15" id="Ehe-Mu-zUK"/>
                                                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="ASg-FW-3PP" secondAttribute="trailing" constant="20" id="Ic6-M0-zWq"/>
                                                 <constraint firstAttribute="bottom" secondItem="cXL-Eb-xej" secondAttribute="bottom" constant="15" id="Nms-s4-7DK"/>
+                                                <constraint firstItem="k56-C7-wLx" firstAttribute="trailing" secondItem="H0Y-0c-Ilt" secondAttribute="trailing" id="OMm-NZ-RUs"/>
                                                 <constraint firstItem="ASg-FW-3PP" firstAttribute="top" secondItem="xLT-Uv-QMj" secondAttribute="bottom" constant="12" id="Pi8-1t-Pqt"/>
+                                                <constraint firstItem="k56-C7-wLx" firstAttribute="leading" secondItem="H0Y-0c-Ilt" secondAttribute="leading" id="Rlr-v4-78y"/>
                                                 <constraint firstAttribute="bottom" secondItem="lD0-pV-89a" secondAttribute="bottom" constant="20" id="TCw-VS-2Wh"/>
                                                 <constraint firstItem="Ecu-XV-2Yx" firstAttribute="centerY" secondItem="Dhd-tn-4fS" secondAttribute="centerY" id="TQs-8L-zlX"/>
                                                 <constraint firstItem="H0Y-0c-Ilt" firstAttribute="leading" secondItem="40q-bd-blX" secondAttribute="leading" constant="20" id="V0X-aY-WMU"/>
@@ -317,6 +333,7 @@
                                                 </view>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ljq-Mr-5ar">
                                                     <rect key="frame" x="20" y="10" width="30" height="30"/>
+                                                    <gestureRecognizers/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="30" id="DRi-Bk-SEf"/>
                                                         <constraint firstAttribute="width" constant="30" id="mpd-Wg-Uxf"/>
@@ -346,20 +363,31 @@
                                                     <color key="textColor" red="0.13333333333333333" green="0.14901960784313725" blue="0.16078431372549018" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vYO-4E-8vR">
+                                                    <rect key="frame" x="20" y="10" width="30" height="30"/>
+                                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                    <connections>
+                                                        <action selector="photoPressed:" destination="mUO-bf-nWA" eventType="touchUpInside" id="A3n-wy-VLI"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="Ljq-Mr-5ar" firstAttribute="top" secondItem="mRi-V1-KuH" secondAttribute="top" constant="10" id="2xJ-ov-LTi"/>
                                                 <constraint firstItem="Rvz-V3-2fQ" firstAttribute="leading" secondItem="mRi-V1-KuH" secondAttribute="leading" constant="5" id="5F0-hr-0vI"/>
                                                 <constraint firstItem="Rvz-V3-2fQ" firstAttribute="top" secondItem="mRi-V1-KuH" secondAttribute="top" constant="5" id="6B3-9f-nQz"/>
+                                                <constraint firstItem="vYO-4E-8vR" firstAttribute="leading" secondItem="Ljq-Mr-5ar" secondAttribute="leading" id="ETZ-HC-iH5"/>
+                                                <constraint firstItem="vYO-4E-8vR" firstAttribute="trailing" secondItem="Ljq-Mr-5ar" secondAttribute="trailing" id="IyQ-id-5AG"/>
                                                 <constraint firstItem="SKh-MY-Isq" firstAttribute="leading" secondItem="M6I-bN-PvY" secondAttribute="leading" id="Jtr-dW-9Kh"/>
                                                 <constraint firstAttribute="bottom" secondItem="Ht0-6f-4Mx" secondAttribute="bottom" constant="10" id="KCF-SG-IEP"/>
                                                 <constraint firstItem="zuF-yL-cf6" firstAttribute="bottom" secondItem="Ht0-6f-4Mx" secondAttribute="bottom" id="Qg5-1i-QI0"/>
+                                                <constraint firstItem="vYO-4E-8vR" firstAttribute="bottom" secondItem="Ljq-Mr-5ar" secondAttribute="bottom" id="SKU-TE-bGP"/>
                                                 <constraint firstItem="SKh-MY-Isq" firstAttribute="bottom" secondItem="Ljq-Mr-5ar" secondAttribute="bottom" id="UQo-HE-G3g"/>
                                                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Ht0-6f-4Mx" secondAttribute="trailing" constant="20" id="UqX-jO-yOi"/>
                                                 <constraint firstItem="M6I-bN-PvY" firstAttribute="top" secondItem="Ljq-Mr-5ar" secondAttribute="top" id="ZFX-r8-tkC"/>
                                                 <constraint firstItem="M6I-bN-PvY" firstAttribute="leading" secondItem="Ljq-Mr-5ar" secondAttribute="trailing" constant="8" id="bW0-fz-98x"/>
                                                 <constraint firstAttribute="bottom" secondItem="Rvz-V3-2fQ" secondAttribute="bottom" constant="8" id="cWD-4H-cpA"/>
                                                 <constraint firstItem="Ht0-6f-4Mx" firstAttribute="top" secondItem="Ljq-Mr-5ar" secondAttribute="bottom" constant="8" id="dvm-Kx-73n"/>
+                                                <constraint firstItem="vYO-4E-8vR" firstAttribute="top" secondItem="Ljq-Mr-5ar" secondAttribute="top" id="jvP-dv-DVd"/>
                                                 <constraint firstItem="Ht0-6f-4Mx" firstAttribute="leading" secondItem="Ljq-Mr-5ar" secondAttribute="leading" id="l0j-pH-dGF"/>
                                                 <constraint firstAttribute="trailing" secondItem="zuF-yL-cf6" secondAttribute="trailing" constant="20" id="oU9-5G-4Pg"/>
                                                 <constraint firstAttribute="trailing" secondItem="Rvz-V3-2fQ" secondAttribute="trailing" constant="5" id="qsZ-1t-QUE"/>
