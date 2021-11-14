@@ -8,6 +8,7 @@
 import UIKit
 import Lottie
 import FirebaseAuth
+import SafariServices
 
 class ProfilePageViewController: UIViewController {
     
@@ -127,7 +128,7 @@ class ProfilePageViewController: UIViewController {
             self.importRankingViewData(users: users)
             
         }
-        firebase.getPersonalCreation { result in
+        firebase.getPersonalCreation(userId: LocalUserData.userId) { result in
             switch result {
             case .success(let creations):
                 print("creation: \(creations.count)")
@@ -136,11 +137,11 @@ class ProfilePageViewController: UIViewController {
                 print(error)
             }
         }
-        firebase.getPersonalLikeValue { numberOfLikes in
+        firebase.getPersonalLikeValue(userId: LocalUserData.userId) { numberOfLikes in
             print("numberOfLikes: \(numberOfLikes)")
             self.likeValueLabel.text = "\(numberOfLikes)"
         }
-        firebase.getFollowers { numberOfFollowers in
+        firebase.getFollowers(userId: LocalUserData.userId) { numberOfFollowers in
             print("numberOfFollowers: \(numberOfFollowers)")
             self.followerValueLabel.text = "\(numberOfFollowers)"
         }
@@ -252,18 +253,45 @@ class ProfilePageViewController: UIViewController {
         controller.addAction(cancelAction)
         present(controller, animated: true, completion: nil)
     }
-    @IBAction func logoutButtonPressed(_ sender: Any) {
-        do {
-            try Auth.auth().signOut()
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let authNavController = storyboard.instantiateViewController(identifier: "AuthViewController")
-            
-            (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(authNavController)
-            print("logoutButtonPressed")
-        } catch {
-            print("Fail")
+    @IBAction func settingButtonPressed(_ sender: Any) {
+        let alert = UIAlertController(title: "Setting", message: nil, preferredStyle: .actionSheet)
+        let privacyAction = UIAlertAction(title: "Privacy policy", style: .default) { _ in
+            guard let url = URL(string: "https://www.privacypolicies.com/live/897a9283-8d29-46f8-a47b-5a5031f98f46") else { return }
+            let svc = SFSafariViewController(url: url)
+            self.present(svc, animated: true, completion: nil)
         }
+        let logoutAction = UIAlertAction(title: "Log out", style: .default) { _ in
+            do {
+                try Auth.auth().signOut()
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let authNavController = storyboard.instantiateViewController(identifier: "AuthViewController")
+                
+                (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(authNavController)
+                print("logoutButtonPressed")
+            } catch {
+                print("Fail")
+            }
+        }
+        let deleteAction = UIAlertAction(title: "Delete account", style: .destructive) { _ in
+            let deleteAlert = UIAlertController(title: "Delete account", message: "Please contact developer: 229705jack@gmail.com to delete account.", preferredStyle: .alert)
+            let deleteAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+            deleteAlert.addAction(deleteAction)
+            self.present(deleteAlert, animated: true, completion: nil)
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .default)
+        let actions: [UIAlertAction] = [
+            privacyAction,
+            logoutAction,
+            deleteAction,
+            cancelAction
+        ]
+        for action in actions {
+            alert.addAction(action)
+        }
+        
+        present(alert, animated: true, completion: nil)
     }
+    
 }
 extension ProfilePageViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(

@@ -10,6 +10,8 @@
 		300121342735339D004C4CBD /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300121332735339D004C4CBD /* UIImage+Extension.swift */; };
 		3015C3E12727A752002DD366 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3015C3E02727A752002DD366 /* Post.swift */; };
 		3015C3E32727B30E002DD366 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3015C3E22727B30E002DD366 /* User.swift */; };
+		30193AA3273E35D3009599D2 /* OtherMemberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30193AA2273E35D3009599D2 /* OtherMemberViewController.swift */; };
+		30193AA7273E3E0F009599D2 /* PersonalPostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30193AA6273E3E0F009599D2 /* PersonalPostTableViewCell.swift */; };
 		30306ADF273A51E200BCECF8 /* HeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30306ADE273A51E200BCECF8 /* HeaderCollectionReusableView.swift */; };
 		3038F2242721748B00772D2C /* SectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3038F2232721748B00772D2C /* SectionView.xib */; };
 		3038F226272174B300772D2C /* SectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3038F225272174B300772D2C /* SectionView.swift */; };
@@ -69,6 +71,8 @@
 		300121332735339D004C4CBD /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
 		3015C3E02727A752002DD366 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		3015C3E22727B30E002DD366 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		30193AA2273E35D3009599D2 /* OtherMemberViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherMemberViewController.swift; sourceTree = "<group>"; };
+		30193AA6273E3E0F009599D2 /* PersonalPostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalPostTableViewCell.swift; sourceTree = "<group>"; };
 		30306ADE273A51E200BCECF8 /* HeaderCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderCollectionReusableView.swift; sourceTree = "<group>"; };
 		3038F2232721748B00772D2C /* SectionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SectionView.xib; sourceTree = "<group>"; };
 		3038F225272174B300772D2C /* SectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionView.swift; sourceTree = "<group>"; };
@@ -240,6 +244,7 @@
 			isa = PBXGroup;
 			children = (
 				304CBE18271D34BD006B4FE2 /* ProfilePageViewController.swift */,
+				30193AA2273E35D3009599D2 /* OtherMemberViewController.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -352,6 +357,7 @@
 			isa = PBXGroup;
 			children = (
 				30FD4C0C273CCAC700FFD35A /* PersonalInfoCollectionViewCell.swift */,
+				30193AA6273E3E0F009599D2 /* PersonalPostTableViewCell.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -551,6 +557,8 @@
 				3038F226272174B300772D2C /* SectionView.swift in Sources */,
 				304CBE1F271D4458006B4FE2 /* UIView+Extension.swift in Sources */,
 				304CBE19271D34BD006B4FE2 /* ProfilePageViewController.swift in Sources */,
+				30193AA3273E35D3009599D2 /* OtherMemberViewController.swift in Sources */,
+				30193AA7273E3E0F009599D2 /* PersonalPostTableViewCell.swift in Sources */,
 				305B8B6E271FE626000E9E90 /* FirebaseFirestoreManager.swift in Sources */,
 				304CBE33271D781F006B4FE2 /* DrumKit.swift in Sources */,
 				305B8B72272008B5000E9E90 /* CreationPageTableViewCell.swift in Sources */,

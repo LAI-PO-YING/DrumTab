@@ -15,6 +15,7 @@ class CommentTableViewCell: UITableViewCell {
     @IBOutlet weak var commentLabel: UILabel!
     @IBOutlet weak var floorLabel: UILabel!
     @IBOutlet weak var backgroundCardView: UIView!
+    var photoPressedClosure: (() -> Void) = {}
     func setupCommentCell(
         image: UIImage,
         name: String,
@@ -43,5 +44,8 @@ class CommentTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
     }
-
+    @IBAction func photoPressed(_ sender: Any) {
+        photoPressedClosure()
+    }
+    
 }

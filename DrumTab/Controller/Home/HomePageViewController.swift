@@ -44,7 +44,9 @@ class HomePageViewController: UIViewController {
                 likesCount: user.likesCount,
                 userPhotoId: user.userPhotoId,
                 createdTime: user.createdTime,
-                aboutMe: user.aboutMe
+                aboutMe: user.aboutMe,
+                blockList: user.blockList,
+                blockBy: user.blockBy
             )
             let post = PostLocalUse(
                 creationId: post.creationId,
@@ -55,7 +57,11 @@ class HomePageViewController: UIViewController {
                 like: post.like,
                 creation: creation
             )
-            self.posts.append(post)
+            if LocalUserData.user!.blockList.contains(post.user.userId) || post.user.blockList.contains(LocalUserData.user!.userId) {
+                
+            } else {
+                self.posts.append(post)
+            }
         } else {
             let userLocalUse = UserLocalUse(
                 userId: user.userId,
@@ -68,7 +74,9 @@ class HomePageViewController: UIViewController {
                 likesCount: user.likesCount,
                 userPhotoId: user.userPhotoId,
                 createdTime: user.createdTime,
-                aboutMe: user.aboutMe
+                aboutMe: user.aboutMe,
+                blockList: user.blockList,
+                blockBy: user.blockBy
             )
             let post = PostLocalUse(
                 creationId: post.creationId,
@@ -79,58 +87,70 @@ class HomePageViewController: UIViewController {
                 like: post.like,
                 creation: creation
             )
-            self.posts.append(post)
+            if LocalUserData.user!.blockList.contains(post.user.userId) || post.user.blockList.contains(LocalUserData.user!.userId) {
+                
+            } else {
+                self.posts.append(post)
+            }
         }
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.es.addPullToRefresh {
-            self.firebase.fetchPosts { result in
-                switch result {
-                case .success(let posts):
-                    self.posts = []
-                    posts.forEach { post in
-                        self.firebase.fetchSpecificUser(userId: post.userId) { result in
-                            switch result {
-                            case .success(let user):
-                                self.firebase.fetchSpecificCreation(creationId: post.creationId) { result in
+        firebase.fetchSpecificUser(userId: LocalUserData.userId) { result in
+            switch result {
+            case .success(let localUser):
+                LocalUserData.user = localUser
+                self.tableView.es.addPullToRefresh {
+                    self.firebase.fetchPosts { result in
+                        switch result {
+                        case .success(let posts):
+                            self.posts = []
+                            posts.forEach { post in
+                                self.firebase.fetchSpecificUser(userId: post.userId) { result in
                                     switch result {
-                                    case .success(let creation):
-                                        self.checkCache(user: user, post: post, creation: creation)
+                                    case .success(let user):
+                                        self.firebase.fetchSpecificCreation(creationId: post.creationId) { result in
+                                            switch result {
+                                            case .success(let creation):
+                                                self.checkCache(user: user, post: post, creation: creation)
+                                            case .failure(let error):
+                                                print(error)
+                                            }
+                                        }
                                     case .failure(let error):
                                         print(error)
                                     }
-                                }
-                            case .failure(let error):
-                                print(error)
-                            }
-                        }
-                    }
-                case .failure(let error):
-                    print(error)
-                }
-            }
-            self.tableView.es.stopPullToRefresh()
-        }
-        firebase.fetchPosts { result in
-            switch result {
-            case .success(let posts):
-                posts.forEach { post in
-                    self.firebase.fetchSpecificUser(userId: post.userId) { result in
-                        switch result {
-                        case .success(let user):
-                            self.firebase.fetchSpecificCreation(creationId: post.creationId) { result in
-                                switch result {
-                                case .success(let creation):
-                                    self.checkCache(user: user, post: post, creation: creation)
-                                case .failure(let error):
-                                    print(error)
                                 }
                             }
                         case .failure(let error):
                             print(error)
                         }
+                    }
+                    self.tableView.es.stopPullToRefresh()
+                }
+                self.firebase.fetchPosts { result in
+                    switch result {
+                    case .success(let posts):
+                        posts.forEach { post in
+                            self.firebase.fetchSpecificUser(userId: post.userId) { result in
+                                switch result {
+                                case .success(let user):
+                                    self.firebase.fetchSpecificCreation(creationId: post.creationId) { result in
+                                        switch result {
+                                        case .success(let creation):
+                                            self.checkCache(user: user, post: post, creation: creation)
+                                        case .failure(let error):
+                                            print(error)
+                                        }
+                                    }
+                                case .failure(let error):
+                                    print(error)
+                                }
+                            }
+                        }
+                    case .failure(let error):
+                        print(error)
                     }
                 }
             case .failure(let error):
@@ -198,6 +218,20 @@ extension HomePageViewController: UITableViewDelegate, UITableViewDataSource {
                 posts[indexPath.row].like.append(LocalUserData.userId)
                 cell.likeButton.setImage(UIImage(systemName: "heart"), for: .normal)
                 firebase.addLike(postId: posts[indexPath.row].postId, userId: LocalUserData.userId)
+            }
+        }
+        if posts[indexPath.row].user.userId != LocalUserData.userId {
+            cell.photoPressedClosure = { [unowned self] in
+
+                let memberPageVC = UIStoryboard.profile.instantiateViewController(withIdentifier:
+                    String(describing: OtherMemberViewController.self)
+                )
+
+                guard let memberPageVC = memberPageVC as? OtherMemberViewController else { return }
+
+                memberPageVC.userId = posts[indexPath.row].user.userId
+
+                show(memberPageVC, sender: nil)
             }
         }
         return cell

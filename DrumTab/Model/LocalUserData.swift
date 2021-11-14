@@ -9,4 +9,5 @@ import Foundation
 
 class LocalUserData {
     static var userId: String = ""
+    static var user: User?
 }
