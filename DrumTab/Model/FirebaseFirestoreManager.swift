@@ -558,7 +558,7 @@ class FirebaseFirestoreManager {
     
     func uploadPhoto(image: UIImage) {
         let uniqueStr = NSUUID().uuidString
-        guard let imageData = image.jpegData(compressionQuality: 0.01) else { return }
+        guard let imageData = image.jpegData(compressionQuality: 0.15) else { return }
         storage.child("images/\(uniqueStr)").putData(imageData, metadata: nil) { _, error in
             guard error == nil else {
                 print("Upload fail. Check image data.")
