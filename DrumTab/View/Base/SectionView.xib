@@ -4,8 +4,8 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -72,49 +72,49 @@
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="US4-GZ-4CN" userLabel="Tab2LineView">
                     <rect key="frame" x="0.0" y="54.5" width="109" height="1"/>
-                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="backgroundColor" name="G1"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="1" id="ep5-RS-fGS"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dJH-Zt-C5g" userLabel="Tab3LineView">
                     <rect key="frame" x="0.0" y="65.5" width="109" height="1"/>
-                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="backgroundColor" name="G1"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="1" id="SfF-wi-dyD"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uNL-Zl-737" userLabel="Tab1LineView">
                     <rect key="frame" x="0.0" y="43.5" width="109" height="1"/>
-                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="backgroundColor" name="G1"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="1" id="LMQ-P3-8Re"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U2j-eI-0rq" userLabel="Tab4LineView">
                     <rect key="frame" x="0.0" y="76.5" width="109" height="1"/>
-                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="backgroundColor" name="G1"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="1" id="SnP-RG-mqG"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DXS-M3-fcm" userLabel="Tab5LineView">
                     <rect key="frame" x="0.0" y="87.5" width="109" height="1"/>
-                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="backgroundColor" name="G1"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="1" id="6i3-3i-Zpw"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bmB-OA-b1I" userLabel="Note1LineView">
                     <rect key="frame" x="13" y="12.5" width="1" height="17"/>
-                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="backgroundColor" name="G1"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="1" id="PyJ-b7-yRb"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ULN-dD-Z1X" userLabel="TabCrashLine1View">
                     <rect key="frame" x="4" y="32.5" width="10" height="1"/>
-                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="backgroundColor" name="G1"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="10" id="Wud-DL-w9b"/>
                         <constraint firstAttribute="height" constant="1" id="bWu-dT-cTo"/>
@@ -178,14 +178,14 @@
                 </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pF5-9m-mfl" userLabel="Note2LineView">
                     <rect key="frame" x="40.5" y="12.5" width="1" height="17"/>
-                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="backgroundColor" name="G1"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="1" id="ZSd-wB-VPM"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f6t-uI-VpI" userLabel="TabCrashLine2View">
                     <rect key="frame" x="31.5" y="32.5" width="10" height="1"/>
-                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="backgroundColor" name="G1"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="10" id="Y3E-CZ-hOA"/>
                         <constraint firstAttribute="height" constant="1" id="Yg7-Td-5P1"/>
@@ -249,14 +249,14 @@
                 </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wNd-bW-P6g" userLabel="Note3LineView">
                     <rect key="frame" x="67.5" y="12.5" width="1" height="17"/>
-                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="backgroundColor" name="G1"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="1" id="nCc-8Y-wBz"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ewW-eZ-prF" userLabel="TabCrashLine3View">
                     <rect key="frame" x="58.5" y="32.5" width="10" height="1"/>
-                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="backgroundColor" name="G1"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="1" id="9Ba-6u-Bci"/>
                         <constraint firstAttribute="width" constant="10" id="POb-1B-AgS"/>
@@ -320,14 +320,14 @@
                 </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yeP-iD-9XU" userLabel="Note4LineView">
                     <rect key="frame" x="95" y="12.5" width="1" height="18"/>
-                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="backgroundColor" name="G1"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="1" id="Qlw-Dg-czX"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lh2-98-Kjs" userLabel="TabCrashLine4View">
                     <rect key="frame" x="86" y="32.5" width="10" height="1"/>
-                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="backgroundColor" name="G1"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="10" id="Pxd-Ba-Src"/>
                         <constraint firstAttribute="height" constant="1" id="idx-xW-IPz"/>
@@ -391,28 +391,28 @@
                 </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d9Y-JN-Ju1" userLabel="EighthNoteView">
                     <rect key="frame" x="14" y="12.5" width="26.5" height="3"/>
-                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="backgroundColor" name="G1"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="3" id="HiA-sd-8u5"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZGm-db-R9t" userLabel="LeftSixteenthNoteView">
                     <rect key="frame" x="14" y="17" width="14" height="3"/>
-                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="backgroundColor" name="G1"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="3" id="GZG-L4-k9v"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7t0-1R-nuO" userLabel="RightSixteenthNoteView">
                     <rect key="frame" x="82.5" y="17" width="13.5" height="3"/>
-                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="backgroundColor" name="G1"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="3" id="jLM-Ew-piB"/>
                     </constraints>
                 </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
-            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <color key="backgroundColor" name="D3"/>
             <constraints>
                 <constraint firstItem="KYO-4m-krW" firstAttribute="centerY" secondItem="uNL-Zl-737" secondAttribute="centerY" id="1Cy-tE-wwc"/>
                 <constraint firstItem="wNd-bW-P6g" firstAttribute="trailing" secondItem="Wew-4K-1ny" secondAttribute="trailing" id="1bg-E5-GKU"/>
@@ -528,10 +528,13 @@
         </view>
     </objects>
     <resources>
-        <image name="Image" width="214" height="172"/>
-        <image name="cross" width="512" height="512"/>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
+        <image name="Image" width="205" height="160"/>
+        <image name="cross" width="346" height="346"/>
+        <namedColor name="D3">
+            <color red="0.17254901960784313" green="0.18823529411764706" blue="0.21568627450980393" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="G1">
+            <color red="0.85500001907348633" green="0.6470000147819519" blue="0.125" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>

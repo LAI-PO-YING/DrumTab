@@ -132,7 +132,7 @@
     </scenes>
     <resources>
         <namedColor name="D3">
-            <color red="0.78431372549019607" green="0.792156862745098" blue="0.84705882352941175" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.17254901960784313" green="0.18823529411764706" blue="0.21568627450980393" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

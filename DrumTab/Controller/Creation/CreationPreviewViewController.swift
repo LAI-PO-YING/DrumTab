@@ -25,7 +25,7 @@ class CreationPreviewViewController: UIViewController {
         collectionView.dataSource = self
         publishButton.backgroundColor = UIColor(named: "G1")
         publishButton.layer.cornerRadius = 5
-        saveButton.backgroundColor = UIColor(named: "D1")
+        saveButton.backgroundColor = UIColor(named: "D3")
         saveButton.layer.cornerRadius = 5
         addButton.backgroundColor = UIColor(named: "R1")
         addButton.layer.cornerRadius = 5
