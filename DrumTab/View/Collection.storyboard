@@ -35,7 +35,20 @@
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Vp-4W-I1J">
                                                     <rect key="frame" x="5" y="5" width="404" height="88"/>
+                                                    <subviews>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.20000000000000001" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="drumSet" translatesAutoresizingMaskIntoConstraints="NO" id="I3Q-Va-XSU">
+                                                            <rect key="frame" x="324" y="14" width="60" height="60"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="60" id="K3E-Bh-2Y2"/>
+                                                                <constraint firstAttribute="height" constant="60" id="yFe-Zt-7WK"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                    </subviews>
                                                     <color key="backgroundColor" name="D3"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="trailing" secondItem="I3Q-Va-XSU" secondAttribute="trailing" constant="20" id="U7P-XU-ndH"/>
+                                                        <constraint firstItem="I3Q-Va-XSU" firstAttribute="centerY" secondItem="8Vp-4W-I1J" secondAttribute="centerY" id="yok-fc-ezF"/>
+                                                    </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="layer.shadowOpacity">
                                                             <real key="value" value="0.20000000000000001"/>
@@ -46,39 +59,40 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aL4-zt-TqU">
-                                                    <rect key="frame" x="20" y="15" width="139.5" height="28"/>
+                                                    <rect key="frame" x="20" y="15" width="125.5" height="25.5"/>
                                                     <attributedString key="attributedText">
                                                         <fragment content="Creation name">
                                                             <attributes>
                                                                 <color key="NSColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                <font key="NSFont" size="20" name="STHeitiTC-Medium"/>
+                                                                <font key="NSFont" size="18" name="STHeitiTC-Medium"/>
                                                             </attributes>
                                                         </fragment>
                                                     </attributedString>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="15b-wH-QdC">
-                                                    <rect key="frame" x="20" y="48" width="69" height="35"/>
+                                                    <rect key="frame" x="20" y="45.5" width="66" height="37.5"/>
                                                     <attributedString key="attributedText">
-                                                        <fragment content="Created by:">
+                                                        <fragment content="Created by">
                                                             <attributes>
                                                                 <color key="NSColor" name="T2"/>
                                                                 <font key="NSFont" size="13" name="STHeitiTC-Light"/>
+                                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                             </attributes>
                                                         </fragment>
                                                     </attributedString>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="RZ3-6f-D1V">
-                                                    <rect key="frame" x="97" y="56.5" width="18.5" height="18.5"/>
-                                                    <color key="tintColor" name="D2"/>
+                                                    <rect key="frame" x="94" y="55" width="18.5" height="18.5"/>
+                                                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="18.5" id="9WM-eV-8BF"/>
                                                         <constraint firstAttribute="width" constant="18.5" id="s7g-54-ihk"/>
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mot-gK-4Bh">
-                                                    <rect key="frame" x="120.5" y="56.5" width="34.5" height="18.5"/>
+                                                    <rect key="frame" x="117.5" y="55" width="34.5" height="18.5"/>
                                                     <attributedString key="attributedText">
                                                         <fragment content="Name">
                                                             <attributes>
@@ -162,6 +176,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="drumSet" width="512" height="512"/>
         <namedColor name="D2">
             <color red="0.13725490196078433" green="0.15294117647058825" blue="0.16470588235294117" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

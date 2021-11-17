@@ -233,6 +233,10 @@ extension HomePageViewController: UITableViewDelegate, UITableViewDataSource {
 
                 show(memberPageVC, sender: nil)
             }
+        } else {
+            cell.photoPressedClosure = {
+                self.tabBarController?.selectedIndex = 3
+            }
         }
         return cell
     }

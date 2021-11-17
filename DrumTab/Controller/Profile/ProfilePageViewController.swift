@@ -216,7 +216,7 @@ class ProfilePageViewController: UIViewController {
     @IBAction func nameLabelPressed(_ sender: Any) {
         let controller = UIAlertController(
             title: "Update user name",
-            message: "Pleas enter your name.", preferredStyle: .alert
+            message: "Please enter your name.", preferredStyle: .alert
         )
         controller.addTextField { textField in
             textField.placeholder = "User name"
@@ -228,7 +228,7 @@ class ProfilePageViewController: UIViewController {
             }
         }
         controller.addAction(okAction)
-        let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: nil)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         controller.addAction(cancelAction)
         present(controller, animated: true, completion: nil)
         
@@ -237,7 +237,7 @@ class ProfilePageViewController: UIViewController {
     @IBAction func aboutMeLabelPressed(_ sender: Any) {
         let controller = UIAlertController(
             title: "Update about me",
-            message: "Pleas enter your introduction.", preferredStyle: .alert
+            message: "Please enter your introduction.", preferredStyle: .alert
         )
         controller.addTextField { textField in
             textField.placeholder = "About me"
@@ -249,7 +249,7 @@ class ProfilePageViewController: UIViewController {
             }
         }
         controller.addAction(okAction)
-        let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: nil)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         controller.addAction(cancelAction)
         present(controller, animated: true, completion: nil)
     }

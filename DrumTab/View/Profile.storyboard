@@ -39,11 +39,11 @@
                                 </connections>
                             </label>
                             <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pencil.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="5Jt-pL-sat">
-                                <rect key="frame" x="251.5" y="242.5" width="16" height="15"/>
+                                <rect key="frame" x="251.5" y="234.5" width="24" height="23"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="16" id="68Z-8f-MkU"/>
-                                    <constraint firstAttribute="height" constant="16" id="MDd-cX-6MM"/>
+                                    <constraint firstAttribute="width" constant="24" id="68Z-8f-MkU"/>
+                                    <constraint firstAttribute="height" constant="24" id="MDd-cX-6MM"/>
                                 </constraints>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="xDr-CQ-4ys" appends="YES" id="Vkj-OF-gDi"/>
@@ -68,9 +68,9 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yhk-gV-I7f">
-                                                <rect key="frame" x="42" y="41.5" width="51" height="18.5"/>
+                                                <rect key="frame" x="38.5" y="41.5" width="57.5" height="18.5"/>
                                                 <attributedString key="attributedText">
-                                                    <fragment content="Creation">
+                                                    <fragment content="Creations">
                                                         <attributes>
                                                             <color key="NSColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <font key="NSFont" size="13" name="STHeitiTC-Light"/>
@@ -104,9 +104,9 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1tD-Gh-nO2">
-                                                <rect key="frame" x="54.5" y="41.5" width="25" height="18.5"/>
+                                                <rect key="frame" x="51.5" y="41.5" width="31.5" height="18.5"/>
                                                 <attributedString key="attributedText">
-                                                    <fragment content="Like">
+                                                    <fragment content="Likes">
                                                         <attributes>
                                                             <color key="NSColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <font key="NSFont" size="13" name="STHeitiTC-Light"/>
@@ -140,9 +140,9 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wwt-E8-Tez">
-                                                <rect key="frame" x="42.5" y="41.5" width="50" height="18.5"/>
+                                                <rect key="frame" x="39.5" y="41.5" width="56.5" height="18.5"/>
                                                 <attributedString key="attributedText">
-                                                    <fragment content="Follower">
+                                                    <fragment content="Followers">
                                                         <attributes>
                                                             <color key="NSColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <font key="NSFont" size="13" name="STHeitiTC-Light"/>
@@ -267,12 +267,12 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LPB-Di-edr">
-                                        <rect key="frame" x="10" y="0.0" width="120" height="28"/>
+                                        <rect key="frame" x="10" y="0.0" width="112" height="28"/>
                                         <attributedString key="attributedText">
-                                            <fragment content="Leaderboard">
+                                            <fragment content="Top Creator">
                                                 <attributes>
                                                     <color key="NSColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <font key="NSFont" size="20" name="STHeitiTC-Medium"/>
+                                                    <font key="NSFont" size="20" name="STHeitiTC-Light"/>
                                                 </attributes>
                                             </fragment>
                                         </attributedString>
@@ -475,17 +475,18 @@
                                 </connections>
                             </imageView>
                             <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="camera.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="UHV-YD-vA4">
-                                <rect key="frame" x="232" y="149.5" width="25" height="24"/>
+                                <rect key="frame" x="232" y="150" width="25" height="23"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="25" id="KQg-R8-dci"/>
                                     <constraint firstAttribute="width" constant="25" id="Vh3-wA-rt5"/>
                                 </constraints>
+                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="24"/>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="wor-Pc-cLM" appends="YES" id="IgL-zk-yhS"/>
                                 </connections>
                             </imageView>
-                            <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vav-eB-WeW">
+                            <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vav-eB-WeW">
                                 <rect key="frame" x="151.5" y="182" width="111" height="34"/>
                                 <gestureRecognizers/>
                                 <attributedString key="attributedText">
@@ -502,21 +503,28 @@
                                 </connections>
                             </label>
                             <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pencil.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="zMt-ti-faI">
-                                <rect key="frame" x="262.5" y="200.5" width="16" height="15"/>
+                                <rect key="frame" x="262.5" y="193" width="24" height="22"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="16" id="aKa-87-WUc"/>
-                                    <constraint firstAttribute="width" constant="16" id="dJl-iQ-jb1"/>
+                                    <constraint firstAttribute="height" constant="24" id="aKa-87-WUc"/>
+                                    <constraint firstAttribute="width" constant="24" id="dJl-iQ-jb1"/>
                                 </constraints>
+                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="24"/>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="Ybu-St-mbG" appends="YES" id="ayH-lc-Gav"/>
                                 </connections>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ABf-Lo-bd8">
-                                <rect key="frame" x="373" y="44" width="21" height="22"/>
+                                <rect key="frame" x="364" y="44" width="30" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="30" id="XDm-di-zFU"/>
+                                    <constraint firstAttribute="height" constant="30" id="gWj-DE-4xS"/>
+                                </constraints>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" image="gearshape" catalog="system"/>
+                                <state key="normal" image="gearshape" catalog="system">
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="24"/>
+                                </state>
                                 <connections>
                                     <action selector="settingButtonPressed:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="NBC-yh-hSa"/>
                                 </connections>
@@ -530,7 +538,7 @@
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="cNX-NY-v5C" secondAttribute="trailing" id="5nk-VW-43R"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="cNX-NY-v5C" secondAttribute="bottom" id="COg-1T-8nB"/>
                             <constraint firstItem="zMt-ti-faI" firstAttribute="leading" secondItem="Vav-eB-WeW" secondAttribute="trailing" id="DrF-ic-itt"/>
-                            <constraint firstItem="2P3-sd-hD6" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="DsN-Sq-trb"/>
+                            <constraint firstItem="2P3-sd-hD6" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="25" id="DsN-Sq-trb"/>
                             <constraint firstItem="2P3-sd-hD6" firstAttribute="top" secondItem="Vav-eB-WeW" secondAttribute="bottom" constant="18" id="EuD-A7-zVz"/>
                             <constraint firstItem="zMt-ti-faI" firstAttribute="bottom" secondItem="Vav-eB-WeW" secondAttribute="bottom" id="F6R-ol-1XF"/>
                             <constraint firstItem="cNX-NY-v5C" firstAttribute="top" secondItem="Vav-eB-WeW" secondAttribute="bottom" constant="5" id="HJJ-rl-DY0"/>
@@ -543,14 +551,16 @@
                             <constraint firstItem="UHV-YD-vA4" firstAttribute="bottom" secondItem="mG5-eD-Qdd" secondAttribute="bottom" id="Wz7-Ys-WcO"/>
                             <constraint firstItem="mG5-eD-Qdd" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="30" id="YFw-zl-ljN"/>
                             <constraint firstItem="UHV-YD-vA4" firstAttribute="trailing" secondItem="mG5-eD-Qdd" secondAttribute="trailing" id="cLp-Xd-wit"/>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="2P3-sd-hD6" secondAttribute="trailing" constant="20" id="dhg-1i-aCu"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="2P3-sd-hD6" secondAttribute="trailing" constant="25" id="dhg-1i-aCu"/>
                             <constraint firstItem="E8z-3o-mpg" firstAttribute="top" secondItem="Ffq-zz-gOm" secondAttribute="bottom" constant="30" id="iQL-AJ-DrR"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="Ffq-zz-gOm" secondAttribute="trailing" constant="5" id="j3W-qe-RSy"/>
+                            <constraint firstItem="Vav-eB-WeW" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="25" id="nGE-xF-uLe"/>
                             <constraint firstItem="Ffq-zz-gOm" firstAttribute="top" secondItem="2P3-sd-hD6" secondAttribute="bottom" constant="20" id="nhD-TG-nkE"/>
                             <constraint firstItem="Ffq-zz-gOm" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="5" id="ntA-PE-QnK"/>
                             <constraint firstItem="ABf-Lo-bd8" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="opM-TY-UDh"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="ABf-Lo-bd8" secondAttribute="trailing" constant="20" id="vFC-uY-a4V"/>
                             <constraint firstItem="2P3-sd-hD6" firstAttribute="centerX" secondItem="Vav-eB-WeW" secondAttribute="centerX" id="vRg-NP-fce"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Vav-eB-WeW" secondAttribute="trailing" constant="25" id="xGb-do-ltd"/>
                         </constraints>
                     </view>
                     <connections>
@@ -776,7 +786,7 @@
                                                 <attributedString key="attributedText">
                                                     <fragment content="Loading">
                                                         <attributes>
-                                                            <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                             <font key="NSFont" size="20" name="STHeitiTC-Light"/>
                                                             <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                         </attributes>
@@ -1003,10 +1013,10 @@
             <color red="0.17254901960784313" green="0.18823529411764706" blue="0.21568627450980393" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="R1">
-            <color red="0.48600000143051147" green="0.19200000166893005" blue="0.16899999976158142" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.74265452888276839" green="0.29553338540331336" blue="0.26073637261765004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="T2">
-            <color red="0.58039215686274503" green="0.63137254901960782" blue="0.72156862745098038" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.57999998331069946" green="0.63099998235702515" blue="0.72200000286102295" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

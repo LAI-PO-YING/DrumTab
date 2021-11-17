@@ -38,7 +38,20 @@
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R5D-o2-hX8">
                                                     <rect key="frame" x="5" y="5" width="404" height="108"/>
+                                                    <subviews>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.20000000000000001" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="drumsticks" translatesAutoresizingMaskIntoConstraints="NO" id="Fpz-ub-fiW">
+                                                            <rect key="frame" x="309" y="16.5" width="75" height="75"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="75" id="OEt-8K-BAw"/>
+                                                                <constraint firstAttribute="width" secondItem="Fpz-ub-fiW" secondAttribute="height" multiplier="1:1" id="kX9-ib-rU1"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                    </subviews>
                                                     <color key="backgroundColor" name="D3"/>
+                                                    <constraints>
+                                                        <constraint firstItem="Fpz-ub-fiW" firstAttribute="centerY" secondItem="R5D-o2-hX8" secondAttribute="centerY" id="hwS-5p-2sc"/>
+                                                        <constraint firstAttribute="trailing" secondItem="Fpz-ub-fiW" secondAttribute="trailing" constant="20" id="oL3-5N-Ib6"/>
+                                                    </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="layer.shadowOpacity">
                                                             <real key="value" value="0.20000000000000001"/>
@@ -49,19 +62,19 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pkA-kr-KIg">
-                                                    <rect key="frame" x="20" y="10" width="50" height="28"/>
+                                                    <rect key="frame" x="20" y="10" width="46.5" height="25.5"/>
                                                     <attributedString key="attributedText">
                                                         <fragment content="Label">
                                                             <attributes>
-                                                                <color key="NSColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                <font key="NSFont" size="20" name="STHeitiTC-Light"/>
+                                                                <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <font key="NSFont" size="18" name="STHeitiTC-Medium"/>
                                                             </attributes>
                                                         </fragment>
                                                     </attributedString>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J8f-al-k4O">
-                                                    <rect key="frame" x="20" y="67.5" width="32.5" height="40.5"/>
+                                                    <rect key="frame" x="20" y="65" width="32.5" height="43"/>
                                                     <attributedString key="attributedText">
                                                         <fragment content="Label">
                                                             <attributes>
@@ -73,7 +86,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hvB-fl-4ua">
-                                                    <rect key="frame" x="20" y="46" width="32.5" height="18.5"/>
+                                                    <rect key="frame" x="20" y="43.5" width="32.5" height="18.5"/>
                                                     <attributedString key="attributedText">
                                                         <fragment content="Label">
                                                             <attributes>
@@ -85,7 +98,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="efx-bt-WkK">
-                                                    <rect key="frame" x="67.5" y="46" width="32.5" height="18.5"/>
+                                                    <rect key="frame" x="67.5" y="43.5" width="32.5" height="18.5"/>
                                                     <attributedString key="attributedText">
                                                         <fragment content="Label">
                                                             <attributes>
@@ -167,7 +180,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="oB2-gO-eoj">
-                                <rect key="frame" x="0.0" y="127" width="414" height="185"/>
+                                <rect key="frame" x="0.0" y="127" width="414" height="214"/>
                                 <color key="backgroundColor" name="D2"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="brL-ya-sgj">
                                     <size key="itemSize" width="128" height="67"/>
@@ -188,19 +201,19 @@
                                 </cells>
                             </collectionView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hIj-Cj-poN">
-                                <rect key="frame" x="0.0" y="312" width="414" height="550"/>
+                                <rect key="frame" x="0.0" y="341" width="414" height="521"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="550" id="r15-aO-cOG"/>
+                                    <constraint firstAttribute="height" constant="521" id="r15-aO-cOG"/>
                                 </constraints>
                                 <connections>
                                     <segue destination="DbM-bt-uel" kind="embed" id="OLe-70-CMH"/>
                                 </connections>
                             </containerView>
                             <button opaque="NO" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="13R-cA-EaJ">
-                                <rect key="frame" x="16" y="98" width="44" height="44"/>
+                                <rect key="frame" x="16" y="88" width="31" height="31"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="9VC-Y1-9g6"/>
-                                    <constraint firstAttribute="width" constant="44" id="Lqy-gS-kZK"/>
+                                    <constraint firstAttribute="height" constant="31" id="9VC-Y1-9g6"/>
+                                    <constraint firstAttribute="width" constant="31" id="Lqy-gS-kZK"/>
                                 </constraints>
                                 <state key="normal" image="Icons_44px_Back01"/>
                                 <connections>
@@ -260,7 +273,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jfA-dQ-EQz">
-                                <rect key="frame" x="20" y="270" width="31" height="32"/>
+                                <rect key="frame" x="20" y="299" width="31" height="32"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <inset key="contentEdgeInsets" minX="10" minY="5" maxX="10" maxY="5"/>
@@ -292,7 +305,7 @@
                             <constraint firstItem="5Te-xY-gfh" firstAttribute="leading" secondItem="pJx-md-TRv" secondAttribute="trailing" constant="15" id="PJl-3B-bnF"/>
                             <constraint firstItem="hIj-Cj-poN" firstAttribute="top" secondItem="oB2-gO-eoj" secondAttribute="bottom" id="PT3-pA-xqF"/>
                             <constraint firstItem="oB2-gO-eoj" firstAttribute="top" secondItem="5Te-xY-gfh" secondAttribute="bottom" constant="8" id="PyD-AV-R2H"/>
-                            <constraint firstItem="13R-cA-EaJ" firstAttribute="top" secondItem="iqR-rv-5ab" secondAttribute="top" constant="10" id="UeY-m7-Bas"/>
+                            <constraint firstItem="13R-cA-EaJ" firstAttribute="centerY" secondItem="pJx-md-TRv" secondAttribute="centerY" id="UI2-3L-Sba"/>
                             <constraint firstItem="iqR-rv-5ab" firstAttribute="trailing" secondItem="5Te-xY-gfh" secondAttribute="trailing" constant="20" id="ZLo-uO-2Qs"/>
                             <constraint firstItem="pJx-md-TRv" firstAttribute="top" secondItem="iqR-rv-5ab" secondAttribute="top" id="eRB-dh-bvs"/>
                             <constraint firstItem="5Te-xY-gfh" firstAttribute="top" secondItem="iqR-rv-5ab" secondAttribute="top" id="j3G-7d-f27"/>
@@ -338,67 +351,67 @@
             <objects>
                 <viewController id="DbM-bt-uel" customClass="RecordPageViewController" customModule="DrumTab" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kuu-hY-0oE">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="550"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="521"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q8H-MH-op0">
-                                <rect key="frame" x="0.0" y="50" width="414" height="1"/>
+                                <rect key="frame" x="0.0" y="32" width="414" height="1"/>
                                 <color key="backgroundColor" name="D2"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="C9v-LX-ob6"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NsT-k4-pyy" customClass="SelectionView" customModule="DrumTab" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="61" width="414" height="60"/>
+                                <rect key="frame" x="0.0" y="43" width="414" height="60"/>
                                 <color key="backgroundColor" systemColor="systemBrownColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="P6P-ca-Qrr"/>
                                 </constraints>
                             </view>
                             <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MIm-Ud-Qx3" customClass="SelectionView" customModule="DrumTab" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="121" width="414" height="60"/>
+                                <rect key="frame" x="0.0" y="103" width="414" height="60"/>
                                 <color key="backgroundColor" systemColor="systemBrownColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="pkm-Vr-mc2"/>
                                 </constraints>
                             </view>
                             <view tag="2" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6bX-6Z-YUd" customClass="SelectionView" customModule="DrumTab" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="181" width="414" height="60"/>
+                                <rect key="frame" x="0.0" y="163" width="414" height="60"/>
                                 <color key="backgroundColor" systemColor="systemBrownColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="7a5-u3-ddO"/>
                                 </constraints>
                             </view>
                             <view tag="3" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I4D-D9-OE4" customClass="SelectionView" customModule="DrumTab" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="241" width="414" height="60"/>
+                                <rect key="frame" x="0.0" y="223" width="414" height="60"/>
                                 <color key="backgroundColor" systemColor="systemBrownColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="RPT-On-UqF"/>
                                 </constraints>
                             </view>
                             <view tag="4" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e1i-pe-jHa" customClass="SelectionView" customModule="DrumTab" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="301" width="414" height="60"/>
+                                <rect key="frame" x="0.0" y="283" width="414" height="60"/>
                                 <color key="backgroundColor" systemColor="systemBrownColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="aED-Fw-zkW"/>
                                 </constraints>
                             </view>
                             <view tag="5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FVc-2t-gXX" customClass="SelectionView" customModule="DrumTab" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="361" width="414" height="60"/>
+                                <rect key="frame" x="0.0" y="343" width="414" height="60"/>
                                 <color key="backgroundColor" systemColor="systemBrownColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="oRE-0k-t3t"/>
                                 </constraints>
                             </view>
                             <view tag="6" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gV8-xI-Ywg" customClass="SelectionView" customModule="DrumTab" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="421" width="414" height="60"/>
+                                <rect key="frame" x="0.0" y="403" width="414" height="60"/>
                                 <color key="backgroundColor" systemColor="systemBrownColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="79w-w8-heo"/>
                                 </constraints>
                             </view>
                             <view tag="7" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="35V-Lc-k9p" customClass="SelectionView" customModule="DrumTab" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="481" width="414" height="60"/>
+                                <rect key="frame" x="0.0" y="463" width="414" height="60"/>
                                 <color key="backgroundColor" systemColor="systemBrownColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="ysF-ED-Efp"/>
@@ -436,11 +449,14 @@
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="gKg-4Q-oyt">
-                                <rect key="frame" x="25" y="8" width="89.5" height="34"/>
+                                <rect key="frame" x="20" y="8" width="97.5" height="34"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="120" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="orx-x8-983">
-                                        <rect key="frame" x="0.0" y="0.0" width="52" height="34"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="60" height="34"/>
                                         <color key="backgroundColor" name="D2"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="60" id="Fzj-2g-QoL"/>
+                                        </constraints>
                                         <color key="textColor" red="0.85490196078431369" green="0.82745098039215681" blue="0.83529411764705885" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
@@ -452,12 +468,9 @@
                                                 <size key="value" width="0.0" height="5"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <action selector="bpmChanged:" destination="DbM-bt-uel" eventType="editingChanged" id="rcH-Nv-r34"/>
-                                        </connections>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PAV-F9-54t">
-                                        <rect key="frame" x="59" y="0.0" width="30.5" height="34"/>
+                                        <rect key="frame" x="67" y="0.0" width="30.5" height="34"/>
                                         <attributedString key="attributedText">
                                             <fragment content="BPM">
                                                 <attributes>
@@ -499,12 +512,12 @@
                             <constraint firstItem="gKg-4Q-oyt" firstAttribute="centerY" secondItem="JxK-ew-A7q" secondAttribute="centerY" id="Poa-OG-S92"/>
                             <constraint firstItem="gV8-xI-Ywg" firstAttribute="top" secondItem="FVc-2t-gXX" secondAttribute="bottom" id="ROQ-DR-s3z"/>
                             <constraint firstAttribute="trailing" secondItem="I4D-D9-OE4" secondAttribute="trailing" id="RRG-oD-Eaf"/>
-                            <constraint firstItem="Q8H-MH-op0" firstAttribute="top" secondItem="kuu-hY-0oE" secondAttribute="top" constant="50" id="RdC-cZ-gQ3"/>
+                            <constraint firstItem="Q8H-MH-op0" firstAttribute="top" secondItem="kuu-hY-0oE" secondAttribute="top" constant="32" id="RdC-cZ-gQ3"/>
                             <constraint firstItem="6bX-6Z-YUd" firstAttribute="top" secondItem="MIm-Ud-Qx3" secondAttribute="bottom" id="WMh-7P-PzC"/>
                             <constraint firstItem="NsT-k4-pyy" firstAttribute="top" secondItem="Q8H-MH-op0" secondAttribute="bottom" constant="10" id="Xln-Ie-OXc"/>
                             <constraint firstItem="JxK-ew-A7q" firstAttribute="centerY" secondItem="kuu-hY-0oE" secondAttribute="top" constant="25" id="YIu-Yt-0LS"/>
                             <constraint firstItem="e1i-pe-jHa" firstAttribute="leading" secondItem="kuu-hY-0oE" secondAttribute="leading" id="Yfg-tk-rvw"/>
-                            <constraint firstItem="gKg-4Q-oyt" firstAttribute="leading" secondItem="kuu-hY-0oE" secondAttribute="leading" constant="25" id="Z7g-Z8-tDB"/>
+                            <constraint firstItem="gKg-4Q-oyt" firstAttribute="leading" secondItem="kuu-hY-0oE" secondAttribute="leading" constant="20" id="Z7g-Z8-tDB"/>
                             <constraint firstItem="NsT-k4-pyy" firstAttribute="leading" secondItem="kuu-hY-0oE" secondAttribute="leading" id="acu-Gh-rUQ"/>
                             <constraint firstAttribute="trailing" secondItem="6bX-6Z-YUd" secondAttribute="trailing" id="b9x-CR-Xyd"/>
                             <constraint firstItem="ixO-V1-aZW" firstAttribute="leading" secondItem="kuu-hY-0oE" secondAttribute="leading" id="c1K-gr-Ssf"/>
@@ -541,6 +554,7 @@
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Icons_44px_Back01" width="44" height="44"/>
+        <image name="drumsticks" width="512" height="512"/>
         <image name="play.fill" catalog="system" width="116" height="128"/>
         <image name="plus" catalog="system" width="128" height="113"/>
         <namedColor name="D2">
@@ -553,7 +567,7 @@
             <color red="0.85500001907348633" green="0.6470000147819519" blue="0.125" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="T2">
-            <color red="0.58039215686274503" green="0.63137254901960782" blue="0.72156862745098038" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.57999998331069946" green="0.63099998235702515" blue="0.72200000286102295" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemBrownColor">
             <color red="0.63529411764705879" green="0.51764705882352946" blue="0.36862745098039218" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
