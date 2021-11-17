@@ -13,6 +13,7 @@ class CollectionTableViewCell: UITableViewCell {
     @IBOutlet weak var creationNameLabel: UILabel!
     @IBOutlet weak var userImageView: UIImageView!
     @IBOutlet weak var userNameLabel: UILabel!
+    let customSelectedBackgroundView = UIView()
     func setupCell(creationName: String, userImage: UIImage,  userName: String) {
         backgroundCardView.layer.cornerRadius = 5
         creationNameLabel.text = creationName
@@ -22,7 +23,8 @@ class CollectionTableViewCell: UITableViewCell {
     }
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        customSelectedBackgroundView.backgroundColor = UIColor(named: "D2")
+        selectedBackgroundView = customSelectedBackgroundView
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

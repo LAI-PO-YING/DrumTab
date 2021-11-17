@@ -31,7 +31,7 @@ class CollectionPageViewController: UIViewController {
         super.viewDidLoad()
         let searchController = UISearchController()
         searchController.searchResultsUpdater = self
-        searchController.searchBar.tintColor = UIColor(named: "D3")
+        searchController.searchBar.tintColor = UIColor.white
         UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).defaultTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false

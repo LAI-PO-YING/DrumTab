@@ -8,6 +8,6 @@
 import Foundation
 
 class LocalUserData {
-    static var userId: String = ""
+    static var userId: String = "zC39hlX2IFM6bk2rllAAelUmu9f2"
     static var user: User?
 }
