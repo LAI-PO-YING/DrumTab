@@ -39,7 +39,7 @@ class HomePageTableViewCell: UITableViewCell {
         userPhotoImageView.image = image
         userPhotoImageView.layer.cornerRadius = 15
         nameLabel.text = userName
-        creationNameLabel.text = "作品名稱：\(creationName)"
+        creationNameLabel.text = "\(creationName)"
         contentLabel.text = content
         timeLabel.text = dateFormatter.string(from: date)
         likeLabel.text = "\(like)"

@@ -126,13 +126,13 @@ class SelectionView: UIView {
 
         imageView.translatesAutoresizingMaskIntoConstraints = false
 
-        imageView.topAnchor.constraint(equalTo: topAnchor, constant: 5).isActive = true
+        imageView.topAnchor.constraint(equalTo: topAnchor, constant: 15).isActive = true
 
-        imageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 5).isActive = true
+        imageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15).isActive = true
 
-        imageView.widthAnchor.constraint(equalToConstant: 50).isActive = true
+        imageView.widthAnchor.constraint(equalToConstant: 30).isActive = true
 
-        imageView.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        imageView.heightAnchor.constraint(equalToConstant: 30).isActive = true
 
     }
 
@@ -209,7 +209,7 @@ class SelectionViewCell: UICollectionViewCell {
 
     override var isSelected: Bool {
         didSet {
-            colorView.backgroundColor = isSelected ? UIColor(named: "T1") : UIColor(named: "D3")
+            colorView.backgroundColor = isSelected ? UIColor(named: "G1") : UIColor(named: "D3")
         }
     }
 
@@ -228,5 +228,8 @@ class SelectionViewCell: UICollectionViewCell {
     private func initView() {
 
         stickSubView(colorView)
+        colorView.layer.shadowOffset = CGSize(width: 0, height: 5)
+        colorView.layer.shadowOpacity = 0.2
+        colorView.layer.cornerRadius = 5
     }
 }
