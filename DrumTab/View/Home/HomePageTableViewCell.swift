@@ -17,11 +17,17 @@ class HomePageTableViewCell: UITableViewCell {
     @IBOutlet weak var likeButton: UIButton!
     @IBOutlet weak var backgroundCardView: UIView!
     @IBOutlet weak var userPhotoImageView: UIImageView!
+    @IBOutlet weak var moreButton: UIButton!
     var likeButtonPressedClosure: (()->Void) = {}
     var photoPressedClosure: (()->Void) = {}
+    var moreButtonPressedClosure: (()->Void) = {}
+    let customSelectedBackgroundView = UIView()
     override func awakeFromNib() {
         super.awakeFromNib()
         backgroundCardView.layer.cornerRadius = 5
+        moreButton.transform = moreButton.transform.rotated(by: .pi / 2)
+        customSelectedBackgroundView.backgroundColor = UIColor(named: "D2")
+        selectedBackgroundView = customSelectedBackgroundView
     }
     func setupCell(
         userName: String,
@@ -39,7 +45,7 @@ class HomePageTableViewCell: UITableViewCell {
         userPhotoImageView.image = image
         userPhotoImageView.layer.cornerRadius = 15
         nameLabel.text = userName
-        creationNameLabel.text = "作品名稱：\(creationName)"
+        creationNameLabel.text = "\(creationName)"
         contentLabel.text = content
         timeLabel.text = dateFormatter.string(from: date)
         likeLabel.text = "\(like)"
@@ -57,6 +63,9 @@ class HomePageTableViewCell: UITableViewCell {
     }
     @IBAction func photoPressed(_ sender: Any) {
         photoPressedClosure()
+    }
+    @IBAction func moreButtonPressed(_ sender: Any) {
+        moreButtonPressedClosure()
     }
     
 }

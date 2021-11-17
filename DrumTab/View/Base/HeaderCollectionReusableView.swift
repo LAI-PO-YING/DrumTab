@@ -13,7 +13,7 @@ class HeaderCollectionReusableView: UICollectionReusableView {
 
         let view = UIView()
 
-        view.backgroundColor = UIColor(named: "D3")
+        view.backgroundColor = UIColor(named: "G1")
 
         return view
     }()

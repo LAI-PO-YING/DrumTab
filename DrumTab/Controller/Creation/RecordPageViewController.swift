@@ -26,8 +26,10 @@ class RecordPageViewController: UIViewController {
     var creationId: String?
     var beatInASection = 4
     var numberOfSection = 1
-    var bpm = 120
+    var bpm = 60
     var speed: Double = 0
+    var picker = UIPickerView()
+    var pickerData = [String]()
     
     @IBOutlet weak var hiHatSelectionView: SelectionView!
     @IBOutlet weak var snareSelectionView: SelectionView!
@@ -39,12 +41,23 @@ class RecordPageViewController: UIViewController {
     @IBOutlet weak var rideSelectionView: SelectionView!
     
     @IBOutlet weak var bpmTextField: UITextField!
+    @objc func closeKeyboard(){
+        self.view.endEditing(true)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         let notificationName = Notification.Name("dataChanged")
         NotificationCenter.default.addObserver(self, selector: #selector(reloadSelectionView), name: notificationName, object: nil)
         setupSelectionViewDelegate()
         bpmTextField.text = "\(bpm)"
+        for bpm in 60...140 {
+            pickerData.append("\(bpm)")
+        }
+        picker.delegate = self
+        picker.dataSource = self
+        bpmTextField.inputView = picker
+//        let tap = UITapGestureRecognizer(target: self, action: #selector(closeKeyboard))
+//        view.addGestureRecognizer(tap)
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -178,13 +191,7 @@ class RecordPageViewController: UIViewController {
             bpmTextField.isEnabled = true
         }
     }
-    
-    @IBAction func bpmChanged(_ sender: Any) {
-        guard let bpmStr = bpmTextField.text,
-              let bpm = Int(bpmStr) else { return }
-        self.bpm = bpm
-        delegate?.didChangedBPM(bpm: bpm)
-    }
+
     @IBAction func submitButtonPressed(_ sender: Any) {
 
     }
@@ -353,4 +360,24 @@ extension RecordPageViewController: SelectionViewDatasource {
         }
     }
     
+}
+
+extension RecordPageViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        1
+    }
+
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        pickerData.count
+    }
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        bpmTextField.text = pickerData[row]
+        guard let bpmStr = bpmTextField.text,
+              let bpm = Int(bpmStr) else { return }
+        self.bpm = bpm
+        delegate?.didChangedBPM(bpm: bpm)
+    }
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        pickerData[row]
+    }
 }

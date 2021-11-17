@@ -15,8 +15,10 @@ class CommentTableViewCell: UITableViewCell {
     @IBOutlet weak var commentLabel: UILabel!
     @IBOutlet weak var floorLabel: UILabel!
     @IBOutlet weak var backgroundCardView: UIView!
+    @IBOutlet weak var moreButton: UIButton!
     var photoPressedClosure: (() -> Void) = {}
-    func setupCommentCell(
+    var moreButtonPressedClosure: (() -> Void) = {}
+func setupCommentCell(
         image: UIImage,
         name: String,
         time: String,
@@ -38,6 +40,7 @@ class CommentTableViewCell: UITableViewCell {
     }
     override func awakeFromNib() {
         super.awakeFromNib()
+        moreButton.transform = moreButton.transform.rotated(by: .pi / 2)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -46,6 +49,9 @@ class CommentTableViewCell: UITableViewCell {
     }
     @IBAction func photoPressed(_ sender: Any) {
         photoPressedClosure()
+    }
+    @IBAction func moreButtonPressed(_ sender: Any) {
+        moreButtonPressedClosure()
     }
     
 }

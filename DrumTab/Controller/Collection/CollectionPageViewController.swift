@@ -31,8 +31,8 @@ class CollectionPageViewController: UIViewController {
         super.viewDidLoad()
         let searchController = UISearchController()
         searchController.searchResultsUpdater = self
-        searchController.searchBar.tintColor = UIColor(named: "D3")
-        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).defaultTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor(named: "D3")]
+        searchController.searchBar.tintColor = UIColor.white
+        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).defaultTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false
 
@@ -40,6 +40,7 @@ class CollectionPageViewController: UIViewController {
         tableView.dataSource = self
     }
     override func viewWillAppear(_ animated: Bool) {
+        navigationController?.setNavigationBarHidden(false, animated: true)
         collections = []
         firebase.fetchCollections { collectionIDs in
             collectionIDs.forEach { collectionID in
@@ -81,6 +82,9 @@ class CollectionPageViewController: UIViewController {
                 }
             }
         }
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        navigationController?.setNavigationBarHidden(true, animated: true)
     }
 }
 

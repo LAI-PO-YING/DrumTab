@@ -8,6 +8,10 @@
 import UIKit
 import ESPullToRefresh
 
+protocol PreviewPageViewControllerDelegate: AnyObject {
+    func didPressBlock(blockId: String)
+}
+
 class PreviewPageViewController: UIViewController {
     @IBOutlet weak var creationNameLabel: UILabel!
     @IBOutlet weak var addInToCollectionButton: UIButton!
@@ -20,6 +24,7 @@ class PreviewPageViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var addInCollectionButton: UIButton!
+    weak var delegate: PreviewPageViewControllerDelegate?
     private struct CreationComment {
         var userId: String
         var userBlockList: [String]
@@ -401,6 +406,33 @@ extension PreviewPageViewController: UITableViewDelegate, UITableViewDataSource 
                 memberPageVC.userId = comments[indexPath.row].userId
                 
                 show(memberPageVC, sender: nil)
+            }
+        }
+        if comments[indexPath.row].userId == LocalUserData.userId {
+            cell.moreButton.isHidden = true
+        } else {
+            cell.moreButton.isHidden = false
+            cell.moreButtonPressedClosure = { [unowned self] in
+                let alert = UIAlertController(title: "檢舉並封鎖 \(comments[indexPath.row].userName)的留言", message: nil, preferredStyle: .actionSheet)
+                let blockAction = UIAlertAction(title: "Block", style: .destructive) { _ in
+                    self.firebase.blockUser(userId: comments[indexPath.row].userId)
+                    LocalUserData.user?.blockList.append(comments[indexPath.row].userId)
+                    delegate?.didPressBlock(blockId: comments[indexPath.row].userId)
+                    let updateComments = comments.filter {
+                        $0.userId != comments[indexPath.row].userId
+                    }
+                    comments = updateComments
+                }
+                let cancelAction = UIAlertAction(title: "Cancel", style: .default)
+                let actions: [UIAlertAction] = [
+                    blockAction,
+                    cancelAction
+                ]
+                for action in actions {
+                    alert.addAction(action)
+                }
+                
+                present(alert, animated: true, completion: nil)
             }
         }
         return cell

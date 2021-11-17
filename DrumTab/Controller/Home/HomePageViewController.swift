@@ -171,6 +171,7 @@ class HomePageViewController: UIViewController {
         }
 
         destinationVC.creationId = posts[currentSelectedRow].creationId
+        destinationVC.delegate = self
         self.currentSelectedRow = nil
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -220,6 +221,33 @@ extension HomePageViewController: UITableViewDelegate, UITableViewDataSource {
                 firebase.addLike(postId: posts[indexPath.row].postId, userId: LocalUserData.userId)
             }
         }
+        if posts[indexPath.row].user.userId == LocalUserData.userId {
+            cell.moreButton.isHidden = true
+        } else {
+            cell.moreButton.isHidden = false
+            cell.moreButtonPressedClosure = { [unowned self] in
+                let alert = UIAlertController(title: "檢舉並封鎖 \(posts[indexPath.row].user.userName)的貼文", message: nil, preferredStyle: .actionSheet)
+                let blockAction = UIAlertAction(title: "Block", style: .destructive) { _ in
+                    self.firebase.blockUser(userId: posts[indexPath.row].user.userId)
+                    LocalUserData.user?.blockList.append(posts[indexPath.row].user.userId)
+                    let updatePosts = posts.filter {
+                        $0.user.userId != posts[indexPath.row].user.userId
+                    }
+                    posts = updatePosts
+                }
+                let cancelAction = UIAlertAction(title: "Cancel", style: .default)
+                let actions: [UIAlertAction] = [
+                    blockAction,
+                    cancelAction
+                ]
+                for action in actions {
+                    alert.addAction(action)
+                }
+                
+                present(alert, animated: true, completion: nil)
+            }
+        }
+        
         if posts[indexPath.row].user.userId != LocalUserData.userId {
             cell.photoPressedClosure = { [unowned self] in
 
@@ -233,6 +261,10 @@ extension HomePageViewController: UITableViewDelegate, UITableViewDataSource {
 
                 show(memberPageVC, sender: nil)
             }
+        } else {
+            cell.photoPressedClosure = {
+                self.tabBarController?.selectedIndex = 3
+            }
         }
         return cell
     }
@@ -242,4 +274,13 @@ extension HomePageViewController: UITableViewDelegate, UITableViewDataSource {
         performSegue(withIdentifier: "FromHomePage", sender: nil)
     }
 
+}
+
+extension HomePageViewController: PreviewPageViewControllerDelegate {
+    func didPressBlock(blockId: String) {
+        let updatePosts = posts.filter {
+            $0.user.userId != blockId
+        }
+        posts = updatePosts
+    }
 }

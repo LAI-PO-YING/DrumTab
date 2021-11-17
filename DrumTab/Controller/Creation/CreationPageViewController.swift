@@ -23,7 +23,7 @@ class CreationPageViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white, NSAttributedString.Key.font: UIFont(name: "STHeitiTC-Light", size: 20)!]
         tableView.delegate = self
         tableView.dataSource = self
         tableView.es.addPullToRefresh { [unowned self] in
