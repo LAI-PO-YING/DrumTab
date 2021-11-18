@@ -193,14 +193,6 @@ extension HomePageViewController: UITableViewDelegate, UITableViewDataSource {
         } else {
             cell.likeButton.setImage(UIImage(systemName: "heart"), for: .normal)
         }
-//        let urlStr = posts[indexPath.row].user.userPhoto
-//        var image = UIImage(systemName: "heart")
-//        if let url = URL(string: urlStr),
-//           let data = try? Data(contentsOf: url) {
-//
-//            image = UIImage(data: data)
-//
-//        }
         cell.setupCell(
             userName: posts[indexPath.row].user.userName,
             creationName: posts[indexPath.row].creation.name,
@@ -243,7 +235,13 @@ extension HomePageViewController: UITableViewDelegate, UITableViewDataSource {
                 for action in actions {
                     alert.addAction(action)
                 }
-                
+                if let popoverController = alert.popoverPresentationController {
+                    
+                    popoverController.sourceView = self.view
+                    popoverController.sourceRect = CGRect(x: self.view.bounds.midX, y: self.view.bounds.midY, width: 0, height: 0)
+                    popoverController.permittedArrowDirections = []
+                    
+                }
                 present(alert, animated: true, completion: nil)
             }
         }
