@@ -251,6 +251,7 @@ extension CreationPreviewViewController: UICollectionViewDelegate, UICollectionV
 extension CreationPreviewViewController: RecordPageViewControllerDelegate {
     func didPressedPlayButton(speed: Double, start: Bool) {
         if start {
+            collectionView.scrollToItem(at: [0,0], at: .top, animated: true)
             startTimer(speed: speed)
         } else {
             stopTimer()

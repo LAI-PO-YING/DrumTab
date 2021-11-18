@@ -392,6 +392,7 @@
 				309D3643271D085D00C1D667 /* Resources */,
 				304CBDFE271D12E7006B4FE2 /* ShellScript */,
 				5145EBB865EA3116853B9DBC /* [CP] Embed Pods Frameworks */,
+				30922E492745F9180055AF51 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -484,6 +485,25 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
+		};
+		30922E492745F9180055AF51 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${TARGET_NAME}",
+				"$(SRCROOT)/$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/FirebaseCrashlytics/run\"\n";
 		};
 		4DAECA11DF36C638F0582E1D /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -715,6 +735,7 @@
 				CODE_SIGN_ENTITLEMENTS = DrumTab/DrumTab.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = UXUPKH75MD;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DrumTab/Info.plist;
@@ -749,6 +770,7 @@
 				CODE_SIGN_ENTITLEMENTS = DrumTab/DrumTab.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = UXUPKH75MD;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DrumTab/Info.plist;
