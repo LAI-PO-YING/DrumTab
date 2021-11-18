@@ -14,11 +14,32 @@ class CreationPreviewViewController: UIViewController {
     var creationId: String?
     var numberOfSection: Int?
     let firebaseFirestoreManager = FirebaseFirestoreManager.shared
+    var autoScrollTimer: Timer?
     @IBOutlet weak var collectionView: UICollectionView!
     
     @IBOutlet weak var addButton: UIButton!
     @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var publishButton: UIButton!
+    func startTimer (speed: Double) {
+        guard autoScrollTimer == nil else { return }
+
+        autoScrollTimer = Timer.scheduledTimer(
+            timeInterval: speed*4,
+            target: self,
+            selector: #selector(autoScroll),
+            userInfo: nil,
+            repeats: true
+        )
+        RunLoop.current.add(self.autoScrollTimer!, forMode: .common)
+    }
+    func stopTimer() {
+        autoScrollTimer?.invalidate()
+        autoScrollTimer = nil
+        DrumKit.index = 0
+    }
+    @objc func autoScroll() {
+        collectionView.scrollToItem(at: [0, DrumKit.index/4], at: .top, animated: true)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.delegate = self
@@ -67,6 +88,7 @@ class CreationPreviewViewController: UIViewController {
         DrumKit.ride += DrumKit.ride[firstIndext...lastIndex]
         numberOfSection! += 1
         collectionView.reloadData()
+        collectionView.scrollToItem(at: [0, DrumKit.hiHat.count/4 - 1], at: .bottom, animated: true)
         NotificationCenter.default.post(name: NSNotification.Name("dataChanged"), object: nil)
     }
     @IBAction func saveButtonPressed(_ sender: Any) {
@@ -227,6 +249,14 @@ extension CreationPreviewViewController: UICollectionViewDelegate, UICollectionV
 }
 
 extension CreationPreviewViewController: RecordPageViewControllerDelegate {
+    func didPressedPlayButton(speed: Double, start: Bool) {
+        if start {
+            startTimer(speed: speed)
+        } else {
+            stopTimer()
+        }
+    }
+    
     func didChangedBPM(bpm: Int) {
         self.bpm = bpm
     }

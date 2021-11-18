@@ -76,7 +76,7 @@ class PreviewPageViewController: UIViewController {
             userInfo: nil,
             repeats: true
         )
-        RunLoop.current.add(self.playTimer!, forMode: .common)
+        RunLoop.current.add(self.autoScrollTimer!, forMode: .common)
     }
     
     func stopTimer() {

@@ -26,7 +26,7 @@ class PersonalPostTableViewCell: UITableViewCell {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy/MM/dd HH:mm"
         // setup cell
-        creationNameLabel.text = "作品名稱：\(creationName)"
+        creationNameLabel.text = "\(creationName)"
         contentLabel.text = content
         timeLabel.text = dateFormatter.string(from: date)
         likeLabel.text = "\(like)"
