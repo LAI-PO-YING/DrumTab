@@ -11,6 +11,7 @@ protocol RecordPageViewControllerDelegate: AnyObject {
     func didChangeSelectedStatus(index: Int)
     func didPressedSubmitButton()
     func didChangedBPM(bpm: Int)
+    func didPressedPlayButton(speed: Double, start: Bool)
 }
 
 class RecordPageViewController: UIViewController {
@@ -181,11 +182,13 @@ class RecordPageViewController: UIViewController {
         speed = 60.0 / Double(bpm) / Double(beatInASection)
         if timerIndex == 1 {
             startTimer()
+            self.delegate?.didPressedPlayButton(speed: speed * 4, start: true)
             timerIndex += 1
             sender.setImage(UIImage(systemName: "pause.fill"), for: .normal)
             bpmTextField.isEnabled = false
         } else {
             stopTimer()
+            self.delegate?.didPressedPlayButton(speed: speed * 4, start: false)
             timerIndex = 0
             sender.setImage(UIImage(systemName: "play.fill"), for: .normal)
             bpmTextField.isEnabled = true

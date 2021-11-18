@@ -15,4 +15,5 @@ pod 'ESPullToRefresh'
 pod 'lottie-ios'
 pod 'Firebase/Auth'
 pod 'Firebase/Storage'
+pod 'Firebase/Crashlytics'
 end
