@@ -149,14 +149,6 @@ class ProfilePageViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //        let animationView = AnimationView(name: "loadingAnimation")
-        //        animationView.frame = CGRect(x: 0, y: 0, width: 400, height: 400)
-        //        animationView.center = self.view.center
-        //        animationView.contentMode = .scaleAspectFill
-        //        view.addSubview(animationView)
-        //        animationView.loopMode = .loop
-        //        animationView.backgroundBehavior = .pauseAndRestore
-        //        animationView.play()
         firebase.fetchSpecificUser(userId: LocalUserData.userId) { result in
             switch result {
             case .success(let user):

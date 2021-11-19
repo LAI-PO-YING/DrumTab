@@ -44,6 +44,7 @@
 		308173112723E06B0002C86D /* drumTom2.wav in Resources */ = {isa = PBXBuildFile; fileRef = 308173102723E06A0002C86D /* drumTom2.wav */; };
 		308173132723E0F20002C86D /* drumRide.wav in Resources */ = {isa = PBXBuildFile; fileRef = 308173122723E0F20002C86D /* drumRide.wav */; };
 		308173152723E8910002C86D /* PreviewCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308173142723E8910002C86D /* PreviewCollectionViewCell.swift */; };
+		30922E4B27466E080055AF51 /* LoadingAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30922E4A27466E080055AF51 /* LoadingAnimation.swift */; };
 		309D3649271D085D00C1D667 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309D3648271D085D00C1D667 /* AppDelegate.swift */; };
 		309D364B271D085D00C1D667 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309D364A271D085D00C1D667 /* SceneDelegate.swift */; };
 		309D3650271D085D00C1D667 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 309D364E271D085D00C1D667 /* Main.storyboard */; };
@@ -105,6 +106,7 @@
 		308173102723E06A0002C86D /* drumTom2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = drumTom2.wav; sourceTree = "<group>"; };
 		308173122723E0F20002C86D /* drumRide.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = drumRide.wav; sourceTree = "<group>"; };
 		308173142723E8910002C86D /* PreviewCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewCollectionViewCell.swift; sourceTree = "<group>"; };
+		30922E4A27466E080055AF51 /* LoadingAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingAnimation.swift; sourceTree = "<group>"; };
 		309D3645271D085D00C1D667 /* DrumTab.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DrumTab.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		309D3648271D085D00C1D667 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		309D364A271D085D00C1D667 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -289,6 +291,7 @@
 				3015C3E02727A752002DD366 /* Post.swift */,
 				3015C3E22727B30E002DD366 /* User.swift */,
 				30EEF06027312AA100D545E0 /* LocalUserData.swift */,
+				30922E4A27466E080055AF51 /* LoadingAnimation.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -581,6 +584,7 @@
 				30193AA7273E3E0F009599D2 /* PersonalPostTableViewCell.swift in Sources */,
 				305B8B6E271FE626000E9E90 /* FirebaseFirestoreManager.swift in Sources */,
 				304CBE33271D781F006B4FE2 /* DrumKit.swift in Sources */,
+				30922E4B27466E080055AF51 /* LoadingAnimation.swift in Sources */,
 				305B8B72272008B5000E9E90 /* CreationPageTableViewCell.swift in Sources */,
 				300121342735339D004C4CBD /* UIImage+Extension.swift in Sources */,
 				3015C3E12727A752002DD366 /* Post.swift in Sources */,
