@@ -37,7 +37,7 @@
 		304CBE31271D75B7006B4FE2 /* drumFloorTom.wav in Resources */ = {isa = PBXBuildFile; fileRef = 304CBE2A271D75B7006B4FE2 /* drumFloorTom.wav */; };
 		304CBE33271D781F006B4FE2 /* DrumKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304CBE32271D781F006B4FE2 /* DrumKit.swift */; };
 		305561C12747A1480079A59D /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305561C02747A1480079A59D /* UIImageView+Extension.swift */; };
-		305561C32747A87E0079A59D /* loadingAnimation.json in Resources */ = {isa = PBXBuildFile; fileRef = 305561C22747A87E0079A59D /* loadingAnimation.json */; };
+		305561C92747F8790079A59D /* loadingAnimation.json in Resources */ = {isa = PBXBuildFile; fileRef = 305561C82747F8790079A59D /* loadingAnimation.json */; };
 		305B8B6C271FE4ED000E9E90 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 305B8B6B271FE4ED000E9E90 /* GoogleService-Info.plist */; };
 		305B8B6E271FE626000E9E90 /* FirebaseFirestoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305B8B6D271FE626000E9E90 /* FirebaseFirestoreManager.swift */; };
 		305B8B70271FFFD2000E9E90 /* Creation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305B8B6F271FFFD2000E9E90 /* Creation.swift */; };
@@ -100,7 +100,7 @@
 		304CBE2A271D75B7006B4FE2 /* drumFloorTom.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = drumFloorTom.wav; sourceTree = "<group>"; };
 		304CBE32271D781F006B4FE2 /* DrumKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrumKit.swift; sourceTree = "<group>"; };
 		305561C02747A1480079A59D /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
-		305561C22747A87E0079A59D /* loadingAnimation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loadingAnimation.json; sourceTree = "<group>"; };
+		305561C82747F8790079A59D /* loadingAnimation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loadingAnimation.json; sourceTree = "<group>"; };
 		305B8B6B271FE4ED000E9E90 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		305B8B6D271FE626000E9E90 /* FirebaseFirestoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseFirestoreManager.swift; sourceTree = "<group>"; };
 		305B8B6F271FFFD2000E9E90 /* Creation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Creation.swift; sourceTree = "<group>"; };
@@ -211,8 +211,8 @@
 			isa = PBXGroup;
 			children = (
 				304CBE23271D6F44006B4FE2 /* Sounds */,
-				305561C22747A87E0079A59D /* loadingAnimation.json */,
 				309D3651271D085E00C1D667 /* Assets.xcassets */,
+				305561C82747F8790079A59D /* loadingAnimation.json */,
 				30B15A102733AD8300E11D2A /* intro.mp4 */,
 			);
 			path = Resource;
@@ -456,9 +456,9 @@
 				304CBE2D271D75B7006B4FE2 /* drumOpenHiHat.wav in Resources */,
 				304CBE0E271D33F2006B4FE2 /* Home.storyboard in Resources */,
 				304CBE30271D75B7006B4FE2 /* drumBass.wav in Resources */,
+				305561C92747F8790079A59D /* loadingAnimation.json in Resources */,
 				304CBE2F271D75B7006B4FE2 /* drumCrash.wav in Resources */,
 				304CBE2C271D75B7006B4FE2 /* drumSnare.wav in Resources */,
-				305561C32747A87E0079A59D /* loadingAnimation.json in Resources */,
 				309D3652271D085E00C1D667 /* Assets.xcassets in Resources */,
 				30B15A112733AD8600E11D2A /* intro.mp4 in Resources */,
 				309D3650271D085D00C1D667 /* Main.storyboard in Resources */,

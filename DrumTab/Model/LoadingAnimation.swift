@@ -13,7 +13,7 @@ class LoadingAnimationManager {
 
     static let shared = LoadingAnimationManager()
     func startLoading(target: UIViewController, animationView: AnimationView) {
-        animationView.frame = CGRect(x: 0, y: 0, width: 400, height: 400)
+        animationView.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
         animationView.center = target.view.center
         animationView.contentMode = .scaleAspectFill
         target.view.addSubview(animationView)
