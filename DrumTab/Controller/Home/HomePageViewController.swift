@@ -7,18 +7,22 @@
 
 import UIKit
 import ESPullToRefresh
+import Lottie
 
 class HomePageViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     let firebase = FirebaseFirestoreManager.shared
     var currentSelectedRow: Int?
+    let animationView = AnimationView(name: "loadingAnimation")
+    let lottie = LoadingAnimationManager.shared
+    let dispatchGroup = DispatchGroup()
     
     var posts: [PostLocalUse] = [] {
         didSet {
-            let result = posts.sorted { $0.postTime > $1.postTime }
-            posts = result
-            tableView.reloadData()
+//            let result = posts.sorted { $0.postTime > $1.postTime }
+//            posts = result
+//            tableView.reloadData()
         }
     }
     
@@ -97,19 +101,23 @@ class HomePageViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        dispatchGroup.enter()
         firebase.fetchSpecificUser(userId: LocalUserData.userId) { result in
             switch result {
             case .success(let localUser):
                 LocalUserData.user = localUser
                 self.tableView.es.addPullToRefresh {
+                    self.dispatchGroup.enter()
                     self.firebase.fetchPosts { result in
                         switch result {
                         case .success(let posts):
                             self.posts = []
                             posts.forEach { post in
+                                self.dispatchGroup.enter()
                                 self.firebase.fetchSpecificUser(userId: post.userId) { result in
                                     switch result {
                                     case .success(let user):
+                                        self.dispatchGroup.enter()
                                         self.firebase.fetchSpecificCreation(creationId: post.creationId) { result in
                                             switch result {
                                             case .success(let creation):
@@ -117,25 +125,36 @@ class HomePageViewController: UIViewController {
                                             case .failure(let error):
                                                 print(error)
                                             }
+                                            self.dispatchGroup.leave()
                                         }
                                     case .failure(let error):
                                         print(error)
                                     }
+                                    self.dispatchGroup.leave()
                                 }
                             }
                         case .failure(let error):
                             print(error)
                         }
+                        self.dispatchGroup.leave()
                     }
-                    self.tableView.es.stopPullToRefresh()
+                    self.dispatchGroup.notify(queue: .main) {
+                        let result = self.posts.sorted { $0.postTime > $1.postTime }
+                        self.posts = result
+                        self.tableView.reloadData()
+                        self.tableView.es.stopPullToRefresh()
+                    }
                 }
+                self.dispatchGroup.enter()
                 self.firebase.fetchPosts { result in
                     switch result {
                     case .success(let posts):
                         posts.forEach { post in
+                            self.dispatchGroup.enter()
                             self.firebase.fetchSpecificUser(userId: post.userId) { result in
                                 switch result {
                                 case .success(let user):
+                                    self.dispatchGroup.enter()
                                     self.firebase.fetchSpecificCreation(creationId: post.creationId) { result in
                                         switch result {
                                         case .success(let creation):
@@ -143,23 +162,32 @@ class HomePageViewController: UIViewController {
                                         case .failure(let error):
                                             print(error)
                                         }
+                                        self.dispatchGroup.leave()
                                     }
                                 case .failure(let error):
                                     print(error)
                                 }
+                                self.dispatchGroup.leave()
                             }
                         }
                     case .failure(let error):
                         print(error)
                     }
+                    self.dispatchGroup.leave()
                 }
             case .failure(let error):
                 print(error)
             }
+            self.dispatchGroup.leave()
         }
         
         tableView.delegate = self
         tableView.dataSource = self
+        dispatchGroup.notify(queue: .main) {
+            let result = self.posts.sorted { $0.postTime > $1.postTime }
+            self.posts = result
+            self.tableView.reloadData()
+        }
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -280,5 +308,6 @@ extension HomePageViewController: PreviewPageViewControllerDelegate {
             $0.user.userId != blockId
         }
         posts = updatePosts
+        tableView.reloadData()
     }
 }

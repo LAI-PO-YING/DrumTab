@@ -12,8 +12,7 @@ import Lottie
 class LoadingAnimationManager {
 
     static let shared = LoadingAnimationManager()
-    func startLoading(target: UIViewController) {
-        let animationView = AnimationView(name: "loadingAnimation")
+    func startLoading(target: UIViewController, animationView: AnimationView) {
         animationView.frame = CGRect(x: 0, y: 0, width: 400, height: 400)
         animationView.center = target.view.center
         animationView.contentMode = .scaleAspectFill
