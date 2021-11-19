@@ -124,6 +124,12 @@ class AuthViewController: UIViewController {
         let svc = SFSafariViewController(url: url)
         self.present(svc, animated: true, completion: nil)
     }
+    @IBAction func eulaButtonPressed(_ sender: Any) {
+        guard let url = URL(string: "https://www.apple.com/legal/internet-services/itunes/dev/stdeula/") else { return }
+        let svc = SFSafariViewController(url: url)
+        self.present(svc, animated: true, completion: nil)
+    }
+    
     
 }
 

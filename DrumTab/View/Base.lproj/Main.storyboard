@@ -29,20 +29,40 @@
                                     <constraint firstAttribute="width" constant="300" id="bBg-4u-Faq"/>
                                 </constraints>
                             </view>
-                            <stackView opaque="NO" contentMode="scaleToFill" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="GZA-eM-8HY">
-                                <rect key="frame" x="95.5" y="812" width="223" height="21"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Br4-Cc-1jB">
+                                <rect key="frame" x="79" y="732" width="256" height="31"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DgN-N7-zhi">
-                                        <rect key="frame" x="0.0" y="0.0" width="40" height="21"/>
-                                        <fontDescription key="fontDescription" name="Palatino-Roman" family="Palatino" pointSize="8"/>
-                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                        <state key="normal" title="隱私權政策"/>
-                                        <connections>
-                                            <action selector="privacyPolicyButtonPressed:" destination="ekU-pQ-n7E" eventType="touchUpInside" id="ZXx-xm-dic"/>
-                                        </connections>
-                                    </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="- 創建帳戶或登錄後，即表示您同意我們的隱私政策" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jeV-aP-GIC">
-                                        <rect key="frame" x="42" y="0.0" width="181" height="21"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="GZA-eM-8HY">
+                                        <rect key="frame" x="66" y="0.0" width="124.5" height="22"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u9w-48-VUY">
+                                                <rect key="frame" x="0.0" y="0.0" width="72" height="22"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="8"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal" title="Apple標準許可協議"/>
+                                                <connections>
+                                                    <action selector="eulaButtonPressed:" destination="ekU-pQ-n7E" eventType="touchUpInside" id="BFZ-3B-aMW"/>
+                                                </connections>
+                                            </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="、" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oZ2-in-cG2">
+                                                <rect key="frame" x="74" y="0.0" width="8.5" height="22"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="8"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DgN-N7-zhi">
+                                                <rect key="frame" x="84.5" y="0.0" width="40" height="22"/>
+                                                <fontDescription key="fontDescription" name="Palatino-Roman" family="Palatino" pointSize="8"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal" title="隱私權政策"/>
+                                                <connections>
+                                                    <action selector="privacyPolicyButtonPressed:" destination="ekU-pQ-n7E" eventType="touchUpInside" id="ZXx-xm-dic"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="創建帳戶或登錄後，即表示您同意我們的隱私政策與Apple 標準許可協議" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jeV-aP-GIC">
+                                        <rect key="frame" x="0.0" y="22" width="256" height="9"/>
                                         <fontDescription key="fontDescription" name="Palatino-Roman" family="Palatino" pointSize="8"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -65,17 +85,17 @@
                         <viewLayoutGuide key="safeArea" id="l6K-We-5Wp"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="GZA-eM-8HY" firstAttribute="centerX" secondItem="kvQ-9D-pN8" secondAttribute="centerX" id="3JS-c1-Imu"/>
                             <constraint firstItem="l6K-We-5Wp" firstAttribute="trailing" secondItem="csS-Px-ohk" secondAttribute="trailing" id="4by-RC-s0v"/>
                             <constraint firstItem="csS-Px-ohk" firstAttribute="leading" secondItem="l6K-We-5Wp" secondAttribute="leading" id="6iI-m1-CzA"/>
                             <constraint firstItem="JMK-cl-v91" firstAttribute="centerY" secondItem="l6K-We-5Wp" secondAttribute="centerY" constant="-100" id="9Qf-dw-o6D"/>
-                            <constraint firstItem="GZA-eM-8HY" firstAttribute="top" secondItem="kvQ-9D-pN8" secondAttribute="bottom" id="DHs-4w-SpE"/>
+                            <constraint firstItem="Br4-Cc-1jB" firstAttribute="centerX" secondItem="kvQ-9D-pN8" secondAttribute="centerX" id="CSP-oO-UJp"/>
                             <constraint firstItem="l6K-We-5Wp" firstAttribute="trailing" secondItem="JMK-cl-v91" secondAttribute="trailing" id="FIu-VA-iTi"/>
                             <constraint firstAttribute="bottom" secondItem="csS-Px-ohk" secondAttribute="bottom" id="Hou-zQ-JOM"/>
                             <constraint firstItem="JMK-cl-v91" firstAttribute="leading" secondItem="l6K-We-5Wp" secondAttribute="leading" id="Kib-4a-mtX"/>
                             <constraint firstItem="JMK-cl-v91" firstAttribute="centerX" secondItem="l6K-We-5Wp" secondAttribute="centerX" id="P77-py-gqt"/>
                             <constraint firstItem="kvQ-9D-pN8" firstAttribute="centerX" secondItem="l6K-We-5Wp" secondAttribute="centerX" id="PXc-8T-Sge"/>
                             <constraint firstItem="csS-Px-ohk" firstAttribute="top" secondItem="WrX-tJ-SKN" secondAttribute="top" id="SsL-tu-v1l"/>
+                            <constraint firstItem="kvQ-9D-pN8" firstAttribute="top" secondItem="Br4-Cc-1jB" secondAttribute="bottom" constant="5" id="V4M-Ch-Gt7"/>
                             <constraint firstItem="l6K-We-5Wp" firstAttribute="bottom" secondItem="kvQ-9D-pN8" secondAttribute="bottom" constant="50" id="Vw9-5T-UgP"/>
                             <constraint firstItem="PsH-Lr-FNa" firstAttribute="leading" secondItem="l6K-We-5Wp" secondAttribute="leading" id="njE-lw-IMr"/>
                             <constraint firstItem="PsH-Lr-FNa" firstAttribute="trailing" secondItem="l6K-We-5Wp" secondAttribute="trailing" id="sNF-Zc-jl8"/>
