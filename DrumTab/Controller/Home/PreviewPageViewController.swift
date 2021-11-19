@@ -413,8 +413,8 @@ extension PreviewPageViewController: UITableViewDelegate, UITableViewDataSource 
         } else {
             cell.moreButton.isHidden = false
             cell.moreButtonPressedClosure = { [unowned self] in
-                let alert = UIAlertController(title: "檢舉並封鎖 \(comments[indexPath.row].userName)的留言", message: nil, preferredStyle: .actionSheet)
-                let blockAction = UIAlertAction(title: "Block", style: .destructive) { _ in
+                let alert = UIAlertController(title: "檢舉並封鎖 \(comments[indexPath.row].userName)的留言。封鎖後您將看不到關於\(comments[indexPath.row].userName)的任何貼文及留言。", message: nil, preferredStyle: .actionSheet)
+                let blockAction = UIAlertAction(title: "封鎖", style: .destructive) { _ in
                     self.firebase.blockUser(userId: comments[indexPath.row].userId)
                     LocalUserData.user?.blockList.append(comments[indexPath.row].userId)
                     delegate?.didPressBlock(blockId: comments[indexPath.row].userId)
@@ -423,7 +423,7 @@ extension PreviewPageViewController: UITableViewDelegate, UITableViewDataSource 
                     }
                     comments = updateComments
                 }
-                let cancelAction = UIAlertAction(title: "Cancel", style: .default)
+                let cancelAction = UIAlertAction(title: "取消", style: .default)
                 let actions: [UIAlertAction] = [
                     blockAction,
                     cancelAction

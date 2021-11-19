@@ -218,8 +218,12 @@ extension HomePageViewController: UITableViewDelegate, UITableViewDataSource {
         } else {
             cell.moreButton.isHidden = false
             cell.moreButtonPressedClosure = { [unowned self] in
-                let alert = UIAlertController(title: "檢舉並封鎖 \(posts[indexPath.row].user.userName)的貼文", message: nil, preferredStyle: .actionSheet)
-                let blockAction = UIAlertAction(title: "Block", style: .destructive) { _ in
+                let alert = UIAlertController(
+                    title: "檢舉並封鎖 \(posts[indexPath.row].user.userName)的貼文。封鎖後您將看不到關於\(posts[indexPath.row].user.userName)的任何貼文及留言。",
+                    message: nil,
+                    preferredStyle: .actionSheet
+                )
+                let blockAction = UIAlertAction(title: "封鎖", style: .destructive) { _ in
                     self.firebase.blockUser(userId: posts[indexPath.row].user.userId)
                     LocalUserData.user?.blockList.append(posts[indexPath.row].user.userId)
                     let updatePosts = posts.filter {
@@ -227,7 +231,7 @@ extension HomePageViewController: UITableViewDelegate, UITableViewDataSource {
                     }
                     posts = updatePosts
                 }
-                let cancelAction = UIAlertAction(title: "Cancel", style: .default)
+                let cancelAction = UIAlertAction(title: "取消", style: .default)
                 let actions: [UIAlertAction] = [
                     blockAction,
                     cancelAction
