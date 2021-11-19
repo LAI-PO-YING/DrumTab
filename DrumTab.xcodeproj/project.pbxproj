@@ -15,7 +15,6 @@
 		30306ADF273A51E200BCECF8 /* HeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30306ADE273A51E200BCECF8 /* HeaderCollectionReusableView.swift */; };
 		3038F2242721748B00772D2C /* SectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3038F2232721748B00772D2C /* SectionView.xib */; };
 		3038F226272174B300772D2C /* SectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3038F225272174B300772D2C /* SectionView.swift */; };
-		3049DD812726B29300B3CB19 /* loadingAnimation.json in Resources */ = {isa = PBXBuildFile; fileRef = 3049DD802726B29300B3CB19 /* loadingAnimation.json */; };
 		3049DD832726BB1400B3CB19 /* HomePageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3049DD822726BB1400B3CB19 /* HomePageTableViewCell.swift */; };
 		304CBE00271D1D22006B4FE2 /* UIStoryboard+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304CBDFF271D1D22006B4FE2 /* UIStoryboard+Extension.swift */; };
 		304CBE03271D1F71006B4FE2 /* DTTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304CBE02271D1F71006B4FE2 /* DTTabBarViewController.swift */; };
@@ -37,6 +36,8 @@
 		304CBE30271D75B7006B4FE2 /* drumBass.wav in Resources */ = {isa = PBXBuildFile; fileRef = 304CBE29271D75B7006B4FE2 /* drumBass.wav */; };
 		304CBE31271D75B7006B4FE2 /* drumFloorTom.wav in Resources */ = {isa = PBXBuildFile; fileRef = 304CBE2A271D75B7006B4FE2 /* drumFloorTom.wav */; };
 		304CBE33271D781F006B4FE2 /* DrumKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304CBE32271D781F006B4FE2 /* DrumKit.swift */; };
+		305561C12747A1480079A59D /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305561C02747A1480079A59D /* UIImageView+Extension.swift */; };
+		305561C32747A87E0079A59D /* loadingAnimation.json in Resources */ = {isa = PBXBuildFile; fileRef = 305561C22747A87E0079A59D /* loadingAnimation.json */; };
 		305B8B6C271FE4ED000E9E90 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 305B8B6B271FE4ED000E9E90 /* GoogleService-Info.plist */; };
 		305B8B6E271FE626000E9E90 /* FirebaseFirestoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305B8B6D271FE626000E9E90 /* FirebaseFirestoreManager.swift */; };
 		305B8B70271FFFD2000E9E90 /* Creation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305B8B6F271FFFD2000E9E90 /* Creation.swift */; };
@@ -77,7 +78,6 @@
 		30306ADE273A51E200BCECF8 /* HeaderCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderCollectionReusableView.swift; sourceTree = "<group>"; };
 		3038F2232721748B00772D2C /* SectionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SectionView.xib; sourceTree = "<group>"; };
 		3038F225272174B300772D2C /* SectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionView.swift; sourceTree = "<group>"; };
-		3049DD802726B29300B3CB19 /* loadingAnimation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loadingAnimation.json; sourceTree = "<group>"; };
 		3049DD822726BB1400B3CB19 /* HomePageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageTableViewCell.swift; sourceTree = "<group>"; };
 		304CBDFF271D1D22006B4FE2 /* UIStoryboard+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStoryboard+Extension.swift"; sourceTree = "<group>"; };
 		304CBE02271D1F71006B4FE2 /* DTTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTTabBarViewController.swift; sourceTree = "<group>"; };
@@ -99,6 +99,8 @@
 		304CBE29271D75B7006B4FE2 /* drumBass.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = drumBass.wav; sourceTree = "<group>"; };
 		304CBE2A271D75B7006B4FE2 /* drumFloorTom.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = drumFloorTom.wav; sourceTree = "<group>"; };
 		304CBE32271D781F006B4FE2 /* DrumKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrumKit.swift; sourceTree = "<group>"; };
+		305561C02747A1480079A59D /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
+		305561C22747A87E0079A59D /* loadingAnimation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loadingAnimation.json; sourceTree = "<group>"; };
 		305B8B6B271FE4ED000E9E90 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		305B8B6D271FE626000E9E90 /* FirebaseFirestoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseFirestoreManager.swift; sourceTree = "<group>"; };
 		305B8B6F271FFFD2000E9E90 /* Creation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Creation.swift; sourceTree = "<group>"; };
@@ -161,6 +163,7 @@
 				304CBE1E271D4458006B4FE2 /* UIView+Extension.swift */,
 				30B15A122733EBED00E11D2A /* UIButton+Extension.swift */,
 				300121332735339D004C4CBD /* UIImage+Extension.swift */,
+				305561C02747A1480079A59D /* UIImageView+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -208,7 +211,7 @@
 			isa = PBXGroup;
 			children = (
 				304CBE23271D6F44006B4FE2 /* Sounds */,
-				3049DD802726B29300B3CB19 /* loadingAnimation.json */,
+				305561C22747A87E0079A59D /* loadingAnimation.json */,
 				309D3651271D085E00C1D667 /* Assets.xcassets */,
 				30B15A102733AD8300E11D2A /* intro.mp4 */,
 			);
@@ -455,13 +458,13 @@
 				304CBE30271D75B7006B4FE2 /* drumBass.wav in Resources */,
 				304CBE2F271D75B7006B4FE2 /* drumCrash.wav in Resources */,
 				304CBE2C271D75B7006B4FE2 /* drumSnare.wav in Resources */,
+				305561C32747A87E0079A59D /* loadingAnimation.json in Resources */,
 				309D3652271D085E00C1D667 /* Assets.xcassets in Resources */,
 				30B15A112733AD8600E11D2A /* intro.mp4 in Resources */,
 				309D3650271D085D00C1D667 /* Main.storyboard in Resources */,
 				30ABCD942730E75400126875 /* PersonalInfoView.xib in Resources */,
 				30ABCD902730CEA200126875 /* RankingView.xib in Resources */,
 				308173132723E0F20002C86D /* drumRide.wav in Resources */,
-				3049DD812726B29300B3CB19 /* loadingAnimation.json in Resources */,
 				304CBE2E271D75B7006B4FE2 /* drumTom1.wav in Resources */,
 				304CBE12271D3424006B4FE2 /* Profile.storyboard in Resources */,
 				304CBE31271D75B7006B4FE2 /* drumFloorTom.wav in Resources */,
@@ -584,6 +587,7 @@
 				30193AA7273E3E0F009599D2 /* PersonalPostTableViewCell.swift in Sources */,
 				305B8B6E271FE626000E9E90 /* FirebaseFirestoreManager.swift in Sources */,
 				304CBE33271D781F006B4FE2 /* DrumKit.swift in Sources */,
+				305561C12747A1480079A59D /* UIImageView+Extension.swift in Sources */,
 				30922E4B27466E080055AF51 /* LoadingAnimation.swift in Sources */,
 				305B8B72272008B5000E9E90 /* CreationPageTableViewCell.swift in Sources */,
 				300121342735339D004C4CBD /* UIImage+Extension.swift in Sources */,

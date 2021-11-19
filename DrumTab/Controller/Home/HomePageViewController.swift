@@ -14,7 +14,7 @@ class HomePageViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     let firebase = FirebaseFirestoreManager.shared
     var currentSelectedRow: Int?
-    let animationView = AnimationView(name: "loadingAnimation")
+    let loadingAnimationView = AnimationView(name: "loadingAnimation")
     let lottie = LoadingAnimationManager.shared
     let dispatchGroup = DispatchGroup()
     
@@ -30,42 +30,52 @@ class HomePageViewController: UIViewController {
         if UserPhotoCache.userPhotoCache["\(user.userPhoto)"] == nil {
             let urlStr = user.userPhoto
             var image = UIImage(systemName: "person.circle.fill")
-            if let url = URL(string: urlStr),
-               let data = try? Data(contentsOf: url) {
-                
-                image = UIImage(data: data)
-                UserPhotoCache.userPhotoCache["\(user.userPhoto)"] = image
-                
+            if let url = URL(string: urlStr) {
+                dispatchGroup.enter()
+                URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) in
+
+                    DispatchQueue.main.async {
+                        if let data = data {
+                            if let downloadedImage = UIImage(data: data) {
+                                
+                                image = downloadedImage
+                                UserPhotoCache.userPhotoCache["\(user.userPhoto)"] = image
+                            }
+                        }
+                        let userLocalUse = UserLocalUse(
+                            userId: user.userId,
+                            userName: user.userName,
+                            userEmail: user.userEmail,
+                            userPhoto: image ?? UIImage(systemName: "person.circle.fill")!,
+                            userCollection: user.userCollection,
+                            userFollow: user.userFollow,
+                            followBy: user.followBy,
+                            likesCount: user.likesCount,
+                            userPhotoId: user.userPhotoId,
+                            createdTime: user.createdTime,
+                            aboutMe: user.aboutMe,
+                            blockList: user.blockList,
+                            blockBy: user.blockBy
+                        )
+                        let post = PostLocalUse(
+                            creationId: post.creationId,
+                            postTime: post.postTime,
+                            postId: post.postId,
+                            user: userLocalUse,
+                            content: post.content,
+                            like: post.like,
+                            creation: creation
+                        )
+                        if LocalUserData.user!.blockList.contains(post.user.userId) || post.user.blockList.contains(LocalUserData.user!.userId) {
+                            
+                        } else {
+                            self.posts.append(post)
+                        }
+                        self.dispatchGroup.leave()
+                    }
+                }).resume()
             }
-            let userLocalUse = UserLocalUse(
-                userId: user.userId,
-                userName: user.userName,
-                userEmail: user.userEmail,
-                userPhoto: image ?? UIImage(systemName: "person.circle.fill")!,
-                userCollection: user.userCollection,
-                userFollow: user.userFollow,
-                followBy: user.followBy,
-                likesCount: user.likesCount,
-                userPhotoId: user.userPhotoId,
-                createdTime: user.createdTime,
-                aboutMe: user.aboutMe,
-                blockList: user.blockList,
-                blockBy: user.blockBy
-            )
-            let post = PostLocalUse(
-                creationId: post.creationId,
-                postTime: post.postTime,
-                postId: post.postId,
-                user: userLocalUse,
-                content: post.content,
-                like: post.like,
-                creation: creation
-            )
-            if LocalUserData.user!.blockList.contains(post.user.userId) || post.user.blockList.contains(LocalUserData.user!.userId) {
-                
-            } else {
-                self.posts.append(post)
-            }
+            
         } else {
             let userLocalUse = UserLocalUse(
                 userId: user.userId,
@@ -101,6 +111,7 @@ class HomePageViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        lottie.startLoading(target: self, animationView: loadingAnimationView)
         dispatchGroup.enter()
         firebase.fetchSpecificUser(userId: LocalUserData.userId) { result in
             switch result {
@@ -187,6 +198,7 @@ class HomePageViewController: UIViewController {
             let result = self.posts.sorted { $0.postTime > $1.postTime }
             self.posts = result
             self.tableView.reloadData()
+            self.loadingAnimationView.removeFromSuperview()
         }
     }
 
