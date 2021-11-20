@@ -7,18 +7,22 @@
 
 import UIKit
 import ESPullToRefresh
+import Lottie
 
 class HomePageViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     let firebase = FirebaseFirestoreManager.shared
     var currentSelectedRow: Int?
+    let loadingAnimationView = AnimationView(name: "loadingAnimation")
+    let lottie = LoadingAnimationManager.shared
+    let dispatchGroup = DispatchGroup()
     
     var posts: [PostLocalUse] = [] {
         didSet {
-            let result = posts.sorted { $0.postTime > $1.postTime }
-            posts = result
-            tableView.reloadData()
+//            let result = posts.sorted { $0.postTime > $1.postTime }
+//            posts = result
+//            tableView.reloadData()
         }
     }
     
@@ -26,42 +30,82 @@ class HomePageViewController: UIViewController {
         if UserPhotoCache.userPhotoCache["\(user.userPhoto)"] == nil {
             let urlStr = user.userPhoto
             var image = UIImage(systemName: "person.circle.fill")
-            if let url = URL(string: urlStr),
-               let data = try? Data(contentsOf: url) {
-                
-                image = UIImage(data: data)
-                UserPhotoCache.userPhotoCache["\(user.userPhoto)"] = image
-                
-            }
-            let userLocalUse = UserLocalUse(
-                userId: user.userId,
-                userName: user.userName,
-                userEmail: user.userEmail,
-                userPhoto: image ?? UIImage(systemName: "person.circle.fill")!,
-                userCollection: user.userCollection,
-                userFollow: user.userFollow,
-                followBy: user.followBy,
-                likesCount: user.likesCount,
-                userPhotoId: user.userPhotoId,
-                createdTime: user.createdTime,
-                aboutMe: user.aboutMe,
-                blockList: user.blockList,
-                blockBy: user.blockBy
-            )
-            let post = PostLocalUse(
-                creationId: post.creationId,
-                postTime: post.postTime,
-                postId: post.postId,
-                user: userLocalUse,
-                content: post.content,
-                like: post.like,
-                creation: creation
-            )
-            if LocalUserData.user!.blockList.contains(post.user.userId) || post.user.blockList.contains(LocalUserData.user!.userId) {
-                
+            if let url = URL(string: urlStr) {
+                dispatchGroup.enter()
+                URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) in
+
+                    DispatchQueue.main.async {
+                        if let data = data {
+                            if let downloadedImage = UIImage(data: data) {
+                                
+                                image = downloadedImage
+                                UserPhotoCache.userPhotoCache["\(user.userPhoto)"] = image
+                            }
+                        }
+                        let userLocalUse = UserLocalUse(
+                            userId: user.userId,
+                            userName: user.userName,
+                            userEmail: user.userEmail,
+                            userPhoto: image ?? UIImage(systemName: "person.circle.fill")!,
+                            userCollection: user.userCollection,
+                            userFollow: user.userFollow,
+                            followBy: user.followBy,
+                            likesCount: user.likesCount,
+                            userPhotoId: user.userPhotoId,
+                            createdTime: user.createdTime,
+                            aboutMe: user.aboutMe,
+                            blockList: user.blockList,
+                            blockBy: user.blockBy
+                        )
+                        let post = PostLocalUse(
+                            creationId: post.creationId,
+                            postTime: post.postTime,
+                            postId: post.postId,
+                            user: userLocalUse,
+                            content: post.content,
+                            like: post.like,
+                            creation: creation
+                        )
+                        if LocalUserData.user!.blockList.contains(post.user.userId) || post.user.blockList.contains(LocalUserData.user!.userId) {
+                            
+                        } else {
+                            self.posts.append(post)
+                        }
+                        self.dispatchGroup.leave()
+                    }
+                }).resume()
             } else {
-                self.posts.append(post)
+                let userLocalUse = UserLocalUse(
+                    userId: user.userId,
+                    userName: user.userName,
+                    userEmail: user.userEmail,
+                    userPhoto: UIImage(systemName: "person.circle.fill")!,
+                    userCollection: user.userCollection,
+                    userFollow: user.userFollow,
+                    followBy: user.followBy,
+                    likesCount: user.likesCount,
+                    userPhotoId: user.userPhotoId,
+                    createdTime: user.createdTime,
+                    aboutMe: user.aboutMe,
+                    blockList: user.blockList,
+                    blockBy: user.blockBy
+                )
+                let post = PostLocalUse(
+                    creationId: post.creationId,
+                    postTime: post.postTime,
+                    postId: post.postId,
+                    user: userLocalUse,
+                    content: post.content,
+                    like: post.like,
+                    creation: creation
+                )
+                if LocalUserData.user!.blockList.contains(post.user.userId) || post.user.blockList.contains(LocalUserData.user!.userId) {
+                    
+                } else {
+                    self.posts.append(post)
+                }
             }
+            
         } else {
             let userLocalUse = UserLocalUse(
                 userId: user.userId,
@@ -97,19 +141,24 @@ class HomePageViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        lottie.startLoading(target: self, animationView: loadingAnimationView)
+        dispatchGroup.enter()
         firebase.fetchSpecificUser(userId: LocalUserData.userId) { result in
             switch result {
             case .success(let localUser):
                 LocalUserData.user = localUser
                 self.tableView.es.addPullToRefresh {
+                    self.dispatchGroup.enter()
                     self.firebase.fetchPosts { result in
                         switch result {
                         case .success(let posts):
                             self.posts = []
                             posts.forEach { post in
+                                self.dispatchGroup.enter()
                                 self.firebase.fetchSpecificUser(userId: post.userId) { result in
                                     switch result {
                                     case .success(let user):
+                                        self.dispatchGroup.enter()
                                         self.firebase.fetchSpecificCreation(creationId: post.creationId) { result in
                                             switch result {
                                             case .success(let creation):
@@ -117,25 +166,36 @@ class HomePageViewController: UIViewController {
                                             case .failure(let error):
                                                 print(error)
                                             }
+                                            self.dispatchGroup.leave()
                                         }
                                     case .failure(let error):
                                         print(error)
                                     }
+                                    self.dispatchGroup.leave()
                                 }
                             }
                         case .failure(let error):
                             print(error)
                         }
+                        self.dispatchGroup.leave()
                     }
-                    self.tableView.es.stopPullToRefresh()
+                    self.dispatchGroup.notify(queue: .main) {
+                        let result = self.posts.sorted { $0.postTime > $1.postTime }
+                        self.posts = result
+                        self.tableView.reloadData()
+                        self.tableView.es.stopPullToRefresh()
+                    }
                 }
+                self.dispatchGroup.enter()
                 self.firebase.fetchPosts { result in
                     switch result {
                     case .success(let posts):
                         posts.forEach { post in
+                            self.dispatchGroup.enter()
                             self.firebase.fetchSpecificUser(userId: post.userId) { result in
                                 switch result {
                                 case .success(let user):
+                                    self.dispatchGroup.enter()
                                     self.firebase.fetchSpecificCreation(creationId: post.creationId) { result in
                                         switch result {
                                         case .success(let creation):
@@ -143,23 +203,33 @@ class HomePageViewController: UIViewController {
                                         case .failure(let error):
                                             print(error)
                                         }
+                                        self.dispatchGroup.leave()
                                     }
                                 case .failure(let error):
                                     print(error)
                                 }
+                                self.dispatchGroup.leave()
                             }
                         }
                     case .failure(let error):
                         print(error)
                     }
+                    self.dispatchGroup.leave()
                 }
             case .failure(let error):
                 print(error)
             }
+            self.dispatchGroup.leave()
         }
         
         tableView.delegate = self
         tableView.dataSource = self
+        dispatchGroup.notify(queue: .main) {
+            let result = self.posts.sorted { $0.postTime > $1.postTime }
+            self.posts = result
+            self.tableView.reloadData()
+            self.loadingAnimationView.removeFromSuperview()
+        }
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -284,5 +354,6 @@ extension HomePageViewController: PreviewPageViewControllerDelegate {
             $0.user.userId != blockId
         }
         posts = updatePosts
+        tableView.reloadData()
     }
 }
