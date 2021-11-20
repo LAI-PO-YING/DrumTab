@@ -74,6 +74,36 @@ class HomePageViewController: UIViewController {
                         self.dispatchGroup.leave()
                     }
                 }).resume()
+            } else {
+                let userLocalUse = UserLocalUse(
+                    userId: user.userId,
+                    userName: user.userName,
+                    userEmail: user.userEmail,
+                    userPhoto: UIImage(systemName: "person.circle.fill")!,
+                    userCollection: user.userCollection,
+                    userFollow: user.userFollow,
+                    followBy: user.followBy,
+                    likesCount: user.likesCount,
+                    userPhotoId: user.userPhotoId,
+                    createdTime: user.createdTime,
+                    aboutMe: user.aboutMe,
+                    blockList: user.blockList,
+                    blockBy: user.blockBy
+                )
+                let post = PostLocalUse(
+                    creationId: post.creationId,
+                    postTime: post.postTime,
+                    postId: post.postId,
+                    user: userLocalUse,
+                    content: post.content,
+                    like: post.like,
+                    creation: creation
+                )
+                if LocalUserData.user!.blockList.contains(post.user.userId) || post.user.blockList.contains(LocalUserData.user!.userId) {
+                    
+                } else {
+                    self.posts.append(post)
+                }
             }
             
         } else {
