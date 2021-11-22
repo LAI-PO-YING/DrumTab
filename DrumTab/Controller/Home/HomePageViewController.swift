@@ -276,10 +276,12 @@ extension HomePageViewController: UITableViewDelegate, UITableViewDataSource {
                 cell.likeButton.setImage(UIImage(systemName: "heart"), for: .normal)
                 let updateLikes = posts[indexPath.row].like.filter {$0 != LocalUserData.userId}
                 posts[indexPath.row].like = updateLikes
+                tableView.reloadRows(at: [indexPath], with: .none)
                 firebase.removeLike(postId: posts[indexPath.row].postId, userId: LocalUserData.userId)
             } else {
                 posts[indexPath.row].like.append(LocalUserData.userId)
                 cell.likeButton.setImage(UIImage(systemName: "heart"), for: .normal)
+                tableView.reloadRows(at: [indexPath], with: .none)
                 firebase.addLike(postId: posts[indexPath.row].postId, userId: LocalUserData.userId)
             }
         }
@@ -300,6 +302,7 @@ extension HomePageViewController: UITableViewDelegate, UITableViewDataSource {
                         $0.user.userId != posts[indexPath.row].user.userId
                     }
                     posts = updatePosts
+                    self.tableView.reloadData()
                 }
                 let cancelAction = UIAlertAction(title: "取消", style: .default)
                 let actions: [UIAlertAction] = [
