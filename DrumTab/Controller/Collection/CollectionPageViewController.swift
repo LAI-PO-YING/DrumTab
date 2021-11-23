@@ -17,6 +17,7 @@ class CollectionPageViewController: UIViewController {
     }
     private var collections: [CollectionLocalUse] = [] {
         didSet {
+            collections.sort { $0.creation.createdTime > $1.creation.createdTime }
             filteredCollections = collections
         }
     }
