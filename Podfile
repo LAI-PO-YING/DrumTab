@@ -16,4 +16,5 @@ pod 'lottie-ios'
 pod 'Firebase/Auth'
 pod 'Firebase/Storage'
 pod 'Firebase/Crashlytics'
+pod 'Kingfisher'
 end

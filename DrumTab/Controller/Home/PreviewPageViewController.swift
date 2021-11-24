@@ -94,58 +94,58 @@ class PreviewPageViewController: UIViewController {
         tableView.es.addPullToRefresh {
             self.comments = []
             if let creationId = self.creationId {
-                self.firebase.fetchSpecificCreation(creationId: creationId) { result in
-                    switch result {
-                    case .success(let creation):
-                        self.creation = creation
-                        for comment in creation.comment {
-                            self.firebase.fetchSpecificUser(userId: comment["userId"]!) { result in
-                                switch result {
-                                case .success(let user):
-                                    if UserPhotoCache.userPhotoCache["\(user.userPhoto)"] == nil {
-                                        let urlStr = user.userPhoto
-                                        if let url = URL(string: urlStr),
-                                           let data = try? Data(contentsOf: url) {
-                                            UserPhotoCache.userPhotoCache["\(user.userPhoto)"] = UIImage(data: data)
-                                            let creationComment = CreationComment(
-                                                userId: user.userId,
-                                                userBlockList: user.blockList,
-                                                userName: user.userName,
-                                                userPhoto: UIImage(data: data) ?? UIImage(systemName: "person.circle.fill")!,
-                                                time: comment["time"]!,
-                                                comment: comment["comment"]!
-                                            )
-                                            if LocalUserData.user!.blockList.contains(creationComment.userId) || creationComment.userBlockList.contains(LocalUserData.userId) {
-                                                
-                                            } else {
-                                                self.comments.append(creationComment)
-                                            }
-                                        }
-                                    } else {
-                                        let creationComment = CreationComment(
-                                            userId: user.userId,
-                                            userBlockList: user.blockList,
-                                            userName: user.userName,
-                                            userPhoto: UserPhotoCache.userPhotoCache["\(user.userPhoto)"]!,
-                                            time: comment["time"]!,
-                                            comment: comment["comment"]!
-                                        )
-                                        if LocalUserData.user!.blockList.contains(creationComment.userId) || creationComment.userBlockList.contains(LocalUserData.userId) {
-                                            
-                                        } else {
-                                            self.comments.append(creationComment)
-                                        }
-                                    }
-                                case .failure(let error):
-                                    print(error)
-                                }
-                                self.tableView.es.stopPullToRefresh()
-                            }
-                        }
-                    case .failure(let error):
-                        print(error)
-                    }
-                }
+//                self.firebase.fetchSpecificCreation(creationId: creationId) { result in
+//                    switch result {
+//                    case .success(let creation):
+//                        self.creation = creation
+//                        for comment in creation.comment {
+//                            self.firebase.fetchSpecificUser(userId: comment["userId"]!) { result in
+//                                switch result {
+//                                case .success(let user):
+//                                    if Cache.userPhotoCache["\(user.userPhoto)"] == nil {
+//                                        let urlStr = user.userPhoto
+//                                        if let url = URL(string: urlStr),
+//                                           let data = try? Data(contentsOf: url) {
+//                                            Cache.userPhotoCache["\(user.userPhoto)"] = UIImage(data: data)
+//                                            let creationComment = CreationComment(
+//                                                userId: user.userId,
+//                                                userBlockList: user.blockList,
+//                                                userName: user.userName,
+//                                                userPhoto: UIImage(data: data) ?? UIImage(systemName: "person.circle.fill")!,
+//                                                time: comment["time"]!,
+//                                                comment: comment["comment"]!
+//                                            )
+//                                            if LocalUserData.user!.blockList.contains(creationComment.userId) || creationComment.userBlockList.contains(LocalUserData.userId) {
+//
+//                                            } else {
+//                                                self.comments.append(creationComment)
+//                                            }
+//                                        }
+//                                    } else {
+//                                        let creationComment = CreationComment(
+//                                            userId: user.userId,
+//                                            userBlockList: user.blockList,
+//                                            userName: user.userName,
+//                                            userPhoto: Cache.userPhotoCache["\(user.userPhoto)"]!,
+//                                            time: comment["time"]!,
+//                                            comment: comment["comment"]!
+//                                        )
+//                                        if LocalUserData.user!.blockList.contains(creationComment.userId) || creationComment.userBlockList.contains(LocalUserData.userId) {
+//
+//                                        } else {
+//                                            self.comments.append(creationComment)
+//                                        }
+//                                    }
+//                                case .failure(let error):
+//                                    print(error)
+//                                }
+//                                self.tableView.es.stopPullToRefresh()
+//                            }
+//                        }
+//                    case .failure(let error):
+//                        print(error)
+//                    }
+//                }
             }
         }
     }
@@ -156,83 +156,83 @@ class PreviewPageViewController: UIViewController {
         playButton.setTitle("", for: .normal)
         forwardButton.setTitle("", for: .normal)
         sendButton.setTitle("", for: .normal)
-        firebase.fetchSpecificUser(userId: LocalUserData.userId) { result in
-            switch result {
-            case .success(let user):
-                self.user = user
-                if user.userCollection.contains("\(self.creationId!)") {
-                    self.addInToCollectionButton.setImage(UIImage(systemName: "bookmark.fill"), for: .normal)
-                } else {
-                    self.addInToCollectionButton.setImage(UIImage(systemName: "bookmark"), for: .normal)                }
-            case .failure(let error):
-                print(error)
-            }
-        }
+//        firebase.fetchSpecificUser(userId: LocalUserData.userId) { result in
+//            switch result {
+//            case .success(let user):
+//                self.user = user
+//                if user.userCollection.contains("\(self.creationId!)") {
+//                    self.addInToCollectionButton.setImage(UIImage(systemName: "bookmark.fill"), for: .normal)
+//                } else {
+//                    self.addInToCollectionButton.setImage(UIImage(systemName: "bookmark"), for: .normal)                }
+//            case .failure(let error):
+//                print(error)
+//            }
+//        }
 
         collectionView.delegate = self
         collectionView.dataSource = self
         if let creationId = creationId {
-            firebase.fetchSpecificCreation(creationId: creationId) { result in
-                switch result {
-                case .success(let creation):
-                    DrumKit.hiHat = creation.record["hiHat"]!
-                    DrumKit.snare = creation.record["snare"]!
-                    DrumKit.tom1 = creation.record["tom1"]!
-                    DrumKit.tom2 = creation.record["tom2"]!
-                    DrumKit.tomF = creation.record["tomF"]!
-                    DrumKit.bass = creation.record["bass"]!
-                    DrumKit.crash = creation.record["crash"]!
-                    DrumKit.ride = creation.record["ride"]!
-                    self.creationNameLabel.text = creation.name
-                    self.creation = creation
-                    for comment in creation.comment {
-                        self.firebase.fetchSpecificUser(userId: comment["userId"]!) { result in
-                            switch result {
-                            case .success(let user):
-                                if UserPhotoCache.userPhotoCache["\(user.userPhoto)"] == nil {
-                                    let urlStr = user.userPhoto
-                                    if let url = URL(string: urlStr),
-                                       let data = try? Data(contentsOf: url) {
-                                        UserPhotoCache.userPhotoCache["\(user.userPhoto)"] = UIImage(data: data)
-                                        let creationComment = CreationComment(
-                                            userId: user.userId,
-                                            userBlockList: user.blockList,
-                                            userName: user.userName,
-                                            userPhoto: UIImage(data: data) ?? UIImage(systemName: "person.circle.fill")!,
-                                            time: comment["time"]!,
-                                            comment: comment["comment"]!
-                                        )
-                                        if LocalUserData.user!.blockList.contains(creationComment.userId) || creationComment.userBlockList.contains(LocalUserData.userId) {
-                                            
-                                        } else {
-                                            self.comments.append(creationComment)
-                                        }
-                                    }
-                                } else {
-                                    let creationComment = CreationComment(
-                                        userId: user.userId,
-                                        userBlockList: user.blockList,
-                                        userName: user.userName,
-                                        userPhoto: UserPhotoCache.userPhotoCache["\(user.userPhoto)"]!,
-                                        time: comment["time"]!,
-                                        comment: comment["comment"]!
-                                    )
-                                    if LocalUserData.user!.blockList.contains(creationComment.userId) || creationComment.userBlockList.contains(LocalUserData.userId) {
-                                        
-                                    } else {
-                                        self.comments.append(creationComment)
-                                    }
-                                }
-                                
-                            case .failure(let error):
-                                print(error)
-                            }
-                        }
-                    }
-                case .failure(let error):
-                    print(error)
-                }
-            }
+//            firebase.fetchSpecificCreation(creationId: creationId) { result in
+//                switch result {
+//                case .success(let creation):
+//                    DrumKit.hiHat = creation.record["hiHat"]!
+//                    DrumKit.snare = creation.record["snare"]!
+//                    DrumKit.tom1 = creation.record["tom1"]!
+//                    DrumKit.tom2 = creation.record["tom2"]!
+//                    DrumKit.tomF = creation.record["tomF"]!
+//                    DrumKit.bass = creation.record["bass"]!
+//                    DrumKit.crash = creation.record["crash"]!
+//                    DrumKit.ride = creation.record["ride"]!
+//                    self.creationNameLabel.text = creation.name
+//                    self.creation = creation
+//                    for comment in creation.comment {
+//                        self.firebase.fetchSpecificUser(userId: comment["userId"]!) { result in
+//                            switch result {
+//                            case .success(let user):
+//                                if Cache.userPhotoCache["\(user.userPhoto)"] == nil {
+//                                    let urlStr = user.userPhoto
+//                                    if let url = URL(string: urlStr),
+//                                       let data = try? Data(contentsOf: url) {
+//                                        Cache.userPhotoCache["\(user.userPhoto)"] = UIImage(data: data)
+//                                        let creationComment = CreationComment(
+//                                            userId: user.userId,
+//                                            userBlockList: user.blockList,
+//                                            userName: user.userName,
+//                                            userPhoto: UIImage(data: data) ?? UIImage(systemName: "person.circle.fill")!,
+//                                            time: comment["time"]!,
+//                                            comment: comment["comment"]!
+//                                        )
+//                                        if LocalUserData.user!.blockList.contains(creationComment.userId) || creationComment.userBlockList.contains(LocalUserData.userId) {
+//                                            
+//                                        } else {
+//                                            self.comments.append(creationComment)
+//                                        }
+//                                    }
+//                                } else {
+//                                    let creationComment = CreationComment(
+//                                        userId: user.userId,
+//                                        userBlockList: user.blockList,
+//                                        userName: user.userName,
+//                                        userPhoto: Cache.userPhotoCache["\(user.userPhoto)"]!,
+//                                        time: comment["time"]!,
+//                                        comment: comment["comment"]!
+//                                    )
+//                                    if LocalUserData.user!.blockList.contains(creationComment.userId) || creationComment.userBlockList.contains(LocalUserData.userId) {
+//                                        
+//                                    } else {
+//                                        self.comments.append(creationComment)
+//                                    }
+//                                }
+//                                
+//                            case .failure(let error):
+//                                print(error)
+//                            }
+//                        }
+//                    }
+//                case .failure(let error):
+//                    print(error)
+//                }
+//            }
         }
         addPullToRefreshToTableView()
         tableView.delegate = self

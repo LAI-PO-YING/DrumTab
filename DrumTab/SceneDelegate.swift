@@ -20,22 +20,22 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         guard let _ = (scene as? UIWindowScene) else { return }
 
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-
-        if let user = Auth.auth().currentUser {
-
-            let mainTabBarController = storyboard.instantiateViewController(identifier: "DTTabBarViewController")
-
-            LocalUserData.userId = user.uid
-
-            window?.rootViewController = mainTabBarController
-
-        } else {
-
-            let loginNavController = storyboard.instantiateViewController(identifier: "AuthViewController")
-
-            window?.rootViewController = loginNavController
-        }
+//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//
+//        if let user = Auth.auth().currentUser {
+//
+//            let mainTabBarController = storyboard.instantiateViewController(identifier: "DTTabBarViewController")
+//
+//            LocalUserData.userId = user.uid
+//
+//            window?.rootViewController = mainTabBarController
+//
+//        } else {
+//
+//            let loginNavController = storyboard.instantiateViewController(identifier: "AuthViewController")
+//
+//            window?.rootViewController = loginNavController
+//        }
 
     }
     func changeRootViewController(_ viewController: UIViewController, animated: Bool = true) {

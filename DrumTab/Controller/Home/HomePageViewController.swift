@@ -8,9 +8,10 @@
 import UIKit
 import ESPullToRefresh
 import Lottie
+import Kingfisher
 
 class HomePageViewController: UIViewController {
-
+    
     @IBOutlet weak var tableView: UITableView!
     let firebase = FirebaseFirestoreManager.shared
     var currentSelectedRow: Int?
@@ -18,236 +19,78 @@ class HomePageViewController: UIViewController {
     let lottie = LoadingAnimationManager.shared
     let dispatchGroup = DispatchGroup()
     
-    var posts: [PostLocalUse] = [] {
+    var posts = [Post]() {
         didSet {
-//            let result = posts.sorted { $0.postTime > $1.postTime }
-//            posts = result
-//            tableView.reloadData()
+            tableView.reloadData()
         }
     }
-    
-    var postsRefactor = [String: Post]() {
-        didSet {
-            
-        }
-    }
-    
-    func checkCache(user: User, post: Post, creation: Creation) {
-        if UserPhotoCache.userPhotoCache["\(user.userPhoto)"] == nil {
-            let urlStr = user.userPhoto
-            var image = UIImage(systemName: "person.circle.fill")
-            if let url = URL(string: urlStr) {
-                dispatchGroup.enter()
-                URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) in
-
-                    DispatchQueue.main.async {
-                        if let data = data {
-                            if let downloadedImage = UIImage(data: data) {
-                                
-                                image = downloadedImage
-                                UserPhotoCache.userPhotoCache["\(user.userPhoto)"] = image
-                            }
-                        }
-                        let userLocalUse = UserLocalUse(
-                            userId: user.userId,
-                            userName: user.userName,
-                            userEmail: user.userEmail,
-                            userPhoto: image ?? UIImage(systemName: "person.circle.fill")!,
-                            userCollection: user.userCollection,
-                            userFollow: user.userFollow,
-                            followBy: user.followBy,
-                            likesCount: user.likesCount,
-                            userPhotoId: user.userPhotoId,
-                            createdTime: user.createdTime,
-                            aboutMe: user.aboutMe,
-                            blockList: user.blockList,
-                            blockBy: user.blockBy
-                        )
-                        let post = PostLocalUse(
-                            creationId: post.creationId,
-                            postTime: post.postTime,
-                            postId: post.postId,
-                            user: userLocalUse,
-                            content: post.content,
-                            like: post.like,
-                            creation: creation
-                        )
-                        if LocalUserData.user!.blockList.contains(post.user.userId) || post.user.blockList.contains(LocalUserData.user!.userId) {
-                            
-                        } else {
-                            self.posts.append(post)
-                        }
-                        self.dispatchGroup.leave()
-                    }
-                }).resume()
-            } else {
-                let userLocalUse = UserLocalUse(
-                    userId: user.userId,
-                    userName: user.userName,
-                    userEmail: user.userEmail,
-                    userPhoto: UIImage(systemName: "person.circle.fill")!,
-                    userCollection: user.userCollection,
-                    userFollow: user.userFollow,
-                    followBy: user.followBy,
-                    likesCount: user.likesCount,
-                    userPhotoId: user.userPhotoId,
-                    createdTime: user.createdTime,
-                    aboutMe: user.aboutMe,
-                    blockList: user.blockList,
-                    blockBy: user.blockBy
-                )
-                let post = PostLocalUse(
-                    creationId: post.creationId,
-                    postTime: post.postTime,
-                    postId: post.postId,
-                    user: userLocalUse,
-                    content: post.content,
-                    like: post.like,
-                    creation: creation
-                )
-                if LocalUserData.user!.blockList.contains(post.user.userId) || post.user.blockList.contains(LocalUserData.user!.userId) {
-                    
-                } else {
-                    self.posts.append(post)
-                }
-            }
-            
-        } else {
-            let userLocalUse = UserLocalUse(
-                userId: user.userId,
-                userName: user.userName,
-                userEmail: user.userEmail,
-                userPhoto: UserPhotoCache.userPhotoCache["\(user.userPhoto)"]!,
-                userCollection: user.userCollection,
-                userFollow: user.userFollow,
-                followBy: user.followBy,
-                likesCount: user.likesCount,
-                userPhotoId: user.userPhotoId,
-                createdTime: user.createdTime,
-                aboutMe: user.aboutMe,
-                blockList: user.blockList,
-                blockBy: user.blockBy
-            )
-            let post = PostLocalUse(
-                creationId: post.creationId,
-                postTime: post.postTime,
-                postId: post.postId,
-                user: userLocalUse,
-                content: post.content,
-                like: post.like,
-                creation: creation
-            )
-            if LocalUserData.user!.blockList.contains(post.user.userId) || post.user.blockList.contains(LocalUserData.user!.userId) {
-                
-            } else {
-                self.posts.append(post)
-            }
-        }
-    }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        lottie.startLoading(target: self, animationView: loadingAnimationView)
+    func updatPostInCache() {
         dispatchGroup.enter()
-        firebase.fetchSpecificUser(userId: LocalUserData.userId) { result in
+        firebase.fetchPosts { result in
             switch result {
-            case .success(let localUser):
-                LocalUserData.user = localUser
-                self.tableView.es.addPullToRefresh {
-                    self.dispatchGroup.enter()
-                    self.firebase.fetchPosts { result in
-                        switch result {
-                        case .success(let posts):
-                            self.posts = []
-                            posts.forEach { post in
-                                self.dispatchGroup.enter()
-                                self.firebase.fetchSpecificUser(userId: post.userId) { result in
-                                    switch result {
-                                    case .success(let user):
-                                        self.dispatchGroup.enter()
-                                        self.firebase.fetchSpecificCreation(creationId: post.creationId) { result in
-                                            switch result {
-                                            case .success(let creation):
-                                                self.checkCache(user: user, post: post, creation: creation)
-                                            case .failure(let error):
-                                                print(error)
-                                            }
-                                            self.dispatchGroup.leave()
-                                        }
-                                    case .failure(let error):
-                                        print(error)
-                                    }
-                                    self.dispatchGroup.leave()
-                                }
-                            }
-                        case .failure(let error):
-                            print(error)
+            case .success(let posts):
+                posts.forEach { post in
+                    Cache.postCache[post.postId] = post
+                    if Cache.userCache[post.userId] == nil {
+                        self.dispatchGroup.enter()
+                        self.firebase.fetchSpecificUser(userId: post.userId) { user in
+                            Cache.postCache[post.postId]?.user = user
+                            Cache.userCache[post.userId] = user
+                            self.dispatchGroup.leave()
                         }
-                        self.dispatchGroup.leave()
+                    } else {
+                        Cache.postCache[post.postId]?.user = Cache.userCache[post.userId]
                     }
-                    self.dispatchGroup.notify(queue: .main) {
-                        let result = self.posts.sorted { $0.postTime > $1.postTime }
-                        self.posts = result
-                        self.tableView.reloadData()
-                        self.tableView.es.stopPullToRefresh()
+                    if Cache.creationCache[post.creationId] == nil {
+                        self.dispatchGroup.enter()
+                        self.firebase.fetchSpecificCreation(creationId: post.creationId) { creation in
+                            Cache.postCache[post.postId]?.creation = creation
+                            Cache.creationCache[post.creationId] = creation
+                            self.dispatchGroup.leave()
+                        }
+                    } else {
+                        Cache.postCache[post.postId]?.creation = Cache.creationCache[post.creationId]
                     }
+                    
                 }
-                
-                self.firebase.fetchPosts { result in
-                    switch result {
-                    case .success(let posts):
-                        posts.forEach { self.postsRefactor[$0.postId] = $0 }
-                    case .failure(let error):
-                        print(error)
-                    }
-                }
-                
-//                self.dispatchGroup.enter()
-//                self.firebase.fetchPosts { result in
-//                    switch result {
-//                    case .success(let posts):
-//                        posts.forEach { post in
-//                            self.dispatchGroup.enter()
-//                            self.firebase.fetchSpecificUser(userId: post.userId) { result in
-//                                switch result {
-//                                case .success(let user):
-//                                    self.dispatchGroup.enter()
-//                                    self.firebase.fetchSpecificCreation(creationId: post.creationId) { result in
-//                                        switch result {
-//                                        case .success(let creation):
-//                                            self.checkCache(user: user, post: post, creation: creation)
-//                                        case .failure(let error):
-//                                            print(error)
-//                                        }
-//                                        self.dispatchGroup.leave()
-//                                    }
-//                                case .failure(let error):
-//                                    print(error)
-//                                }
-//                                self.dispatchGroup.leave()
-//                            }
-//                        }
-//                    case .failure(let error):
-//                        print(error)
-//                    }
-//                    self.dispatchGroup.leave()
-//                }
             case .failure(let error):
                 print(error)
             }
             self.dispatchGroup.leave()
         }
+    }
+    func updatePost() {
+        var postsFromCache = [Post]()
+        Cache.postCache.forEach { _, post in
+            postsFromCache.append(post)
+        }
+        postsFromCache.sort { $0.postTime > $1.postTime }
+        self.posts = postsFromCache
+    }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        lottie.startLoading(target: self, animationView: loadingAnimationView)
+        updatPostInCache()
+        tableView.es.addPullToRefresh {
+            self.updatPostInCache()
+            self.dispatchGroup.notify(queue: .main) {
+                self.updatePost()
+                self.tableView.es.stopPullToRefresh()
+            }
+        }
         
         tableView.delegate = self
         tableView.dataSource = self
         dispatchGroup.notify(queue: .main) {
-            let result = self.posts.sorted { $0.postTime > $1.postTime }
-            self.posts = result
-            self.tableView.reloadData()
+            self.updatePost()
             self.loadingAnimationView.removeFromSuperview()
         }
     }
-
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.setNavigationBarHidden(true, animated: true)
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let destinationVC = segue.destination as? PreviewPageViewController else {
             fatalError("Destination is not PreviewPageViewController")
@@ -255,13 +98,10 @@ class HomePageViewController: UIViewController {
         guard let currentSelectedRow = currentSelectedRow else {
             return
         }
-
+        
         destinationVC.creationId = posts[currentSelectedRow].creationId
         destinationVC.delegate = self
         self.currentSelectedRow = nil
-    }
-    override func viewWillAppear(_ animated: Bool) {
-        navigationController?.setNavigationBarHidden(true, animated: true)
     }
 }
 
@@ -279,10 +119,13 @@ extension HomePageViewController: UITableViewDelegate, UITableViewDataSource {
         } else {
             cell.likeButton.setImage(UIImage(systemName: "heart"), for: .normal)
         }
+        guard let user = posts[indexPath.row].user,
+              let creation = posts[indexPath.row].creation else { fatalError("Lost user and creation!")
+              }
         cell.setupCell(
-            userName: posts[indexPath.row].user.userName,
-            creationName: posts[indexPath.row].creation.name,
-            image: posts[indexPath.row].user.userPhoto,
+            userName: user.userName,
+            creationName: creation.name,
+            image: user.userPhoto,
             time: posts[indexPath.row].postTime,
             content: posts[indexPath.row].content,
             like: posts[indexPath.row].like.count
@@ -301,21 +144,21 @@ extension HomePageViewController: UITableViewDelegate, UITableViewDataSource {
                 firebase.addLike(postId: posts[indexPath.row].postId, userId: LocalUserData.userId)
             }
         }
-        if posts[indexPath.row].user.userId == LocalUserData.userId {
+        if user.userId == LocalUserData.userId {
             cell.moreButton.isHidden = true
         } else {
             cell.moreButton.isHidden = false
             cell.moreButtonPressedClosure = { [unowned self] in
                 let alert = UIAlertController(
-                    title: "檢舉並封鎖 \(posts[indexPath.row].user.userName)的貼文。封鎖後您將看不到關於\(posts[indexPath.row].user.userName)的任何貼文及留言。",
+                    title: "檢舉並封鎖 \(user.userName)的貼文。封鎖後您將看不到關於\(user.userName)的任何貼文及留言。",
                     message: nil,
                     preferredStyle: .actionSheet
                 )
                 let blockAction = UIAlertAction(title: "封鎖", style: .destructive) { _ in
-                    self.firebase.blockUser(userId: posts[indexPath.row].user.userId)
-                    LocalUserData.user?.blockList.append(posts[indexPath.row].user.userId)
+                    self.firebase.blockUser(userId: user.userId)
+                    LocalUserData.user?.blockList.append(user.userId)
                     let updatePosts = posts.filter {
-                        $0.user.userId != posts[indexPath.row].user.userId
+                        $0.user!.userId != posts[indexPath.row].user!.userId
                     }
                     posts = updatePosts
                     self.tableView.reloadData()
@@ -339,17 +182,17 @@ extension HomePageViewController: UITableViewDelegate, UITableViewDataSource {
             }
         }
         
-        if posts[indexPath.row].user.userId != LocalUserData.userId {
+        if user.userId != LocalUserData.userId {
             cell.photoPressedClosure = { [unowned self] in
-
-                let memberPageVC = UIStoryboard.profile.instantiateViewController(withIdentifier:
-                    String(describing: OtherMemberViewController.self)
+                
+                let memberPageVC = UIStoryboard.profile.instantiateViewController(
+                    withIdentifier: String(describing: OtherMemberViewController.self)
                 )
-
+                
                 guard let memberPageVC = memberPageVC as? OtherMemberViewController else { return }
-
-                memberPageVC.userId = posts[indexPath.row].user.userId
-
+                
+                memberPageVC.userId = user.userId
+                
                 show(memberPageVC, sender: nil)
             }
         } else {
@@ -364,13 +207,13 @@ extension HomePageViewController: UITableViewDelegate, UITableViewDataSource {
         currentSelectedRow = indexPath.row
         performSegue(withIdentifier: "FromHomePage", sender: nil)
     }
-
+    
 }
 
 extension HomePageViewController: PreviewPageViewControllerDelegate {
     func didPressBlock(blockId: String) {
         let updatePosts = posts.filter {
-            $0.user.userId != blockId
+            $0.user!.userId != blockId
         }
         posts = updatePosts
         tableView.reloadData()

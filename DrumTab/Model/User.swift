@@ -44,6 +44,3 @@ struct UserLocalUse {
 
 }
 
-class UserPhotoCache {
-    static var userPhotoCache: [String : UIImage] = [ : ]
-}

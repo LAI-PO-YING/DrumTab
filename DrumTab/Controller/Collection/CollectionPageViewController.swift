@@ -45,42 +45,42 @@ class CollectionPageViewController: UIViewController {
         collections = []
         firebase.fetchCollections { collectionIDs in
             collectionIDs.forEach { collectionID in
-                self.firebase.fetchSpecificCreation(creationId: collectionID) { result in
-                    switch result {
-                    case .success(let creation):
-                        self.firebase.fetchSpecificUser(userId: creation.userId) { result in
-                            switch result {
-                            case .success(let user):
-                                if UserPhotoCache.userPhotoCache["\(user.userPhoto)"] == nil {
-                                    let urlStr = user.userPhoto
-                                    if let url = URL(string: urlStr),
-                                       let data = try? Data(contentsOf: url) {
-                                        let collection = CollectionLocalUse(
-                                            creation: creation,
-                                            creater: user,
-                                            createrPhoto: UIImage(data: data) ?? UIImage(systemName: "person.circle.fill")!
-                                        )
-                                        self.collections.append(collection)
-                                    } else {
-                                        let collection = CollectionLocalUse(creation: creation, creater: user, createrPhoto: UIImage(systemName: "person.circle.fill")!)
-                                        self.collections.append(collection)
-                                    }
-                                } else {
-                                    let collection = CollectionLocalUse(
-                                        creation: creation,
-                                        creater: user,
-                                        createrPhoto: UserPhotoCache.userPhotoCache["\(user.userPhoto)"] ?? UIImage(systemName: "person.circle.fill")!
-                                    )
-                                    self.collections.append(collection)
-                                }
-                            case .failure(let error):
-                                print(error)
-                            }
-                        }
-                    case .failure(let error):
-                        print(error)
-                    }
-                }
+//                self.firebase.fetchSpecificCreation(creationId: collectionID) { result in
+//                    switch result {
+//                    case .success(let creation):
+//                        self.firebase.fetchSpecificUser(userId: creation.userId) { result in
+//                            switch result {
+//                            case .success(let user):
+//                                if Cache.userPhotoCache["\(user.userPhoto)"] == nil {
+//                                    let urlStr = user.userPhoto
+//                                    if let url = URL(string: urlStr),
+//                                       let data = try? Data(contentsOf: url) {
+//                                        let collection = CollectionLocalUse(
+//                                            creation: creation,
+//                                            creater: user,
+//                                            createrPhoto: UIImage(data: data) ?? UIImage(systemName: "person.circle.fill")!
+//                                        )
+//                                        self.collections.append(collection)
+//                                    } else {
+//                                        let collection = CollectionLocalUse(creation: creation, creater: user, createrPhoto: UIImage(systemName: "person.circle.fill")!)
+//                                        self.collections.append(collection)
+//                                    }
+//                                } else {
+//                                    let collection = CollectionLocalUse(
+//                                        creation: creation,
+//                                        creater: user,
+//                                        createrPhoto: Cache.userPhotoCache["\(user.userPhoto)"] ?? UIImage(systemName: "person.circle.fill")!
+//                                    )
+//                                    self.collections.append(collection)
+//                                }
+//                            case .failure(let error):
+//                                print(error)
+//                            }
+//                        }
+//                    case .failure(let error):
+//                        print(error)
+//                    }
+//                }
             }
         }
     }

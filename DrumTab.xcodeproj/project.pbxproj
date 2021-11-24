@@ -51,6 +51,7 @@
 		309D3650271D085D00C1D667 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 309D364E271D085D00C1D667 /* Main.storyboard */; };
 		309D3652271D085E00C1D667 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 309D3651271D085E00C1D667 /* Assets.xcassets */; };
 		309D3655271D085E00C1D667 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 309D3653271D085E00C1D667 /* LaunchScreen.storyboard */; };
+		30AAA064274E08A9009512CF /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30AAA063274E08A9009512CF /* Cache.swift */; };
 		30AB5FF8272AA6E00032E670 /* PreviewPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30AB5FF7272AA6E00032E670 /* PreviewPageViewController.swift */; };
 		30ABCD902730CEA200126875 /* RankingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 30ABCD8F2730CEA200126875 /* RankingView.xib */; };
 		30ABCD922730CECB00126875 /* RankingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30ABCD912730CECB00126875 /* RankingView.swift */; };
@@ -116,6 +117,7 @@
 		309D3651271D085E00C1D667 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		309D3654271D085E00C1D667 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		309D3656271D085E00C1D667 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		30AAA063274E08A9009512CF /* Cache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cache.swift; sourceTree = "<group>"; };
 		30AB5FF7272AA6E00032E670 /* PreviewPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewPageViewController.swift; sourceTree = "<group>"; };
 		30ABCD8F2730CEA200126875 /* RankingView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RankingView.xib; sourceTree = "<group>"; };
 		30ABCD912730CECB00126875 /* RankingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingView.swift; sourceTree = "<group>"; };
@@ -295,6 +297,7 @@
 				3015C3E22727B30E002DD366 /* User.swift */,
 				30EEF06027312AA100D545E0 /* LocalUserData.swift */,
 				30922E4A27466E080055AF51 /* LoadingAnimation.swift */,
+				30AAA063274E08A9009512CF /* Cache.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -562,6 +565,7 @@
 				30EEF06127312AA100D545E0 /* LocalUserData.swift in Sources */,
 				30F5FBD7271E6DF100A61E4F /* RecordPageViewController.swift in Sources */,
 				30BB2D5F272BCEF000862277 /* CommentTableViewCell.swift in Sources */,
+				30AAA064274E08A9009512CF /* Cache.swift in Sources */,
 				304CBE0B271D26D6006B4FE2 /* CreationPageViewController.swift in Sources */,
 				30AB5FF8272AA6E00032E670 /* PreviewPageViewController.swift in Sources */,
 				308173152723E8910002C86D /* PreviewCollectionViewCell.swift in Sources */,

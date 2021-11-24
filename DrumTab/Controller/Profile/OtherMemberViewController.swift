@@ -29,14 +29,14 @@ class OtherMemberViewController: UIViewController {
     }
     
     func checkCache(user: User, post: Post, creation: Creation) {
-        if UserPhotoCache.userPhotoCache["\(user.userPhoto)"] == nil {
+        if Cache.userPhotoCache["\(user.userPhoto)"] == nil {
             let urlStr = user.userPhoto
             var image = UIImage(systemName: "person.circle.fill")
             if let url = URL(string: urlStr),
                let data = try? Data(contentsOf: url) {
                 
                 image = UIImage(data: data)
-                UserPhotoCache.userPhotoCache["\(user.userPhoto)"] = image
+                Cache.userPhotoCache["\(user.userPhoto)"] = image
                 
             }
             let userLocalUse = UserLocalUse(
@@ -69,7 +69,7 @@ class OtherMemberViewController: UIViewController {
                 userId: user.userId,
                 userName: user.userName,
                 userEmail: user.userEmail,
-                userPhoto: UserPhotoCache.userPhotoCache["\(user.userPhoto)"]!,
+                userPhoto: Cache.userPhotoCache["\(user.userPhoto)"]!,
                 userCollection: user.userCollection,
                 userFollow: user.userFollow,
                 followBy: user.followBy,
@@ -117,43 +117,43 @@ class OtherMemberViewController: UIViewController {
                 print("numberOfFollowers: \(numberOfFollowers)")
                 self.followerValueLabel.text = "\(numberOfFollowers)"
             }
-            firebase.fetchSpecificUserPosts(userId: userId) { result in
-                switch result {
-                case .success(let posts):
-                    self.firebase.fetchSpecificUser(userId: userId) { result in
-                        switch result {
-                        case .success(let user):
-                            posts.forEach { post in
-                                self.firebase.fetchSpecificCreation(creationId: post.creationId) { result in
-                                    switch result {
-                                    case .success(let creation):
-                                        self.checkCache(user: user, post: post, creation: creation)
-                                    case .failure(let error):
-                                        print(error)
-                                    }
-                                }
-                            }
-                            if user.userPhoto == "" {
-                                self.userPhotoImage.image = UIImage(systemName: "person.circle.fill")
-                            } else {
-                                self.userPhotoImage.image = UserPhotoCache.userPhotoCache["\(user.userPhoto)"]
-                            }
-                            self.userPhotoImage.layer.cornerRadius = 50
-                            self.userNameLabel.text = user.userName
-                            self.userAboutMeLabel.text = user.aboutMe
-                            if user.followBy.contains(LocalUserData.userId) {
-                                self.followButton.setTitle("Following", for: .normal)
-                            } else {
-                                self.followButton.setTitle("Follow", for: .normal)
-                            }
-                        case .failure(let error):
-                            print(error)
-                        }
-                    }
-                case .failure(let error):
-                    print(error)
-                }
-            }
+//            firebase.fetchSpecificUserPosts(userId: userId) { result in
+//                switch result {
+//                case .success(let posts):
+//                    self.firebase.fetchSpecificUser(userId: userId) { result in
+//                        switch result {
+//                        case .success(let user):
+//                            posts.forEach { post in
+//                                self.firebase.fetchSpecificCreation(creationId: post.creationId) { result in
+//                                    switch result {
+//                                    case .success(let creation):
+//                                        self.checkCache(user: user, post: post, creation: creation)
+//                                    case .failure(let error):
+//                                        print(error)
+//                                    }
+//                                }
+//                            }
+//                            if user.userPhoto == "" {
+//                                self.userPhotoImage.image = UIImage(systemName: "person.circle.fill")
+//                            } else {
+//                                self.userPhotoImage.image = Cache.userPhotoCache["\(user.userPhoto)"]
+//                            }
+//                            self.userPhotoImage.layer.cornerRadius = 50
+//                            self.userNameLabel.text = user.userName
+//                            self.userAboutMeLabel.text = user.aboutMe
+//                            if user.followBy.contains(LocalUserData.userId) {
+//                                self.followButton.setTitle("Following", for: .normal)
+//                            } else {
+//                                self.followButton.setTitle("Follow", for: .normal)
+//                            }
+//                        case .failure(let error):
+//                            print(error)
+//                        }
+//                    }
+//                case .failure(let error):
+//                    print(error)
+//                }
+//            }
             
             tableView.delegate = self
             tableView.dataSource = self
