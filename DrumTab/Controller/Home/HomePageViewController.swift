@@ -26,6 +26,12 @@ class HomePageViewController: UIViewController {
         }
     }
     
+    var postsRefactor = [String: Post]() {
+        didSet {
+            
+        }
+    }
+    
     func checkCache(user: User, post: Post, creation: Creation) {
         if UserPhotoCache.userPhotoCache["\(user.userPhoto)"] == nil {
             let urlStr = user.userPhoto
@@ -186,36 +192,46 @@ class HomePageViewController: UIViewController {
                         self.tableView.es.stopPullToRefresh()
                     }
                 }
-                self.dispatchGroup.enter()
+                
                 self.firebase.fetchPosts { result in
                     switch result {
                     case .success(let posts):
-                        posts.forEach { post in
-                            self.dispatchGroup.enter()
-                            self.firebase.fetchSpecificUser(userId: post.userId) { result in
-                                switch result {
-                                case .success(let user):
-                                    self.dispatchGroup.enter()
-                                    self.firebase.fetchSpecificCreation(creationId: post.creationId) { result in
-                                        switch result {
-                                        case .success(let creation):
-                                            self.checkCache(user: user, post: post, creation: creation)
-                                        case .failure(let error):
-                                            print(error)
-                                        }
-                                        self.dispatchGroup.leave()
-                                    }
-                                case .failure(let error):
-                                    print(error)
-                                }
-                                self.dispatchGroup.leave()
-                            }
-                        }
+                        posts.forEach { self.postsRefactor[$0.postId] = $0 }
                     case .failure(let error):
                         print(error)
                     }
-                    self.dispatchGroup.leave()
                 }
+                
+//                self.dispatchGroup.enter()
+//                self.firebase.fetchPosts { result in
+//                    switch result {
+//                    case .success(let posts):
+//                        posts.forEach { post in
+//                            self.dispatchGroup.enter()
+//                            self.firebase.fetchSpecificUser(userId: post.userId) { result in
+//                                switch result {
+//                                case .success(let user):
+//                                    self.dispatchGroup.enter()
+//                                    self.firebase.fetchSpecificCreation(creationId: post.creationId) { result in
+//                                        switch result {
+//                                        case .success(let creation):
+//                                            self.checkCache(user: user, post: post, creation: creation)
+//                                        case .failure(let error):
+//                                            print(error)
+//                                        }
+//                                        self.dispatchGroup.leave()
+//                                    }
+//                                case .failure(let error):
+//                                    print(error)
+//                                }
+//                                self.dispatchGroup.leave()
+//                            }
+//                        }
+//                    case .failure(let error):
+//                        print(error)
+//                    }
+//                    self.dispatchGroup.leave()
+//                }
             case .failure(let error):
                 print(error)
             }

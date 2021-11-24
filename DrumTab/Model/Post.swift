@@ -17,6 +17,7 @@ struct Post: Codable {
     var like: [String]
 
     var user: User?
+    var creation: Creation?
 }
 
 struct PostLocalUse {
