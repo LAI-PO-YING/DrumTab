@@ -125,7 +125,7 @@ class AuthViewController: UIViewController {
         self.present(svc, animated: true, completion: nil)
     }
     @IBAction func eulaButtonPressed(_ sender: Any) {
-        guard let url = URL(string: "https://www.apple.com/legal/internet-services/itunes/dev/stdeula/") else { return }
+        guard let url = URL(string: "https://www.eulatemplate.com/live.php?token=11bWFaoN2h6Xd3HBWiWmvVzh3FSXbDUz") else { return }
         let svc = SFSafariViewController(url: url)
         self.present(svc, animated: true, completion: nil)
     }

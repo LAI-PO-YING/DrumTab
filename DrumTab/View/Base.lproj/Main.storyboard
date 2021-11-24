@@ -30,7 +30,7 @@
                                 </constraints>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Br4-Cc-1jB">
-                                <rect key="frame" x="75" y="741" width="264.5" height="22"/>
+                                <rect key="frame" x="74" y="741" width="266.5" height="22"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="創建帳戶或登錄後，即表示您同意我們的" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jeV-aP-GIC">
                                         <rect key="frame" x="0.0" y="6.5" width="144" height="9"/>
@@ -54,10 +54,10 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u9w-48-VUY">
-                                        <rect key="frame" x="192.5" y="0.0" width="72" height="22"/>
+                                        <rect key="frame" x="192.5" y="0.0" width="74" height="22"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="8"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                        <state key="normal" title="Apple標準許可協議"/>
+                                        <state key="normal" title="終端使用者授權合約"/>
                                         <connections>
                                             <action selector="eulaButtonPressed:" destination="ekU-pQ-n7E" eventType="touchUpInside" id="BFZ-3B-aMW"/>
                                         </connections>
