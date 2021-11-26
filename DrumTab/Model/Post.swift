@@ -16,6 +16,10 @@ struct Post: Codable {
     var content: String
     var like: [String]
 
-    var user: User?
-    var creation: Creation?
+    var user: User? {
+        Cache.userCache[userId]
+    }
+    var creation: Creation?{
+        Cache.creationCache[creationId]
+    }
 }

@@ -10,14 +10,10 @@ import UIKit
 class CollectionPageViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
-    private struct CollectionLocalUse {
-        var creation: Creation
-        var creater: User
-        var createrPhoto: UIImage
-    }
-    private var collections: [CollectionLocalUse] = [] {
+
+    let collectionProvider = CollectionProvider.shared
+    private var collections = [Creation]() {
         didSet {
-            collections.sort { $0.creation.createdTime > $1.creation.createdTime }
             filteredCollections = collections
         }
     }
@@ -42,47 +38,10 @@ class CollectionPageViewController: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.setNavigationBarHidden(false, animated: true)
-        collections = []
-        firebase.fetchCollections { collectionIDs in
-            collectionIDs.forEach { collectionID in
-//                self.firebase.fetchSpecificCreation(creationId: collectionID) { result in
-//                    switch result {
-//                    case .success(let creation):
-//                        self.firebase.fetchSpecificUser(userId: creation.userId) { result in
-//                            switch result {
-//                            case .success(let user):
-//                                if Cache.userPhotoCache["\(user.userPhoto)"] == nil {
-//                                    let urlStr = user.userPhoto
-//                                    if let url = URL(string: urlStr),
-//                                       let data = try? Data(contentsOf: url) {
-//                                        let collection = CollectionLocalUse(
-//                                            creation: creation,
-//                                            creater: user,
-//                                            createrPhoto: UIImage(data: data) ?? UIImage(systemName: "person.circle.fill")!
-//                                        )
-//                                        self.collections.append(collection)
-//                                    } else {
-//                                        let collection = CollectionLocalUse(creation: creation, creater: user, createrPhoto: UIImage(systemName: "person.circle.fill")!)
-//                                        self.collections.append(collection)
-//                                    }
-//                                } else {
-//                                    let collection = CollectionLocalUse(
-//                                        creation: creation,
-//                                        creater: user,
-//                                        createrPhoto: Cache.userPhotoCache["\(user.userPhoto)"] ?? UIImage(systemName: "person.circle.fill")!
-//                                    )
-//                                    self.collections.append(collection)
-//                                }
-//                            case .failure(let error):
-//                                print(error)
-//                            }
-//                        }
-//                    case .failure(let error):
-//                        print(error)
-//                    }
-//                }
-            }
+        collectionProvider.fetchCollections { collections in
+            self.collections = collections
         }
+        
     }
     override func viewWillDisappear(_ animated: Bool) {
         navigationController?.setNavigationBarHidden(true, animated: true)
@@ -100,17 +59,13 @@ extension CollectionPageViewController: UITableViewDelegate, UITableViewDataSour
             for: indexPath
         ) as? CollectionTableViewCell else { return UITableViewCell() }
         let collection = filteredCollections[indexPath.row]
-        cell.setupCell(
-            creationName: collection.creation.name,
-            userImage: collection.createrPhoto,
-            userName: collection.creater.userName
-        )
+        cell.setupCell(collection: collection)
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
 
-        let selectedCreationId = filteredCollections[indexPath.row].creation.id
+        let selectedCreationId = filteredCollections[indexPath.row].id
 
         let previewPageVC = UIStoryboard.home.instantiateViewController(withIdentifier:
             String(describing: PreviewPageViewController.self)
@@ -127,7 +82,7 @@ extension CollectionPageViewController: UITableViewDelegate, UITableViewDataSour
         if editingStyle == .delete {
             firebase.removeCollection(
                 userId: LocalUserData.userId,
-                creationId: collections[indexPath.row].creation.id
+                creationId: collections[indexPath.row].id
             )
             collections.remove(at: indexPath.row)
         } else if editingStyle == .insert {
@@ -141,7 +96,7 @@ extension CollectionPageViewController: UISearchResultsUpdating {
         if let searchText = searchController.searchBar.text,
            searchText.isEmpty == false {
             filteredCollections = collections.filter({ collection in
-                collection.creation.name.localizedStandardContains(searchText)
+                collection.name.localizedStandardContains(searchText)
             })
         } else {
             filteredCollections = collections

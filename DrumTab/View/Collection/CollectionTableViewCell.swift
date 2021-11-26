@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class CollectionTableViewCell: UITableViewCell {
 
@@ -14,12 +15,14 @@ class CollectionTableViewCell: UITableViewCell {
     @IBOutlet weak var userImageView: UIImageView!
     @IBOutlet weak var userNameLabel: UILabel!
     let customSelectedBackgroundView = UIView()
-    func setupCell(creationName: String, userImage: UIImage,  userName: String) {
+    func setupCell(collection: Creation) {
         backgroundCardView.layer.cornerRadius = 5
-        creationNameLabel.text = creationName
-        userImageView.image = userImage
+        creationNameLabel.text = collection.name
+        guard let user = collection.user else { return }
+        let url = URL(string: user.userPhoto)
+        userImageView.kf.setImage(with: url, placeholder: UIImage(systemName: "person.circle.fill"))
         userImageView.layer.cornerRadius = 9.25
-        userNameLabel.text = userName
+        userNameLabel.text = user.userName
     }
     override func awakeFromNib() {
         super.awakeFromNib()

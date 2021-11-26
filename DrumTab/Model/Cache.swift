@@ -8,6 +8,7 @@
 import UIKit
 
 class Cache {
+    static var userPhotoCache = [String: UIImage]()
     static var userCache = [String: User]()
     static var postCache = [String: Post]()
     static var creationCache = [String: Creation]()

@@ -38,14 +38,14 @@ class CreationPageViewController: UIViewController {
             }
         }
 
-//        firebaseFirestoreManager.fetchCreations { result in
-//            switch result {
-//            case .success(let creations):
-//                self.creations = creations
-//            case .failure(let error):
-//                print(error)
-//            }
-//        }
+        firebaseFirestoreManager.fetchCreations { result in
+            switch result {
+            case .success(let creations):
+                self.creations = creations
+            case .failure(let error):
+                print(error)
+            }
+        }
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -59,14 +59,7 @@ class CreationPageViewController: UIViewController {
             dvc.beatInASection = currentSelectedCreation.timeSignature[0]
             dvc.creationId = currentSelectedCreation.id
             dvc.numberOfSection = currentSelectedCreation.numberOfSection
-            DrumKit.hiHat = currentSelectedCreation.record["hiHat"]!
-            DrumKit.snare = currentSelectedCreation.record["snare"]!
-            DrumKit.tom1 = currentSelectedCreation.record["tom1"]!
-            DrumKit.tom2 = currentSelectedCreation.record["tom2"]!
-            DrumKit.tomF = currentSelectedCreation.record["tomF"]!
-            DrumKit.bass = currentSelectedCreation.record["bass"]!
-            DrumKit.crash = currentSelectedCreation.record["crash"]!
-            DrumKit.ride = currentSelectedCreation.record["ride"]!
+            DrumKit.updateDrumRecord(creation: currentSelectedCreation)
             self.currentSelectedCellIndex = nil
         } else {
             dvc.bpm = 120

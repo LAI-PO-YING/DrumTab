@@ -9,6 +9,7 @@ import UIKit
 import Lottie
 import FirebaseAuth
 import SafariServices
+import Kingfisher
 
 class ProfilePageViewController: UIViewController {
     
@@ -49,7 +50,7 @@ class ProfilePageViewController: UIViewController {
     @IBOutlet weak var likeValueLabel: UILabel!
 
     func importRankingViewData(users: [User]) {
-        func transformDate(time: TimeInterval) ->String {
+        func transformDate(time: TimeInterval) -> String {
             let date = Date(timeIntervalSince1970: time)
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "yyyy/MM/dd"
@@ -149,24 +150,12 @@ class ProfilePageViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        firebase.fetchSpecificUser(userId: LocalUserData.userId) { result in
-//            switch result {
-//            case .success(let user):
-//                if user.userPhoto == "" {
-//                } else {
-//                    let urlStr = user.userPhoto
-//                    if let url = URL(string: urlStr),
-//                       let data = try? Data(contentsOf: url) {
-//                        self.personalPhotoImageView.image = UIImage(data: data)!
-//                        
-//                    }
-//                }
-//                self.nameLabel.text = user.userName
-//                self.aboutMeLabel.text = user.aboutMe
-//            case .failure(let error):
-//                print(error)
-//            }
-//        }
+        guard let user = LocalUserData.user else { return }
+        nameLabel.text = user.userName
+        aboutMeLabel.text = user.aboutMe
+        let photoUrl = URL(string: user.userPhoto)
+        personalPhotoImageView.kf.setImage(with: photoUrl, placeholder: UIImage(systemName: "person.circle.fill"))
+
         self.personalPhotoImageView.layer.cornerRadius = 50
         creationView.layer.borderColor = UIColor(named: "D2")?.cgColor
         creationView.layer.borderWidth = 1

@@ -6,9 +6,10 @@
 //
 
 import UIKit
+import Kingfisher
 
 class CommentTableViewCell: UITableViewCell {
-
+    
     @IBOutlet weak var userImageView: UIImageView!
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
@@ -18,23 +19,21 @@ class CommentTableViewCell: UITableViewCell {
     @IBOutlet weak var moreButton: UIButton!
     var photoPressedClosure: (() -> Void) = {}
     var moreButtonPressedClosure: (() -> Void) = {}
-func setupCommentCell(
-        image: UIImage,
-        name: String,
-        time: String,
-        comment: String,
-        floor: Int
+    func setupCommentCell(
+        floor: Int,
+        comment: CreationComment
     ) {
         // transform time
-        let date = Date(timeIntervalSince1970: TimeInterval(time)!)
+        let date = Date(timeIntervalSince1970: TimeInterval(comment.time))
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy/MM/dd HH:mm"
         
-        userImageView.image = image
+        let url = URL(string: comment.user.userPhoto)
+        userImageView.kf.setImage(with: url, placeholder: UIImage(systemName: "person.circle.fill"))
         userImageView.layer.cornerRadius = 15
-        userNameLabel.text = name
+        userNameLabel.text = comment.user.userName
         timeLabel.text = dateFormatter.string(from: date)
-        commentLabel.text = comment
+        commentLabel.text = comment.comment
         floorLabel.text = "\(floor)F"
         backgroundCardView.layer.cornerRadius = 5
     }
@@ -42,10 +41,10 @@ func setupCommentCell(
         super.awakeFromNib()
         moreButton.transform = moreButton.transform.rotated(by: .pi / 2)
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
     }
     @IBAction func photoPressed(_ sender: Any) {
         photoPressedClosure()

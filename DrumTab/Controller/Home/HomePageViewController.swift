@@ -17,75 +17,39 @@ class HomePageViewController: UIViewController {
     var currentSelectedRow: Int?
     let loadingAnimationView = AnimationView(name: "loadingAnimation")
     let lottie = LoadingAnimationManager.shared
-    let dispatchGroup = DispatchGroup()
-    
+
+    var provider = PostProvider.shared
     var posts = [Post]() {
         didSet {
             tableView.reloadData()
         }
     }
-    func updatPostInCache() {
-        dispatchGroup.enter()
-        firebase.fetchPosts { result in
-            switch result {
-            case .success(let posts):
-                posts.forEach { post in
-                    Cache.postCache[post.postId] = post
-                    if Cache.userCache[post.userId] == nil {
-                        self.dispatchGroup.enter()
-                        self.firebase.fetchSpecificUser(userId: post.userId) { user in
-                            Cache.postCache[post.postId]?.user = user
-                            Cache.userCache[post.userId] = user
-                            self.dispatchGroup.leave()
-                        }
-                    } else {
-                        Cache.postCache[post.postId]?.user = Cache.userCache[post.userId]
-                    }
-                    if Cache.creationCache[post.creationId] == nil {
-                        self.dispatchGroup.enter()
-                        self.firebase.fetchSpecificCreation(creationId: post.creationId) { creation in
-                            Cache.postCache[post.postId]?.creation = creation
-                            Cache.creationCache[post.creationId] = creation
-                            self.dispatchGroup.leave()
-                        }
-                    } else {
-                        Cache.postCache[post.postId]?.creation = Cache.creationCache[post.creationId]
-                    }
-                    
-                }
-            case .failure(let error):
-                print(error)
-            }
-            self.dispatchGroup.leave()
-        }
-    }
-    func updatePost() {
-        var postsFromCache = [Post]()
-        Cache.postCache.forEach { _, post in
-            postsFromCache.append(post)
-        }
-        postsFromCache.sort { $0.postTime > $1.postTime }
-        self.posts = postsFromCache
-    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        lottie.startLoading(target: self, animationView: loadingAnimationView)
-        updatPostInCache()
-        tableView.es.addPullToRefresh {
-            self.updatPostInCache()
-            self.dispatchGroup.notify(queue: .main) {
-                self.updatePost()
-                self.tableView.es.stopPullToRefresh()
-            }
+
+        // 記得刪掉，SceneDelegate 會抓local user data
+        firebase.fetchSpecificUser(userId: LocalUserData.userId) { user in
+            LocalUserData.user = user
         }
-        
+
+        lottie.startLoading(target: self, animationView: loadingAnimationView)
+
+        provider.fetchAllPost(completion: { posts in
+            self.posts = posts
+            self.loadingAnimationView.removeFromSuperview()
+        })
+
+        tableView.es.addPullToRefresh {
+            self.provider.fetchAllPost(completion: { posts in
+                self.posts = posts
+                self.tableView.es.stopPullToRefresh()
+            })
+        }
+
         tableView.delegate = self
         tableView.dataSource = self
-        dispatchGroup.notify(queue: .main) {
-            self.updatePost()
-            self.loadingAnimationView.removeFromSuperview()
-        }
+
     }
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.setNavigationBarHidden(true, animated: true)

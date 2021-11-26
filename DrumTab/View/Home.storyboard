@@ -285,27 +285,39 @@
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="geG-Ry-LfB">
                                 <rect key="frame" x="187.5" y="757" width="39" height="31"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="39" id="1rL-MX-Td9"/>
+                                    <constraint firstAttribute="height" constant="31" id="RCE-9N-XX4"/>
+                                </constraints>
                                 <color key="tintColor" red="0.85490196078431369" green="0.6470588235294118" blue="0.12549019607843137" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="play.fill" catalog="system"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" image="play.fill" catalog="system"/>
                                 <connections>
                                     <action selector="playButtonPressed:" destination="1NP-Xi-X6R" eventType="touchUpInside" id="l7C-FP-6N4"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bcA-ch-aXf">
                                 <rect key="frame" x="40" y="757" width="50" height="31"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="dNQ-WE-OJA"/>
+                                    <constraint firstAttribute="height" constant="31" id="sre-Y1-065"/>
+                                </constraints>
                                 <color key="tintColor" red="0.85490196078431369" green="0.6470588235294118" blue="0.12549019607843137" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="backward.fill" catalog="system"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" image="backward.fill" catalog="system"/>
                                 <connections>
                                     <action selector="rewindButtonPressed:" destination="1NP-Xi-X6R" eventType="touchUpInside" id="x5u-ft-JhN"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pba-Gv-X2Y">
                                 <rect key="frame" x="324" y="757" width="50" height="31"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="xfE-io-9tD"/>
+                                    <constraint firstAttribute="height" constant="31" id="yee-eB-Qhy"/>
+                                </constraints>
                                 <color key="tintColor" red="0.85490196078431369" green="0.6470588235294118" blue="0.12549019607843137" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="forward.fill" catalog="system"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" image="forward.fill" catalog="system"/>
                                 <connections>
                                     <action selector="forwardButtonPressed:" destination="1NP-Xi-X6R" eventType="touchUpInside" id="nV7-kO-lPj"/>
                                 </connections>
@@ -332,8 +344,8 @@
                                     <constraint firstAttribute="width" constant="45.5" id="k5M-8p-Gqv"/>
                                 </constraints>
                                 <color key="tintColor" red="0.85490196078431369" green="0.6470588235294118" blue="0.12549019607843137" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="paperplane.fill" catalog="system"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" image="paperplane.fill" catalog="system"/>
                                 <connections>
                                     <action selector="sendButtonPressed:" destination="1NP-Xi-X6R" eventType="touchUpInside" id="Ov1-hq-OGq"/>
                                 </connections>
@@ -373,6 +385,7 @@
                                                 </button>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ljq-Mr-5ar">
                                                     <rect key="frame" x="20" y="10" width="30" height="30"/>
+                                                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <gestureRecognizers/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="30" id="DRi-Bk-SEf"/>
@@ -484,9 +497,13 @@
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bOz-5i-gB9">
                                 <rect key="frame" x="365" y="94.5" width="41" height="31"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="31" id="o3k-Zz-qSX"/>
+                                    <constraint firstAttribute="width" constant="41" id="yga-hH-rf5"/>
+                                </constraints>
                                 <color key="tintColor" name="G1"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="bookmark" catalog="system"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" image="bookmark" catalog="system"/>
                                 <connections>
                                     <action selector="addInCollectionButtonPressed:" destination="1NP-Xi-X6R" eventType="touchUpInside" id="TYI-al-4L1"/>
                                 </connections>
