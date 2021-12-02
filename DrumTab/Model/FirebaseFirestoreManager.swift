@@ -304,9 +304,6 @@ class FirebaseFirestoreManager {
         userId: String,
         comment: String
     ) {
-//        let date = Date(timeIntervalSince1970: NSDate().timeIntervalSince1970)
-//        let dateFormatter = DateFormatter()
-//        dateFormatter.dateFormat = "yyyy/MM/dd HH:mm"
         db.collection("creation").whereField("id", isEqualTo: creationId).getDocuments { querySnapshot, error in
             if let error = error {
                 print(error)

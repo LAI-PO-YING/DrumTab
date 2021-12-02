@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import ESPullToRefresh
 
 protocol PreviewPageViewControllerDelegate: AnyObject {
     func didPressBlock(blockId: String)
@@ -35,7 +34,7 @@ class PreviewPageViewController: UIViewController {
     var timerIndex = 0
     var speed: Double = 0
     var userComment: String?
-    var user: User?
+    var user = LocalUserData.user
 
     var creationId: String?
     var creation: Creation? {
@@ -113,12 +112,6 @@ class PreviewPageViewController: UIViewController {
         commentProvider.fetchComment(creation: creation) { comments in
             self.comments = comments
         }
-        tableView.es.addPullToRefresh {
-            self.commentProvider.fetchComment(creation: creation) { comments in
-                self.comments = comments
-                self.tableView.es.stopPullToRefresh()
-            }
-        }
         tableView.delegate = self
         tableView.dataSource = self
         
@@ -129,7 +122,6 @@ class PreviewPageViewController: UIViewController {
     }
     override func viewWillDisappear(_ animated: Bool) {
         self.tabBarController?.tabBar.isHidden = false
-//        navigationController?.setNavigationBarHidden(false, animated: true)
     }
     deinit {
         stopTimer()
@@ -173,12 +165,26 @@ class PreviewPageViewController: UIViewController {
         guard let userComment = userComment else {
             return
         }
+        let commentData: [String: String] = [
+            "userId": LocalUserData.userId,
+            "comment": userComment,
+            "time": "\(Int(Date().timeIntervalSince1970))"
+        ]
         firebase.uploadComment(
             creationId: creationId!,
             userId: LocalUserData.userId,
             comment: userComment
         )
         commentTextField.text = nil
+        comments.append(
+            CreationComment(
+                user: LocalUserData.user!,
+                time: Int(Date().timeIntervalSince1970),
+                comment: userComment
+            )
+        )
+        Cache.creationCache[creationId!]?.comment.append(commentData)
+        tableView.scrollToRow(at: [0, Cache.creationCache[creationId!]!.comment.count - 1], at: .bottom, animated: false)
         self.userComment = nil
     }
     @IBAction func addInCollectionButtonPressed(_ sender: UIButton) {
@@ -186,11 +192,13 @@ class PreviewPageViewController: UIViewController {
             firebase.removeCollection(userId: user!.userId, creationId: creationId!)
             let updateCollections = user!.userCollection.filter {$0 != "\(creationId!)"}
             user!.userCollection = updateCollections
+            LocalUserData.user?.userCollection = updateCollections
             sender.setImage(UIImage(systemName: "bookmark"), for: .normal)
         } else {
             firebase.addCollection(userId: user!.userId, creationId: creationId!)
             sender.setImage(UIImage(systemName: "bookmark.fill"), for: .normal)
             user!.userCollection.append("\(creationId!)")
+            LocalUserData.user?.userCollection.append(creationId!)
         }
     }
 }

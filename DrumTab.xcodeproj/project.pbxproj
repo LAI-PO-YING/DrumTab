@@ -36,7 +36,6 @@
 		304CBE30271D75B7006B4FE2 /* drumBass.wav in Resources */ = {isa = PBXBuildFile; fileRef = 304CBE29271D75B7006B4FE2 /* drumBass.wav */; };
 		304CBE31271D75B7006B4FE2 /* drumFloorTom.wav in Resources */ = {isa = PBXBuildFile; fileRef = 304CBE2A271D75B7006B4FE2 /* drumFloorTom.wav */; };
 		304CBE33271D781F006B4FE2 /* DrumKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304CBE32271D781F006B4FE2 /* DrumKit.swift */; };
-		305561C12747A1480079A59D /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305561C02747A1480079A59D /* UIImageView+Extension.swift */; };
 		305561C92747F8790079A59D /* loadingAnimation.json in Resources */ = {isa = PBXBuildFile; fileRef = 305561C82747F8790079A59D /* loadingAnimation.json */; };
 		305B8B6C271FE4ED000E9E90 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 305B8B6B271FE4ED000E9E90 /* GoogleService-Info.plist */; };
 		305B8B6E271FE626000E9E90 /* FirebaseFirestoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305B8B6D271FE626000E9E90 /* FirebaseFirestoreManager.swift */; };
@@ -60,7 +59,6 @@
 		30ABCD942730E75400126875 /* PersonalInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 30ABCD932730E75400126875 /* PersonalInfoView.xib */; };
 		30ABCD962730E77000126875 /* PersonalInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30ABCD952730E77000126875 /* PersonalInfoView.swift */; };
 		30B15A112733AD8600E11D2A /* intro.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 30B15A102733AD8300E11D2A /* intro.mp4 */; };
-		30B15A132733EBED00E11D2A /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B15A122733EBED00E11D2A /* UIButton+Extension.swift */; };
 		30BB2D5F272BCEF000862277 /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BB2D5E272BCEF000862277 /* CommentTableViewCell.swift */; };
 		30D6E0D3272D024A00AF6378 /* CollectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D6E0D2272D024A00AF6378 /* CollectionTableViewCell.swift */; };
 		30DB2773274F8E8200D9023A /* CreationCommentProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30DB2772274F8E8200D9023A /* CreationCommentProvider.swift */; };
@@ -103,7 +101,6 @@
 		304CBE29271D75B7006B4FE2 /* drumBass.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = drumBass.wav; sourceTree = "<group>"; };
 		304CBE2A271D75B7006B4FE2 /* drumFloorTom.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = drumFloorTom.wav; sourceTree = "<group>"; };
 		304CBE32271D781F006B4FE2 /* DrumKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrumKit.swift; sourceTree = "<group>"; };
-		305561C02747A1480079A59D /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
 		305561C82747F8790079A59D /* loadingAnimation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loadingAnimation.json; sourceTree = "<group>"; };
 		305B8B6B271FE4ED000E9E90 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		305B8B6D271FE626000E9E90 /* FirebaseFirestoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseFirestoreManager.swift; sourceTree = "<group>"; };
@@ -129,7 +126,6 @@
 		30ABCD932730E75400126875 /* PersonalInfoView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PersonalInfoView.xib; sourceTree = "<group>"; };
 		30ABCD952730E77000126875 /* PersonalInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInfoView.swift; sourceTree = "<group>"; };
 		30B15A102733AD8300E11D2A /* intro.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = intro.mp4; sourceTree = "<group>"; };
-		30B15A122733EBED00E11D2A /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
 		30BB2D5E272BCEF000862277 /* CommentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
 		30D6E0D2272D024A00AF6378 /* CollectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionTableViewCell.swift; sourceTree = "<group>"; };
 		30DB2772274F8E8200D9023A /* CreationCommentProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreationCommentProvider.swift; sourceTree = "<group>"; };
@@ -169,9 +165,7 @@
 			children = (
 				304CBDFF271D1D22006B4FE2 /* UIStoryboard+Extension.swift */,
 				304CBE1E271D4458006B4FE2 /* UIView+Extension.swift */,
-				30B15A122733EBED00E11D2A /* UIButton+Extension.swift */,
 				300121332735339D004C4CBD /* UIImage+Extension.swift */,
-				305561C02747A1480079A59D /* UIImageView+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -583,7 +577,6 @@
 				308173152723E8910002C86D /* PreviewCollectionViewCell.swift in Sources */,
 				30EEF05E273106C500D545E0 /* AuthViewController.swift in Sources */,
 				30D6E0D3272D024A00AF6378 /* CollectionTableViewCell.swift in Sources */,
-				30B15A132733EBED00E11D2A /* UIButton+Extension.swift in Sources */,
 				304CBE00271D1D22006B4FE2 /* UIStoryboard+Extension.swift in Sources */,
 				304CBE17271D34A6006B4FE2 /* CollectionPageViewController.swift in Sources */,
 				30306ADF273A51E200BCECF8 /* HeaderCollectionReusableView.swift in Sources */,
@@ -603,7 +596,6 @@
 				30193AA7273E3E0F009599D2 /* PersonalPostTableViewCell.swift in Sources */,
 				305B8B6E271FE626000E9E90 /* FirebaseFirestoreManager.swift in Sources */,
 				304CBE33271D781F006B4FE2 /* DrumKit.swift in Sources */,
-				305561C12747A1480079A59D /* UIImageView+Extension.swift in Sources */,
 				30922E4B27466E080055AF51 /* LoadingAnimation.swift in Sources */,
 				305B8B72272008B5000E9E90 /* CreationPageTableViewCell.swift in Sources */,
 				300121342735339D004C4CBD /* UIImage+Extension.swift in Sources */,

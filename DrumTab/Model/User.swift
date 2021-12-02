@@ -25,22 +25,3 @@ struct User: Codable {
     var blockBy: [String]
 
 }
-
-struct UserLocalUse {
-
-    var userId: String
-    var userName: String
-    var userEmail: String
-    var userPhoto: UIImage
-    var userCollection: [String]
-    var userFollow: [String]
-    var followBy: [String]
-    var likesCount: Int
-    var userPhotoId: String
-    var createdTime: TimeInterval
-    var aboutMe: String
-    var blockList: [String]
-    var blockBy: [String]
-
-}
-
