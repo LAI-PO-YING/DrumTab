@@ -40,6 +40,16 @@ class DrumKit {
         DrumKit.crash = ["0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0"]
         DrumKit.ride = ["0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0"]
     }
+    static func updateDrumRecord(creation: Creation) {
+        DrumKit.hiHat = creation.record["hiHat"]!
+        DrumKit.snare = creation.record["snare"]!
+        DrumKit.tom1 = creation.record["tom1"]!
+        DrumKit.tom2 = creation.record["tom2"]!
+        DrumKit.tomF = creation.record["tomF"]!
+        DrumKit.bass = creation.record["bass"]!
+        DrumKit.crash = creation.record["crash"]!
+        DrumKit.ride = creation.record["ride"]!
+    }
 
     @objc func playDrumSound() {
         if DrumKit.hiHat[DrumKit.index] == "0" {

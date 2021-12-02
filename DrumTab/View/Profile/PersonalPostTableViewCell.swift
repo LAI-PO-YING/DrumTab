@@ -15,21 +15,17 @@ class PersonalPostTableViewCell: UITableViewCell {
     @IBOutlet weak var likeButton: UIButton!
     @IBOutlet weak var backgroundCardView: UIView!
     var likeButtonPressedClosure: (()->Void) = {}
-    func setupCell(
-        creationName: String,
-        time: TimeInterval,
-        content: String,
-        like: Int
-    ) {
+    func setupCell(post: Post) {
         // transform time
-        let date = Date(timeIntervalSince1970: time)
+        let date = Date(timeIntervalSince1970: post.postTime)
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy/MM/dd HH:mm"
         // setup cell
-        creationNameLabel.text = "\(creationName)"
-        contentLabel.text = content
+        guard let creation = post.creation else { return }
+        creationNameLabel.text = "\(creation.name)"
+        contentLabel.text = post.content
         timeLabel.text = dateFormatter.string(from: date)
-        likeLabel.text = "\(like)"
+        likeLabel.text = "\(post.like.count)"
     }
 
     override func awakeFromNib() {

@@ -57,8 +57,6 @@ class RecordPageViewController: UIViewController {
         picker.delegate = self
         picker.dataSource = self
         bpmTextField.inputView = picker
-//        let tap = UITapGestureRecognizer(target: self, action: #selector(closeKeyboard))
-//        view.addGestureRecognizer(tap)
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -102,22 +100,11 @@ class RecordPageViewController: UIViewController {
             repeats: true
         )
         RunLoop.current.add(self.playTimer!, forMode: .common)
-//        autoScrollTimer = Timer.scheduledTimer(
-//            timeInterval: speed,
-//            target: self,
-//            selector: #selector(autoScroll),
-//            userInfo: nil,
-//            repeats: true
-//        )
-//        RunLoop.current.add(self.autoScrollTimer!, forMode: .common)
-        
     }
     
     func stopTimer() {
         playTimer?.invalidate()
         playTimer = nil
-//        autoScrollTimer?.invalidate()
-//        autoScrollTimer = nil
         DrumKit.index = 0
     }
 
