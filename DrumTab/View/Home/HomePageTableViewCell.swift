@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class HomePageTableViewCell: UITableViewCell {
 
@@ -32,7 +33,7 @@ class HomePageTableViewCell: UITableViewCell {
     func setupCell(
         userName: String,
         creationName: String,
-        image: UIImage,
+        image: String,
         time: TimeInterval,
         content: String,
         like: Int
@@ -42,7 +43,8 @@ class HomePageTableViewCell: UITableViewCell {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy/MM/dd HH:mm"
         // setup cell
-        userPhotoImageView.image = image
+        let url = URL(string: image)
+        userPhotoImageView.kf.setImage(with: url, placeholder: UIImage(systemName: "person.circle.fill"))
         userPhotoImageView.layer.cornerRadius = 15
         nameLabel.text = userName
         creationNameLabel.text = "\(creationName)"

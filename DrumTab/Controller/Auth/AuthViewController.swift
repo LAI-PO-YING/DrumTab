@@ -35,14 +35,6 @@ class AuthViewController: UIViewController {
         
         controller.performRequests()
     }
-//    func playVideo() {
-//        guard let path = Bundle.main.path(forResource: "intro", ofType: ".mp4") else { return }
-//        let player = AVPlayer(url: URL(fileURLWithPath: path))
-//        let playerLayer = AVPlayerLayer(player: player)
-//        playerLayer.frame = self.view.bounds
-//        playerLayer.videoGravity = .resizeAspectFill
-//        self.videoView.layer.addSublayer(playerLayer)
-//    }
 
     override func viewDidLayoutSubviews() {
         videoPlayerLooped.playVideo(fileName: "intro", inView: videoView)
@@ -175,6 +167,21 @@ extension AuthViewController: ASAuthorizationControllerDelegate {
                                     userEmail: email
                                 ) {
                                     LocalUserData.userId = currentUser.uid
+                                    self.firebase.fetchSpecificUser(userId: LocalUserData.userId) { user in
+                                        LocalUserData.user = user
+                                        let mainPageVC = UIStoryboard.main.instantiateViewController(withIdentifier:
+                                            String(describing: DTTabBarViewController.self)
+                                        )
+
+                                        guard let mainPageVC = mainPageVC as? DTTabBarViewController else { return }
+
+                                        self.show(mainPageVC, sender: nil)
+                                    }
+                                }
+                            } else {
+                                LocalUserData.userId = currentUser.uid
+                                self.firebase.fetchSpecificUser(userId: LocalUserData.userId) { user in
+                                    LocalUserData.user = user
                                     let mainPageVC = UIStoryboard.main.instantiateViewController(withIdentifier:
                                         String(describing: DTTabBarViewController.self)
                                     )
@@ -183,15 +190,6 @@ extension AuthViewController: ASAuthorizationControllerDelegate {
 
                                     self.show(mainPageVC, sender: nil)
                                 }
-                            } else {
-                                LocalUserData.userId = currentUser.uid
-                                let mainPageVC = UIStoryboard.main.instantiateViewController(withIdentifier:
-                                    String(describing: DTTabBarViewController.self)
-                                )
-
-                                guard let mainPageVC = mainPageVC as? DTTabBarViewController else { return }
-
-                                self.show(mainPageVC, sender: nil)
                             }
                         case .failure(let error):
                             print(error)

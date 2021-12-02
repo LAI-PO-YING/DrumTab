@@ -161,13 +161,13 @@ class FirebaseFirestoreManager {
     }
     func fetchSpecificCreation(
         creationId: String,
-        completion: @escaping (Result<Creation, Error>) -> Void
+        completion: @escaping (Creation) -> Void
     ) {
 
         db.collection("creation").whereField("id", isEqualTo: creationId).getDocuments { querySnapshot, error in
 
             if let error = error {
-                completion(.failure(error))
+                print(error)
             } else {
 
                 var currentCreation: Creation?
@@ -182,11 +182,13 @@ class FirebaseFirestoreManager {
 
                     } catch {
 
-                        completion(.failure(error))
+                        print(error)
 
                     }
                 }
-                completion(.success(currentCreation!))
+                if let currentCreation = currentCreation {
+                    completion(currentCreation)
+                }
             }
         }
 
@@ -194,13 +196,13 @@ class FirebaseFirestoreManager {
 
     func fetchSpecificUser(
         userId: String,
-        completion: @escaping (Result<User, Error>) -> Void
+        completion: @escaping (User) -> Void
     ) {
 
         db.collection("user").whereField("userId", isEqualTo: userId).getDocuments { querySnapshot, error in
 
             if let error = error {
-                completion(.failure(error))
+                print(error)
             } else {
 
                 var currentUser: User?
@@ -215,11 +217,15 @@ class FirebaseFirestoreManager {
 
                     } catch {
 
-                        completion(.failure(error))
+                        print(error)
 
                     }
                 }
-                completion(.success(currentUser!))
+                if let currentUser = currentUser {
+
+                    completion(currentUser)
+
+                }
             }
         }
     }
@@ -298,9 +304,6 @@ class FirebaseFirestoreManager {
         userId: String,
         comment: String
     ) {
-//        let date = Date(timeIntervalSince1970: NSDate().timeIntervalSince1970)
-//        let dateFormatter = DateFormatter()
-//        dateFormatter.dateFormat = "yyyy/MM/dd HH:mm"
         db.collection("creation").whereField("id", isEqualTo: creationId).getDocuments { querySnapshot, error in
             if let error = error {
                 print(error)
@@ -344,13 +347,8 @@ class FirebaseFirestoreManager {
         }
     }
     func fetchCollections(completion: @escaping ([String]) -> Void) {
-        fetchSpecificUser(userId: LocalUserData.userId) { resullt in
-            switch resullt {
-            case .success(let user):
-                completion(user.userCollection)
-            case .failure(let error):
-                print(error)
-            }
+        fetchSpecificUser(userId: LocalUserData.userId) { user in
+            completion(user.userCollection)
         }
     }
     func createUser(

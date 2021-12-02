@@ -47,29 +47,29 @@ private enum Tab {
         case .home:
             return UITabBarItem(
                 title: "Social",
-                image: UIImage(named: "social"), // remember to change icon
-                selectedImage: UIImage(named: "social.fill") // remember to change icon
+                image: UIImage(named: "social"),
+                selectedImage: UIImage(named: "social.fill")
             )
 
         case .creation:
             return UITabBarItem(
                 title: "Creation",
-                image: UIImage(named: "creation"), // remember to change icon
-                selectedImage: UIImage(named: "creation_fill") // remember to change icon
+                image: UIImage(named: "creation"),
+                selectedImage: UIImage(named: "creation_fill")
             )
 
         case .collection:
             return UITabBarItem(
                 title: "Collection",
-                image: UIImage(named: "collection"), // remember to change icon
-                selectedImage: UIImage(named: "collection_fill") // remember to change icon
+                image: UIImage(named: "collection"),
+                selectedImage: UIImage(named: "collection_fill")
             )
 
         case .profile:
             return UITabBarItem(
                 title: "Profile",
-                image: UIImage(named: "profile"), // remember to change icon
-                selectedImage: UIImage(named: "profile.fill") // remember to change icon
+                image: UIImage(named: "profile"),
+                selectedImage: UIImage(named: "profile.fill")
             )
 
         }

@@ -9,6 +9,7 @@ import UIKit
 import Lottie
 import FirebaseAuth
 import SafariServices
+import Kingfisher
 
 class ProfilePageViewController: UIViewController {
     
@@ -49,73 +50,37 @@ class ProfilePageViewController: UIViewController {
     @IBOutlet weak var likeValueLabel: UILabel!
 
     func importRankingViewData(users: [User]) {
-        func transformDate(time: TimeInterval) ->String {
+        func transformDate(time: TimeInterval) -> String {
             let date = Date(timeIntervalSince1970: time)
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "yyyy/MM/dd"
             let returnStr = "Since \(dateFormatter.string(from: date))"
             return returnStr
         }
-        if users[0].userPhoto == "" {
-            self.firstPrizeImageView.image = UIImage(systemName: "person.circle.fill")!
-            self.firstPrizeNameLabel.text = "1. " + users[0].userName
-            self.firstPrizeLikeLabel.text = "\(users[0].likesCount)"
-            self.firstPrizeSinceLabel.text = transformDate(time: users[0].createdTime)
-        } else {
-            if UserPhotoCache.userPhotoCache["\(users[0].userPhoto)"] == nil {
-                let urlStr = users[0].userPhoto
-                if let url = URL(string: urlStr),
-                   let data = try? Data(contentsOf: url) {
-                    self.firstPrizeImageView.image = UIImage(data: data)!
-                    UserPhotoCache.userPhotoCache["\(users[0].userPhoto)"] = UIImage(data: data)!
-                }
-            } else {
-                self.firstPrizeImageView.image = UserPhotoCache.userPhotoCache["\(users[0].userPhoto)"]!
-            }
-            self.firstPrizeNameLabel.text = "1. " + users[0].userName
-            self.firstPrizeLikeLabel.text = "\(users[0].likesCount)"
-            self.firstPrizeSinceLabel.text = transformDate(time: users[0].createdTime)
-        }
-        if users[1].userPhoto == "" {
-            self.secondPrizeImageView.image = UIImage(systemName: "person.circle.fill")!
-            self.secondPrizeNameLabel.text = "2. " + users[1].userName
-            self.secondPrizeLikeLabel.text = "\(users[1].likesCount)"
-            self.secondPrizeSinceLabel.text = transformDate(time: users[1].createdTime)
-        } else {
-            if UserPhotoCache.userPhotoCache["\(users[1].userPhoto)"] == nil {
-                let urlStr = users[1].userPhoto
-                if let url = URL(string: urlStr),
-                   let data = try? Data(contentsOf: url) {
-                    self.secondPrizeImageView.image = UIImage(data: data)!
-                    UserPhotoCache.userPhotoCache["\(users[1].userPhoto)"] = UIImage(data: data)!
-                }
-            } else {
-                self.secondPrizeImageView.image = UserPhotoCache.userPhotoCache["\(users[1].userPhoto)"]!
-            }
-            self.secondPrizeNameLabel.text = "2. " + users[1].userName
-            self.secondPrizeLikeLabel.text = "\(users[1].likesCount)"
-            self.secondPrizeSinceLabel.text = transformDate(time: users[1].createdTime)
-        }
-        if users[2].userPhoto == "" {
-            self.thirdPrizeImageView.image = UIImage(systemName: "person.circle.fill")!
-            self.thirdPrizeNameLabel.text = "3. " + users[2].userName
-            self.thirdPrizeLikeLabel.text = "\(users[2].likesCount)"
-            self.thirdPrizeSinceLabel.text = transformDate(time: users[2].createdTime)
-        } else {
-            if UserPhotoCache.userPhotoCache["\(users[2].userPhoto)"] == nil {
-                let urlStr = users[2].userPhoto
-                if let url = URL(string: urlStr),
-                   let data = try? Data(contentsOf: url) {
-                    self.thirdPrizeImageView.image = UIImage(data: data)!
-                    UserPhotoCache.userPhotoCache["\(users[2].userPhoto)"] = UIImage(data: data)!
-                }
-            } else {
-                self.thirdPrizeImageView.image = UserPhotoCache.userPhotoCache["\(users[2].userPhoto)"]!
-            }
-            self.thirdPrizeNameLabel.text = "3. " + users[2].userName
-            self.thirdPrizeLikeLabel.text = "\(users[2].likesCount)"
-            self.thirdPrizeSinceLabel.text = transformDate(time: users[2].createdTime)
-        }
+        firstPrizeImageView.kf.setImage(
+            with: URL(string: users[0].userPhoto),
+            placeholder: UIImage(systemName: "person.circle.fill")
+        )
+        firstPrizeNameLabel.text = "1. " + users[0].userName
+        firstPrizeLikeLabel.text = "\(users[0].likesCount)"
+        firstPrizeSinceLabel.text = transformDate(time: users[0].createdTime)
+
+        secondPrizeImageView.kf.setImage(
+            with: URL(string: users[1].userPhoto),
+            placeholder: UIImage(systemName: "person.circle.fill")
+        )
+        secondPrizeNameLabel.text = "2. " + users[1].userName
+        secondPrizeLikeLabel.text = "\(users[1].likesCount)"
+        secondPrizeSinceLabel.text = transformDate(time: users[1].createdTime)
+
+        thirdPrizeImageView.kf.setImage(
+            with: URL(string: users[2].userPhoto),
+            placeholder: UIImage(systemName: "person.circle.fill")
+        )
+        thirdPrizeNameLabel.text = "3. " + users[2].userName
+        thirdPrizeLikeLabel.text = "\(users[2].likesCount)"
+        thirdPrizeSinceLabel.text = transformDate(time: users[2].createdTime)
+
     }
     
     override func viewDidLayoutSubviews() {
@@ -149,24 +114,12 @@ class ProfilePageViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        firebase.fetchSpecificUser(userId: LocalUserData.userId) { result in
-            switch result {
-            case .success(let user):
-                if user.userPhoto == "" {
-                } else {
-                    let urlStr = user.userPhoto
-                    if let url = URL(string: urlStr),
-                       let data = try? Data(contentsOf: url) {
-                        self.personalPhotoImageView.image = UIImage(data: data)!
-                        
-                    }
-                }
-                self.nameLabel.text = user.userName
-                self.aboutMeLabel.text = user.aboutMe
-            case .failure(let error):
-                print(error)
-            }
-        }
+        guard let user = LocalUserData.user else { return }
+        nameLabel.text = user.userName
+        aboutMeLabel.text = user.aboutMe
+        let photoUrl = URL(string: user.userPhoto)
+        personalPhotoImageView.kf.setImage(with: photoUrl, placeholder: UIImage(systemName: "person.circle.fill"))
+
         self.personalPhotoImageView.layer.cornerRadius = 50
         creationView.layer.borderColor = UIColor(named: "D2")?.cgColor
         creationView.layer.borderWidth = 1
@@ -175,8 +128,6 @@ class ProfilePageViewController: UIViewController {
         likesView.layer.borderColor = UIColor(named: "D2")?.cgColor
         likesView.layer.borderWidth = 1
 
-//        self.personalPhotoImageView.layer.borderColor = UIColor(named: "D2")?.cgColor
-//        self.personalPhotoImageView.layer.borderWidth = 5
         
     }
     

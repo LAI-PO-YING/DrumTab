@@ -16,19 +16,10 @@ struct Post: Codable {
     var content: String
     var like: [String]
 
-    var user: User?
-}
-
-struct PostLocalUse {
-    var creationId: String
-    var postTime: TimeInterval
-    var postId: String
-    var user: UserLocalUse
-    var content: String
-    var like: [String]
-    var creation: Creation
-}
-
-class PostCache {
-    static var postCache: [String: PostLocalUse] = [:]
+    var user: User? {
+        Cache.userCache[userId]
+    }
+    var creation: Creation?{
+        Cache.creationCache[creationId]
+    }
 }

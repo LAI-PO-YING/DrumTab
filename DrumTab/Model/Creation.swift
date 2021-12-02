@@ -20,4 +20,14 @@ struct Creation: Codable {
     var comment: [[String: String]]
     var numberOfSection: Int
 
+    var user: User? {
+        Cache.userCache[userId]
+    }
+
+}
+
+struct CreationComment {
+    var user: User
+    var time: Int
+    var comment: String
 }
