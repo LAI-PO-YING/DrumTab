@@ -96,7 +96,7 @@ In the last tab, Profile-Page, you can view your status including how many creat
 
 By clicking the setting button at the top right corner, you can view our privacy policy, log out or delete account.
 
-![](https://i.imgur.com/ZfuOqyX.gif)
+![](https://i.imgur.com/Ira80HE.gif)
 
 
 
