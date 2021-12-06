@@ -42,7 +42,7 @@ A new way to record and share your beats. With DongZ DaZ, user can easily sign i
 * Use AVKit to control opeing video to make a gorgeous enter page
 
 <p align="center">
-  <img src = "https://i.imgur.com/SA0HLy7.jpg" width=700>
+  <img src = "https://i.imgur.com/p4A4M35.png" width=700>
 </p>
 
 <p align="center">
