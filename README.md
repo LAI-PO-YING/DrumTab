@@ -53,26 +53,26 @@ A new way to record and share your beats. With DongZ DaZ, user can easily sign i
 
 A few things you can do with DongZ DaZ: 
 #### - Browse creations
-You can easily browse every creation in DongZ DaZ. Each post in Social-Page will be attached a creation. By clicking posts, you will enter next page to show the content of creation. You can watch and listen the creation or left message to creator. Also, if you really like the creation, you can easily add into your collection by clicking the collection button at the top-right corner.
+You can easily browse every creation in DongZ DaZ. Each post on Social-Page will be attached with a creation. By clicking posts, you will enter the next page to show the content of creation. You can watch and listen to the creation or leave a message to the creator. Also, if you like the creation, you can easily add it to your collection by clicking the collection button at the top-right corner.
 
 ![](https://i.imgur.com/mcFQCtv.gif)
 
 #### - Record your beats
-You can create your own beats in the second tab which is Creation-Page. In this page, you can edit all the drafts that you saved before. Or you can create a new one by click the plus button at the top-right corner. 
+You can create your beats in the second tab which is Creation-Page. On this page, you can edit all the drafts that you saved before. Or you can create a new one by clicking the plus button at the top-right corner. 
 When clicking a draft or the plus button, you will be led to the next page which is the most important part of DongZ DaZ -- Record Page.
 
-In Record Page, you can easily find that the page is divided into two part. 
+In Record Page, you can easily find that the page is divided into two parts. 
 
-At the bottom-half, we provide a new way to record your beats. Here we provide all of components of drum. There are Hi-Hat, Snare, High-Tom, Mid-Tom, Floor-Tom, Bass, Crash and Ride from the top to the buttom. 
+At the bottom half, we provide a new way to record your beats. Here we provide all of the components of drum. There are Hi-Hat, Snare, High-Tom, Mid-Tom, Floor-Tom, Bass, Crash and Ride from the top to the bottom. 
 
-At the top-half, we can convert your record to music sheet immediately. 
+At the top half, we can convert your record to a music sheet immediately. 
 
-In current version, we support 4/4 beats and support up to 16th note as the smallest note. Each component we provide 16 grids to record. 16 grids stand for 1 section which means 4 grids stand for 1 beat.
+In the current version, we support 4/4 beats and support up to 16th note as the smallest note. For each component, we provide 16 grids to record. 16 grids stand for 1 section which means 4 grids stand for 1 beat.
 
 ![](https://i.imgur.com/K1ydgGR.gif)
 
-Once you finish editing a section, you can press the plus button to create a new section. Since the rhythms in the creation are usually the same. The system will copy your latest section and bring it to the next section. If there isn't anything change, you can press the plus button agains to go on next section. 
-Also, you can adjust BPM to change speeds or press the play button to check the current creation. The music sheet half top will be auto scrolled with your beats.
+Once you finish editing a section, you can press the plus button to create a new section. Since the rhythms in the creation are usually the same. The system will copy your latest section and bring it to the next section. If there isn't anything change, you can press the plus button again to go on next section. 
+Also, you can adjust BPM to change speeds or press the play button to check the current creation. The music sheet half top will be auto-scrolled with your beats.
 
 ![](https://i.imgur.com/GNmwcKI.gif)
 
@@ -82,19 +82,19 @@ And once you finish all of your creation, you can press save to save your creati
 
 #### - Collect your favorite beats
 
-In the third tab, we provide a space to let you collect your favorite creations by clicking the collection button. System will add the creation into your Collection-Page. You can easily find and browse the creation in your Collection-Page by tapping on it.
+In the third tab, we provide a space to let you collect your favorite creations by clicking the collection button. The system will add the creation into your Collection-Page. You can easily find and browse the creation in your Collection-Page by tapping on it.
 
 ![](https://i.imgur.com/7NZ0H2D.gif)
 
-Also, we provide searching function in this page. So you can easily find the creation you want by typing the creation name in the search bar.
+Also, we provide a searching function on this page. So you can easily find the creation you want by typing the creation name in the search bar.
 
 ![](https://i.imgur.com/BUDBDjR.gif)
 
 #### - View your creation status
 
-In the last tab, Profile-Page, you can view your status including how many creation you have created, how many followers you have and how many likes for you have earned. Also, we provide a ranking table to show top 3 creator in the server.
+In the last tab, Profile-Page, you can view your status including how many creations you have created, how many followers you have, and how many likes you have earned. Also, we provide a ranking table to show the top 3 creators on the server.
 
-By clicking the setting button at the top right corner, you can view our privacy policy, log out or delete account.
+By clicking the setting button at the top right corner, you can view our privacy policy, log out or delete your account.
 
 ![](https://i.imgur.com/Ira80HE.gif)
 
